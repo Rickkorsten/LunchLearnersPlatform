@@ -4,14 +4,14 @@
   
       <span class="example-spacer"></span>
       
-      <button mat-button>Mijn boeken</button>
-      <button mat-button>Ontdekken</button>
+      <button mat-button routerLink="library">Mijn boeken</button>
+      <button mat-button routerLink="store">Ontdekken</button>
       <button mat-button>Uitloggen</button>
     </mat-toolbar-row>
 </mat-toolbar>
-
-<router-outlet></router-outlet>
-
+<div class="container">
+  <router-outlet></router-outlet>
+</div>
 <button mat-fab class="fab">
         <mat-icon aria-label="Example icon-button with a heart icon">call</mat-icon>
 </button>

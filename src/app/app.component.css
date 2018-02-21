@@ -11,3 +11,14 @@
     right: 25px;
     bottom: 25px;
 }
+
+.container{
+  padding: 20px;
+  padding-top: 100px;
+
+}
+
+mat-toolbar{
+  position: fixed;
+  z-index: 999;
+}
