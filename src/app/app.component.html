@@ -10,18 +10,6 @@
     </mat-toolbar-row>
 </mat-toolbar>
 <div class="container">
-
-  <input type="text" [(ngModel)]="title" name="title">
-  <textarea [(ngModel)]="content" name="content"></textarea>
-  <input type="submit" value="Add a post" (click)="addPost()">
-
-  <ul *ngFor="let post of posts | async">
-    <li>
-      <strong>{{ post.title}}</strong>
-      <br>
-      {{post.content}}
-    </li>
-  </ul>
   <router-outlet></router-outlet>
 </div>
 <button mat-fab class="fab">
