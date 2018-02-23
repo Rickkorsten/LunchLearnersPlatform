@@ -7,6 +7,19 @@ import { MaterialModule } from './material.module';
 import { LibraryComponent } from './../components/library/library.component';
 import { StoreComponent } from './../components/store/store.component';
 
+import { AngularFireModule } from 'angularfire2';
+import { AngularFirestoreModule } from 'angularfire2/firestore';
+
+import { FormsModule } from '@angular/forms';
+
+var firebaseConfig = {
+  apiKey: "AIzaSyBR3HJduE1qTWlz7D7LiLlVDPda3Vu3wBk",
+  authDomain: "lunchlearners.firebaseapp.com",
+  databaseURL: "https://lunchlearners.firebaseio.com",
+  projectId: "lunchlearners",
+  storageBucket: "lunchlearners.appspot.com",
+  messagingSenderId: "89316466478"
+};
 
 @NgModule({
   declarations: [
@@ -18,7 +31,10 @@ import { StoreComponent } from './../components/store/store.component';
     BrowserModule,
     BrowserAnimationsModule,
     MaterialModule,
-    routes
+    routes,
+    AngularFireModule.initializeApp(firebaseConfig),
+    AngularFirestoreModule,
+    FormsModule
   ],
   providers: [],
   bootstrap: [AppComponent]

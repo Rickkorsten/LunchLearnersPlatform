@@ -5,6 +5,7 @@ import { AppComponent } from './app.component';
 import { LibraryComponent } from './../components/library/library.component';
 import { StoreComponent } from './../components/store/store.component';
 
+
 export const router: Routes = [
     { path: '', redirectTo: 'library', pathMatch: 'full' },
     { path: 'library', component: LibraryComponent },
