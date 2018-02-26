@@ -44,8 +44,6 @@ export class PostBookComponent implements OnInit {
 
     // Progress monitoring
     this.percentage = this.uploadTask.percentageChanges();
-    this.snapshot = this.uploadTask.snapshotChanges()
-
     this.snapshot = this.uploadTask.snapshotChanges().pipe(
       tap(snap => {
         if (snap.bytesTransferred === snap.totalBytes) {

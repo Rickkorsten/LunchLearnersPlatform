@@ -24,7 +24,7 @@ export class StoreComponent implements OnInit {
 
   title: string;
   content: string;
-  videoURL: string;
+  videoURL: any;
 
 
   constructor(private db: AngularFirestore, private storage: AngularFireStorage ) {
@@ -35,4 +35,10 @@ export class StoreComponent implements OnInit {
     this.postsCol = this.db.collection('posts');
     this.posts = this.postsCol.valueChanges();
   }
+
+  // downloadImage(imageURL:string){
+  //   const ref = this.storage.ref('test/1519578506282_kaftceline1.png');
+  //  // console.log(ref.getDownloadURL())
+  //   return
+  // }
 }
