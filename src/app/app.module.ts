@@ -9,16 +9,10 @@ import { StoreComponent } from './../views/store/store.component';
 
 import { AngularFireModule } from 'angularfire2';
 import { AngularFirestoreModule } from 'angularfire2/firestore';
-
-<<<<<<< HEAD
-import { FormsModule } from '@angular/forms';
-=======
-
 import { FormsModule } from '@angular/forms';
 import { DropZoneDirective } from './directives/dropZone/drop-zone.directive';
 import { AngularFireStorageModule } from 'angularfire2/storage';
 import { PostBookComponent } from './../components/post-book/post-book.component';
->>>>>>> develop
 
 var firebaseConfig = {
   apiKey: "AIzaSyBR3HJduE1qTWlz7D7LiLlVDPda3Vu3wBk",
@@ -44,10 +38,7 @@ var firebaseConfig = {
     routes,
     AngularFireModule.initializeApp(firebaseConfig),
     AngularFirestoreModule,
-<<<<<<< HEAD
-=======
     AngularFireStorageModule,
->>>>>>> develop
     FormsModule
   ],
   providers: [],
