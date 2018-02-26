@@ -1,0 +1,14 @@
+<post-book>
+</post-book>
+<mat-grid-list cols="3" rowHeight="2:1">
+  <mat-grid-tile *ngFor="let post of posts | async">
+    <mat-card class="example-card">
+
+      <strong>{{ post.title}}</strong>
+      <br> {{post.content}}
+      <div *ngIf="post.videoURL">
+        <p>{{post.videoURL}}</p>
+      </div>
+    </mat-card>
+  </mat-grid-tile>
+</mat-grid-list>
