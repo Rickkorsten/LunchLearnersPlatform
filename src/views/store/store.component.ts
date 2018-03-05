@@ -3,6 +3,7 @@ import { AngularFirestore, AngularFirestoreCollection, AngularFirestoreDocument 
 import { Observable } from 'rxjs/Observable';
 import { PostBookComponent } from '../../components/post-book/post-book.component';
 import { AngularFireStorage } from 'angularfire2/storage';
+import { AuthService } from '../../app/core/auth.service';
 
 interface Post {
   title: string;
@@ -26,9 +27,12 @@ export class StoreComponent implements OnInit {
   content: string;
   videoURL: any;
 
+  user: any;
 
-  constructor(private db: AngularFirestore, private storage: AngularFireStorage ) {
 
+  constructor(private db: AngularFirestore, private storage: AngularFireStorage, public auth: AuthService) {
+    this.user == auth.user;
+    console.log(this.user);
   }
 
   ngOnInit() {

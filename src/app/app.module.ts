@@ -6,16 +6,25 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { MaterialModule } from './material.module';
 import { LibraryComponent } from './../views/library/library.component';
 import { StoreComponent } from './../views/store/store.component';
+import { LoginComponent } from './../views/login/login.component';
 
 import { AngularFireModule } from 'angularfire2';
 import { AngularFirestoreModule } from 'angularfire2/firestore';
 
-
 import { FormsModule } from '@angular/forms';
 import { DropZoneDirective } from './directives/dropZone/drop-zone.directive';
 import { AngularFireStorageModule } from 'angularfire2/storage';
+import { AngularFireDatabaseModule } from 'angularfire2/database';
+import { AngularFireAuthModule } from 'angularfire2/auth';
 import { PostBookComponent } from './../components/post-book/post-book.component';
 
+import { CoreModule } from './core/core.module';
+
+import { HttpClientModule } from '@angular/common/http';
+import { HttpModule } from '@angular/http';
+
+
+ 
 var firebaseConfig = {
   apiKey: "AIzaSyBR3HJduE1qTWlz7D7LiLlVDPda3Vu3wBk",
   authDomain: "lunchlearners.firebaseapp.com",
@@ -32,6 +41,7 @@ var firebaseConfig = {
     StoreComponent,
     DropZoneDirective,
     PostBookComponent,
+    LoginComponent,
   ],
   imports: [
     BrowserModule,
@@ -41,7 +51,10 @@ var firebaseConfig = {
     AngularFireModule.initializeApp(firebaseConfig),
     AngularFirestoreModule,
     AngularFireStorageModule,
-    FormsModule
+    AngularFireDatabaseModule,
+    AngularFireAuthModule,
+    FormsModule,
+    CoreModule
   ],
   providers: [],
   bootstrap: [AppComponent]
