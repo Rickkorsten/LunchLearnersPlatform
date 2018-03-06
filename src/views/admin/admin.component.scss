@@ -1,0 +1,37 @@
+.admin {
+  display: flex;
+  flex-direction: row;
+}
+
+.drawer-container {
+  height: 100%;
+}
+
+.drawer{
+height: calc(100vh - 64px);
+width: 300px;
+background-color: #E9E9E9;
+flex-direction: column;
+
+  .item {
+    margin-left: 10px;
+    padding-top: 20px;
+
+    p {
+      font-size: 20px;
+      margin: 0;
+      padding: 0;
+    }
+
+  }
+
+}
+
+.company-card-content{
+  display: flex;
+  flex-direction: column;
+}
+
+
+
+

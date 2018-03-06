@@ -13,12 +13,12 @@
 }
 
 .container{
-  padding: 20px;
-  padding-top: 100px;
+  height: auto;
+  width:auto;
 
 }
 
 mat-toolbar{
-  position: fixed;
+  top: 0;
   z-index: 999;
 }

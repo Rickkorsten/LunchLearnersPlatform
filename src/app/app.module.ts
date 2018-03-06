@@ -22,9 +22,10 @@ import { CoreModule } from './core/core.module';
 
 import { HttpClientModule } from '@angular/common/http';
 import { HttpModule } from '@angular/http';
+import { AdminComponent } from './../views/admin/admin.component';
 
 
- 
+
 var firebaseConfig = {
   apiKey: "AIzaSyBR3HJduE1qTWlz7D7LiLlVDPda3Vu3wBk",
   authDomain: "lunchlearners.firebaseapp.com",
@@ -42,6 +43,7 @@ var firebaseConfig = {
     DropZoneDirective,
     PostBookComponent,
     LoginComponent,
+    AdminComponent,
   ],
   imports: [
     BrowserModule,

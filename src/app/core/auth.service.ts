@@ -24,7 +24,7 @@ export class AuthService {
   constructor(
     private afAuth: AngularFireAuth,
     private afs: AngularFirestore,
-    private router: Router) { 
+    private router: Router) {
 
       this.user = this.afAuth.authState
         .switchMap(user => {
@@ -53,14 +53,14 @@ export class AuthService {
 
     const userRef: AngularFirestoreDocument<any> = this.afs.doc(`users/${user.uid}`);
 
-    const data: User = {
+    const User: User = {
       uid: user.uid,
       email: user.email,
       displayName: user.displayName,
       photoURL: user.photoURL
     }
 
-    return userRef.set(data, { merge: true })
+    return userRef.set(User, { merge: true })
 
   }
 
