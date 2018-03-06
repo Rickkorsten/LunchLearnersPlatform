@@ -3,22 +3,22 @@
     <div class="drawer">
       <div class="item">
         <div>
-          <p>klant toevoegen</p>
+            <button mat-button><mat-icon color="primary"  aria-label="Example icon-button with a heart icon">book</mat-icon>Boeken overzicht</button>
         </div>
       </div>
       <div class="item">
-        <div>
-          <p>Boek toevoegen</p>
+          <div>
+              <button mat-button class="active"><mat-icon color="primary"  aria-label="Example icon-button with a heart icon">work</mat-icon>Bedrijven overzicht</button>
+          </div>
         </div>
-      </div>
+        <div class="item">
+            <div>
+                <button mat-button><mat-icon color="primary"  aria-label="Example icon-button with a heart icon">supervisor_account</mat-icon>Gebruikers overzicht</button>
+            </div>
+          </div>
       <div class="item">
         <div>
-          <p>database exporteren toevoegen</p>
-        </div>
-      </div>
-      <div class="item">
-        <div>
-          <p>klanten overzicht</p>
+            <button mat-button><mat-icon color="primary"  aria-label="Example icon-button with a heart icon">import_export</mat-icon>Database exporteren</button>
         </div>
       </div>
     </div>
@@ -28,6 +28,6 @@
 
 
 </div>
-<button mat-fab class="fab">
-    <mat-icon aria-label="Example icon-button with a heart icon"  (click)="openDialog()" >add</mat-icon>
+<button mat-fab class="fab" (click)="openDialog()">
+    <mat-icon aria-label="Example icon-button with a heart icon" >add</mat-icon>
 </button>

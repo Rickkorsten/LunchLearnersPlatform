@@ -10,3 +10,7 @@
     margin-right: -10px;
     margin-left: -10px;
 }
+
+mat-panel-title{
+    width: 30%;
+}

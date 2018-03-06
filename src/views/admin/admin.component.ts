@@ -25,8 +25,7 @@ export class AdminComponent implements OnInit {
 
   openDialog(): void {
     let dialogRef = this.dialog.open(CompanyDialogComponent, {
-      width: '350px',
-      height: '450px',
+      width: '300px',
       data: { name: this.name, code: this.code, branche: this.branche, emailsuffix: this.emailsuffix }
     });
 
