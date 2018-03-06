@@ -1,5 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { AngularFirestore, AngularFirestoreCollection, AngularFirestoreDocument } from 'angularfire2/firestore';
+import { CompanyDialogComponent } from '../../components/company-dialog/company-dialog.component';
+import {MatDialog, MatDialogRef, MAT_DIALOG_DATA} from '@angular/material';
 
 @Component({
   selector: 'app-admin',
@@ -9,6 +11,7 @@ import { AngularFirestore, AngularFirestoreCollection, AngularFirestoreDocument 
 
 
 export class AdminComponent implements OnInit {
+
   name: string;
   code: string;
   branche: string;
@@ -17,9 +20,21 @@ export class AdminComponent implements OnInit {
   books: string[] = [];
   message: string = '';
 
-  constructor(private db: AngularFirestore) {
+  constructor(private db: AngularFirestore, public dialog: MatDialog) {}
 
-  }
+    openDialog(): void {
+      let dialogRef = this.dialog.open(CompanyDialogComponent, {
+        width: '350px',
+        height: '450px',
+        data: {name: this.name , code: this.code, branche: this.branche, emailsuffix: this.emailsuffix}
+      });
+
+      dialogRef.afterClosed().subscribe(result => {
+        this.clearFields();
+        this.uploadCompanyToFirestore(result);
+      });
+    }
+
 
   ngOnInit() {
   }
@@ -31,16 +46,15 @@ export class AdminComponent implements OnInit {
     this.emailsuffix = '';
   }
 
-  uploadCompanyToFirestore() {
-
+  uploadCompanyToFirestore(data) {
     const id = this.db.createId();
 
     this.db.doc(`company/${id}`).set({
       'uid': id,
-      'name': this.name,
-      'code': this.code,
-      'branche': this.branche,
-      'emailsuffix': this.emailsuffix,
+      'name': data.name,
+      'code': data.code,
+      'branche': data.branche,
+      'emailsuffix': data.emailsuffix,
       'users': this.users,
       'books': this.books,
     })
@@ -51,4 +65,5 @@ export class AdminComponent implements OnInit {
   }
 
 }
+
 

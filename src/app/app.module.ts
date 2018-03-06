@@ -23,6 +23,7 @@ import { CoreModule } from './core/core.module';
 import { HttpClientModule } from '@angular/common/http';
 import { HttpModule } from '@angular/http';
 import { AdminComponent } from './../views/admin/admin.component';
+import { CompanyDialogComponent } from './../components/company-dialog/company-dialog.component';
 
 
 
@@ -44,6 +45,7 @@ var firebaseConfig = {
     PostBookComponent,
     LoginComponent,
     AdminComponent,
+    CompanyDialogComponent,
   ],
   imports: [
     BrowserModule,
@@ -57,6 +59,9 @@ var firebaseConfig = {
     AngularFireAuthModule,
     FormsModule,
     CoreModule
+  ],
+  entryComponents: [
+    CompanyDialogComponent
   ],
   providers: [],
   bootstrap: [AppComponent]

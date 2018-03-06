@@ -1,0 +1,26 @@
+<h1 mat-dialog-title>Company toevoegen</h1>
+<div mat-card-content>
+
+  <mat-form-field class="form-field">
+    <input matInput type="text" placeholder="name" [(ngModel)]="data.name" />
+  </mat-form-field>
+
+  <mat-form-field class="form-field">
+    <input matInput type="text" placeholder="code" [(ngModel)]="data.code" />
+
+  </mat-form-field>
+
+  <mat-form-field class="form-field">
+    <input matInput type="text" placeholder="branche" [(ngModel)]="data.branche" />
+  </mat-form-field>
+
+  <mat-form-field class="form-field">
+    <input matInput type="text" placeholder="emailsuffix" [(ngModel)]="data.emailsuffix" />
+  </mat-form-field>
+
+</div>
+
+<div mat-dialog-actions>
+    <button mat-button (click)="ClearFields()">CANCEL</button>
+    <button mat-button [mat-dialog-close]="{ name:data.name, code:data.code, branche:data.branche, emailsuffix:data.emailsuffix }" cdkFocusInitial>VOEG TOE</button>
+</div>
