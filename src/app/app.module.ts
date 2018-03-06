@@ -24,6 +24,7 @@ import { HttpClientModule } from '@angular/common/http';
 import { HttpModule } from '@angular/http';
 import { AdminComponent } from './../views/admin/admin.component';
 import { CompanyDialogComponent } from './../components/company-dialog/company-dialog.component';
+import { CompanyListComponent } from './../components/company-list/company-list.component';
 
 
 
@@ -46,6 +47,7 @@ var firebaseConfig = {
     LoginComponent,
     AdminComponent,
     CompanyDialogComponent,
+    CompanyListComponent,
   ],
   imports: [
     BrowserModule,

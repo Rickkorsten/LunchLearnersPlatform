@@ -1,0 +1,21 @@
+<mat-accordion>
+  <mat-expansion-panel *ngFor="let company of companies | async">
+      <mat-expansion-panel-header>
+        <mat-panel-title>
+            {{ company.name}}
+        </mat-panel-title>
+        <mat-panel-description>
+            {{company.code}}
+        </mat-panel-description>
+      </mat-expansion-panel-header>
+
+      <mat-form-field>
+        <input matInput placeholder="First name">
+        {{company.branche}}
+      </mat-form-field>
+
+      <mat-form-field>
+        <input matInput placeholder="Age">
+      </mat-form-field>
+    </mat-expansion-panel>
+  </mat-accordion>
