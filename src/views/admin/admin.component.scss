@@ -10,7 +10,7 @@
 .drawer{
 height: calc(100vh - 64px);
 width: 300px;
-background-color: #E9E9E9;
+background-color: #f7f7f7;
 flex-direction: column;
 
   .item {
@@ -38,6 +38,9 @@ flex-direction: column;
   bottom: 25px;
 }
 
-
+app-company-list{
+  width: 100%;
+  background-color: #f7f7f7;
+}
 
 
