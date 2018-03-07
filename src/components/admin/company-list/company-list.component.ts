@@ -81,4 +81,8 @@ export class CompanyListComponent implements OnInit {
     console.log('updated')
   }
 
+  delete() {
+    this.db.doc(`companies/${this.uid}`).delete()
+  }
+
 }
