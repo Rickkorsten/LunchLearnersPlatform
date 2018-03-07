@@ -3,30 +3,29 @@
     <div class="drawer">
       <div class="item">
         <div>
-            <button mat-button><mat-icon color="primary"  aria-label="Example icon-button with a heart icon">book</mat-icon>Boeken overzicht</button>
+            <button [routerLink]="[{ outlets:{ admin:'books' }}]" mat-button><mat-icon color="primary"  aria-label="Example icon-button with a heart icon">book</mat-icon>Boeken overzicht</button>
         </div>
       </div>
       <div class="item">
           <div>
-              <button mat-button class="active"><mat-icon color="primary"  aria-label="Example icon-button with a heart icon">work</mat-icon>Bedrijven overzicht</button>
+              <button [routerLink]="[{ outlets:{ admin:'companies' }}]" mat-button class="active"><mat-icon color="primary"  aria-label="Example icon-button with a heart icon">work</mat-icon>Bedrijven overzicht</button>
           </div>
         </div>
         <div class="item">
             <div>
-                <button mat-button><mat-icon color="primary"  aria-label="Example icon-button with a heart icon">supervisor_account</mat-icon>Gebruikers overzicht</button>
+                <button [routerLink]="[{ outlets:{ admin:'users' }}]" mat-button><mat-icon color="primary"  aria-label="Example icon-button with a heart icon">supervisor_account</mat-icon>Gebruikers overzicht</button>
             </div>
           </div>
       <div class="item">
         <div>
-            <button mat-button><mat-icon color="primary"  aria-label="Example icon-button with a heart icon">import_export</mat-icon>Database exporteren</button>
+            <button [routerLink]="[{ outlets:{ admin:'export' }}]" mat-button><mat-icon color="primary"  aria-label="Example icon-button with a heart icon">import_export</mat-icon>Database exporteren</button>
         </div>
       </div>
     </div>
   </div>
-
-  <app-company-list></app-company-list>
-
-
+<div class="router-container">
+  <router-outlet name="admin"></router-outlet> 
+</div>
 </div>
 <button mat-fab class="fab" (click)="openDialog()">
     <mat-icon aria-label="Example icon-button with a heart icon" >add</mat-icon>

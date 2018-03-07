@@ -24,9 +24,10 @@ import { HttpClientModule } from '@angular/common/http';
 import { HttpModule } from '@angular/http';
 import { AdminComponent } from './../views/admin/admin.component';
 import { CompanyDialogComponent } from './../components/company-dialog/company-dialog.component';
-import { CompanyListComponent } from './../components/company-list/company-list.component';
-
-
+import { CompanyListComponent } from './../components/admin/company-list/company-list.component';
+import { UsersOverviewComponent } from './../components/admin/users-overview/users-overview.component';
+import { BooksOverviewComponent } from './../components/admin/books-overview/books-overview.component';
+import { ExportComponent } from './../components/admin/export/export.component';
 
 var firebaseConfig = {
   apiKey: "AIzaSyBR3HJduE1qTWlz7D7LiLlVDPda3Vu3wBk",
@@ -48,6 +49,9 @@ var firebaseConfig = {
     AdminComponent,
     CompanyDialogComponent,
     CompanyListComponent,
+    UsersOverviewComponent,
+    BooksOverviewComponent,
+    ExportComponent,
   ],
   imports: [
     BrowserModule,

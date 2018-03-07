@@ -4,6 +4,8 @@ import { AngularFireStorage } from 'angularfire2/storage';
 import { CompanyDialogComponent } from '../../components/company-dialog/company-dialog.component';
 import { Observable } from 'rxjs/Observable';
 import { MatDialog, MatDialogRef, MAT_DIALOG_DATA } from '@angular/material';
+import { Router, ActivatedRoute, NavigationEnd } from '@angular/router';
+
 
 @Component({
   selector: 'app-admin',
@@ -21,7 +23,7 @@ export class AdminComponent implements OnInit {
   books: string[] = [];
   message: string = '';
 
-  constructor(private db: AngularFirestore, public dialog: MatDialog, private storage: AngularFireStorage) { }
+  constructor(private db: AngularFirestore, public dialog: MatDialog, private storage: AngularFireStorage, private route: ActivatedRoute, private router: Router) { }
 
   openDialog(): void {
     let dialogRef = this.dialog.open(CompanyDialogComponent, {
@@ -63,6 +65,7 @@ export class AdminComponent implements OnInit {
     this.message = "uploaded";
 
   }
+  
 
 }
 

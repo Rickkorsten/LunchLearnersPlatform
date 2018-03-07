@@ -1,9 +1,10 @@
 import { Component, OnInit } from '@angular/core';
 import { AngularFirestore, AngularFirestoreCollection, AngularFirestoreDocument } from 'angularfire2/firestore';
 import { Observable } from 'rxjs/Observable';
-import { PostBookComponent } from '../../components/post-book/post-book.component';
+import { PostBookComponent } from './../../post-book/post-book.component';
+
 import { AngularFireStorage } from 'angularfire2/storage';
-import { AuthService } from '../../app/core/auth.service';
+import { AuthService } from '../../../app/core/auth.service';
 
 interface Company {
   name: string;
@@ -14,7 +15,7 @@ interface Company {
 @Component({
   selector: 'app-company-list',
   templateUrl: './company-list.component.html',
-  styleUrls: ['./company-list.component.css']
+  styleUrls: ['./company-list.component.scss']
 })
 export class CompanyListComponent implements OnInit {
 
