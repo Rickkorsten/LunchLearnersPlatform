@@ -20,3 +20,13 @@ app-company-list{
     background-color: #f7f7f7;
     padding-left: 300px;
   }
+
+.expension-content{
+display: flex;
+flex-direction: column
+}
+
+.expension-row{
+display: flex;
+flex-direction: row;
+}
