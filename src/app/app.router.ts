@@ -5,10 +5,10 @@ import { AppComponent } from './app.component';
 import { LibraryComponent } from './../views/library/library.component';
 import { StoreComponent } from './../views/store/store.component';
 import { AdminComponent } from './../views/admin/admin.component';
-import { CompanyListComponent } from './../components/admin/company-list/company-list.component';
-import { UsersOverviewComponent } from './../components/admin/users-overview/users-overview.component';
-import { BooksOverviewComponent } from './../components/admin/books-overview/books-overview.component';
-import { ExportComponent } from './../components/admin/export/export.component';
+import { CompanyListComponent } from './../views/admin/componenten/companies-overview/companies-overview.component';
+import { UsersOverviewComponent } from './../views/admin/componenten/users-overview/users-overview.component';
+import { BooksOverviewComponent } from './../views/admin/componenten/books-overview/books-overview.component';
+import { ExportComponent } from './../views/admin/componenten/export/export.component';
 
 import { AuthGuard } from './core/auth.guard';
 

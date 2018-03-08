@@ -25,21 +25,7 @@ export class AdminComponent implements OnInit {
 
   constructor(private db: AngularFirestore, public dialog: MatDialog, private storage: AngularFireStorage, private route: ActivatedRoute, private router: Router) { }
 
-  openDialog(): void {
-    let dialogRef = this.dialog.open(CompanyDialogComponent, {
-      width: '300px',
-      data: { name: this.name, code: this.code, branche: this.branche, emailsuffix: this.emailsuffix }
-    });
-
-    dialogRef.afterClosed().subscribe(result => {
-      this.clearFields();
-      this.uploadCompanyToFirestore(result);
-    });
-  }
-
-
-  ngOnInit() {
-  }
+  ngOnInit() {}
 
   clearFields() {
     this.name = '';
