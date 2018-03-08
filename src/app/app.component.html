@@ -10,7 +10,7 @@
     <div *ngIf="admin">
       <button mat-button routerLink="admin" >Admin</button>
     </div>
-    <button mat-button>Uitloggen</button>
+    <button mat-button (click)="auth.signOut()">Uitloggen</button>
 
   </mat-toolbar-row>
 </mat-toolbar>

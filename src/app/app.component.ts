@@ -1,5 +1,7 @@
 import { Component } from '@angular/core';
 import { Router, ActivatedRoute, NavigationEnd } from '@angular/router';
+import { AuthService } from './core/auth.service';
+
 
 
 @Component({
@@ -10,7 +12,9 @@ import { Router, ActivatedRoute, NavigationEnd } from '@angular/router';
 export class AppComponent {
   admin: boolean = true;
 
-  constructor(private route: ActivatedRoute, private router: Router) { }
+  constructor(private route: ActivatedRoute, private router: Router, public auth: AuthService) { 
+
+  }
 
   ngOnInit() {
     // this.router.events.subscribe((event) => {
@@ -23,5 +27,7 @@ export class AppComponent {
     //   console.log(this.isAdminRoute)
     // })
   }
+
+  
 
 }
