@@ -15,14 +15,15 @@ import { DropZoneDirective } from './directives/dropZone/drop-zone.directive';
 import { AngularFireStorageModule } from 'angularfire2/storage';
 import { AngularFireDatabaseModule } from 'angularfire2/database';
 import { AngularFireAuthModule } from 'angularfire2/auth';
-import { PostBookComponent } from './../components/post-book/post-book.component';
+import { VideoDropzoneComponent } from './../components/video-dropzone/video-dropzone.component';
 
 import { CoreModule } from './core/core.module';
 
 import { HttpClientModule } from '@angular/common/http';
 import { HttpModule } from '@angular/http';
 import { AdminComponent } from './../views/admin/admin.component';
-import { CompanyDialogComponent } from './../components/company-dialog/company-dialog.component';
+import { CompanyDialogComponent } from './../views/admin/componenten/dialogs/company-dialog/company-dialog.component';
+import { BookDialogComponent } from './../views/admin/componenten/dialogs/book-dialog/book-dialog.component';
 import { CompanyListComponent } from './../views/admin/componenten/companies-overview/companies-overview.component';
 import { UsersOverviewComponent } from './../views/admin/componenten/users-overview/users-overview.component';
 import { BooksOverviewComponent } from './../views/admin/componenten/books-overview/books-overview.component';
@@ -43,10 +44,11 @@ var firebaseConfig = {
     LibraryComponent,
     StoreComponent,
     DropZoneDirective,
-    PostBookComponent,
+    VideoDropzoneComponent,
     LoginComponent,
     AdminComponent,
     CompanyDialogComponent,
+    BookDialogComponent,
     CompanyListComponent,
     UsersOverviewComponent,
     BooksOverviewComponent,
@@ -66,6 +68,7 @@ var firebaseConfig = {
     CoreModule
   ],
   entryComponents: [
+    BookDialogComponent,
     CompanyDialogComponent
   ],
   providers: [],

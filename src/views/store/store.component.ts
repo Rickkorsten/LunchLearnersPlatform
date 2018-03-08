@@ -1,7 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { AngularFirestore, AngularFirestoreCollection, AngularFirestoreDocument } from 'angularfire2/firestore';
 import { Observable } from 'rxjs/Observable';
-import { PostBookComponent } from '../../components/post-book/post-book.component';
 import { AngularFireStorage } from 'angularfire2/storage';
 import { AuthService } from '../../app/core/auth.service';
 

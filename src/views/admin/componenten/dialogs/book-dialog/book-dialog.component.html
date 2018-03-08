@@ -1,0 +1,24 @@
+<h1 mat-dialog-title>Boek toevoegen</h1>
+<div mat-card-content>
+
+  <mat-form-field class="form-field">
+    <input matInput type="text" placeholder="title" [(ngModel)]="data.name" />
+  </mat-form-field>
+
+  <mat-form-field class="form-field">
+    <input matInput type="text" placeholder="cover" [(ngModel)]="data.cover" />
+
+  </mat-form-field>
+
+  <mat-form-field class="form-field">
+    <input matInput type="text" placeholder="desc" [(ngModel)]="data.desc" />
+  </mat-form-field>
+
+  <video-dropzone [hero]='hallo' [functie]='test()'></video-dropzone>
+
+</div>
+
+<div mat-dialog-actions>
+    <button mat-button (click)="onNoClick()">CANCEL</button>
+    <button mat-button  color="primary" [mat-dialog-close]="{ name:data.name, cover:data.cover, desc:data.desc}" cdkFocusInitial>VOEG TOE</button>
+</div>

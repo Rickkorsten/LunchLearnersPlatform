@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Input } from '@angular/core';
 import { AngularFirestore, AngularFirestoreCollection, AngularFirestoreDocument } from 'angularfire2/firestore';
 import { AngularFireStorage, AngularFireUploadTask } from 'angularfire2/storage';
 import { Observable } from 'rxjs/Observable';
@@ -6,11 +6,13 @@ import { tap } from 'rxjs/operators';
 import 'rxjs/add/operator/map';
 
 @Component({
-  selector: 'post-book',
-  templateUrl: './post-book.component.html',
-  styleUrls: ['./post-book.component.scss']
+  selector: 'video-dropzone',
+  templateUrl: './video-dropzone.component.html',
+  styleUrls: ['./video-dropzone.component.scss']
 })
-export class PostBookComponent implements OnInit {
+export class VideoDropzoneComponent implements OnInit {
+  @Input() hero: string;
+  @Input() functie: any;
 
   uploadTask: AngularFireUploadTask;
   percentage: Observable<number>;
@@ -33,9 +35,6 @@ export class PostBookComponent implements OnInit {
   }
 
   addPost() {
-    if (!this.file) return alert('no video imported');
-    if (!this.title) return alert('no title imported');
-    if (!this.content) return alert('no content imported');
 
     this.path = `test/${new Date().getTime()}_${this.file.name}`;
 
@@ -71,6 +70,9 @@ export class PostBookComponent implements OnInit {
     return snapshot.state === 'running' && snapshot.bytesTransferred < snapshot.totalBytes
   }
 
+
   ngOnInit() {
+    console.log(this.hero)
+    this.functie(this.hero)
   }
 }
