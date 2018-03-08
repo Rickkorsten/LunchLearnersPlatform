@@ -1,0 +1,33 @@
+<div class="admin">
+  <!-- Admin menu aan de linker kant -->
+  <div class="drawer-container">
+    <div class="drawer">
+      <div class="item">
+        <div>
+            <button [routerLink]="[{ outlets:{ admin:'books' }}]" mat-button><mat-icon color="primary"  aria-label="Example icon-button with a heart icon">book</mat-icon>Boeken overzicht</button>
+        </div>
+      </div>
+      <div class="item">
+          <div>
+              <button [routerLink]="[{ outlets:{ admin:'companies' }}]" mat-button class="active"><mat-icon color="primary"  aria-label="Example icon-button with a heart icon">work</mat-icon>Bedrijven overzicht</button>
+          </div>
+        </div>
+        <div class="item">
+            <div>
+                <button [routerLink]="[{ outlets:{ admin:'users' }}]" mat-button><mat-icon color="primary"  aria-label="Example icon-button with a heart icon">supervisor_account</mat-icon>Gebruikers overzicht</button>
+            </div>
+          </div>
+      <div class="item">
+        <div>
+            <button [routerLink]="[{ outlets:{ admin:'export' }}]" mat-button><mat-icon color="primary"  aria-label="Example icon-button with a heart icon">import_export</mat-icon>Database exporteren</button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+<!-- Admin router, hierin komen de 4 admin components: books, companies, users and export
+Dit is een child router op omdat hij zit in een component binnen de hoofdrouter die te vinden is in het app.component -->
+<div class="router-container">
+  <router-outlet name="admin"></router-outlet> 
+</div>
+</div>

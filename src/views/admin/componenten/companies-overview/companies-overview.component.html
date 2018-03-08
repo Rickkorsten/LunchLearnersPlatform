@@ -1,0 +1,55 @@
+<div class="company-container">
+  <h2>Bedrijven overzicht:</h2>
+  <mat-accordion>
+    <mat-expansion-panel *ngFor="let company of companies | async">
+      <mat-expansion-panel-header (click)="get(company.uid,company.name,company.code,company.branche,company.emailsuffix)">
+        <mat-panel-title>
+          {{ company.name}}
+        </mat-panel-title>
+        <mat-panel-description>
+          {{company.code}}
+        </mat-panel-description>
+      </mat-expansion-panel-header>
+      <div class="expension-content">
+        <div class="expension-row">
+          <mat-form-field>
+            <input matInput placeholder="name" [(ngModel)]="company.name" (ngModelChange)="changeNameInput(company.name)">
+          </mat-form-field>
+
+          <mat-form-field>
+            <input matInput placeholder="code" [(ngModel)]="company.code" (ngModelChange)="changeCodeInput(company.code)">
+          </mat-form-field>
+        </div>
+        <div class="expension-row">
+          <mat-form-field>
+            <input matInput placeholder="branche" [(ngModel)]="company.branche" (ngModelChange)="changeBrancheInput(company.branche)">
+          </mat-form-field>
+
+          <mat-form-field>
+            <input matInput placeholder="emailsuffix" [(ngModel)]="company.emailsuffix" (ngModelChange)="changeEmailsuffixInput(company.emailsuffix)">
+          </mat-form-field>
+        </div>
+      </div>
+      <mat-list>
+          <mat-divider></mat-divider>
+          <h3 mat-subheader>Users</h3>
+          <mat-list-item *ngFor="let user of company.users">
+            <mat-icon mat-list-icon>account_circle</mat-icon>
+            <h4 mat-line>{{user}}</h4>
+          </mat-list-item>
+        </mat-list>
+        <mat-action-row>
+            <button mat-button color="accent" (click)="delete()">delete</button>
+            <button mat-button color="primary" (click)="update()">update</button>
+          </mat-action-row>
+    </mat-expansion-panel>
+  </mat-accordion>
+</div>
+<button mat-fab class="fab" (click)="openDialog()">
+    <mat-icon aria-label="Example icon-button with a heart icon" >add</mat-icon>
+</button>
+<br>
+<br>
+<br>
+<br>
+<br>

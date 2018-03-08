@@ -6,13 +6,31 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { MaterialModule } from './material.module';
 import { LibraryComponent } from './../views/library/library.component';
 import { StoreComponent } from './../views/store/store.component';
+import { LoginComponent } from './../views/login/login.component';
 
 import { AngularFireModule } from 'angularfire2';
 import { AngularFirestoreModule } from 'angularfire2/firestore';
+<<<<<<< HEAD
+=======
+
+>>>>>>> login
 import { FormsModule } from '@angular/forms';
 import { DropZoneDirective } from './directives/dropZone/drop-zone.directive';
 import { AngularFireStorageModule } from 'angularfire2/storage';
+import { AngularFireDatabaseModule } from 'angularfire2/database';
+import { AngularFireAuthModule } from 'angularfire2/auth';
 import { PostBookComponent } from './../components/post-book/post-book.component';
+
+import { CoreModule } from './core/core.module';
+
+import { HttpClientModule } from '@angular/common/http';
+import { HttpModule } from '@angular/http';
+import { AdminComponent } from './../views/admin/admin.component';
+import { CompanyDialogComponent } from './../components/company-dialog/company-dialog.component';
+import { CompanyListComponent } from './../views/admin/componenten/companies-overview/companies-overview.component';
+import { UsersOverviewComponent } from './../views/admin/componenten/users-overview/users-overview.component';
+import { BooksOverviewComponent } from './../views/admin/componenten/books-overview/books-overview.component';
+import { ExportComponent } from './../views/admin/componenten/export/export.component';
 
 var firebaseConfig = {
   apiKey: "AIzaSyBR3HJduE1qTWlz7D7LiLlVDPda3Vu3wBk",
@@ -30,6 +48,13 @@ var firebaseConfig = {
     StoreComponent,
     DropZoneDirective,
     PostBookComponent,
+    LoginComponent,
+    AdminComponent,
+    CompanyDialogComponent,
+    CompanyListComponent,
+    UsersOverviewComponent,
+    BooksOverviewComponent,
+    ExportComponent,
   ],
   imports: [
     BrowserModule,
@@ -39,7 +64,13 @@ var firebaseConfig = {
     AngularFireModule.initializeApp(firebaseConfig),
     AngularFirestoreModule,
     AngularFireStorageModule,
-    FormsModule
+    AngularFireDatabaseModule,
+    AngularFireAuthModule,
+    FormsModule,
+    CoreModule
+  ],
+  entryComponents: [
+    CompanyDialogComponent
   ],
   providers: [],
   bootstrap: [AppComponent]

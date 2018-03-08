@@ -1,17 +1,20 @@
-<mat-toolbar color="primary">
-    <mat-toolbar-row>
-      <span>Lunch Learners</span>
-  
-      <span class="example-spacer"></span>
-      
-      <button mat-button routerLink="library">Mijn boeken</button>
-      <button mat-button routerLink="store">Ontdekken</button>
-      <button mat-button>Uitloggen</button>
-    </mat-toolbar-row>
+<mat-toolbar color="primary" class="navbar">
+  <mat-toolbar-row>
+
+    <span>Lunch Learners</span>
+
+    <span class="example-spacer"></span>
+
+    <button mat-button routerLink="library">Mijn boeken</button>
+    <button mat-button routerLink="store">Ontdekken</button>
+    <div *ngIf="admin">
+      <button mat-button routerLink="admin" >Admin</button>
+    </div>
+    <button mat-button>Uitloggen</button>
+
+  </mat-toolbar-row>
 </mat-toolbar>
 <div class="container">
   <router-outlet></router-outlet>
 </div>
-<button mat-fab class="fab">
-        <mat-icon aria-label="Example icon-button with a heart icon">call</mat-icon>
-</button>
+

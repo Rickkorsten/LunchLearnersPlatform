@@ -1,15 +1,14 @@
 import { Component, OnInit } from '@angular/core';
+import { AuthService } from '../../app/core/auth.service';
+
 
 @Component({
   selector: 'app-library',
   templateUrl: './library.component.html',
-  styleUrls: ['./library.component.css']
+  styleUrls: ['./library.component.scss']
 })
-export class LibraryComponent implements OnInit {
+export class LibraryComponent{
 
-  constructor() { }
-
-  ngOnInit() {
-  }
+  constructor(public auth: AuthService) { }
 
 }

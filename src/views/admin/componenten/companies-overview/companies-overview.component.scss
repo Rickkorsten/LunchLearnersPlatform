@@ -1,0 +1,39 @@
+.company-container{
+    width: 90%;
+    margin: auto;
+    max-width: 900px;
+    padding-top: 30px;
+}
+
+.mat-expansion-panel-spacing{
+    padding: 10px;
+    margin-right: -10px;
+    margin-left: -10px;
+}
+
+mat-panel-title{
+    width: 30%;
+}
+
+app-company-list{
+    width: 100%;
+    background-color: #f7f7f7;
+    padding-left: 300px;
+  }
+
+.expension-content{
+display: flex;
+flex-direction: column
+}
+
+.expension-row{
+display: flex;
+flex-direction: row;
+}
+
+
+.fab{
+    position: fixed;
+    right: 25px;
+    bottom: 25px;
+  }

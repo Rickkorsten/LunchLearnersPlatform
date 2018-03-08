@@ -1,0 +1,26 @@
+<h1 mat-dialog-title>Bedrijf toevoegen</h1>
+<div mat-card-content>
+
+  <mat-form-field class="form-field">
+    <input matInput type="text" placeholder="Bedrijfnaam" [(ngModel)]="data.name" />
+  </mat-form-field>
+
+  <mat-form-field class="form-field">
+    <input matInput type="text" placeholder="Bedrijfcode" [(ngModel)]="data.code" />
+
+  </mat-form-field>
+
+  <mat-form-field class="form-field">
+    <input matInput type="text" placeholder="Branche" [(ngModel)]="data.branche" />
+  </mat-form-field>
+
+  <mat-form-field class="form-field">
+    <input matInput type="text" placeholder="Email" [(ngModel)]="data.emailsuffix" />
+  </mat-form-field>
+
+</div>
+
+<div mat-dialog-actions>
+    <button mat-button (click)="onNoClick()">CANCEL</button>
+    <button mat-button  color="primary" [mat-dialog-close]="{ name:data.name, code:data.code, branche:data.branche, emailsuffix:data.emailsuffix }" cdkFocusInitial>VOEG TOE</button>
+</div>
