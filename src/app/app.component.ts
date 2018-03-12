@@ -12,11 +12,21 @@ import { AuthService } from './core/auth.service';
 export class AppComponent {
   admin: boolean = true;
 
+  user: boolean = false;
+
   constructor(private route: ActivatedRoute, private router: Router, public auth: AuthService) { 
 
+    if (auth.user) {
+      this.user = true;
+    } else {
+      this.user = false;
+    }
+    
   }
 
   ngOnInit() {
+
+    
     // this.router.events.subscribe((event) => {
     //   if (event instanceof NavigationEnd) {
     //     switch (event.url) {
