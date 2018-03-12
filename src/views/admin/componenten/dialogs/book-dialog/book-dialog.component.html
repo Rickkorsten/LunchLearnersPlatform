@@ -1,24 +1,28 @@
 <h1 mat-dialog-title>Boek toevoegen</h1>
 <div mat-card-content>
 
-  <mat-form-field class="form-field">
-    <input matInput type="text" placeholder="title" [(ngModel)]="data.name" />
+  <mat-form-field class="example-full-width">
+    <input matInput placeholder="Search Book" aria-label="Search Book" [matAutocomplete]="auto" [(ngModel)]="keyword" (ngModelChange)="searchBook(keyword)">
+    <mat-autocomplete #auto="matAutocomplete">
+      <mat-option *ngFor="let book of books">
+        <div (click)="selectBook(book)" *ngIf="book.volumeInfo.title || book.volumeInfo.imageLinks.smallThumbnail">
+        <img style="vertical-align:middle;" aria-hidden src="{{book.volumeInfo.imageLinks.smallThumbnail}}" height="25" />
+        <span>{{ book.volumeInfo.title }}</span> |
+        <small>Population: {{book.volumeInfo.authors}}</small>
+      </div>
+      </mat-option>
+    </mat-autocomplete>
   </mat-form-field>
 
-  <mat-form-field class="form-field">
-    <input matInput type="text" placeholder="cover" [(ngModel)]="data.cover" />
+  <div>
+    <p>geselecteerd boek : {{title}}</p>
+  </div>
 
-  </mat-form-field>
-
-  <mat-form-field class="form-field">
-    <input matInput type="text" placeholder="desc" [(ngModel)]="data.desc" />
-  </mat-form-field>
-
-  <video-dropzone [hero]='hallo' [functie]='test()'></video-dropzone>
+  <video-dropzone></video-dropzone>
 
 </div>
 
 <div mat-dialog-actions>
-    <button mat-button (click)="onNoClick()">CANCEL</button>
-    <button mat-button  color="primary" [mat-dialog-close]="{ name:data.name, cover:data.cover, desc:data.desc}" cdkFocusInitial>VOEG TOE</button>
+  <button mat-button (click)="onNoClick()">CANCEL</button>
+  <button mat-button color="primary" [mat-dialog-close]="{book:selectedBook,videolink:'link'}" cdkFocusInitial>VOEG TOE</button>
 </div>

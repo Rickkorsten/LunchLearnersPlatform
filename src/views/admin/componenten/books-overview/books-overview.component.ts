@@ -5,11 +5,15 @@ import { BookDialogComponent } from './../dialogs/book-dialog/book-dialog.compon
 import { AngularFireStorage } from 'angularfire2/storage';
 import { AuthService } from '../../../../app/core/auth.service';
 import { MatDialog, MatDialogRef, MAT_DIALOG_DATA } from '@angular/material';
+import 'rxjs/Rx'
+import {HttpModule} from "@angular/http"
+import {BooksService} from "./../../../../app/services/books/books.service"
 
 @Component({
   selector: 'app-books-overview',
   templateUrl: './books-overview.component.html',
-  styleUrls: ['./books-overview.component.scss']
+  styleUrls: ['./books-overview.component.scss'],
+  providers: [BooksService, HttpModule]
 })
 
 export class BooksOverviewComponent implements OnInit {
@@ -27,9 +31,12 @@ export class BooksOverviewComponent implements OnInit {
   reviewuid: string[] = [];
   presentatielink: string;
 
-    constructor(private db: AngularFirestore, public dialog: MatDialog, private storage: AngularFireStorage, public auth: AuthService) {
-      this.user == auth.user;
-      console.log(this.user);
+  books: any;
+  keyword:string = 'musk';
+
+    constructor(private db: AngularFirestore, public dialog: MatDialog, private storage: AngularFireStorage, public auth: AuthService, private bookService:BooksService) {
+      // this.user == auth.user;
+      // console.log(this.user);
     }
 
     openDialog(): void {
@@ -44,6 +51,7 @@ export class BooksOverviewComponent implements OnInit {
     }
 
   ngOnInit() {
+    this.searchBook('musk');
   }
 
   clearFields() {
@@ -53,17 +61,35 @@ export class BooksOverviewComponent implements OnInit {
     this.popupPresentatieLink = '';
   }
 
-  uploadBookToFirestore(data) {
+  uploadBookToFirestore(result) {
     const id = this.db.createId();
+    console.log("result : " + result.book.volumeInfo.title )
 
     this.db.doc(`books/${id}`).set({
       'uid': id,
-      'name': data.name,
-      'cover': data.cover,
-      'desc': data.desc,
+      'title': result.book.volumeInfo.title,
+      'smallCover': result.book.volumeInfo.imageLinks.smallThumbnail,
+      'bigCover': result.book.volumeInfo.imageLinks.smallThumbnail,
+      // 'description': result.book.volumeInfo.description,
+      // 'categories': result.book.volumeInfo.categories,
+      // 'authors': result.book.volumeInfo.authors,
+      'publishedDate': result.book.volumeInfo.publishedDate,
       'reviewuid': this.reviewuid,
     })
 
+  }
+
+  searchBook(keyword) {
+    console.log(this.keyword);
+    this.bookService.searchBook(this.keyword)
+    .map(books => books.json().items)
+    .subscribe(books => {
+      console.log(books);
+      this.books = books
+    },
+      err => console.log('fout'),
+      () => console.log('geslaagd')
+    )
   }
 
 }

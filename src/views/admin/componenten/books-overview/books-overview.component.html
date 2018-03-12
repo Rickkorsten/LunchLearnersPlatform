@@ -1,6 +1,13 @@
 <div class="book-container">
-    <h2>boeken overzicht:</h2>
-    </div>
+  <h2>boeken overzicht:</h2>
+
+  <input [(ngModel)]="keyword">
+  <button (click)="searchBook(keyword)">click</button>
+  <ul *ngFor='let book of books'>
+    <li>{{book.volumeInfo.title}}</li>
+  </ul>
+
+</div>
 <button mat-fab class="fab" (click)="openDialog()">
     <mat-icon aria-label="Example icon-button with a heart icon" >add</mat-icon>
 </button>

@@ -73,6 +73,5 @@ export class VideoDropzoneComponent implements OnInit {
 
   ngOnInit() {
     console.log(this.hero)
-    this.functie(this.hero)
   }
 }

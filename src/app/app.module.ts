@@ -29,6 +29,7 @@ import { UsersOverviewComponent } from './../views/admin/componenten/users-overv
 import { BooksOverviewComponent } from './../views/admin/componenten/books-overview/books-overview.component';
 import { ExportComponent } from './../views/admin/componenten/export/export.component';
 
+
 var firebaseConfig = {
   apiKey: "AIzaSyBR3HJduE1qTWlz7D7LiLlVDPda3Vu3wBk",
   authDomain: "lunchlearners.firebaseapp.com",
@@ -65,7 +66,9 @@ var firebaseConfig = {
     AngularFireDatabaseModule,
     AngularFireAuthModule,
     FormsModule,
-    CoreModule
+    CoreModule,
+    HttpClientModule,
+    HttpModule
   ],
   entryComponents: [
     BookDialogComponent,
