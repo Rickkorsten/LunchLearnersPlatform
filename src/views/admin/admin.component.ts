@@ -1,11 +1,6 @@
 import { Component, OnInit } from '@angular/core';
-import { AngularFirestore, AngularFirestoreCollection, AngularFirestoreDocument } from 'angularfire2/firestore';
-import { AngularFireStorage } from 'angularfire2/storage';
-import { CompanyDialogComponent } from './componenten/dialogs/company-dialog/company-dialog.component';
-import { Observable } from 'rxjs/Observable';
-import { MatDialog, MatDialogRef, MAT_DIALOG_DATA } from '@angular/material';
-import { Router, ActivatedRoute, NavigationEnd } from '@angular/router';
-
+import { AngularFirestore } from 'angularfire2/firestore';
+import { MatDialog } from '@angular/material';
 
 @Component({
   selector: 'app-admin',
@@ -21,11 +16,15 @@ export class AdminComponent implements OnInit {
   emailsuffix: string;
   users: string[] = [];
   books: string[] = [];
-  message: string = '';
+  message: string;
 
-  constructor(private db: AngularFirestore, public dialog: MatDialog, private storage: AngularFireStorage, private route: ActivatedRoute, private router: Router) { }
+  constructor(private db: AngularFirestore,
+    public dialog: MatDialog,
+  ) {
 
-  ngOnInit() {}
+  }
+
+  ngOnInit() { }
 
   clearFields() {
     this.name = '';
@@ -45,10 +44,10 @@ export class AdminComponent implements OnInit {
       'emailsuffix': data.emailsuffix,
       'users': this.users,
       'books': this.books,
-    })
+    });
 
     this.clearFields();
-    this.message = "uploaded";
+    this.message = 'uploaded';
 
   }
 
