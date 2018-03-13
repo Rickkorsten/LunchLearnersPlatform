@@ -34,8 +34,21 @@ export class AuthService {
             return Observable.of(null)
           }
         })
+
+        this.afAuth.authState.subscribe((user: firebase.User) => {
+
+          if(user){
+            this.router.navigateByUrl('');
+          } else{
+            this.router.navigateByUrl('/login');
+          }
+
+        })
+
    }
 
+
+   
    googleLogin() {
      const provider = new firebase.auth.GoogleAuthProvider
      return this.oAuthLogin(provider);
@@ -70,6 +83,5 @@ export class AuthService {
         this.router.navigate(['/']);
     });
   }
-
 
 }
