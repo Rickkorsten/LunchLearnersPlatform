@@ -20,3 +20,30 @@ mat-expansion-panel-header{
   margin-right: -10px;
   margin-left: -10px;
 }
+
+.expension-content{
+  display: flex;
+  flex-direction: row;
+}
+
+.ISBN-row{
+  display: flex;
+  flex-direction: row;
+
+  .form-field{
+    width: 20px;
+  }
+}
+
+.image{
+  vertical-align: middle;
+  margin-right: 24px;
+  display: flex;
+  flex: 1;
+}
+
+.form-row{
+  display: flex;
+  flex-direction: column;
+  flex: 2;
+}

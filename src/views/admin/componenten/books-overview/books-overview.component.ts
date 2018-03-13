@@ -32,10 +32,12 @@ export class BooksOverviewComponent implements OnInit {
   booksCol: AngularFirestoreCollection<Book>;
   books: Observable<Book[]>;
 
+  visible: boolean;
+
   constructor(private db: AngularFirestore,
     public dialog: MatDialog,
-    public auth: AuthService,
-  ) {
+    public auth: AuthService, ) {
+    this.visible = true;
   }
 
   openDialog(): void {
@@ -56,19 +58,27 @@ export class BooksOverviewComponent implements OnInit {
 
   uploadBookToFirestore(result) {
     const id = this.db.createId();
-    console.log('result : ' + result.book.volumeInfo.title);
+    const { title, subTitle, smallThumbnail, bigThumbnail, publisher, publishDate, description,
+      ISBN_13, ISBN_10, categories } = result.book;
+    console.log(title);
 
     this.db.doc(`books/${id}`).set({
       'uid': id,
-      'title': result.book.volumeInfo.title,
-      'smallCover': result.book.volumeInfo.imageLinks.smallThumbnail,
-      'bigCover': result.book.volumeInfo.imageLinks.smallThumbnail,
-      // 'description': result.book.volumeInfo.description,
-      // 'categories': result.book.volumeInfo.categories,
-      // 'authors': result.book.volumeInfo.authors,
-      'publishedDate': result.book.volumeInfo.publishedDate,
-      'reviewuid': this.reviewuid,
+      'title': (title ? title : 'EMPTY'),
+      'subTitle': (subTitle ? subTitle : 'EMPTY'),
+      'smallThumbnail': (smallThumbnail ? smallThumbnail : 'EMPTY'),
+      'bigThumbnail': (bigThumbnail ? bigThumbnail : 'EMPTY'),
+      'publisher': (publisher ? publisher : 'EMPTY'),
+      'publishDate': (publishDate ? publishDate : 'EMPTY'),
+      'description': (description ? description : 'EMPTY'),
+      'ISBN_13': (ISBN_13 ? ISBN_13 : 'EMPTY'),
+      'ISBN_10': (ISBN_10 ? ISBN_10 : 'EMPTY'),
+      'categories': (categories ? categories : 'EMPTY'),
     });
 
+  }
+
+  test() {
+    console.log('open');
   }
 }

@@ -19,6 +19,16 @@ export class BookDialogComponent {
   keyword: string;
 
   title: string;
+  subTitle: string;
+  authors: string;
+  smallThumbnail: string;
+  bigThumbnail: string;
+  publisher: string;
+  publishDate: string;
+  description: string;
+  ISBN_13: string;
+  ISBN_10: string;
+  categories: string;
 
   constructor(
     private bookService: BooksService,
@@ -48,8 +58,28 @@ export class BookDialogComponent {
 
   selectBook(book) {
     this.title = book.volumeInfo.title;
-    this.selectedBook = book;
-
+    this.subTitle = book.volumeInfo.subtitle;
+    this.authors = book.volumeInfo.authors.toString();
+    this.smallThumbnail = book.volumeInfo.imageLinks.smallThumbnail;
+    this.bigThumbnail =  book.volumeInfo.imageLinks.thumbnail;
+    this.publisher =  book.volumeInfo.publisher;
+    this.publishDate =  book.volumeInfo.publishedDate;
+    this.description =  book.volumeInfo.description;
+    this.ISBN_13 =  book.volumeInfo.industryIdentifiers[0].identifier;
+    this.ISBN_10 =  book.volumeInfo.industryIdentifiers[1].identifier;
+    this.categories =  book.volumeInfo.categories.toString();
+    this.selectedBook = {
+      'title': this.title,
+      'subTitle': this.subTitle,
+      'smallThumbnail': this.smallThumbnail,
+      'bigThumbnail': this.bigThumbnail,
+      'publisher': this.publisher,
+      'publishDate': this.publishDate,
+      'description': this.description,
+      'ISBN_13': this.ISBN_13,
+      'ISBN_10': this.ISBN_10,
+      'categories': this.categories,
+    };
   }
 
 

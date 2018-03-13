@@ -1,18 +1,64 @@
 <div class="book-container">
   <h2>Boeken overzicht:</h2>
   <mat-accordion>
-    <mat-expansion-panel *ngFor="let book of books | async">
+    <mat-expansion-panel *ngFor="let book of books | async" (opened)="visible=false" (closed)="visible=true">
       <mat-expansion-panel-header>
-        <mat-panel-title style="vertical-align:middle;">
-            <img style="vertical-align:middle; margin-right: 24px;" aria-hidden src="{{book.smallCover}}" height="48" />
+        <mat-panel-title style="vertical-align:middle;" *ngIf="visible">
+          <img style="vertical-align:middle; margin-right: 24px;" aria-hidden src="{{book.smallThumbnail}}" height="48" />
           <p>{{ book.title }}</p>
         </mat-panel-title>
       </mat-expansion-panel-header>
       <div class="expension-content">
-        <div class="expension-row">
-            {{ book.publishedDate }}
+
+        <img class="image" style="vertical-align:middle; margin-right: 24px;" aria-hidden src="{{book.bigThumbnail}}" />
+
+        <div class="form-row">
+          <div class="expension-row">
+            <mat-form-field class="form-field">
+              <input matInput type="text" placeholder="Subtitel" [(ngModel)]="book.subTitle" />
+            </mat-form-field>
+          </div>
+          <div class="expension-row ISBN-row">
+            <mat-form-field class="form-field">
+              <input matInput type="text" placeholder="ISBN 13 code" [(ngModel)]="book.ISBN_13" />
+            </mat-form-field>
+            <mat-form-field class="form-field">
+              <input matInput type="text" placeholder="ISBN 10 code" [(ngModel)]="book.ISBN_10" />
+            </mat-form-field>
+          </div>
+          <div class="expension-row">
+            <mat-form-field class="form-field">
+              <input matInput type="text" placeholder="Catagorieen" [(ngModel)]="book.categoriese" />
+            </mat-form-field>
+          </div>
         </div>
+
+        <div class="form-row" >
+          <div class="expension-row">
+            <mat-form-field class="form-field">
+              <input matInput type="text" placeholder="Uitgeverij" [(ngModel)]="book.publisher" />
+            </mat-form-field>
+          </div>
+          <div class="expension-row">
+            <mat-form-field class="form-field">
+              <input matInput type="text" placeholder="Datum van uitgave" [(ngModel)]="book.publishedDate" />
+            </mat-form-field>
+          </div>
+        </div>
+
+        <div class="form-row" >
+            <div class="expension-row">
+                <mat-form-field class="form-field">
+                  <textarea matInput type="text" placeholder="Beschrijving" [(ngModel)]="book.description"></textarea>
+                </mat-form-field>
+              </div>
+        </div>
+
       </div>
+      <mat-action-row>
+        <button mat-button color="warn" (click)="prevStep()">Anuleer</button>
+        <button mat-button color="primary" (click)="nextStep()">Update</button>
+      </mat-action-row>
     </mat-expansion-panel>
   </mat-accordion>
 
