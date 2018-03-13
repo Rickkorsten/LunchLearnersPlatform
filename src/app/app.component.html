@@ -5,12 +5,12 @@
 
     <span class="example-spacer"></span>
 
-    <button mat-button routerLink="library">Mijn boeken</button>
-    <button mat-button routerLink="store">Ontdekken</button>
+    <button mat-button routerLink="library" *ngIf="user">Mijn boeken</button>
+    <button mat-button routerLink="store"  *ngIf="user">Ontdekken</button>
     <div *ngIf="admin">
-      <button mat-button routerLink="admin" >Admin</button>
+      <button mat-button routerLink="admin" *ngIf="user">Admin</button>
     </div>
-    <button mat-button (click)="auth.signOut()">Uitloggen</button>
+    <button mat-button (click)="auth.signOut()"  *ngIf="user">Uitloggen</button>
 
   </mat-toolbar-row>
 </mat-toolbar>

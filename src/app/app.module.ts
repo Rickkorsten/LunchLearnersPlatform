@@ -10,7 +10,8 @@ import { LoginComponent } from './../views/login/login.component';
 
 import { AngularFireModule } from 'angularfire2';
 import { AngularFirestoreModule } from 'angularfire2/firestore';
-import { FormsModule } from '@angular/forms';
+
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { DropZoneDirective } from './directives/dropZone/drop-zone.directive';
 import { AngularFireStorageModule } from 'angularfire2/storage';
 import { AngularFireDatabaseModule } from 'angularfire2/database';
@@ -68,7 +69,8 @@ var firebaseConfig = {
     FormsModule,
     CoreModule,
     HttpClientModule,
-    HttpModule
+    HttpModule,
+    ReactiveFormsModule,
   ],
   entryComponents: [
     BookDialogComponent,

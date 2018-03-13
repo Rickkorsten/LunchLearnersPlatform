@@ -15,7 +15,6 @@ interface Company {
   books: string[];
   users: string[];
   uid: string;
-
 }
 
 @Component({
