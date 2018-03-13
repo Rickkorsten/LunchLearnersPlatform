@@ -12,6 +12,7 @@ import {BooksService} from "./../../../../app/services/books/books.service"
 interface Book {
   title: string;
   smallCover: string;
+  publishedDate: string;
 }
 
 @Component({
