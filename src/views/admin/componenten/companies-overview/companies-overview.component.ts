@@ -1,10 +1,9 @@
 import { Component, OnInit } from '@angular/core';
-import { AngularFirestore, AngularFirestoreCollection, AngularFirestoreDocument } from 'angularfire2/firestore';
+import { AngularFirestore, AngularFirestoreCollection } from 'angularfire2/firestore';
 import { Observable } from 'rxjs/Observable';
 import { CompanyDialogComponent } from './../dialogs/company-dialog/company-dialog.component';
-import { AngularFireStorage } from 'angularfire2/storage';
 import { AuthService } from '../../../../app/core/auth.service';
-import { MatDialog, MatDialogRef, MAT_DIALOG_DATA } from '@angular/material';
+import { MatDialog } from '@angular/material';
 
 
 interface Company {
@@ -30,7 +29,7 @@ export class CompanyListComponent implements OnInit {
   popupEmailsuffix: string;
   popupUsers: string[] = [];
   popupBooks: string[] = [];
-  popupMessage: string = '';
+  popupMessage: string ;
 
   companiesCol: AngularFirestoreCollection<Company>;
   companies: Observable<Company[]>;
@@ -43,14 +42,11 @@ export class CompanyListComponent implements OnInit {
   books: string[];
   users: string[];
 
-  user: any;
-  constructor(private db: AngularFirestore, public dialog: MatDialog, private storage: AngularFireStorage, public auth: AuthService) {
-    this.user == auth.user;
-    console.log(this.user);
+  constructor(private db: AngularFirestore, public dialog: MatDialog, public auth: AuthService) {
   }
 
   openDialog(): void {
-    let dialogRef = this.dialog.open(CompanyDialogComponent, {
+    const dialogRef = this.dialog.open(CompanyDialogComponent, {
       width: '300px',
       data: { name: this.popupName, code: this.popupCode, branche: this.popupBranche, emailsuffix: this.popupEmailsuffix }
     });
@@ -66,7 +62,7 @@ export class CompanyListComponent implements OnInit {
     this.companies = this.companiesCol.valueChanges();
   }
 
-  get(uid,name,code,branche,emailsuffix){
+  get(uid, name, code, branche, emailsuffix) {
     this.uid = uid;
     this.name = name;
     this.code = code ;
@@ -96,13 +92,13 @@ export class CompanyListComponent implements OnInit {
       'code': this.code,
       'branche': this.branche,
       'emailsuffix': this.emailsuffix,
-    })
+    });
 
-    console.log('updated')
+    console.log('updated');
   }
 
   delete() {
-    this.db.doc(`companies/${this.uid}`).delete()
+    this.db.doc(`companies/${this.uid}`).delete();
   }
 
   clearFields() {
@@ -123,10 +119,10 @@ export class CompanyListComponent implements OnInit {
       'emailsuffix': data.emailsuffix,
       'users': this.popupUsers,
       'books': this.popupBooks,
-    })
+    });
 
     this.clearFields();
-    this.popupMessage = "uploaded";
+    this.popupMessage = 'uploaded';
 
   }
 

@@ -4,7 +4,6 @@ import { Router } from '@angular/router';
 import * as firebase from 'firebase/app';
 import { AngularFireAuth } from 'angularfire2/auth';
 import { AngularFirestore, AngularFirestoreDocument } from 'angularfire2/firestore';
-import { switchMap } from 'rxjs/operators';
 
 import { Observable } from 'rxjs/Observable';
 import 'rxjs/add/operator/switchMap';
@@ -36,24 +35,24 @@ export class AuthService {
 
       this.user = this.afAuth.authState
         .switchMap(user => {
-          if (user){
+          if (user) {
             this.loggedIn = true;
-            return this.afs.doc<User>(`users/${user.uid}`).valueChanges()
+            return this.afs.doc<User>(`users/${user.uid}`).valueChanges();
           } else {
             this.loggedIn = false;
-            return Observable.of(null)
+            return Observable.of(null);
           }
-        })
+        });
 
         this.afAuth.authState.subscribe((user: firebase.User) => {
 
-          if(user){
+          if ( user ) {
             this.router.navigateByUrl('');
-          } else{
+          } else {
             this.router.navigateByUrl('/login');
           }
 
-        })
+        });
 
    }
 
@@ -73,17 +72,17 @@ export class AuthService {
       })
       .catch((error) => this.handleError(error) );
   }
-   
+
    googleLogin() {
-     const provider = new firebase.auth.GoogleAuthProvider
+     const provider = new firebase.auth.GoogleAuthProvider;
      return this.oAuthLogin(provider);
    }
 
    private oAuthLogin(provider) {
      return this.afAuth.auth.signInWithPopup(provider)
       .then((credential) => {
-        this.updateUserData(credential.user)
-      })
+        this.updateUserData(credential.user);
+      });
    }
 
    // Sends email allowing user to reset password
@@ -104,9 +103,9 @@ export class AuthService {
       email: user.email,
       displayName: user.displayName,
       photoURL: user.photoURL
-    }
+    };
 
-    return userRef.set(User, { merge: true })
+    return userRef.set(User, { merge: true });
 
   }
 

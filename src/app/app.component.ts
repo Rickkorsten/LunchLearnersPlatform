@@ -1,8 +1,5 @@
 import { Component } from '@angular/core';
-import { Router, ActivatedRoute, NavigationEnd } from '@angular/router';
 import { AuthService } from './core/auth.service';
-
-
 
 @Component({
   selector: 'app-root',
@@ -10,23 +7,19 @@ import { AuthService } from './core/auth.service';
   styleUrls: ['./app.component.scss']
 })
 export class AppComponent {
-  admin: boolean = true;
+  admin: boolean ;
+  user: boolean ;
 
-  user: boolean = false;
-
-  constructor(private route: ActivatedRoute, private router: Router, public auth: AuthService) { 
-
+  constructor(public auth: AuthService) {
+    this.admin = true;
+    this.user = false;
     if (auth.user) {
       this.user = true;
     } else {
       this.user = false;
     }
-    
   }
 
-  ngOnInit() {
-
-    
     // this.router.events.subscribe((event) => {
     //   if (event instanceof NavigationEnd) {
     //     switch (event.url) {
@@ -36,8 +29,5 @@ export class AppComponent {
     //   }
     //   console.log(this.isAdminRoute)
     // })
-  }
-
-  
 
 }

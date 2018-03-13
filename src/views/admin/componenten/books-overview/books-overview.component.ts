@@ -1,13 +1,12 @@
 import { Component, OnInit } from '@angular/core';
-import { AngularFirestore, AngularFirestoreCollection, AngularFirestoreDocument } from 'angularfire2/firestore';
+import { AngularFirestore, AngularFirestoreCollection } from 'angularfire2/firestore';
 import { Observable } from 'rxjs/Observable';
 import { BookDialogComponent } from './../dialogs/book-dialog/book-dialog.component';
-import { AngularFireStorage } from 'angularfire2/storage';
 import { AuthService } from '../../../../app/core/auth.service';
-import { MatDialog, MatDialogRef, MAT_DIALOG_DATA } from '@angular/material';
+import { MatDialog } from '@angular/material';
 import 'rxjs/Rx'
-import {HttpModule} from "@angular/http"
-import {BooksService} from "./../../../../app/services/books/books.service"
+import { HttpModule } from '@angular/http';
+import { BooksService } from './../../../../app/services/books/books.service';
 
 interface Book {
   title: string;
@@ -24,9 +23,6 @@ interface Book {
 
 export class BooksOverviewComponent implements OnInit {
 
-  user: any;
-
-
   name: string;
   cover: string;
   desc: string;
@@ -36,21 +32,22 @@ export class BooksOverviewComponent implements OnInit {
   booksCol: AngularFirestoreCollection<Book>;
   books: Observable<Book[]>;
 
-    constructor(private db: AngularFirestore, public dialog: MatDialog, private storage: AngularFireStorage, public auth: AuthService, private bookService:BooksService) {
-      // this.user == auth.user;
-      // console.log(this.user);
-    }
+  constructor(private db: AngularFirestore,
+    public dialog: MatDialog,
+    public auth: AuthService,
+  ) {
+  }
 
-    openDialog(): void {
-      let dialogRef = this.dialog.open(BookDialogComponent, {
-        width: '400px',
-        data: {}
-      });
+  openDialog(): void {
+    const dialogRef = this.dialog.open(BookDialogComponent, {
+      width: '400px',
+      data: {}
+    });
 
-      dialogRef.afterClosed().subscribe(result => {
-        this.uploadBookToFirestore(result);
-      });
-    }
+    dialogRef.afterClosed().subscribe(result => {
+      this.uploadBookToFirestore(result);
+    });
+  }
 
   ngOnInit() {
     this.booksCol = this.db.collection('books');
@@ -59,7 +56,7 @@ export class BooksOverviewComponent implements OnInit {
 
   uploadBookToFirestore(result) {
     const id = this.db.createId();
-    console.log("result : " + result.book.volumeInfo.title )
+    console.log('result : ' + result.book.volumeInfo.title);
 
     this.db.doc(`books/${id}`).set({
       'uid': id,
@@ -71,7 +68,7 @@ export class BooksOverviewComponent implements OnInit {
       // 'authors': result.book.volumeInfo.authors,
       'publishedDate': result.book.volumeInfo.publishedDate,
       'reviewuid': this.reviewuid,
-    })
+    });
 
   }
 }

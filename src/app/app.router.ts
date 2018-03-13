@@ -1,7 +1,5 @@
 import { ModuleWithProviders } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
-
-import { AppComponent } from './app.component';
 import { LibraryComponent } from './../views/library/library.component';
 import { StoreComponent } from './../views/store/store.component';
 import { AdminComponent } from './../views/admin/admin.component';
@@ -10,9 +8,6 @@ import { CompanyListComponent } from './../views/admin/componenten/companies-ove
 import { UsersOverviewComponent } from './../views/admin/componenten/users-overview/users-overview.component';
 import { BooksOverviewComponent } from './../views/admin/componenten/books-overview/books-overview.component';
 import { ExportComponent } from './../views/admin/componenten/export/export.component';
-
-import { AuthGuard } from './core/auth.guard';
-
 
 export const router: Routes = [
     { path: '', redirectTo: 'library', pathMatch: 'full' },
