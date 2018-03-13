@@ -1,11 +1,21 @@
 <div class="book-container">
   <h2>boeken overzicht:</h2>
-
-  <input [(ngModel)]="keyword">
-  <button (click)="searchBook(keyword)">click</button>
-  <ul *ngFor='let book of books'>
-    <li>{{book.volumeInfo.title}}</li>
-  </ul>
+  <mat-accordion>
+    <mat-expansion-panel *ngFor="let book of books | async">
+      <mat-expansion-panel-header>
+        <mat-panel-title>
+          {{ book.title}}
+        </mat-panel-title>
+        <mat-panel-description>
+          {{book.smallCover}}
+        </mat-panel-description>
+      </mat-expansion-panel-header>
+      <div class="expension-content">
+        <div class="expension-row">
+        </div>
+      </div>
+    </mat-expansion-panel>
+  </mat-accordion>
 
 </div>
 <button mat-fab class="fab" (click)="openDialog()">

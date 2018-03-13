@@ -2,7 +2,7 @@
 <div mat-card-content>
 
   <mat-form-field class="example-full-width">
-    <input matInput placeholder="Search Book" aria-label="Search Book" [matAutocomplete]="auto" [(ngModel)]="keyword" (ngModelChange)="searchBook(keyword)">
+    <input matInput placeholder="Boek zoeken" aria-label="Search Book" [matAutocomplete]="auto" [(ngModel)]="keyword" (ngModelChange)="searchBook(keyword)">
     <mat-autocomplete #auto="matAutocomplete">
       <mat-option *ngFor="let book of books">
         <div (click)="selectBook(book)" *ngIf="book.volumeInfo.title || book.volumeInfo.imageLinks.smallThumbnail">
@@ -23,6 +23,6 @@
 </div>
 
 <div mat-dialog-actions>
-  <button mat-button (click)="onNoClick()">CANCEL</button>
+  <button mat-button (click)="onNoClick()">ANNULEREN</button>
   <button mat-button color="primary" [mat-dialog-close]="{book:selectedBook,videolink:'link'}" cdkFocusInitial>VOEG TOE</button>
 </div>

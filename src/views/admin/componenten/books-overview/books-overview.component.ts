@@ -9,6 +9,11 @@ import 'rxjs/Rx'
 import {HttpModule} from "@angular/http"
 import {BooksService} from "./../../../../app/services/books/books.service"
 
+interface Book {
+  title: string;
+  smallCover: string;
+}
+
 @Component({
   selector: 'app-books-overview',
   templateUrl: './books-overview.component.html',
@@ -20,10 +25,6 @@ export class BooksOverviewComponent implements OnInit {
 
   user: any;
 
-  popupName: string = '';
-  popupCover: string = '';
-  popupDesc: string = '';
-  popupPresentatieLink: string = '';
 
   name: string;
   cover: string;
@@ -31,8 +32,8 @@ export class BooksOverviewComponent implements OnInit {
   reviewuid: string[] = [];
   presentatielink: string;
 
-  books: any;
-  keyword:string = 'musk';
+  booksCol: AngularFirestoreCollection<Book>;
+  books: Observable<Book[]>;
 
     constructor(private db: AngularFirestore, public dialog: MatDialog, private storage: AngularFireStorage, public auth: AuthService, private bookService:BooksService) {
       // this.user == auth.user;
@@ -41,8 +42,8 @@ export class BooksOverviewComponent implements OnInit {
 
     openDialog(): void {
       let dialogRef = this.dialog.open(BookDialogComponent, {
-        width: '300px',
-        data: {'name':this.popupName, 'cover':this.popupCover, 'desc': this.popupDesc, 'presentatielink': this.presentatielink }
+        width: '400px',
+        data: {}
       });
 
       dialogRef.afterClosed().subscribe(result => {
@@ -51,14 +52,8 @@ export class BooksOverviewComponent implements OnInit {
     }
 
   ngOnInit() {
-    this.searchBook('musk');
-  }
-
-  clearFields() {
-    this.popupName = '';
-    this.popupCover = '';
-    this.popupDesc = '';
-    this.popupPresentatieLink = '';
+    this.booksCol = this.db.collection('books');
+    this.books = this.booksCol.valueChanges();
   }
 
   uploadBookToFirestore(result) {
@@ -78,18 +73,4 @@ export class BooksOverviewComponent implements OnInit {
     })
 
   }
-
-  searchBook(keyword) {
-    console.log(this.keyword);
-    this.bookService.searchBook(this.keyword)
-    .map(books => books.json().items)
-    .subscribe(books => {
-      console.log(books);
-      this.books = books
-    },
-      err => console.log('fout'),
-      () => console.log('geslaagd')
-    )
-  }
-
 }
