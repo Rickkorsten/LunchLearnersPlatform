@@ -1,6 +1,4 @@
 import { Component, OnInit } from '@angular/core';
-import { AngularFirestore } from 'angularfire2/firestore';
-import { AngularFireStorage } from 'angularfire2/storage';
 import { AuthService } from '../../../../app/core/auth.service';
 import { MatDialog } from '@angular/material';
 

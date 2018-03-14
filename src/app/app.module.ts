@@ -29,15 +29,17 @@ import { CompanyListComponent } from './../views/admin/componenten/companies-ove
 import { UsersOverviewComponent } from './../views/admin/componenten/users-overview/users-overview.component';
 import { BooksOverviewComponent } from './../views/admin/componenten/books-overview/books-overview.component';
 import { ExportComponent } from './../views/admin/componenten/export/export.component';
+import { MenuContainerComponent } from '../components/menu-container/menu-container.component';
+import { MenuItemComponent } from '../components/menu-item/menu-item.component';
 
 
-var firebaseConfig = {
-  apiKey: "AIzaSyBR3HJduE1qTWlz7D7LiLlVDPda3Vu3wBk",
-  authDomain: "lunchlearners.firebaseapp.com",
-  databaseURL: "https://lunchlearners.firebaseio.com",
-  projectId: "lunchlearners",
-  storageBucket: "lunchlearners.appspot.com",
-  messagingSenderId: "89316466478"
+const firebaseConfig = {
+  apiKey: 'AIzaSyBR3HJduE1qTWlz7D7LiLlVDPda3Vu3wBk',
+  authDomain: 'lunchlearners.firebaseapp.com',
+  databaseURL: 'https://lunchlearners.firebaseio.com',
+  projectId: 'lunchlearners',
+  storageBucket: 'lunchlearners.appspot.com',
+  messagingSenderId: '89316466478'
 };
 
 @NgModule({
@@ -55,6 +57,8 @@ var firebaseConfig = {
     UsersOverviewComponent,
     BooksOverviewComponent,
     ExportComponent,
+    MenuContainerComponent,
+    MenuItemComponent,
   ],
   imports: [
     BrowserModule,
