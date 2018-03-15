@@ -11,7 +11,7 @@ import 'rxjs/add/operator/map';
 })
 export class VideoDropzoneComponent implements OnInit {
 
-  @Output() pathURL: EventEmitter = new EventEmitter;
+  // @Output() pathURL: EventEmitter = new EventEmitter;
 
   uploadTask: AngularFireUploadTask;
   percentage: Observable<number>;
@@ -45,7 +45,7 @@ export class VideoDropzoneComponent implements OnInit {
     this.snapshot = this.uploadTask.snapshotChanges().pipe(
       tap(snap => {
         if (snap.bytesTransferred === snap.totalBytes) {
-          this.pathURL.emit(this.path);
+          // this.pathURL.emit(this.path);
          // this.db.collection('posts').add({ 'title': this.title, 'content': this.content, 'videoURL': this.path });
         }
       })
