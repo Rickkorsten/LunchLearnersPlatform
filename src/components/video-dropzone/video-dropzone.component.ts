@@ -1,8 +1,9 @@
-import { Component, OnInit, Output, EventEmitter } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { AngularFireStorage, AngularFireUploadTask } from 'angularfire2/storage';
 import { Observable } from 'rxjs/Observable';
 import { tap } from 'rxjs/operators';
 import 'rxjs/add/operator/map';
+//  Output, EventEmitter
 
 @Component({
   selector: 'app-video-dropzone',
