@@ -1,3 +1,34 @@
-<p>
-  users-overview works!
-</p>
+<div class="user-container">
+  <h2>gebruiker overzicht:</h2>
+  <form>
+    <mat-form-field>
+      <mat-select placeholder="Favorite food" [(ngModel)]="selectedValue" name="food">
+        <mat-option *ngFor="let food of foods" [value]="food.value">
+          {{food.viewValue}}
+        </mat-option>
+      </mat-select>
+    </mat-form-field>
+
+    <p> Selected value: {{selectedValue}} </p>
+  </form>
+  <mat-accordion>
+    <mat-expansion-panel *ngFor="let user of users | async">
+      <mat-expansion-panel-header>
+        <mat-panel-title>
+          {{ user.displayName}}
+        </mat-panel-title>
+        <mat-panel-description>
+          {{user.email}}
+        </mat-panel-description>
+      </mat-expansion-panel-header>
+      <div class="expension-content">
+
+        <div class="expension-row">
+        </div>
+      </div>
+      <mat-action-row>
+        <button mat-button color="accent" (click)="delete(user.uid)">delete</button>
+      </mat-action-row>
+    </mat-expansion-panel>
+  </mat-accordion>
+</div>

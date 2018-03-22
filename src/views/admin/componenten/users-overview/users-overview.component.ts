@@ -1,7 +1,17 @@
+import { AngularFireAuth } from 'angularfire2/auth';
 import { Component, OnInit } from '@angular/core';
-import { AuthService } from '../../../../app/core/auth.service';
+import { AngularFirestore, AngularFirestoreCollection } from 'angularfire2/firestore';
+import { Observable } from 'rxjs/Observable';
+// import { AuthService } from '../../../../app/core/auth.service';
 import { MatDialog } from '@angular/material';
+// import * as admin from 'firebase-admin';
 
+interface User {
+  displayName: string;
+  email: string;
+  photoURL: string;
+  uid: string;
+}
 
 @Component({
   selector: 'app-users-overview',
@@ -10,11 +20,37 @@ import { MatDialog } from '@angular/material';
 })
 export class UsersOverviewComponent implements OnInit {
 
-  constructor( public dialog: MatDialog, public auth: AuthService) {
+  usersCol: AngularFirestoreCollection<User>;
+  users: Observable<User[]>;
+
+  selectedValue: string;
+
+  foods: Object[] = [
+    {value: 'steak-0', viewValue: 'Steak'},
+    {value: 'pizza-1', viewValue: 'Pizza'},
+    {value: 'tacos-2', viewValue: 'Tacos'}
+  ];
+
+  constructor(private db: AngularFirestore, public dialog: MatDialog, public auth: AngularFireAuth) {
   }
 
 
   ngOnInit() {
+    this.usersCol = this.db.collection('users');
+    this.users = this.usersCol.valueChanges();
+    this.usersCol = this.db.collection('users');
+    this.users = this.usersCol.valueChanges();
+  }
+
+  delete(uid) {
+     console.log(uid);
+    // const user = admin.auth().getUser(uid);
+    // console.log(user);
+
+    // this.db.doc(`users/${uid}`).delete();
+    // admin.auth().updateUser(uid, {
+    //   disabled: true
+    // });
   }
 
 }

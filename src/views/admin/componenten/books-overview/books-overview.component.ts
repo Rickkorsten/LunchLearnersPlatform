@@ -32,12 +32,9 @@ export class BooksOverviewComponent implements OnInit {
   booksCol: AngularFirestoreCollection<Book>;
   books: Observable<Book[]>;
 
-  visible: boolean;
-
   constructor(private db: AngularFirestore,
     public dialog: MatDialog,
     public auth: AuthService, ) {
-    this.visible = true;
   }
 
   openDialog(): void {

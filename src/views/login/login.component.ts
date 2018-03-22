@@ -74,6 +74,7 @@ export class LoginComponent implements OnInit {
 
   // Updates validation state on form changes.
   onValueChanged(data?: any) {
+    console.log(data);
     if (!this.userForm) { return; }
     const form = this.userForm;
     for (const field in this.formErrors) {

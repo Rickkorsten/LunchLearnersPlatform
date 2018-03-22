@@ -3,7 +3,7 @@
   <mat-accordion>
     <mat-expansion-panel *ngFor="let book of books | async" (opened)="visible=false" (closed)="visible=true">
       <mat-expansion-panel-header>
-        <mat-panel-title style="vertical-align:middle;" *ngIf="visible">
+        <mat-panel-title style="vertical-align:middle;">
           <img style="vertical-align:middle; margin-right: 24px;" aria-hidden src="{{book.smallThumbnail}}" height="48" />
           <p>{{ book.title }}</p>
         </mat-panel-title>

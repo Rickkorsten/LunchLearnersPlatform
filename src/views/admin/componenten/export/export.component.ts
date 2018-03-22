@@ -1,5 +1,4 @@
 import { Component, OnInit } from '@angular/core';
-import { PreziPlayer } from ''
 
 @Component({
   selector: 'app-export',
