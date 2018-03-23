@@ -31,7 +31,15 @@ export class UsersOverviewComponent implements OnInit {
   companiesCol: AngularFirestoreCollection<Company>;
   companies: Observable<Company[]>;
 
+<<<<<<< HEAD
   selectedValue = 'Spotify';
+=======
+  foods: Object[] = [
+    {value: 'steak-0', viewValue: 'Tweekracht'},
+    {value: 'pizza-1', viewValue: 'Decision driven data'},
+    {value: 'tacos-2', viewValue: 'Dame'}
+  ];
+>>>>>>> 11507620ffdeb8b313627211811137aa083947ce
 
   constructor(private db: AngularFirestore, public dialog: MatDialog, public auth: AngularFireAuth) {
   }
