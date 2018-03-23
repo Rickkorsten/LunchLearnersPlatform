@@ -26,9 +26,9 @@ export class UsersOverviewComponent implements OnInit {
   selectedValue: string;
 
   foods: Object[] = [
-    {value: 'steak-0', viewValue: 'Steak'},
-    {value: 'pizza-1', viewValue: 'Pizza'},
-    {value: 'tacos-2', viewValue: 'Tacos'}
+    {value: 'steak-0', viewValue: 'Tweekracht'},
+    {value: 'pizza-1', viewValue: 'Decision driven data'},
+    {value: 'tacos-2', viewValue: 'Dame'}
   ];
 
   constructor(private db: AngularFirestore, public dialog: MatDialog, public auth: AngularFireAuth) {
