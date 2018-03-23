@@ -1,9 +1,18 @@
 import { Component, OnInit } from '@angular/core';
 import { AuthService } from '../../app/core/auth.service';
+import { AngularFirestore, AngularFirestoreCollection } from 'angularfire2/firestore';
+import { Observable } from 'rxjs/Observable';
 import { FormGroup, FormBuilder, Validators } from '@angular/forms';
 
 type UserFields = 'email' | 'password';
-type FormErrors = { [u in UserFields]: string };
+type FormErrors = {[u in UserFields]: string };
+
+// info you want from firebase object
+interface Company {
+  name: string;
+  code: string;
+  uid: string;
+}
 
 @Component({
   selector: 'app-login',
@@ -12,13 +21,25 @@ type FormErrors = { [u in UserFields]: string };
 })
 
 export class LoginComponent implements OnInit {
+  // firebase collection
+  companiesCol: AngularFirestoreCollection<Company>;
+  companies: Observable<Company[]>;
+  // company info received
+  companyUID: string;
+  companyName: string;
+  companyCode: string;
+
+  // userform
   userForm: FormGroup;
   newUser = false; // to toggle login or signup form
   passReset = false; // set to true when password reset is triggered
+  // form errors
   formErrors: FormErrors = {
     'email': '',
     'password': '',
   };
+
+
   validationMessages = {
     'email': {
       'required': 'Email is verplicht.',
@@ -32,7 +53,7 @@ export class LoginComponent implements OnInit {
     },
   };
 
-  constructor(private fb: FormBuilder, private auth: AuthService) { }
+  constructor(private db: AngularFirestore, private fb: FormBuilder, private auth: AuthService) { }
 
   ngOnInit() {
     this.buildForm();
@@ -43,7 +64,20 @@ export class LoginComponent implements OnInit {
   }
 
   signup() {
-    this.auth.emailSignUp(this.userForm.value['email'], this.userForm.value['password']);
+    const email: string = this.userForm.value['email'];
+    const password: string = this.userForm.value['password'];
+    const suffix: string = this.getEmailSuffix(email);
+
+    this.companiesCol = this.db.collection('companies', ref => ref.where('emailsuffix', '==', suffix));
+    this.companies = this.companiesCol.valueChanges();
+    this.companies.subscribe(data => {
+      console.log(data);
+      if (password === data[0].code) {
+        this.auth.emailSignUp(this.userForm.value['email'], this.userForm.value['password'], data[0].uid);
+      } else {
+        console.log('false');
+      }
+    });
   }
 
   login() {
@@ -53,6 +87,12 @@ export class LoginComponent implements OnInit {
   resetPassword() {
     this.auth.resetPassword(this.userForm.value['email'])
       .then(() => this.passReset = true);
+  }
+
+  // delete everything before @
+  getEmailSuffix(email) {
+    const splitEmail = email.split('@').pop();
+    return splitEmail;
   }
 
   buildForm() {
@@ -86,8 +126,8 @@ export class LoginComponent implements OnInit {
           const messages = this.validationMessages[field];
           if (control.errors) {
             for (const key in control.errors) {
-              if (Object.prototype.hasOwnProperty.call(control.errors, key) ) {
-                this.formErrors[field] += `${(messages as {[key: string]: string})[key]} `;
+              if (Object.prototype.hasOwnProperty.call(control.errors, key)) {
+                this.formErrors[field] += `${(messages as { [key: string]: string })[key]} `;
               }
             }
           }

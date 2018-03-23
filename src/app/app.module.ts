@@ -9,13 +9,13 @@ import { StoreComponent } from './../views/store/store.component';
 import { LoginComponent } from './../views/login/login.component';
 
 import { AngularFireModule } from 'angularfire2';
+import { AngularFireStorageModule } from 'angularfire2/storage';
+import { AngularFireDatabaseModule } from 'angularfire2/database';
+import { AngularFireAuthModule } from 'angularfire2/auth';
 import { AngularFirestoreModule } from 'angularfire2/firestore';
 
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { DropZoneDirective } from './directives/dropZone/drop-zone.directive';
-import { AngularFireStorageModule } from 'angularfire2/storage';
-import { AngularFireDatabaseModule } from 'angularfire2/database';
-import { AngularFireAuthModule } from 'angularfire2/auth';
 import { VideoDropzoneComponent } from './../components/video-dropzone/video-dropzone.component';
 
 import { CoreModule } from './core/core.module';

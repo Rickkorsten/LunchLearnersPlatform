@@ -2,9 +2,9 @@
   <h2>gebruiker overzicht:</h2>
   <form>
     <mat-form-field>
-      <mat-select placeholder="Favorite food" [(ngModel)]="selectedValue" name="food">
-        <mat-option *ngFor="let food of foods" [value]="food.value">
-          {{food.viewValue}}
+      <mat-select placeholder="Favorite food" [(ngModel)]="selectedValue" (change)="updateUserList(selectedValue)" name="food">
+        <mat-option *ngFor="let company of companies | async" [value]="company.name">
+          {{company.name}}
         </mat-option>
       </mat-select>
     </mat-form-field>

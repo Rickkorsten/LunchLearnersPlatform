@@ -13,6 +13,11 @@ interface User {
   uid: string;
 }
 
+interface Company {
+  name: string;
+  code: string;
+}
+
 @Component({
   selector: 'app-users-overview',
   templateUrl: './users-overview.component.html',
@@ -23,23 +28,18 @@ export class UsersOverviewComponent implements OnInit {
   usersCol: AngularFirestoreCollection<User>;
   users: Observable<User[]>;
 
-  selectedValue: string;
+  companiesCol: AngularFirestoreCollection<Company>;
+  companies: Observable<Company[]>;
 
-  foods: Object[] = [
-    {value: 'steak-0', viewValue: 'Steak'},
-    {value: 'pizza-1', viewValue: 'Pizza'},
-    {value: 'tacos-2', viewValue: 'Tacos'}
-  ];
+  selectedValue = 'Spotify';
 
   constructor(private db: AngularFirestore, public dialog: MatDialog, public auth: AngularFireAuth) {
   }
 
 
   ngOnInit() {
-    this.usersCol = this.db.collection('users');
-    this.users = this.usersCol.valueChanges();
-    this.usersCol = this.db.collection('users');
-    this.users = this.usersCol.valueChanges();
+    this.companiesCol = this.db.collection('companies');
+    this.companies = this.companiesCol.valueChanges();
   }
 
   delete(uid) {
@@ -51,6 +51,12 @@ export class UsersOverviewComponent implements OnInit {
     // admin.auth().updateUser(uid, {
     //   disabled: true
     // });
+  }
+
+  updateUserList(selectedValue) {
+    this.usersCol = this.db.collection('users', ref => ref.where('company', '==', selectedValue));
+    this.users = this.usersCol.valueChanges();
+    console.log(this.users);
   }
 
 }

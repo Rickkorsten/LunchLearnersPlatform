@@ -57,7 +57,8 @@ export class AuthService {
    }
 
 
-   emailSignUp(email: string, password: string) {
+   emailSignUp(email: string, password: string, companyUID: string) {
+     console.log(companyUID);
     return this.afAuth.auth.createUserWithEmailAndPassword(email, password)
       .then((user) => {
         return this.updateUserData(user); // if using firestore
