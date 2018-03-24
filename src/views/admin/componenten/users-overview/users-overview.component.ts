@@ -31,17 +31,11 @@ export class UsersOverviewComponent implements OnInit {
   companiesCol: AngularFirestoreCollection<Company>;
   companies: Observable<Company[]>;
 
-<<<<<<< HEAD
-  selectedValue = 'Spotify';
-=======
-  foods: Object[] = [
-    {value: 'steak-0', viewValue: 'Tweekracht'},
-    {value: 'pizza-1', viewValue: 'Decision driven data'},
-    {value: 'tacos-2', viewValue: 'Dame'}
-  ];
->>>>>>> 11507620ffdeb8b313627211811137aa083947ce
+  selectedValue: string;
+  all: string;
 
   constructor(private db: AngularFirestore, public dialog: MatDialog, public auth: AngularFireAuth) {
+    this.all = 'All';
   }
 
 
@@ -51,7 +45,7 @@ export class UsersOverviewComponent implements OnInit {
   }
 
   delete(uid) {
-     console.log(uid);
+    console.log(uid);
     // const user = admin.auth().getUser(uid);
     // console.log(user);
 
@@ -61,10 +55,13 @@ export class UsersOverviewComponent implements OnInit {
     // });
   }
 
-  updateUserList(selectedValue) {
-    this.usersCol = this.db.collection('users', ref => ref.where('company', '==', selectedValue));
+  updateUserList(selected) {
+    console.log(selected);
+    if (selected === 'All') {
+      this.usersCol = this.db.collection('users');
+    } else {
+      this.usersCol = this.db.collection('users', ref => ref.where('companyUid', '==', selected));
+    }
     this.users = this.usersCol.valueChanges();
-    console.log(this.users);
   }
-
 }

@@ -1,3 +1,4 @@
+import { SettingsComponent } from './../views/settings/settings.component';
 import { ModuleWithProviders } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
 import { LibraryComponent } from './../views/library/library.component';
@@ -14,6 +15,7 @@ export const router: Routes = [
     { path: 'library', component: LibraryComponent },
     { path: 'store', component: StoreComponent },
     { path: 'login', component: LoginComponent },
+    { path: 'settings', component: SettingsComponent },
     { path: 'admin', component: AdminComponent, children: [
         { path: '', component: CompanyListComponent, outlet: 'admin' },
         { path: 'books', component: BooksOverviewComponent, outlet: 'admin' },

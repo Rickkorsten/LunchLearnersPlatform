@@ -31,6 +31,7 @@ import { BooksOverviewComponent } from './../views/admin/componenten/books-overv
 import { ExportComponent } from './../views/admin/componenten/export/export.component';
 import { MenuContainerComponent } from '../components/menu-container/menu-container.component';
 import { MenuItemComponent } from '../components/menu-item/menu-item.component';
+import { SettingsComponent } from './../views/settings/settings.component';
 
 
 const firebaseConfig = {
@@ -59,6 +60,7 @@ const firebaseConfig = {
     ExportComponent,
     MenuContainerComponent,
     MenuItemComponent,
+    SettingsComponent,
   ],
   imports: [
     BrowserModule,

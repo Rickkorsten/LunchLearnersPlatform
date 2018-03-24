@@ -3,7 +3,10 @@
   <form>
     <mat-form-field>
       <mat-select placeholder="Selecteer bedrijf" [(ngModel)]="selectedValue" (change)="updateUserList(selectedValue)" name="food">
-        <mat-option *ngFor="let company of companies | async" [value]="company.name">
+          <mat-option [value]="all">
+              All
+            </mat-option>
+        <mat-option *ngFor="let company of companies | async" [value]="company.uid">
           {{company.name}}
         </mat-option>
       </mat-select>

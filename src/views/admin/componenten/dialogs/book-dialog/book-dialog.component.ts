@@ -44,16 +44,14 @@ export class BookDialogComponent {
 
   searchBook(keyword) {
     console.log(keyword);
-    if (keyword.length > 3) {
-      this.bookService.searchBook(keyword)
-        .map(books => books.json().items)
-        .subscribe(books => {
-          console.log(books);
-          this.books = books;
-        },
-        () => console.log('geslaagd')
-        );
-    }
+    this.bookService.searchBook(keyword)
+      .map(books => books.json().items)
+      .subscribe(books => {
+        console.log(books);
+        this.books = books;
+      },
+      () => console.log('geslaagd')
+      );
   }
 
   selectBook(book) {
@@ -61,13 +59,13 @@ export class BookDialogComponent {
     this.subTitle = book.volumeInfo.subtitle;
     this.authors = book.volumeInfo.authors.toString();
     this.smallThumbnail = book.volumeInfo.imageLinks.smallThumbnail;
-    this.bigThumbnail =  book.volumeInfo.imageLinks.thumbnail;
-    this.publisher =  book.volumeInfo.publisher;
-    this.publishDate =  book.volumeInfo.publishedDate;
-    this.description =  book.volumeInfo.description;
-    this.ISBN_13 =  book.volumeInfo.industryIdentifiers[0].identifier;
-    this.ISBN_10 =  book.volumeInfo.industryIdentifiers[1].identifier;
-    this.categories =  book.volumeInfo.categories.toString();
+    this.bigThumbnail = book.volumeInfo.imageLinks.thumbnail;
+    this.publisher = book.volumeInfo.publisher;
+    this.publishDate = book.volumeInfo.publishedDate;
+    this.description = book.volumeInfo.description;
+    this.ISBN_13 = book.volumeInfo.industryIdentifiers[0].identifier;
+    this.ISBN_10 = book.volumeInfo.industryIdentifiers[1].identifier;
+    this.categories = book.volumeInfo.categories.toString();
     this.selectedBook = {
       'title': this.title,
       'subTitle': this.subTitle,
@@ -80,6 +78,8 @@ export class BookDialogComponent {
       'ISBN_10': this.ISBN_10,
       'categories': this.categories,
     };
+
+    console.log(this.selectedBook.title);
   }
 
 

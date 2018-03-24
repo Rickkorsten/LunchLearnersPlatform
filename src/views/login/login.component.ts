@@ -12,6 +12,7 @@ interface Company {
   name: string;
   code: string;
   uid: string;
+  users: string[];
 }
 
 @Component({
@@ -28,6 +29,7 @@ export class LoginComponent implements OnInit {
   companyUID: string;
   companyName: string;
   companyCode: string;
+  usersArray: any;
 
   // userform
   userForm: FormGroup;
@@ -71,9 +73,11 @@ export class LoginComponent implements OnInit {
     this.companiesCol = this.db.collection('companies', ref => ref.where('emailsuffix', '==', suffix));
     this.companies = this.companiesCol.valueChanges();
     this.companies.subscribe(data => {
-      console.log(data);
       if (password === data[0].code) {
-        this.auth.emailSignUp(this.userForm.value['email'], this.userForm.value['password'], data[0].uid);
+       console.log(data[0].users);
+       this.usersArray = data[0].users;
+        console.log(this.usersArray);
+        this.auth.emailSignUp(this.userForm.value['email'], this.userForm.value['password'], data[0].uid, this.usersArray);
       } else {
         console.log('false');
       }
