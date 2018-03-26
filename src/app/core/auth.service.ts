@@ -8,6 +8,10 @@ import { AngularFirestore, AngularFirestoreDocument } from 'angularfire2/firesto
 import { Observable } from 'rxjs/Observable';
 import 'rxjs/add/operator/switchMap';
 
+// This Auth Service handels everything related to user accounts and authentication
+// The Auth Guard makes sure people can't access pages if the are not logged in
+
+// This user interface describes everthing we want from the user object in Firebase
 interface User {
   uid: string;
   email: string;
@@ -16,60 +20,44 @@ interface User {
   companyName: string;
 }
 
-
-export class EmailPasswordCredentials {
-  email: string;
-  password: string;
-}
-
 @Injectable()
 export class AuthService {
 
   user: Observable<User>;
-
-  loggedIn: boolean;
 
   constructor(
     private afAuth: AngularFireAuth,
     private afs: AngularFirestore,
     private router: Router) {
 
-    this.user = this.afAuth.authState
-      .switchMap(user => {
-        if (user) {
-          this.loggedIn = true;
-          return this.afs.doc<User>(`users/${user.uid}`).valueChanges();
-        } else {
-          this.loggedIn = false;
-          return Observable.of(null);
-        }
-      });
-
-    this.afAuth.authState.subscribe((user: firebase.User) => {
-
-      if (user) {
-        this.router.navigateByUrl('');
-      } else {
-        this.router.navigateByUrl('/login');
-      }
-
-    });
+      // Check if user is loged in, if user is loged in than get all the user data and insert it into the User interface
+      this.user = this.afAuth.authState
+        .switchMap(user => {
+          if (user) {
+            return this.afs.doc<User>(`users/${user.uid}`).valueChanges();
+          } else {
+            return Observable.of(null);
+          }
+        });
 
   }
 
-
+  // Create new user and put new user in database
   emailSignUp(email: string, password: string, companyUID: string, usersArray, companyName: string) {
 
     return this.afAuth.auth.createUserWithEmailAndPassword(email, password)
       .then((user) => {
+        this.router.navigateByUrl('');
         return this.updateUserData(user, companyUID, usersArray, companyName); // if using firestore
       })
       .catch((error) => this.handleError(error));
   }
 
+  // Login function and when logged in calls updateUserData()
   emailLogin(email: string, password: string) {
     return this.afAuth.auth.signInWithEmailAndPassword(email, password)
       .then((user) => {
+        this.router.navigateByUrl('');
         return this.updateUserData(user, '', '', ''); // if using firestore
       })
       .catch((error) => this.handleError(error));
@@ -91,7 +79,7 @@ export class AuthService {
     // takes old array and added new array to it (combines)
     const newUserArray = usersArray.concat(user.uid);
 
-    const User: User = {
+    const UserUpdate: User = {
       uid: user.uid,
       email: user.email,
       companyUid: companyUID,
@@ -101,7 +89,7 @@ export class AuthService {
 
     this.addUserUidToCompany(companyUID, newUserArray);
 
-    return userRef.set(User, { merge: true });
+    return userRef.set(UserUpdate, { merge: true });
 
   }
 
@@ -113,7 +101,7 @@ export class AuthService {
 
   signOut() {
     this.afAuth.auth.signOut().then(() => {
-      this.router.navigate(['/']);
+      this.router.navigate(['/login']);
     });
   }
 
