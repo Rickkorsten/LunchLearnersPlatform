@@ -42,17 +42,12 @@ export class UsersOverviewComponent implements OnInit {
   ngOnInit() {
     this.companiesCol = this.db.collection('companies');
     this.companies = this.companiesCol.valueChanges();
+
+    this.updateUserList('All');
   }
 
   delete(uid) {
-    console.log(uid);
-    // const user = admin.auth().getUser(uid);
-    // console.log(user);
-
-    // this.db.doc(`users/${uid}`).delete();
-    // admin.auth().updateUser(uid, {
-    //   disabled: true
-    // });
+    this.db.doc(`users/${uid}`).delete();
   }
 
   updateUserList(selected) {

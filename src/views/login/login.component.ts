@@ -77,7 +77,7 @@ export class LoginComponent implements OnInit {
        console.log(data[0].users);
        this.usersArray = data[0].users;
         console.log(this.usersArray);
-        this.auth.emailSignUp(this.userForm.value['email'], this.userForm.value['password'], data[0].uid, this.usersArray);
+        this.auth.emailSignUp(this.userForm.value['email'], this.userForm.value['password'], data[0].uid, this.usersArray, data[0].name);
       } else {
         console.log('false');
       }

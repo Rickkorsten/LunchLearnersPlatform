@@ -13,6 +13,7 @@ interface User {
   email: string;
   companyUid: string;
   role: string;
+  companyName: string;
 }
 
 
@@ -57,11 +58,11 @@ export class AuthService {
   }
 
 
-  emailSignUp(email: string, password: string, companyUID: string, usersArray) {
+  emailSignUp(email: string, password: string, companyUID: string, usersArray, companyName: string) {
 
     return this.afAuth.auth.createUserWithEmailAndPassword(email, password)
       .then((user) => {
-        return this.updateUserData(user, companyUID, usersArray); // if using firestore
+        return this.updateUserData(user, companyUID, usersArray, companyName); // if using firestore
       })
       .catch((error) => this.handleError(error));
   }
@@ -69,7 +70,7 @@ export class AuthService {
   emailLogin(email: string, password: string) {
     return this.afAuth.auth.signInWithEmailAndPassword(email, password)
       .then((user) => {
-        return this.updateUserData(user, '', ''); // if using firestore
+        return this.updateUserData(user, '', '', ''); // if using firestore
       })
       .catch((error) => this.handleError(error));
   }
@@ -83,17 +84,19 @@ export class AuthService {
       .catch((error) => this.handleError(error));
   }
 
-  private updateUserData(user, companyUID, usersArray) {
+  private updateUserData(user, companyUID, usersArray, companyName) {
     // Sets user data to firestore on login
     const userRef: AngularFirestoreDocument<any> = this.afs.doc(`users/${user.uid}`);
 
+    // takes old array and added new array to it (combines)
     const newUserArray = usersArray.concat(user.uid);
 
     const User: User = {
       uid: user.uid,
       email: user.email,
       companyUid: companyUID,
-      role: 'user'
+      role: 'user',
+      companyName: companyName
     };
 
     this.addUserUidToCompany(companyUID, newUserArray);

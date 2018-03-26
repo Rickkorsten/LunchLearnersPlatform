@@ -12,16 +12,15 @@
       </mat-select>
     </mat-form-field>
 
-    <p> Selected value: {{selectedValue}} </p>
   </form>
   <mat-accordion>
     <mat-expansion-panel *ngFor="let user of users | async">
       <mat-expansion-panel-header>
         <mat-panel-title>
-          {{ user.displayName}}
+          {{ user.email}}
         </mat-panel-title>
         <mat-panel-description>
-          {{user.email}}
+          {{user.companyName}}
         </mat-panel-description>
       </mat-expansion-panel-header>
       <div class="expension-content">

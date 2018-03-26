@@ -1,9 +1,11 @@
 <div class="drawer-container">
   <div class="drawer">
+    <div class="item">
       <app-menu-item [routerLink]="[{ outlets:{ admin:'books' }}]" [icon]="'book'" [title]="'Boeken overzicht'"></app-menu-item>
       <app-menu-item [routerLink]="[{ outlets:{ admin:'companies' }}]" [icon]="'work'" [title]="'Bedrijven overzicht'"></app-menu-item>
       <app-menu-item [routerLink]="[{ outlets:{ admin:'users' }}]" [icon]="'supervisor_account'" [title]="'Gebruikers overzicht'"></app-menu-item>
-      <app-menu-item [routerLink]="[{ outlets:{ admin:'users' }}]" [icon]="'supervisor_account'" [title]="'Personeels overzicht'"></app-menu-item>
+      <app-menu-item [routerLink]="[{ outlets:{ admin:'employees' }}]" [icon]="'face'" [title]="'Personeels overzicht'"></app-menu-item>
+      <app-menu-item [routerLink]="[{ outlets:{ admin:'reviews' }}]" [icon]="'star'" [title]="'Reviews overzicht'"></app-menu-item>
       <app-menu-item [routerLink]="[{ outlets:{ admin:'export' }}]" [icon]="'import_export'" [title]="'Database exporteren'"></app-menu-item>
+    </div>
   </div>
-</div>

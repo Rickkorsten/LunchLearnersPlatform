@@ -25,13 +25,15 @@ import { HttpModule } from '@angular/http';
 import { AdminComponent } from './../views/admin/admin.component';
 import { CompanyDialogComponent } from './../views/admin/componenten/dialogs/company-dialog/company-dialog.component';
 import { BookDialogComponent } from './../views/admin/componenten/dialogs/book-dialog/book-dialog.component';
-import { CompanyListComponent } from './../views/admin/componenten/companies-overview/companies-overview.component';
+import { CompanyOverviewComponent } from './../views/admin/componenten/companies-overview/companies-overview.component';
 import { UsersOverviewComponent } from './../views/admin/componenten/users-overview/users-overview.component';
 import { BooksOverviewComponent } from './../views/admin/componenten/books-overview/books-overview.component';
-import { ExportComponent } from './../views/admin/componenten/export/export.component';
+import { ExportOverviewComponent } from './../views/admin/componenten/export-overview/export-overview.component';
 import { MenuContainerComponent } from '../components/menu-container/menu-container.component';
 import { MenuItemComponent } from '../components/menu-item/menu-item.component';
 import { SettingsComponent } from './../views/settings/settings.component';
+import { EmployeeOverviewComponent } from './../views/admin/componenten/employee-overview/employee-overview.component';
+import { ReviewsOverviewComponent } from './../views/admin/componenten/reviews-overview/reviews-overview.component';
 
 
 const firebaseConfig = {
@@ -54,13 +56,15 @@ const firebaseConfig = {
     AdminComponent,
     CompanyDialogComponent,
     BookDialogComponent,
-    CompanyListComponent,
+    CompanyOverviewComponent,
     UsersOverviewComponent,
     BooksOverviewComponent,
-    ExportComponent,
+    ExportOverviewComponent,
     MenuContainerComponent,
     MenuItemComponent,
     SettingsComponent,
+    EmployeeOverviewComponent,
+    ReviewsOverviewComponent,
   ],
   imports: [
     BrowserModule,

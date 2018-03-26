@@ -21,7 +21,7 @@ interface Company {
   templateUrl: './companies-overview.component.html',
   styleUrls: ['./companies-overview.component.scss']
 })
-export class CompanyListComponent implements OnInit {
+export class CompanyOverviewComponent implements OnInit {
 
   popupName: string;
   popupCode: string;
