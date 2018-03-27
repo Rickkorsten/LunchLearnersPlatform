@@ -53,9 +53,9 @@ export class UsersOverviewComponent implements OnInit {
   updateUserList(selected) {
     console.log(selected);
     if (selected === 'All') {
-      this.usersCol = this.db.collection('users');
+      this.usersCol = this.db.collection('users', ref => ref.where('role', '==', 'user'));
     } else {
-      this.usersCol = this.db.collection('users', ref => ref.where('companyUid', '==', selected));
+      this.usersCol = this.db.collection('users', ref => ref.where('role', '==', 'user').where('companyUid', '==', selected));
     }
     this.users = this.usersCol.valueChanges();
   }

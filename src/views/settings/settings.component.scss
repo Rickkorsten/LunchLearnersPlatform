@@ -1,0 +1,33 @@
+.settings-container{
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  height: calc(100vh - 65px);
+  align-items: center;
+  margin-top: -30px;
+
+  .card-container{
+    width: 1100px;
+    height: 360px;
+    display: flex;
+    justify-content: space-around;
+    justify-content: row;
+
+    mat-card{
+      margin: 8px;
+      width: 30%;
+      justify-content: space-around;
+      display: flex;
+      flex-direction: column;
+
+      mat-card-content{
+        display: flex;
+        flex-direction: column;;
+
+        mat-form-field{
+          width: 50%;
+        }
+      }
+    }
+  }
+}

@@ -1,3 +1,23 @@
-<p>
-  employee-overview works!
-</p>
+<div class="employee-container">
+    <h2>medewerkers overzicht:</h2>
+    <mat-accordion>
+      <mat-expansion-panel *ngFor="let employee of employees | async">
+        <mat-expansion-panel-header>
+          <mat-panel-title>
+            {{ employee.email}}
+          </mat-panel-title>
+          <mat-panel-description>
+            {{ employee.companyName }}
+          </mat-panel-description>
+        </mat-expansion-panel-header>
+        <div class="expension-content">
+
+          <div class="expension-row">
+          </div>
+        </div>
+        <mat-action-row>
+          <button mat-button color="accent" (click)="delete(user.uid)">delete</button>
+        </mat-action-row>
+      </mat-expansion-panel>
+    </mat-accordion>
+  </div>

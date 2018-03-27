@@ -30,7 +30,7 @@ export class EmployeeOverviewComponent implements OnInit {
 
 
   ngOnInit() {
-    this.employeesCol = this.db.collection('companies');
+    this.employeesCol = this.db.collection('users', ref => ref.where('role', '==', 'employee'));
     this.employees = this.employeesCol.valueChanges();
   }
 
