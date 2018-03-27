@@ -10,7 +10,8 @@ export class MenuItemComponent implements OnInit {
   @Input() title: string;
   @Input() icon: string;
 
-  constructor() { }
+    constructor() {
+     }
 
   ngOnInit() {
   }

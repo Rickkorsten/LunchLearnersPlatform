@@ -1,4 +1,17 @@
+import { AngularFireAuth } from 'angularfire2/auth';
 import { Component, OnInit } from '@angular/core';
+import { AngularFirestore, AngularFirestoreCollection } from 'angularfire2/firestore';
+import { Observable } from 'rxjs/Observable';
+// import { AuthService } from '../../../../app/core/auth.service';
+import { MatDialog } from '@angular/material';
+// import * as admin from 'firebase-admin';
+
+interface Employee {
+  displayName: string;
+  email: string;
+  photoURL: string;
+  uid: string;
+}
 
 @Component({
   selector: 'app-employee-overview',
@@ -7,9 +20,21 @@ import { Component, OnInit } from '@angular/core';
 })
 export class EmployeeOverviewComponent implements OnInit {
 
-  constructor() { }
+  employeesCol: AngularFirestoreCollection<Employee>;
+  employees: Observable<Employee[]>;
 
-  ngOnInit() {
+  selectedValue: string;
+
+  constructor(private db: AngularFirestore, public dialog: MatDialog, public auth: AngularFireAuth) {
   }
 
+
+  ngOnInit() {
+    this.employeesCol = this.db.collection('companies');
+    this.employees = this.employeesCol.valueChanges();
+  }
+
+  delete(uid) {
+    this.db.doc(`users/${uid}`).delete();
+  }
 }
