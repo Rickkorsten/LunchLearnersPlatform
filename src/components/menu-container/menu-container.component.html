@@ -15,7 +15,7 @@
       [routerLink]="menuItem.router"
       [icon]="menuItem.icon"
       [title]="menuItem.title"
-      [ngClass]="menuItem.id === selectedType ? 'active' : ''"
+      [ngClass]="selectedType === menuItem.id ? 'active' : ''"
       (click)="setActive(menuItem.id)"
       ></app-menu-item>
     </div>
