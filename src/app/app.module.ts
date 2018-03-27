@@ -34,6 +34,7 @@ import { MenuItemComponent } from '../components/menu-item/menu-item.component';
 import { SettingsComponent } from './../views/settings/settings.component';
 import { EmployeeOverviewComponent } from './../views/admin/componenten/employee-overview/employee-overview.component';
 import { ReviewsOverviewComponent } from './../views/admin/componenten/reviews-overview/reviews-overview.component';
+import { SettingsCardComponent } from './../views/settings/components/settings-card/settings-card.component';
 
 const firebaseConfig = {
   apiKey: 'AIzaSyBR3HJduE1qTWlz7D7LiLlVDPda3Vu3wBk',
@@ -64,6 +65,7 @@ const firebaseConfig = {
     SettingsComponent,
     EmployeeOverviewComponent,
     ReviewsOverviewComponent,
+    SettingsCardComponent,
   ],
   imports: [
     BrowserModule,

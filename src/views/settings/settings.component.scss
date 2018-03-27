@@ -12,22 +12,6 @@
     display: flex;
     justify-content: space-around;
     justify-content: row;
-
-    mat-card{
-      margin: 8px;
-      width: 30%;
-      justify-content: space-around;
-      display: flex;
-      flex-direction: column;
-
-      mat-card-content{
-        display: flex;
-        flex-direction: column;;
-
-        mat-form-field{
-          width: 50%;
-        }
-      }
-    }
   }
 }
+
