@@ -2,6 +2,7 @@ import { EmployeeOverviewComponent } from './../views/admin/componenten/employee
 import { SettingsComponent } from './../views/settings/settings.component';
 import { ModuleWithProviders } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
+import { AuthGuard } from './core/auth.guard';
 import { LibraryComponent } from './../views/library/library.component';
 import { StoreComponent } from './../views/store/store.component';
 import { AdminComponent } from './../views/admin/admin.component';
@@ -12,14 +13,18 @@ import { BooksOverviewComponent } from './../views/admin/componenten/books-overv
 import { ExportOverviewComponent } from './../views/admin/componenten/export-overview/export-overview.component';
 import { ReviewsOverviewComponent } from './../views/admin/componenten/reviews-overview/reviews-overview.component';
 
+// This file defines all the URL's of the application, this is done with the path: '...'
+// The after the path we define the component we want to go to when this URL is called
+// The canActivate: [AuthGuard] makes sure people need to be logged in for this URL
 
 export const router: Routes = [
     { path: '', redirectTo: 'library', pathMatch: 'full' },
-    { path: 'library', component: LibraryComponent },
-    { path: 'store', component: StoreComponent },
     { path: 'login', component: LoginComponent },
-    { path: 'settings', component: SettingsComponent },
-    { path: 'admin', component: AdminComponent, children: [
+    { path: 'library', component: LibraryComponent, canActivate: [AuthGuard] },
+    { path: 'store', component: StoreComponent, canActivate: [AuthGuard] },
+    { path: 'settings', component: SettingsComponent, canActivate: [AuthGuard] },
+    // The admin path also has childeren, these define the paths of the admin router outlet inside of the admin component
+    { path: 'admin', component: AdminComponent, canActivate: [AuthGuard] , children: [
         { path: '', component: BooksOverviewComponent, outlet: 'admin' },
         { path: 'books', component: BooksOverviewComponent, outlet: 'admin' },
         { path: 'companies', component: CompanyOverviewComponent, outlet: 'admin' },

@@ -35,7 +35,6 @@ import { SettingsComponent } from './../views/settings/settings.component';
 import { EmployeeOverviewComponent } from './../views/admin/componenten/employee-overview/employee-overview.component';
 import { ReviewsOverviewComponent } from './../views/admin/componenten/reviews-overview/reviews-overview.component';
 
-
 const firebaseConfig = {
   apiKey: 'AIzaSyBR3HJduE1qTWlz7D7LiLlVDPda3Vu3wBk',
   authDomain: 'lunchlearners.firebaseapp.com',
@@ -80,7 +79,7 @@ const firebaseConfig = {
     CoreModule,
     HttpClientModule,
     HttpModule,
-    ReactiveFormsModule,
+    ReactiveFormsModule
   ],
   entryComponents: [
     BookDialogComponent,

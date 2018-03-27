@@ -18,7 +18,6 @@ export class AppComponent {
     } else {
       this.user = false;
     }
-
   }
 
     // this.router.events.subscribe((event) => {
