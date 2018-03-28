@@ -4,14 +4,14 @@ import { Http } from '@angular/http';
 @Injectable()
 export class BooksService {
 
-  search:string;
+  search: string;
 
   constructor(private http: Http) {
 
   }
 
-  searchBook(keyword){
-    let url= `https://www.googleapis.com/books/v1/volumes?q=${keyword}`
+  searchBook(keyword) {
+    const url = `https://www.googleapis.com/books/v1/volumes?q=${keyword}&country=DK`;
     return this.http.get(url);
   }
 

@@ -1,8 +1,12 @@
-<mat-card *ngFor="let book of books | async" class="card" routerLink="../book-info/{{book.uid}}">
-  <img class="img" npmmat-card-image src={{book.smallThumbnail}} alt="Photo of {{book.title}}">
+<div class="container-wide">
+    <mat-card class="search-bar">
+      <input type="text" placeholder="Zoeken...">
+    </mat-card>
+  <mat-card *ngFor="let book of books | async" class="card" routerLink="../book-info/{{book.uid}}">
+    <img mat-card-image src={{book.bigThumbnail}} alt="Photo of {{book.title}">
     <mat-card-title class="title">{{ book.title }}</mat-card-title>
-    <p>
+    <p class="description">
       {{book.description}}
     </p>
-    <button mat-button class="info">Meer info</button>
-</mat-card>
+  </mat-card>
+</div>

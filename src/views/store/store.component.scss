@@ -1,12 +1,26 @@
+.search-bar{
+  width: 80%;
+  margin: auto;
+  margin-top: 20px;
+  margin-bottom: 60px;
+
+  input{
+    width: 100%;
+    font-size: 20px;
+    border: none;
+    outline: none;
+  }
+}
 .card {
-    max-width: 200px;
-    height: 300px;
+    max-width: 152px;
     display: flex;
     flex-direction: column;
     //flex:1;
     width:20%;
     float:left;
     margin: 10px;
+    height: 450px;
+    overflow: hidden;
     //background-color: red;
     position:relative;
   }
@@ -41,9 +55,9 @@
     //background-color: green;
   }
 
-  .img{
-    max-height:100px;
-    max-width: 200px;
+  img{
+    min-height: 270px;
+    max-height: 270px;
     //padding-right:5px;
     //margin:10px;
     //background-color: blue;
@@ -51,10 +65,9 @@
 
   .description{
     //background-color: orange;
-    font-size: 8px;
+    font-size: 13px;
     font-weight: 200;
     //padding:5px;
-    margin-top: 5px;
   }
 
   .info{
