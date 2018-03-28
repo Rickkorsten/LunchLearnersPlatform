@@ -11,7 +11,9 @@ export class BookInfoComponent implements OnInit {
   constructor(private route: ActivatedRoute) { }
 
   ngOnInit() {
-    console.log(this.route);
+    this.route.params.subscribe(params => {
+      console.log(params['uid']);
+   });
   }
 
 }
