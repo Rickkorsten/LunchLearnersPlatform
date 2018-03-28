@@ -1,4 +1,4 @@
-<mat-card *ngFor="let book of books | async" class="card">
+<mat-card *ngFor="let book of books | async" class="card" routerLink="../book-info/{{book.uid}}">
   <img class="img" npmmat-card-image src={{book.smallThumbnail}} alt="Photo of {{book.title}}">
     <mat-card-title class="title">{{ book.title }}</mat-card-title>
     <p>

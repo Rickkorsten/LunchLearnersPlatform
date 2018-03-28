@@ -11,6 +11,7 @@ interface Book {
   title: string;
   smallCover: string;
   publishedDate: string;
+  uid: string;
 }
 
 @Component({
