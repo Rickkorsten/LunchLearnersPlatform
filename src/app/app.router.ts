@@ -12,6 +12,7 @@ import { UsersOverviewComponent } from './../views/admin/componenten/users-overv
 import { BooksOverviewComponent } from './../views/admin/componenten/books-overview/books-overview.component';
 import { ExportOverviewComponent } from './../views/admin/componenten/export-overview/export-overview.component';
 import { ReviewsOverviewComponent } from './../views/admin/componenten/reviews-overview/reviews-overview.component';
+import { BookInfoComponent } from './../views/book-info/book-info.component';
 
 // This file defines all the URL's of the application, this is done with the path: '...'
 // The after the path we define the component we want to go to when this URL is called
@@ -22,6 +23,7 @@ export const router: Routes = [
     { path: 'login', component: LoginComponent },
     { path: 'library', component: LibraryComponent, canActivate: [AuthGuard] },
     { path: 'store', component: StoreComponent, canActivate: [AuthGuard] },
+    { path: 'book-info', component: BookInfoComponent, canActivate: [AuthGuard] },
     { path: 'settings', component: SettingsComponent, canActivate: [AuthGuard] },
     // The admin path also has childeren, these define the paths of the admin router outlet inside of the admin component
     { path: 'admin', component: AdminComponent, canActivate: [AuthGuard] , children: [
