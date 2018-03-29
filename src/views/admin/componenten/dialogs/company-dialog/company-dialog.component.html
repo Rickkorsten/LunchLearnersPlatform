@@ -11,11 +11,17 @@
   </mat-form-field>
 
   <mat-form-field class="form-field">
-    <input matInput type="text" placeholder="Branche" [(ngModel)]="data.branche" />
+    <mat-select placeholder="Select me" [(ngModel)]="data.branche">
+        <mat-option value="software">Software</mat-option>
+        <mat-option value="bouwVastgoed">Bouw & Vastgoed</mat-option>
+        <mat-option value="communicatieMedia">Communicatie & Media</mat-option>
+        <mat-option value="energieBedrijven">Energiebedrijven</mat-option>
+      </mat-select>
   </mat-form-field>
 
   <mat-form-field class="form-field">
     <input matInput type="text" placeholder="Email" [(ngModel)]="data.emailsuffix" />
+    <span matPrefix>@&nbsp;</span>
   </mat-form-field>
 
 </div>
