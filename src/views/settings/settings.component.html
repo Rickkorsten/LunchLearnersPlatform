@@ -2,43 +2,42 @@
 
   <div class="card-container">
     <!-- card component 1 -->
-    <app-settings-card [title]="'persoonlijke instellingen'" >
+    <app-settings-card [title]="'persoonlijke instellingen'" [error]="userMessage" >
+      <div content>
       <mat-form-field>
-        <input matInput placeholder="name">
+        <input matInput placeholder="Naam" [(ngModel)]="name">
       </mat-form-field>
       <mat-form-field>
-        <input matInput placeholder="woonplaats">
+        <input matInput placeholder="Woonplaats" [(ngModel)]="city">
       </mat-form-field>
       <mat-form-field>
-        <input matInput placeholder="straat & huisnummer">
+        <input matInput placeholder="Straat & Huisnummer" [(ngModel)]="streetNumber">
       </mat-form-field>
       <mat-form-field>
-        <input matInput placeholder="postcode">
+        <input matInput placeholder="Postcode" [(ngModel)]="zipCode">
       </mat-form-field>
+    </div>
+      <button action mat-button (click)="updateUser(name,city,streetNumber,zipCode)">UPDATE</button>
     </app-settings-card>
     <!-- card component 2 -->
-    <app-settings-card [title]="'wachtwoord instellen'">
+    <app-settings-card [title]="'wachtwoord resetten'" [error]="passMessage"  >
+        <div content>
       <mat-form-field>
-        <input matInput placeholder="Oud wachtwoord">
+        <input matInput placeholder="Email" [(ngModel)]="controlleEmail">
       </mat-form-field>
-
-      <mat-form-field>
-        <input matInput placeholder="Nieuw wachtwoord">
-      </mat-form-field>
-
-      <mat-form-field>
-        <input matInput placeholder="Nieuw wachtwoord bevestigen">
-      </mat-form-field>
+      </div>
+      <button action mat-button (click)="resetPassword()">RESETTEN</button>
     </app-settings-card>
     <!-- card component 3 -->
-    <app-settings-card [title]="'Bedrijfs gegevens'">
+    <app-settings-card [title]="'Bedrijfs gegevens'" [error]="false" >
+        <div content>
       <mat-form-field>
-        <input matInput placeholder="bedrijfsnaam">
+        <input matInput placeholder="bedrijfsnaam" [(ngModel)]="companyName">
       </mat-form-field>
-
       <mat-form-field>
         <input matInput placeholder="Brache">
       </mat-form-field>
+      </div>
     </app-settings-card>
 
 

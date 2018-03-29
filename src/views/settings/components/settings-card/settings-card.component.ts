@@ -1,4 +1,4 @@
-import { Component, OnInit, Input } from '@angular/core';
+import { Component, OnInit, Input, } from '@angular/core';
 
 @Component({
   selector: 'app-settings-card',
@@ -10,6 +10,7 @@ import { Component, OnInit, Input } from '@angular/core';
 export class SettingsCardComponent implements OnInit {
 
   @Input() title: string;
+  @Input() error: string;
 
   constructor() { }
 

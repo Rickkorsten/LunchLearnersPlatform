@@ -3,9 +3,10 @@
     {{title}}
   </div>
   <div class="card-content">
-   <ng-content></ng-content>
+    <ng-content select="[content]"></ng-content>
   </div>
   <div class="card-action">
-    <button mat-button>UPDATE</button>
+    <ng-content *ngIf="!error" select="[action]"></ng-content>
+    <p *ngIf="error">{{error}}</p>
   </div>
 </mat-card>
