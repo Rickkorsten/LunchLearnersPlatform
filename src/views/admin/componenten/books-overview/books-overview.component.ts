@@ -4,7 +4,6 @@ import { Observable } from 'rxjs/Observable';
 import { BookDialogComponent } from './../dialogs/book-dialog/book-dialog.component';
 import { AuthService } from '../../../../app/core/auth.service';
 import { MatDialog } from '@angular/material';
-import 'rxjs/Rx'
 import { HttpModule } from '@angular/http';
 import { BooksService } from './../../../../app/services/books/books.service';
 

@@ -6,7 +6,7 @@
     <mat-autocomplete #auto="matAutocomplete">
       <mat-option *ngFor="let book of books">
         <div (click)="selectBook(book)" *ngIf="book.volumeInfo.title || book.volumeInfo.imageLinks.smallThumbnail">
-          <img style="vertical-align:middle;" aria-hidden src="{{book.volumeInfo.imageLinks.smallThumbnail}}" height="25" />
+          <img style="vertical-align:middle;" aria-hidden src="{{book.volumeInfo.imageLinks.thumbnail}}" height="25" />
           <span>{{ book.volumeInfo.title }}({{ book.volumeInfo.publishedDate }})</span>
         </div>
       </mat-option>

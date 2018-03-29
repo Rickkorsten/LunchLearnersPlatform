@@ -13,7 +13,7 @@ import 'rxjs/add/operator/take';
 export class AuthGuard implements CanActivate {
   constructor(private auth: AuthService, private router: Router) { }
 
-  canActivate( next: ActivatedRouteSnapshot, state: RouterStateSnapshot ) : Observable<boolean> | boolean {
+  canActivate( next: ActivatedRouteSnapshot, state: RouterStateSnapshot ): Observable<boolean> | boolean {
     console.log(next, state);
     return this.auth.user
       .take(1)

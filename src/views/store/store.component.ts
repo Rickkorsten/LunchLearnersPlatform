@@ -1,39 +1,46 @@
 import { Component, OnInit } from '@angular/core';
 import { AngularFirestore, AngularFirestoreCollection } from 'angularfire2/firestore';
 import { Observable } from 'rxjs/Observable';
+import { BooksService } from './../../app/services/books/books.service';
+import { HttpModule } from '@angular/http';
+import { MatDialog } from '@angular/material';
+import { AuthService } from '../../app/core/auth.service';
 
 
-interface Post {
+interface Book {
   title: string;
-  content: string;
-  videoURL: string;
+  smallCover: string;
+  publishedDate: string;
+  uid: string;
 }
 
 @Component({
   selector: 'app-store',
   templateUrl: './store.component.html',
-  styleUrls: ['./store.component.scss']
+  styleUrls: ['./store.component.scss'],
+  providers: [BooksService, HttpModule]
 })
 
 export class StoreComponent implements OnInit {
 
 
-  postsCol: AngularFirestoreCollection<Post>;
-  posts: Observable<Post[]>;
+  name: string;
+  cover: string;
+  desc: string;
+  reviewuid: string[] = [];
+  presentatielink: string;
 
-  title: string;
-  content: string;
-  videoURL: any;
+  booksCol: AngularFirestoreCollection<Book>;
+  books: Observable<Book[]>;
 
-  user: any;
-
-
-  constructor(private db: AngularFirestore ) {
+  constructor(private db: AngularFirestore,
+    public dialog: MatDialog,
+    public auth: AuthService, ) {
   }
 
   ngOnInit() {
-    this.postsCol = this.db.collection('posts');
-    this.posts = this.postsCol.valueChanges();
+    this.booksCol = this.db.collection('books');
+    this.books = this.booksCol.valueChanges();
   }
 
   // downloadImage(imageURL:string){

@@ -1,8 +1,6 @@
 import { Component, Inject, } from '@angular/core';
 import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material';
 
-import 'rxjs/Rx'
-
 import { HttpModule } from '@angular/http';
 import { BooksService } from './../../../../../app/services/books/books.service';
 

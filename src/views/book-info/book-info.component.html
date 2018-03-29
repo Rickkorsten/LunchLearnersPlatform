@@ -1,0 +1,28 @@
+<div class="container-wide">
+  <mat-card class="card">
+    <div class = header>
+        <img class="img" npmmat-card-image src={{bookImg}} alt="Photo of {{bookTitle}}">
+        <mat-card-title class="title">{{ bookTitle }}</mat-card-title>
+    </div>  
+    <img class="img" npmmat-card-image src={{bookImg}} alt="Photo of {{bookTitle}}">
+    <mat-card-title class="title">{{ bookTitle }}</mat-card-title>
+        <mat-card-content class="content">
+          <p>
+              {{bookCategorie}}
+          </p>
+  
+          <p>
+            {{bookPublischer}}
+          </p>
+            
+          <p>
+            {{bookPublishedDate}}
+          </p>
+
+          <p>
+            {{bookDescription}}
+          </p>
+        </mat-card-content>
+        <button mat-button class="info">Meer info</button>
+    </mat-card>
+</div>
