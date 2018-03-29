@@ -18,6 +18,10 @@ interface User {
   role: string;
   companyUid: string;
   companyName: string;
+  name?: string;
+  city?: string;
+  streetNumber?: string;
+  zipCode?: string;
 }
 
 @Injectable()
