@@ -1,6 +1,6 @@
 <div class="container-wide">
     <mat-card class="search-bar">
-      <input type="text" placeholder="Zoeken...">
+      <input type="text" placeholder="Zoeken..." [(ngModel)]="searchValue" (keydown.enter)="searchBook(searchValue)">
     </mat-card>
   <mat-card *ngFor="let book of books | async" class="card" routerLink="../book-info/{{book.uid}}">
     <img mat-card-image src={{book.bigThumbnail}} alt="Photo of {{book.title}">

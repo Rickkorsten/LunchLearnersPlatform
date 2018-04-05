@@ -38,10 +38,10 @@ export class BookInfoComponent implements OnInit {
       this.bookUid = params['uid'];
       console.log(this.bookUid);
    });
-
+   // in function zetten
    this.bookCol = this.db.collection('books', ref => ref.where('uid', '==', this.bookUid));
    this.book = this.bookCol.valueChanges();
-
+   // hier pak je een book ! je kan ook in het html file een *ngFor gebruiken.
    this.book.subscribe(data => {
     this.bookTitle = data[0].title;
     this.bookDescription = data[0].description;

@@ -37,6 +37,9 @@ import { ReviewsOverviewComponent } from './../views/admin/componenten/reviews-o
 import { SettingsCardComponent } from './../views/settings/components/settings-card/settings-card.component';
 import { BookInfoComponent } from './../views/book-info/book-info.component';
 
+import { FirebaseCallsService } from './../app/services/firebaseCalls/firebase-calls.service';
+import { NiewcomponentComponent } from './niewcomponent/niewcomponent.component';
+
 const firebaseConfig = {
   apiKey: 'AIzaSyBR3HJduE1qTWlz7D7LiLlVDPda3Vu3wBk',
   authDomain: 'lunchlearners.firebaseapp.com',
@@ -68,6 +71,7 @@ const firebaseConfig = {
     ReviewsOverviewComponent,
     SettingsCardComponent,
     BookInfoComponent,
+    NiewcomponentComponent,
   ],
   imports: [
     BrowserModule,
@@ -89,7 +93,7 @@ const firebaseConfig = {
     BookDialogComponent,
     CompanyDialogComponent
   ],
-  providers: [],
+  providers: [FirebaseCallsService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

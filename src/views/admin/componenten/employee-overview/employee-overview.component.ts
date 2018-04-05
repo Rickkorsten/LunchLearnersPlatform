@@ -5,27 +5,32 @@ import { Observable } from 'rxjs/Observable';
 // import { AuthService } from '../../../../app/core/auth.service';
 import { MatDialog } from '@angular/material';
 // import * as admin from 'firebase-admin';
+import { FirebaseCallsService } from './../../../../app/services/firebaseCalls/firebase-calls.service';
 
 interface Employee {
   displayName: string;
   email: string;
   photoURL: string;
   uid: string;
+  companyUid: string;
 }
 
 @Component({
   selector: 'app-employee-overview',
   templateUrl: './employee-overview.component.html',
-  styleUrls: ['./employee-overview.component.scss']
+  styleUrls: ['./employee-overview.component.scss'],
+  providers: [FirebaseCallsService]
 })
 export class EmployeeOverviewComponent implements OnInit {
 
   employeesCol: AngularFirestoreCollection<Employee>;
   employees: Observable<Employee[]>;
 
-  selectedValue: string;
-
-  constructor(private db: AngularFirestore, public dialog: MatDialog, public auth: AngularFireAuth) {
+  constructor(
+    private db: AngularFirestore,
+    public dialog: MatDialog,
+    public auth: AngularFireAuth,
+    private FirebaseCall: FirebaseCallsService, ) {
   }
 
 
@@ -34,7 +39,8 @@ export class EmployeeOverviewComponent implements OnInit {
     this.employees = this.employeesCol.valueChanges();
   }
 
-  delete(uid) {
-    this.db.doc(`users/${uid}`).delete();
+  delete(UID, companyUID) {
+    this.FirebaseCall.deleteUser(UID, companyUID);
   }
+
 }

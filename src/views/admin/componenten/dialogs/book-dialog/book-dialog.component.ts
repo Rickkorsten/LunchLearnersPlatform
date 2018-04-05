@@ -28,10 +28,13 @@ export class BookDialogComponent {
   ISBN_10: string;
   categories: string;
 
+  bookFound: boolean;
+
   constructor(
     private bookService: BooksService,
     public dialogRef: MatDialogRef<BookDialogComponent>,
     @Inject(MAT_DIALOG_DATA) public data: any, ) {
+      this.bookFound = true;
   }
 
   onNoClick(): void {
@@ -78,6 +81,10 @@ export class BookDialogComponent {
     };
 
     console.log(this.selectedBook.title);
+  }
+
+  bookNotFound = () => {
+    this.bookFound = false;
   }
 
 

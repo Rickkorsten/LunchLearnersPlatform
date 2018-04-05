@@ -1,46 +1,46 @@
 <h1 mat-dialog-title>Boek toevoegen</h1>
 <div mat-card-content>
+  <div *ngIf="bookFound">
+    <mat-form-field class="example-full-width">
+      <input matInput placeholder="Boek zoeken" aria-label="Search Book" [matAutocomplete]="auto" [(ngModel)]="keyword" (ngModelChange)="searchBook(keyword)">
+      <mat-autocomplete #auto="matAutocomplete">
+        <mat-option *ngFor="let book of books">
+          <div (click)="selectBook(book)" *ngIf="book.volumeInfo.title">
+            <img style="vertical-align:middle;" aria-hidden src="{{book.volumeInfo.imageLinks.thumbnail}}" height="25" />
+            <span>{{ book.volumeInfo.title }}({{ book.volumeInfo.publishedDate }})</span>
+          </div>
+        </mat-option>
+      </mat-autocomplete>
+    </mat-form-field>
+  <div class="notFoundButton" (click)="bookNotFound()">Boek niet gevonden ?</div>
+</div>
 
-  <mat-form-field class="example-full-width">
-    <input matInput placeholder="Boek zoeken" aria-label="Search Book" [matAutocomplete]="auto" [(ngModel)]="keyword" (ngModelChange)="searchBook(keyword)">
-    <mat-autocomplete #auto="matAutocomplete">
-      <mat-option *ngFor="let book of books">
-        <div (click)="selectBook(book)" *ngIf="book.volumeInfo.title || book.volumeInfo.imageLinks.smallThumbnail">
-          <img style="vertical-align:middle;" aria-hidden src="{{book.volumeInfo.imageLinks.thumbnail}}" height="25" />
-          <span>{{ book.volumeInfo.title }}({{ book.volumeInfo.publishedDate }})</span>
-        </div>
-      </mat-option>
-    </mat-autocomplete>
-  </mat-form-field>
-  <br>
-  <br>
-  <br>
-  <div *ngIf="title">
-    <mat-form-field >
+  <div *ngIf="title || !bookFound">
+    <mat-form-field>
       <input matInput placeholder="Titel" [(ngModel)]="title">
     </mat-form-field>
-    <mat-form-field >
+    <mat-form-field>
       <input matInput placeholder="Subtitel" [(ngModel)]="subTitle">
     </mat-form-field>
-    <mat-form-field >
+    <mat-form-field>
       <input matInput placeholder="Auteur" [(ngModel)]="authors">
     </mat-form-field>
-    <mat-form-field >
+    <mat-form-field>
       <input matInput placeholder="Uitgever" [(ngModel)]="publisher">
     </mat-form-field>
-    <mat-form-field >
+    <mat-form-field>
       <input matInput placeholder="Datum van uitgave" [(ngModel)]="publishDate">
     </mat-form-field>
-    <mat-form-field >
+    <mat-form-field>
       <textarea matInput placeholder="Beschrijving" [(ngModel)]="description"></textarea>
     </mat-form-field>
-    <mat-form-field >
+    <mat-form-field>
       <input matInput placeholder="ISBN_10" [(ngModel)]="ISBN_10">
     </mat-form-field>
-    <mat-form-field >
+    <mat-form-field>
       <input matInput placeholder="ISBN_13" [(ngModel)]="ISBN_13">
     </mat-form-field>
-    <mat-form-field >
+    <mat-form-field>
       <input matInput placeholder="Categorieen" [(ngModel)]="categories">
     </mat-form-field>
   </div>
