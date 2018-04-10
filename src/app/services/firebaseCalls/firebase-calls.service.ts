@@ -16,20 +16,30 @@ interface Company {
   users: string[];
 }
 
+interface Book {
+  title: string;
+  smallCover: string;
+  publishedDate: string;
+}
+
 @Injectable()
 export class FirebaseCallsService {
 
   employeesCol: AngularFirestoreCollection<Employee>;
   employees: Observable<Employee[]>;
-  // company for delete user
-  companyDelCol: AngularFirestoreCollection<Company>;
-  companyDel: Observable<Company[]>;
+  // company
+  companiesCol: AngularFirestoreCollection<Company>;
+  companies: Observable<Company[]>;
+  // books
+  booksCol: AngularFirestoreCollection<Book>;
+  books: Observable<Book[]>;
 
   usersArray: string[];
   newArray: string[];
 
-  constructor( private db: AngularFirestore, ) { }
+  constructor(private db: AngularFirestore, ) { }
 
+  ///////////////////////// DELETE USER /////////////////////////////
   deleteUser(uid, companyUid) {
     // delete user from users collection
     this.db.doc(`users/${uid}`).delete().then(
@@ -39,9 +49,9 @@ export class FirebaseCallsService {
   }
 
   getUsersArrayAndUpdate(uid, companyUid) {
-    this.companyDelCol = this.db.collection('companies', ref => ref.where('uid', '==', companyUid));
-    this.companyDel = this.companyDelCol.valueChanges();
-    this.companyDel.subscribe(data => {
+    this.companiesCol = this.db.collection('companies', ref => ref.where('uid', '==', companyUid));
+    this.companies = this.companiesCol.valueChanges();
+    this.companies.subscribe(data => {
       if (data[0].users) {
         console.log(data[0].users);
         this.usersArray = data[0].users;
@@ -60,5 +70,16 @@ export class FirebaseCallsService {
       'users': this.newArray
     }, { merge: true });
   }
+  ///////////////////////// ////////////// /////////////////////////////
 
+  getCompaniesCollection() {
+    this.companiesCol = this.db.collection('companies');
+    this.companies = this.companiesCol.valueChanges();
+    return this.companies;
+  }
+  getBooksCollection() {
+    this.booksCol = this.db.collection('books');
+    this.books = this.booksCol.valueChanges();
+    return this.books;
+  }
 }

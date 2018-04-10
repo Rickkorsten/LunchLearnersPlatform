@@ -1,6 +1,4 @@
 import { Component, OnInit } from '@angular/core';
-import { MatDialog } from '@angular/material';
-
 
 @Component({
   selector: 'app-admin',
@@ -10,21 +8,29 @@ import { MatDialog } from '@angular/material';
 
 export class AdminComponent implements OnInit {
 
-  name: string;
-  code: string;
-  branche: string;
-  emailsuffix: string;
-  users: string[] = [];
-  books: string[] = [];
-  message: string;
+  constructor() { }
 
-  constructor(
-    public dialog: MatDialog,
-  ) {
-
+  ngOnInit() {
+    const user1 = {
+      name: 'rick',
+      age: '25'
+    };
+    const user2 = {
+      name: 'rick',
+      age: '22'
+    };
+    localStorage.setItem('user', JSON.stringify(user1));
+    console.log(user2);
+    console.log(this.checkIfObjectIsEqual(user1, user2));
   }
 
-  ngOnInit() { }
+  checkIfObjectIsEqual = (oldUser, newUser) => {
+    if (JSON.stringify(oldUser) === JSON.stringify(newUser)) {
+      return true;
+    } else {
+      return false;
+    }
+  }
 
 }
 

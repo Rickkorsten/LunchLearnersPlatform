@@ -14,12 +14,6 @@ interface User {
   companyUid: string;
 }
 
-interface Company {
-  name: string;
-  code: string;
-  users: string[];
-}
-
 @Component({
   selector: 'app-users-overview',
   templateUrl: './users-overview.component.html',
@@ -31,12 +25,11 @@ export class UsersOverviewComponent implements OnInit {
   usersCol: AngularFirestoreCollection<User>;
   users: Observable<User[]>;
   /// companies for dropdown
-  companiesCol: AngularFirestoreCollection<Company>;
-  companies: Observable<Company[]>;
 
   all: string;
   usersArray: string[];
   newArray: string[];
+  companies: any;
 
   constructor(
     private db: AngularFirestore,
@@ -47,9 +40,7 @@ export class UsersOverviewComponent implements OnInit {
 
 
   ngOnInit() {
-    this.companiesCol = this.db.collection('companies');
-    this.companies = this.companiesCol.valueChanges();
-
+    this.companies = this.FirebaseCall.getCompaniesCollection();
     this.updateUserList('All');
   }
 

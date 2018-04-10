@@ -1,21 +1,18 @@
 # LunchlearnersPlatform
 
-This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 1.7.0.
+stukje type
 
 ## Development server
 
 Run `ng serve` for a dev server. Navigate to `http://localhost:4200/`. The app will automatically reload if you change any of the source files.
 
-## Code scaffolding
-
-Run `ng generate component component-name` to generate a new component. You can also use `ng generate directive|pipe|service|class|guard|interface|enum|module`.
-
 ## module error
 if you get a error when you are creating a component on the command line type this after your command ( ng 'your command' --module=app.module )
 
-## Build
+## create component 
+create component : in terminal 'ng g component my-new-component --module=app.module'
+create service : in terminal 'ng g class my-new-class --module=app.module'
 
-Run `ng build` to build the project. The build artifacts will be stored in the `dist/` directory. Use the `-prod` flag for a production build.
 
 ## Running unit tests
 

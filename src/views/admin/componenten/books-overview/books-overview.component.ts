@@ -1,26 +1,20 @@
 import { Component, OnInit } from '@angular/core';
-import { AngularFirestore, AngularFirestoreCollection } from 'angularfire2/firestore';
-import { Observable } from 'rxjs/Observable';
+import { AngularFirestore } from 'angularfire2/firestore';
 import { BookDialogComponent } from './../dialogs/book-dialog/book-dialog.component';
 import { AuthService } from '../../../../app/core/auth.service';
 import { MatDialog } from '@angular/material';
-import { HttpModule } from '@angular/http';
-import { BooksService } from './../../../../app/services/books/books.service';
-
-interface Book {
-  title: string;
-  smallCover: string;
-  publishedDate: string;
-}
+import { FirebaseCallsService } from './../../../../app/services/firebaseCalls/firebase-calls.service';
 
 @Component({
   selector: 'app-books-overview',
   templateUrl: './books-overview.component.html',
   styleUrls: ['./books-overview.component.scss'],
-  providers: [BooksService, HttpModule]
+  providers: [FirebaseCallsService]
 })
 
 export class BooksOverviewComponent implements OnInit {
+
+  books: any;
 
   name: string;
   cover: string;
@@ -28,12 +22,10 @@ export class BooksOverviewComponent implements OnInit {
   reviewuid: string[] = [];
   presentatielink: string;
 
-  booksCol: AngularFirestoreCollection<Book>;
-  books: Observable<Book[]>;
-
   constructor(private db: AngularFirestore,
     public dialog: MatDialog,
-    public auth: AuthService, ) {
+    public auth: AuthService,
+    private FirebaseCall: FirebaseCallsService ) {
   }
 
   openDialog(): void {
@@ -48,8 +40,7 @@ export class BooksOverviewComponent implements OnInit {
   }
 
   ngOnInit() {
-    this.booksCol = this.db.collection('books');
-    this.books = this.booksCol.valueChanges();
+    this.books = this.FirebaseCall.getBooksCollection();
   }
 
   uploadBookToFirestore(result) {
