@@ -22,10 +22,27 @@ export class BooksOverviewComponent implements OnInit {
   reviewuid: string[] = [];
   presentatielink: string;
 
+  sections: object[];
+  sectionsCount: number;
+
   constructor(private db: AngularFirestore,
     public dialog: MatDialog,
     public auth: AuthService,
-    private FirebaseCall: FirebaseCallsService ) {
+    private FirebaseCall: FirebaseCallsService) {
+
+    this.sections = [
+      {
+        section: 1,
+        title: 'introduction',
+        time: '0:50',
+      },
+      {
+        section: 2,
+        title: 'De generaal',
+        time: '1:50',
+      }
+    ];
+
   }
 
   openDialog(): void {
@@ -65,7 +82,21 @@ export class BooksOverviewComponent implements OnInit {
 
   }
 
+  // deleteFromObject( title: string, time: string){
+  // }
+
+  addToObject(section: number, title: string, time: string) {
+    this.sections.push(
+      {
+        section: section,
+        title: title,
+        time: time,
+      }
+    );
+  }
+
   test() {
     console.log('open');
   }
+
 }

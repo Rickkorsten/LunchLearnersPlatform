@@ -13,7 +13,7 @@ import {
   MatListModule,
   MatAutocompleteModule,
   MatSelectModule,
-  MatMenuModule
+  MatMenuModule,
 } from '@angular/material';
 
 @NgModule({

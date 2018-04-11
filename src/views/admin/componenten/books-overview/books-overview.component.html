@@ -1,66 +1,95 @@
 <div class="book-container">
-  <h2>Boeken overzicht:</h2>
-  <mat-accordion>
-    <mat-expansion-panel *ngFor="let book of books | async" (opened)="visible=false" (closed)="visible=true">
-      <mat-expansion-panel-header>
-        <mat-panel-title style="vertical-align:middle;">
-          <img style="vertical-align:middle; margin-right: 24px;" aria-hidden src="{{book.smallThumbnail}}" height="48" />
-          <p>{{ book.title }}</p>
-        </mat-panel-title>
-      </mat-expansion-panel-header>
-      <div class="expension-content">
+    <h2>Boeken overzicht:</h2>
+    <mat-accordion>
+        <mat-expansion-panel *ngFor="let book of books | async" (opened)="visible=false" (closed)="visible=true">
+            <mat-expansion-panel-header>
+                <mat-panel-title style="vertical-align:middle;">
+                    <img style="vertical-align:middle; margin-right: 24px;" aria-hidden src="{{book.smallThumbnail}}" height="48" />
+                    <p>{{ book.title }}</p>
+                </mat-panel-title>
+            </mat-expansion-panel-header>
+            <div class="expension-content">
 
-        <img class="image" style="vertical-align:middle; margin-right: 24px;" aria-hidden src="{{book.bigThumbnail}}" />
+                <img class="image" style="vertical-align:middle; margin-right: 24px;" aria-hidden src="{{book.bigThumbnail}}" />
 
-        <div class="form-row">
-          <div class="expension-row">
-            <mat-form-field class="form-field">
-              <input matInput type="text" placeholder="Subtitel" [(ngModel)]="book.subTitle" />
-            </mat-form-field>
-          </div>
-          <div class="expension-row ISBN-row">
-            <mat-form-field class="form-field">
-              <input matInput type="text" placeholder="ISBN 13 code" [(ngModel)]="book.ISBN_13" />
-            </mat-form-field>
-            <mat-form-field class="form-field">
-              <input matInput type="text" placeholder="ISBN 10 code" [(ngModel)]="book.ISBN_10" />
-            </mat-form-field>
-          </div>
-          <div class="expension-row">
-            <mat-form-field class="form-field">
-              <input matInput type="text" placeholder="Catagorieen" [(ngModel)]="book.categoriese" />
-            </mat-form-field>
-          </div>
-        </div>
+                <div class="form-row">
+                    <div class="expension-row">
+                        <mat-form-field class="form-field">
+                            <input matInput type="text" placeholder="Subtitel" [(ngModel)]="book.subTitle" />
+                        </mat-form-field>
+                    </div>
+                    <div class="expension-row ISBN-row">
+                        <mat-form-field class="form-field">
+                            <input matInput type="text" placeholder="ISBN 13 code" [(ngModel)]="book.ISBN_13" />
+                        </mat-form-field>
+                        <mat-form-field class="form-field">
+                            <input matInput type="text" placeholder="ISBN 10 code" [(ngModel)]="book.ISBN_10" />
+                        </mat-form-field>
+                    </div>
+                    <div class="expension-row">
+                        <mat-form-field class="form-field">
+                            <input matInput type="text" placeholder="Catagorieen" [(ngModel)]="book.categoriese" />
+                        </mat-form-field>
+                    </div>
+                </div>
 
-        <div class="form-row" >
-          <div class="expension-row">
-            <mat-form-field class="form-field">
-              <input matInput type="text" placeholder="Uitgeverij" [(ngModel)]="book.publisher" />
-            </mat-form-field>
-          </div>
-          <div class="expension-row">
-            <mat-form-field class="form-field">
-              <input matInput type="text" placeholder="Datum van uitgave" [(ngModel)]="book.publishedDate" />
-            </mat-form-field>
-          </div>
-        </div>
+                <div class="form-row">
+                    <div class="expension-row">
+                        <mat-form-field class="form-field">
+                            <input matInput type="text" placeholder="Uitgeverij" [(ngModel)]="book.publisher" />
+                        </mat-form-field>
+                    </div>
+                    <div class="expension-row">
+                        <mat-form-field class="form-field">
+                            <input matInput type="text" placeholder="Datum van uitgave" [(ngModel)]="book.publishedDate" />
+                        </mat-form-field>
+                    </div>
+                </div>
 
-        <div class="form-row" >
-            <div class="expension-row">
-                <mat-form-field class="form-field">
-                  <textarea matInput type="text" placeholder="Beschrijving" [(ngModel)]="book.description"></textarea>
+                <div class="form-row">
+                    <div class="expension-row">
+                        <mat-form-field class="form-field">
+                            <textarea matInput type="text" placeholder="Beschrijving" [(ngModel)]="book.description"></textarea>
+                        </mat-form-field>
+                    </div>
+                </div>
+
+            </div>
+            <br>
+            <mat-divider></mat-divider>
+            <mat-list *ngFor="let section of sections || async">
+                <mat-list-item>
+                    <tr>
+                        <td>
+                            <mat-icon (click)="deleteFromObject(section.title,section.time)">close</mat-icon>
+                        </td>
+                        <td><b>Sectie:</b> {{section.section}}</td>
+                        <td><b>Hoofdstuk:</b> {{section.title}}</td>
+                        <td><b>Duur:</b> {{section.time}}</td>
+                    </tr>
+                </mat-list-item>
+            </mat-list>
+            <div class="add-line">
+                <mat-form-field>
+                    <input matInput type="text" placeholder="sectie nummer" [(ngModel)]="sectionNumber" />
                 </mat-form-field>
-              </div>
-        </div>
+                <mat-form-field>
+                    <input matInput type="text" placeholder="hoofdstuk" [(ngModel)]="chapterTitle" />
+                </mat-form-field>
+                <mat-form-field>
+                    <input matInput type="text" placeholder="duur" [(ngModel)]="time" />
+                </mat-form-field>
+                <button mat-button color="primary" (click)="addToObject(sectionNumber,chapterTitle,time)">
+                    Toevoegen
+                  </button>
 
-      </div>
-      <mat-action-row>
-        <button mat-button color="warn" (click)="prevStep()">Anuleer</button>
-        <button mat-button color="primary" (click)="uploadBookToFirestore(book)">Update</button>
-      </mat-action-row>
-    </mat-expansion-panel>
-  </mat-accordion>
+            </div>
+            <mat-action-row>
+                <button mat-button color="warn" (click)="prevStep()">Anuleer</button>
+                <button mat-button color="primary" (click)="uploadBookToFirestore(book)">Update</button>
+            </mat-action-row>
+        </mat-expansion-panel>
+    </mat-accordion>
 
 </div>
 <button mat-fab class="fab" (click)="openDialog()">

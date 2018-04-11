@@ -1,49 +1,61 @@
-.book-container{
-  width: 90%;
-  margin: auto;
-  max-width: 900px;
-  padding-top: 30px;
+.book-container {
+    width: 90%;
+    margin: auto;
+    max-width: 900px;
+    padding-top: 30px;
 }
 
-.fab{
-  position: fixed;
-  right: 25px;
-  bottom: 25px;
+.fab {
+    position: fixed;
+    right: 25px;
+    bottom: 25px;
 }
 
-mat-expansion-panel-header{
-  padding: 0 24px 0 0;
+mat-expansion-panel-header {
+    padding: 0 24px 0 0;
 }
 
-.mat-expansion-panel-spacing{
-  padding: 10px;
-  margin-right: -10px;
-  margin-left: -10px;
+.mat-expansion-panel-spacing {
+    padding: 10px;
+    margin-right: -10px;
+    margin-left: -10px;
 }
 
-.expension-content{
-  display: flex;
-  flex-direction: row;
+.expension-content {
+    display: flex;
+    flex-direction: row;
 }
 
-.ISBN-row{
-  display: flex;
-  flex-direction: row;
-
-  .form-field{
-    width: 20px;
-  }
+.ISBN-row {
+    display: flex;
+    flex-direction: row;
+    .form-field {
+        width: 20px;
+    }
 }
 
-.image{
-  vertical-align: middle;
-  margin-right: 24px;
-  display: flex;
-  flex: 1;
+.image {
+    vertical-align: middle;
+    margin-right: 24px;
+    display: flex;
+    flex: 1;
 }
 
-.form-row{
-  display: flex;
-  flex-direction: column;
-  flex: 2;
+.form-row {
+    display: flex;
+    flex-direction: column;
+    flex: 2;
+}
+
+td {
+    padding-right: 40px;
+}
+
+.add-line {
+    display: flex;
+    flex-direction: row;
+    mat-form-field {
+        width: 100px;
+        margin-right: 20px;
+    }
 }
