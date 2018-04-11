@@ -17,9 +17,13 @@ interface Company {
 }
 
 interface Book {
-  title: string;
-  smallCover: string;
-  publishedDate: string;
+  uid?: string;
+  title?: string;
+  smallCover?: string;
+  publishedDate?: string;
+  description?: string;
+  categorie?: string;
+  publisher?: string;
 }
 
 @Injectable()

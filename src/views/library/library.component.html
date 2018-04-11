@@ -1,5 +1,5 @@
 <div class="library">
-  <mat-card *ngFor="let book of books | async" class="card" routerLink="../book-info/{{book.uid}}">
+  <mat-card *ngFor="let book of books | async" class="card" (click)="toPresentationPage(book)">
     <img mat-card-image src={{book.bigThumbnail}} alt="Photo of {{book.title}">
     <mat-card-title class="title">{{ book.title }}</mat-card-title>
     <p class="description">

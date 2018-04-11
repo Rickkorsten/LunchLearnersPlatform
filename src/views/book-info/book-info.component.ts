@@ -37,23 +37,21 @@ export class BookInfoComponent implements OnInit {
     this.route.params.subscribe(params => {
       this.bookUid = params['uid'];
       console.log(this.bookUid);
-
-      const user = JSON.parse(localStorage.getItem('user'));
-      console.log('user :' + user);
-
-   });
-   //////////// in function zetten
-   this.bookCol = this.db.collection('books', ref => ref.where('uid', '==', this.bookUid));
-   this.book = this.bookCol.valueChanges();
-   // hier pak je een book ! je kan ook in het html file een *ngFor gebruiken.
-   this.book.subscribe(data => {
-    this.bookTitle = data[0].title;
-    this.bookDescription = data[0].description;
-    this.bookImg = data[0].smallCover;
-    this.bookCategorie = data[0].categorie;
-    this.bookPublisher = data[0].publisher;
-    this.bookPublishedDate = data[0].publishedDate;
-   });
+    });
+    const user = JSON.parse(localStorage.getItem('user'));
+    console.log('user :' + user);
+    //////////// in function zetten
+    this.bookCol = this.db.collection('books', ref => ref.where('uid', '==', this.bookUid));
+    this.book = this.bookCol.valueChanges();
+    // hier pak je een book ! je kan ook in het html file een *ngFor gebruiken.
+    this.book.subscribe(data => {
+      this.bookTitle = data[0].title;
+      this.bookDescription = data[0].description;
+      this.bookImg = data[0].smallCover;
+      this.bookCategorie = data[0].categorie;
+      this.bookPublisher = data[0].publisher;
+      this.bookPublishedDate = data[0].publishedDate;
+    });
   }
 
 }
