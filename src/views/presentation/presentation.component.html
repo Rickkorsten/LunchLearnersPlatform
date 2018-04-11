@@ -4,6 +4,16 @@
     <div class="information-content">
       <div class="bar-container">
         <p>{{book.title}}</p>
+        <div class="progressBar">
+          <div class="progress">
+            <p>40%</p>
+          </div>
+        </div>
+        <div class="button">
+          <p>Afspelen</p>
+          <mat-icon aria-label="Example icon-button with a heart icon">play_arrow
+          </mat-icon>
+        </div>
       </div>
       <div class="content-container">
         <div class="general-info">
@@ -36,10 +46,25 @@
           </table>
         </div>
         <div class="description">
-            <h4>Omschrijving</h4>
-            <p>{{checkDbOutput(book.description)}}</p>
+          <h4>Omschrijving</h4>
+          <p>{{checkDbOutput(book.description)}}</p>
         </div>
       </div>
     </div>
+  </div>
+  <div class="header-separator">
+    <p>Presentatie inhoud</p>
+  </div>
+  <div class="section-button">
+    <div>
+      <p>Sectie 1</p>
+      <p>Introductie</p>
+    </div>
+    <div class="time">
+      <p class="value">3:22</p>
+    </div>
+  </div>
+  <div class="header-separator">
+    <p>Reviews</p>
   </div>
 </div>
