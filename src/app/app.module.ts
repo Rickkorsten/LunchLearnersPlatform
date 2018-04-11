@@ -39,6 +39,8 @@ import { BookInfoComponent } from './../views/book-info/book-info.component';
 
 // import { FirebaseCallsService } from './../app/services/firebaseCalls/firebase-calls.service';
 import { PresentationComponent } from './../views/presentation/presentation.component';
+import { SectionButtonComponent } from './../components/section-button/section-button.component';
+import { ButtonComponent } from './../components/button/button.component';
 
 const firebaseConfig = {
   apiKey: 'AIzaSyBR3HJduE1qTWlz7D7LiLlVDPda3Vu3wBk',
@@ -72,6 +74,8 @@ const firebaseConfig = {
     SettingsCardComponent,
     BookInfoComponent,
     PresentationComponent,
+    SectionButtonComponent,
+    ButtonComponent,
   ],
   imports: [
     BrowserModule,

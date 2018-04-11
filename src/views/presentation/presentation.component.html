@@ -1,70 +1,62 @@
 <div class="presentation-page-1">
-  <div class="information-block">
-    <img src={{book.bigThumbnail}}/>
-    <div class="information-content">
-      <div class="bar-container">
-        <p>{{book.title}}</p>
-        <div class="progressBar">
-          <div class="progress">
-            <p>40%</p>
-          </div>
+    <div class="information-block">
+        <img src={{book.bigThumbnail}}/>
+        <div class="information-content">
+            <div class="bar-container">
+                <p>{{book.title}}</p>
+                <div class="progressBar">
+                    <div class="progress">
+                        <p>40%</p>
+                    </div>
+                </div>
+                <app-button title="'Afspelen'" icon="'play_arrow'"></app-button>
+            </div>
+            <div class="content-container">
+                <div class="general-info">
+                    <table>
+                        <tr>
+                            <td>Genre</td>
+                            <td>{{checkDbOutput(book.genre)}}</td>
+                        </tr>
+                        <tr>
+                            <td>Schrijver</td>
+                            <td>{{checkDbOutput(book.publisher)}}</td>
+                        </tr>
+                        <tr>
+                            <td>Uitgave</td>
+                            <td>{{checkDbOutput(book.publishDate)}}</td>
+                        </tr>
+                        <br>
+                        <tr>
+                            <td>Presentator</td>
+                            <td>Luuk Luchtloper</td>
+                        </tr>
+                        <tr>
+                            <td>Duur</td>
+                            <td>0:50</td>
+                        </tr>
+                        <tr>
+                            <td>Beoordeling</td>
+                            <td></td>
+                        </tr>
+                    </table>
+                </div>
+                <div class="description">
+                    <h4>Omschrijving</h4>
+                    <p>{{checkDbOutput(book.description)}}</p>
+                </div>
+            </div>
         </div>
-        <div class="button">
-          <p>Afspelen</p>
-          <mat-icon aria-label="Example icon-button with a heart icon">play_arrow
-          </mat-icon>
-        </div>
-      </div>
-      <div class="content-container">
-        <div class="general-info">
-          <table>
-            <tr>
-              <td>Genre</td>
-              <td>{{checkDbOutput(book.genre)}}</td>
-            </tr>
-            <tr>
-              <td>Schrijver</td>
-              <td>{{checkDbOutput(book.publisher)}}</td>
-            </tr>
-            <tr>
-              <td>Uitgave</td>
-              <td>{{checkDbOutput(book.publishDate)}}</td>
-            </tr>
-            <br>
-            <tr>
-              <td>Presentator</td>
-              <td>Luuk Luchtloper</td>
-            </tr>
-            <tr>
-              <td>Duur</td>
-              <td>0:50</td>
-            </tr>
-            <tr>
-              <td>Beoordeling</td>
-              <td></td>
-            </tr>
-          </table>
-        </div>
-        <div class="description">
-          <h4>Omschrijving</h4>
-          <p>{{checkDbOutput(book.description)}}</p>
-        </div>
-      </div>
     </div>
-  </div>
-  <div class="header-separator">
-    <p>Presentatie inhoud</p>
-  </div>
-  <div class="section-button">
-    <div>
-      <p>Sectie 1</p>
-      <p>Introductie</p>
+    <div class="header-separator">
+        <p>Presentatie inhoud</p>
     </div>
-    <div class="time">
-      <p class="value">3:22</p>
+    <div class="section-button-container">
+        <app-section-button section="'1'" title="'Introduction'" time="'2:44'"></app-section-button>
+        <app-section-button section="'2'" title="'About'" time="'1:02'"></app-section-button>
+        <app-section-button section="'3'" title="'Chapter one'" time="'0:55'"></app-section-button>
     </div>
-  </div>
-  <div class="header-separator">
-    <p>Reviews</p>
-  </div>
+    <div class="header-separator">
+        <p>Reviews</p>
+    </div>
 </div>

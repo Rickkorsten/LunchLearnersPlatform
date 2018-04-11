@@ -1,0 +1,23 @@
+.button {
+    height: 29px;
+    border-radius: 28px;
+    border: 1px solid #73C884;
+    display: flex;
+    align-self: center;
+    align-items: center;
+    p {
+        font-size: 14px;
+        color: #44B75B;
+        padding-left: 10px;
+        margin: 0px;
+    }
+    mat-icon {
+        font-size: 15px;
+        display: flex;
+        align-items: center;
+        color: #73C884;
+        height: auto;
+        width: auto;
+        padding-right: 10px;
+    }
+}
