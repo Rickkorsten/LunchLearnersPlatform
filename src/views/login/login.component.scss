@@ -1,8 +1,35 @@
+#login-background{
+    height: 100%;
+    width: 100%;
+    position: absolute;
+    background-size: cover;
+    margin-top: -64px;
+    z-index: 999;
+}
+
+#login-background-overlay{
+    height: 100%;
+    width: 100%;
+    position: absolute;
+    background-color: rgba(0, 241, 255, 0.4392156862745098);
+}
+
+#login-container{
+    max-width: 400px;
+    margin: auto;
+    margin-top: 160px;
+    text-align: center;
+}
+
+#lunch-learners-logo{
+    width: 220px;
+}
+
 .login-card{
     max-width: 300px;
     margin: auto;
-    margin-top: 200px;
     padding: 40px;
+    margin-top: 60px
 }
 
 mat-card-subtitle{
