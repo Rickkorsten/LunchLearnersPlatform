@@ -1,7 +1,7 @@
 <div class="book-container">
     <h2>Boeken overzicht:</h2>
     <mat-accordion>
-        <mat-expansion-panel *ngFor="let book of books | async" (opened)="visible=false" (closed)="visible=true">
+        <mat-expansion-panel *ngFor="let book of books | async" (opened)="getBook(book)" (closed)="visible=true">
             <mat-expansion-panel-header>
                 <mat-panel-title style="vertical-align:middle;">
                     <img style="vertical-align:middle; margin-right: 24px;" aria-hidden src="{{book.smallThumbnail}}" height="48" />
@@ -15,20 +15,12 @@
                 <div class="form-row">
                     <div class="expension-row">
                         <mat-form-field class="form-field">
-                            <input matInput type="text" placeholder="Subtitel" [(ngModel)]="book.subTitle" />
-                        </mat-form-field>
-                    </div>
-                    <div class="expension-row ISBN-row">
-                        <mat-form-field class="form-field">
-                            <input matInput type="text" placeholder="ISBN 13 code" [(ngModel)]="book.ISBN_13" />
-                        </mat-form-field>
-                        <mat-form-field class="form-field">
-                            <input matInput type="text" placeholder="ISBN 10 code" [(ngModel)]="book.ISBN_10" />
+                            <input matInput type="text" placeholder="Subtitel" [(ngModel)]="subTitle" />
                         </mat-form-field>
                     </div>
                     <div class="expension-row">
                         <mat-form-field class="form-field">
-                            <input matInput type="text" placeholder="Catagorieen" [(ngModel)]="book.categoriese" />
+                            <input matInput type="text" placeholder="Catagorieen" [(ngModel)]="categories" />
                         </mat-form-field>
                     </div>
                 </div>
@@ -36,12 +28,12 @@
                 <div class="form-row">
                     <div class="expension-row">
                         <mat-form-field class="form-field">
-                            <input matInput type="text" placeholder="Uitgeverij" [(ngModel)]="book.publisher" />
+                            <input matInput type="text" placeholder="Uitgeverij" [(ngModel)]="publisher" />
                         </mat-form-field>
                     </div>
                     <div class="expension-row">
                         <mat-form-field class="form-field">
-                            <input matInput type="text" placeholder="Datum van uitgave" [(ngModel)]="book.publishedDate" />
+                            <input matInput type="text" placeholder="Datum van uitgave" [(ngModel)]="publishDate" />
                         </mat-form-field>
                     </div>
                 </div>
@@ -49,7 +41,7 @@
                 <div class="form-row">
                     <div class="expension-row">
                         <mat-form-field class="form-field">
-                            <textarea matInput type="text" placeholder="Beschrijving" [(ngModel)]="book.description"></textarea>
+                            <textarea matInput type="text" placeholder="Beschrijving" [(ngModel)]="description"></textarea>
                         </mat-form-field>
                     </div>
                 </div>
@@ -57,36 +49,40 @@
             </div>
             <br>
             <mat-divider></mat-divider>
-            <mat-list *ngFor="let section of sections || async">
-                <mat-list-item>
+            <ul appSortableList (sort)="sort($event)">
+                <li *ngFor="let section of sections" class="box" appSortable>
+                    {{ section.id }}
+                    <div class="box" *appDraggableHelper>{{ section }}</div>
+                </li>
+            </ul>
+            <!-- <ul appSortableList (sort)="sort($event)">
+                <li *ngFor="let section of sections" class="box" appSortable>
                     <tr>
                         <td>
-                            <mat-icon (click)="deleteFromObject(section.title,section.time)">close</mat-icon>
+                            <button mat-raised-button color="warn" (click)="deleteFromObject(section.id)">verwijder</button>
                         </td>
-                        <td><b>Sectie:</b> {{section.section}}</td>
+                        <td><b>Sectie:</b>{{section.id}}</td>
                         <td><b>Hoofdstuk:</b> {{section.title}}</td>
                         <td><b>Duur:</b> {{section.time}}</td>
                     </tr>
-                </mat-list-item>
-            </mat-list>
+                    <div class="box" *appDraggableHelper>{{ section }}</div>
+                </li>
+            </ul> -->
             <div class="add-line">
-                <mat-form-field>
-                    <input matInput type="text" placeholder="sectie nummer" [(ngModel)]="sectionNumber" />
-                </mat-form-field>
                 <mat-form-field>
                     <input matInput type="text" placeholder="hoofdstuk" [(ngModel)]="chapterTitle" />
                 </mat-form-field>
                 <mat-form-field>
                     <input matInput type="text" placeholder="duur" [(ngModel)]="time" />
                 </mat-form-field>
-                <button mat-button color="primary" (click)="addToObject(sectionNumber,chapterTitle,time)">
+                <button mat-button color="primary" (click)="addToObject(chapterTitle,time)">
                     Toevoegen
                   </button>
 
             </div>
             <mat-action-row>
-                <button mat-button color="warn" (click)="prevStep()">Anuleer</button>
-                <button mat-button color="primary" (click)="uploadBookToFirestore(book)">Update</button>
+                <button mat-button color="warn" (click)="deleteBook(book)">Verwijder</button>
+                <button mat-button color="primary" (click)="updateBook(book)">Update</button>
             </mat-action-row>
         </mat-expansion-panel>
     </mat-accordion>

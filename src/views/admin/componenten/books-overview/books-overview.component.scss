@@ -59,3 +59,38 @@ td {
         margin-right: 20px;
     }
 }
+
+.box {
+    background: white;
+    border: 1px solid black;
+    padding: 10px 20px;
+    display: inline-block;
+    &.dragging {
+        background: coral;
+    }
+    &.sortable.dragging {
+        background: none;
+        border: 1px dashed black;
+        color: transparent;
+    }
+}
+
+.area {
+    background: #C0FFEE;
+    padding: 40px;
+}
+
+button {
+    margin-top: 20px;
+}
+
+ul {
+    display: inline-flex;
+    margin: 0;
+    padding: 0;
+    flex-direction: column;
+    &.horizontal {
+        flex-direction: row;
+        flex-wrap: wrap;
+    }
+}

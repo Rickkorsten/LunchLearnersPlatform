@@ -8,7 +8,10 @@ import { ActivatedRoute } from '@angular/router';
 })
 export class PresentationComponent implements OnInit {
   book: any;
-  constructor(private route: ActivatedRoute, ) { }
+  counter: number;
+  constructor(private route: ActivatedRoute, ) {
+    this.counter = 0;
+  }
 
   ngOnInit() {
     this.route.params.subscribe(params => {
@@ -24,4 +27,9 @@ export class PresentationComponent implements OnInit {
     }
   }
 
+  countSection() {
+    this.counter++;
+    const count = this.counter;
+    return count;
+  }
 }

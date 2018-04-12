@@ -9,7 +9,7 @@
                         <p>40%</p>
                     </div>
                 </div>
-                <app-button title="'Afspelen'" icon="'play_arrow'"></app-button>
+                <app-button title="Afspelen" icon="play_arrow"></app-button>
             </div>
             <div class="content-container">
                 <div class="general-info">
@@ -51,12 +51,10 @@
     <div class="header-separator">
         <p>Presentatie inhoud</p>
     </div>
-    <div class="section-button-container">
-        <app-section-button section="'1'" title="'Introduction'" time="'2:44'"></app-section-button>
-        <app-section-button section="'2'" title="'About'" time="'1:02'"></app-section-button>
-        <app-section-button section="'3'" title="'Chapter one'" time="'0:55'"></app-section-button>
+    <div class="section-button-container" *ngFor="let section of book.sections; let i = index ">
+        <app-section-button section="{{i+1}} " title="{{section.title}} " time="{{section.time}} "></app-section-button>
     </div>
-    <div class="header-separator">
+    <div class="header-separator ">
         <p>Reviews</p>
     </div>
 </div>
