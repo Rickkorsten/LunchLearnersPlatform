@@ -1,0 +1,49 @@
+<div class="information-block" [ngClass]="type === 'large' ? 'large' : 'small'">
+    <img src={{book.bigThumbnail}}/>
+    <div class="information-content">
+        <div class="bar-container">
+            <p>{{book.title}}</p>
+            <div *ngIf="type === 'large'" class="progressBar">
+                <div class="progress">
+                    <p>40%</p>
+                </div>
+            </div>
+            <app-button *ngIf="type === 'large'" [type]="'accept'" [filled]="true" [title]="'Afspelen'" [icon]="'play_arrow'"></app-button>
+        </div>
+        <div class="content-container">
+            <div class="general-info">
+                <table>
+                    <tr>
+                        <td>Genre</td>
+                        <td>{{checkDbOutput(book.genre)}}</td>
+                    </tr>
+                    <tr>
+                        <td>Schrijver</td>
+                        <td>{{checkDbOutput(book.publisher)}}</td>
+                    </tr>
+                    <tr>
+                        <td>Uitgave</td>
+                        <td>{{checkDbOutput(book.publishDate)}}</td>
+                    </tr>
+                    <br>
+                    <tr>
+                        <td>Presentator</td>
+                        <td>Luuk Luchtloper</td>
+                    </tr>
+                    <tr>
+                        <td>Duur</td>
+                        <td>0:50</td>
+                    </tr>
+                    <tr *ngIf="type === 'large'">
+                        <td>Beoordeling</td>
+                        <td></td>
+                    </tr>
+                </table>
+            </div>
+            <div *ngIf="type === 'large'" class="description">
+                <h4>Omschrijving</h4>
+                <p>{{checkDbOutput(book.description)}}</p>
+            </div>
+        </div>
+    </div>
+</div>

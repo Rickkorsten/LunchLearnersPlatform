@@ -1,9 +1,18 @@
 <div class="library">
-  <mat-card *ngFor="let book of books | async" class="card" (click)="toPresentationPage(book)">
-    <img mat-card-image src={{book.bigThumbnail}} alt="Photo of {{book.title}">
-    <mat-card-title class="title">{{ book.title }}</mat-card-title>
-    <p class="description">
-      {{book.description}}
-    </p>
-  </mat-card>
+    <div class="book-container">
+
+        <div *ngFor="let book of books | async" class="book-card" (click)="toPresentationPage(book)">
+            <img src={{book.bigThumbnail}} alt="Photo of {{book.title}">
+            <div class="info-container">
+                <p>{{ book.title }}</p>
+                <p>Author</p>
+                <p class="description">{{book.description.slice(0, 140)}}...</p>
+                <div class="action-container">
+                    <rating [(ngModel)]="rating" iconClass="ster" [float]="true" [titles]="['one', 'two', 'three', 'four', 'five']" [readonly]="true"></rating>
+                    <app-button [title]="'Bekijk'" [type]="'card'" [icon]="'play_arrow'"></app-button>
+                </div>
+            </div>
+        </div>
+
+    </div>
 </div>

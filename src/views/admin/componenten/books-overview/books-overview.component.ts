@@ -51,7 +51,7 @@ export class BooksOverviewComponent implements OnInit {
 
   uploadBookToFirestore(result) {
     const id = this.db.createId();
-    const { title, subTitle, smallThumbnail, bigThumbnail, publisher, publishDate, description,
+    const { title, subTitle, author, smallThumbnail, bigThumbnail, publisher, publishDate, description,
       ISBN_13, ISBN_10, categories } = result.book;
     console.log(title);
 
@@ -59,6 +59,7 @@ export class BooksOverviewComponent implements OnInit {
       'uid': id,
       'title': (title ? title : 'EMPTY'),
       'subTitle': (subTitle ? subTitle : 'EMPTY'),
+      'author': (author ? author : 'EMPTY'),
       'smallThumbnail': (smallThumbnail ? smallThumbnail : 'EMPTY'),
       'bigThumbnail': (bigThumbnail ? bigThumbnail : 'EMPTY'),
       'publisher': (publisher ? publisher : 'EMPTY'),

@@ -1,71 +1,49 @@
-.example-card {
-    max-width: 80%;
-  }
-
-  .example-header-image {
-    background-image: url('https://material.angular.io/assets/img/examples/shiba1.jpg');
-    background-size: cover;
-  }
-
-  .card {
-    max-width: 152px;
+.library {
     display: flex;
-    flex-direction: column;
-    //flex:1;
-    width:20%;
-    float:left;
-    margin: 10px;
-    height: 450px;
-    overflow: hidden;
-    //background-color: red;
-    position:relative;
-  }
-
-  .header{
-    //max-height:10px;
-    position:relative;
-    justify-content: flex-start;
-    //padding:5px;
-    font-size: 15px;
-    font-weight: bold;
-    //float:left;
-    //background-color: yellow;
-
-  }
-
-  .title{
-    //padding:-10px;
-    //max-height:10px;
     justify-content: center;
-    padding-top:5px;
-    font-size: 15px;
-    font-weight: bold;
-    margin-bottom: 5px;
-    //float:left;
-    //background-color:pink;
-  }
+    .book-container {
+        display: flex;
+        width: 1100px;
+        .book-card {
+            background-color: white;
+            display: flex;
+            flex-direction: row;
+            -webkit-box-shadow: 0px 2px 7px 3px rgba(0, 0, 0, 0.12);
+            -moz-box-shadow: 0px 2px 7px 3px rgba(0, 0, 0, 0.12);
+            box-shadow: 0px 2px 7px 3px rgba(0, 0, 0, 0.12);
+            width: 360px;
+            height: 180px;
+            .info-container {
+                display: flex;
+                flex-direction: column;
+                padding: 15px;
+                p:first-child {
+                    font-size: 20px;
+                    color: #4A4A4A;
+                    padding: 0;
+                    margin: 0;
+                }
+                p {
+                    font-size: 13px;
+                    color: #707070;
+                    padding: 0;
+                    margin: 0;
+                }
+                .description {
+                    font-size: 11px;
+                    margin-top: 8px;
+                }
+                .action-container {
+                    display: flex;
+                    flex-direction: row;
+                }
+            }
+        }
+    }
+}
 
-  .subTitle{
-    padding:5px;
-    max-height:5px;
-    //background-color: green;
-  }
-
-  img{
-    min-height: 270px;
-    max-height: 270px;
-    //padding-right:5px;
-    //margin:10px;
-    //background-color: blue;
-  }
-
-  .description{
-    //background-color: orange;
-    font-size: 13px;
-    font-weight: 200;
-    //padding:5px;
-  }
-
-  .info{
-      float:right;
-  }
+.ster {
+    color: #ddd;
+    font-size: 20pxem;
+    position: relative;
+}

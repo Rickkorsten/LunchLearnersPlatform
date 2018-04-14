@@ -17,14 +17,7 @@ export class PresentationComponent implements OnInit {
     this.route.params.subscribe(params => {
       this.book = JSON.parse(params['book']);
     });
-  }
-
-  checkDbOutput = (data: string) => {
-    if (data === undefined) {
-      return 'no data';
-    } else {
-      return data;
-    }
+    console.log(this.book);
   }
 
   countSection() {

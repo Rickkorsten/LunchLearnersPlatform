@@ -19,6 +19,8 @@ interface Company {
 interface Book {
   uid?: string;
   title?: string;
+  subTitle?: string;
+  author?: string;
   smallCover?: string;
   publishedDate?: string;
   description?: string;
@@ -83,6 +85,12 @@ export class FirebaseCallsService {
   }
   getBooksCollection() {
     this.booksCol = this.db.collection('books');
+    this.books = this.booksCol.valueChanges();
+    return this.books;
+  }
+
+  getBook(reviewId) {
+    this.booksCol = this.db.collection('books', ref => ref.where('reviewId', '==', reviewId));
     this.books = this.booksCol.valueChanges();
     return this.books;
   }

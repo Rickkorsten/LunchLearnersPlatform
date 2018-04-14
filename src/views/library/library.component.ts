@@ -10,14 +10,16 @@ import { Router } from '@angular/router';
   providers: [FirebaseCallsService]
 })
 export class LibraryComponent implements OnInit {
-
+  rating: number;
   books: any;
 
   constructor(
     public auth: AuthService,
     private FirebaseCall: FirebaseCallsService,
     private router: Router
-  ) { }
+  ) {
+    this.rating = 3;
+  }
 
   ngOnInit() {
     this.books = this.FirebaseCall.getBooksCollection();

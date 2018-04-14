@@ -13,6 +13,7 @@ import { AngularFireStorageModule } from 'angularfire2/storage';
 import { AngularFireDatabaseModule } from 'angularfire2/database';
 import { AngularFireAuthModule } from 'angularfire2/auth';
 import { AngularFirestoreModule } from 'angularfire2/firestore';
+import { RatingModule } from 'ngx-rating';
 
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { DropZoneDirective } from './directives/dropZone/drop-zone.directive';
@@ -42,6 +43,9 @@ import { PresentationComponent } from './../views/presentation/presentation.comp
 import { SectionButtonComponent } from './../components/section-button/section-button.component';
 import { ButtonComponent } from './../components/button/button.component';
 import { DraggableModule } from './directives/draggable/draggable.module';
+import { ReviewFormComponent } from './../views/review-form/review-form.component';
+import { BookInfoHeaderComponent } from './../components/book-info-header/book-info-header.component';
+
 const firebaseConfig = {
   apiKey: 'AIzaSyBR3HJduE1qTWlz7D7LiLlVDPda3Vu3wBk',
   authDomain: 'lunchlearners.firebaseapp.com',
@@ -76,6 +80,8 @@ const firebaseConfig = {
     PresentationComponent,
     SectionButtonComponent,
     ButtonComponent,
+    ReviewFormComponent,
+    BookInfoHeaderComponent,
   ],
   imports: [
     BrowserModule,
@@ -92,7 +98,8 @@ const firebaseConfig = {
     HttpClientModule,
     HttpModule,
     ReactiveFormsModule,
-    DraggableModule
+    DraggableModule,
+    RatingModule
   ],
   entryComponents: [
     BookDialogComponent,

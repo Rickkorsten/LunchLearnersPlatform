@@ -1,0 +1,52 @@
+<div class="review" style="background-image: url('../../assets/login background.jpg');">
+    <div class="review-background-overlay">
+
+        <img style="height: 120px; margin-top: 40px " src="./../../assets/Lunch Learners logo white.png">
+
+        <app-book-info-header [type]="'small'" [book]="book"></app-book-info-header>
+
+        <div class="review-container">
+            <p class="header">Wat vond u van de presentatie ?</p>
+            <div class="row">
+                <p>Wat vondt u van de duidelijkheid van spreken?</p>
+                <rating [(ngModel)]="rating1" [float]="true" [titles]="['one', 'two', 'three', 'four', 'five']"></rating>
+            </div>
+            <div class="row">
+                <p>Gebruikte de presentator passend taal gebruik?</p>
+                <rating [(ngModel)]="rating2" [float]="true" [titles]="['one', 'two', 'three', 'four', 'five']"></rating>
+            </div>
+            <div class="row">
+                <p>Wat vondt u van de visuele toepassingen?</p>
+                <rating [(ngModel)]="rating3" [float]="true" [titles]="['one', 'two', 'three', 'four', 'five']"></rating>
+            </div>
+            <div class="row">
+                <p>Wat de houding en de lichaamstaal goed?</p>
+                <rating [(ngModel)]="rating4" [float]="true" [titles]="['one', 'two', 'three', 'four', 'five']"></rating>
+            </div>
+            <div class="row">
+                <p>Wat vondt u van de presentatie structuur?</p>
+                <rating [(ngModel)]="rating5" [float]="true" [titles]="['one', 'two', 'three', 'four', 'five']"></rating>
+            </div>
+            <div class="row">
+                <p>Waren alle vragen goed beantwoord?</p>
+                <rating [(ngModel)]="rating6" [float]="true" [titles]="['one', 'two', 'three', 'four', 'five']"></rating>
+            </div>
+            <div class="row">
+                <p>Wat vondt u van de inhoud van het boek?</p>
+                <rating [(ngModel)]="rating7" [float]="true" [titles]="['one', 'two', 'three', 'four', 'five']"></rating>
+            </div>
+            <div class="row">
+                <p>Zou u nog een keer een presentatie willen bijhouden?</p>
+                <rating [(ngModel)]="rating8" [float]="true" [titles]="['one', 'two', 'three', 'four', 'five']"></rating>
+            </div>
+            <div class="row">
+                <p>Heeft u nog tips of opmerkingen</p>
+            </div>
+            <textarea cols="num" rows="num" [(ngModel)]="rating9"></textarea>
+            <div class="button-row">
+                <app-button title="Afspelen" fill="true"></app-button>
+            </div>
+        </div>
+
+    </div>
+</div>
