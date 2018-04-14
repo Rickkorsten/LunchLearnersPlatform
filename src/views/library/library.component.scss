@@ -4,6 +4,8 @@
     .book-container {
         display: flex;
         width: 1100px;
+        margin-top: 50px;
+        justify-content: space-between;
         .book-card {
             background-color: white;
             display: flex;
@@ -11,7 +13,7 @@
             -webkit-box-shadow: 0px 2px 7px 3px rgba(0, 0, 0, 0.12);
             -moz-box-shadow: 0px 2px 7px 3px rgba(0, 0, 0, 0.12);
             box-shadow: 0px 2px 7px 3px rgba(0, 0, 0, 0.12);
-            width: 360px;
+            width: 350px;
             height: 180px;
             .info-container {
                 display: flex;
