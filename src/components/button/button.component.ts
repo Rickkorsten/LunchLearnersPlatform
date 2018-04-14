@@ -27,9 +27,9 @@ export class ButtonComponent implements OnInit {
         this.iconText = '#3EA4D0';
         break;
       case 'accept':
-        this.background = this.filled ? '#44B75B' : '#fff';
-        this.border = '#44B75B';
-        this.iconText = this.filled ? '#fff' : '#44B75B';
+        this.background = this.filled ? '#73C884' : '#fff';
+        this.border = '#73C884';
+        this.iconText = this.filled ? '#fff' : '#73C884';
         break;
     }
 
