@@ -45,6 +45,10 @@ import { ButtonComponent } from './../components/button/button.component';
 import { DraggableModule } from './directives/draggable/draggable.module';
 import { ReviewFormComponent } from './../views/review-form/review-form.component';
 import { BookInfoHeaderComponent } from './../components/book-info-header/book-info-header.component';
+import { VideoComponent } from './../views/video/video.component';
+
+import { FirebaseCallsService } from './../app/services/firebaseCalls/firebase-calls.service';
+import { BooksService } from './../app/services/books/books.service';
 
 const firebaseConfig = {
   apiKey: 'AIzaSyBR3HJduE1qTWlz7D7LiLlVDPda3Vu3wBk',
@@ -82,6 +86,7 @@ const firebaseConfig = {
     ButtonComponent,
     ReviewFormComponent,
     BookInfoHeaderComponent,
+    VideoComponent,
   ],
   imports: [
     BrowserModule,
@@ -100,6 +105,10 @@ const firebaseConfig = {
     ReactiveFormsModule,
     DraggableModule,
     RatingModule
+  ],
+  providers: [
+    FirebaseCallsService,
+    BooksService
   ],
   entryComponents: [
     BookDialogComponent,

@@ -1,13 +1,13 @@
 import { Component, OnInit } from '@angular/core';
 import { AuthService } from '../../app/core/auth.service';
 import { FirebaseCallsService } from './../../app/services/firebaseCalls/firebase-calls.service';
+import { BooksService } from './../../app/services/books/books.service';
 import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-library',
   templateUrl: './library.component.html',
   styleUrls: ['./library.component.scss'],
-  providers: [FirebaseCallsService]
 })
 export class LibraryComponent implements OnInit {
   rating: number;
@@ -16,7 +16,8 @@ export class LibraryComponent implements OnInit {
   constructor(
     public auth: AuthService,
     private FirebaseCall: FirebaseCallsService,
-    private router: Router
+    private router: Router,
+    private bookService: BooksService
   ) {
     this.rating = 3;
   }
@@ -27,8 +28,8 @@ export class LibraryComponent implements OnInit {
   }
 
   toPresentationPage(book) {
-    const compiledBook = JSON.stringify(book);
-    this.router.navigate([`../bookpresentation/${book.uid}`, { book: compiledBook }]);
+    this.bookService.setActiveBook(book);
+    this.router.navigate([`../bookpresentation/${book.uid}`]);
   }
 
 
