@@ -55,19 +55,6 @@
                     <div class="box" *appDraggableHelper>{{ section }}</div>
                 </li>
             </ul>
-            <!-- <ul appSortableList (sort)="sort($event)">
-                <li *ngFor="let section of sections" class="box" appSortable>
-                    <tr>
-                        <td>
-                            <button mat-raised-button color="warn" (click)="deleteFromObject(section.id)">verwijder</button>
-                        </td>
-                        <td><b>Sectie:</b>{{section.id}}</td>
-                        <td><b>Hoofdstuk:</b> {{section.title}}</td>
-                        <td><b>Duur:</b> {{section.time}}</td>
-                    </tr>
-                    <div class="box" *appDraggableHelper>{{ section }}</div>
-                </li>
-            </ul> -->
             <div class="add-line">
                 <mat-form-field>
                     <input matInput type="text" placeholder="hoofdstuk" [(ngModel)]="chapterTitle" />
@@ -80,6 +67,11 @@
                   </button>
 
             </div>
+            <mat-select placeholder="Selecteer presentator" [(ngModel)]="selectedEmployee" (change)="update(selectedEmployee)" name="food">
+                <mat-option *ngFor="let employee of employees | async" [value]="employee.uid">
+                    {{employee.name || employee.email}}
+                </mat-option>
+            </mat-select>
             <mat-action-row>
                 <button mat-button color="warn" (click)="deleteBook(book)">Verwijder</button>
                 <button mat-button color="primary" (click)="updateBook(book)">Update</button>

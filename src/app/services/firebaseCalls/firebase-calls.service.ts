@@ -3,11 +3,11 @@ import { AngularFirestore, AngularFirestoreCollection } from 'angularfire2/fires
 import { Observable } from 'rxjs/Observable';
 
 interface Employee {
-  displayName: string;
-  email: string;
-  photoURL: string;
-  uid: string;
-  companyUid: string;
+  displayName?: string;
+  email?: string;
+  photoURL?: string;
+  uid?: string;
+  companyUid?: string;
 }
 
 interface Company {
@@ -40,6 +40,7 @@ interface Review {
   q8?: number;
   q9?: number;
 }
+
 
 @Injectable()
 export class FirebaseCallsService {
@@ -111,6 +112,12 @@ export class FirebaseCallsService {
     return this.books;
   }
 
+  getEmployeesCollection() {
+    this.employeesCol = this.db.collection('users', ref => ref.where('role', '==', 'employee'));
+    this.employees = this.employeesCol.valueChanges();
+    return this.employees;
+  }
+
   updateReview(result) {
     console.log('updated review');
     const id = this.db.createId();
@@ -128,4 +135,6 @@ export class FirebaseCallsService {
       'book' : result.bookUID,
     });
   }
+
+
 }

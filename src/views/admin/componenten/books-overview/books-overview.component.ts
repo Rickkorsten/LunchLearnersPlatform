@@ -25,6 +25,9 @@ export class BooksOverviewComponent implements OnInit {
   sections: any;
   sectionsCount: number;
 
+  employees: any;
+  selectedEmployee: any;
+
   constructor(private db: AngularFirestore,
     public dialog: MatDialog,
     public auth: AuthService,
@@ -47,6 +50,7 @@ export class BooksOverviewComponent implements OnInit {
 
   ngOnInit() {
     this.books = this.FirebaseCall.getBooksCollection();
+    this.employees = this.FirebaseCall.getEmployeesCollection();
   }
 
   uploadBookToFirestore(result) {
@@ -81,6 +85,7 @@ export class BooksOverviewComponent implements OnInit {
     this.description = book.description;
     this.categories = book.categories;
     this.sections = book.sections ? book.sections : [] ;
+    this.selectedEmployee = book.employee ? book.employee : 'selecteer presentator';
   }
 
   updateBook() {
@@ -91,13 +96,18 @@ export class BooksOverviewComponent implements OnInit {
       'publishDate': (this.publishDate),
       'description': (this.description),
       'categories': (this.categories),
-      'sections': (this.sections)
+      'sections': (this.sections),
+      'employee': (this.selectedEmployee)
     }).then(function () {
       console.log('Document successfully written!');
     })
       .catch(function (error) {
         console.error('Error writing document: ', error);
       });
+  }
+
+  update(a) {
+    console.log(a);
   }
 
   deleteBook() {
