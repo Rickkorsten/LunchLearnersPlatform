@@ -9,42 +9,43 @@
             <p class="header">Wat vond u van de presentatie ?</p>
             <div class="row">
                 <p>Wat vondt u van de duidelijkheid van spreken?</p>
-                <rating [(ngModel)]="rating1" [float]="true" [titles]="['one', 'two', 'three', 'four', 'five']"></rating>
+                <rating [(ngModel)]="rating1" [titles]="['one', 'two', 'three', 'four', 'five']"></rating>
             </div>
             <div class="row">
                 <p>Gebruikte de presentator passend taal gebruik?</p>
-                <rating [(ngModel)]="rating2" [float]="true" [titles]="['one', 'two', 'three', 'four', 'five']"></rating>
+                <rating [(ngModel)]="rating2" [titles]="['one', 'two', 'three', 'four', 'five']"></rating>
             </div>
             <div class="row">
                 <p>Wat vondt u van de visuele toepassingen?</p>
-                <rating [(ngModel)]="rating3" [float]="true" [titles]="['one', 'two', 'three', 'four', 'five']"></rating>
+                <rating [(ngModel)]="rating3" [titles]="['one', 'two', 'three', 'four', 'five']"></rating>
             </div>
             <div class="row">
                 <p>Wat de houding en de lichaamstaal goed?</p>
-                <rating [(ngModel)]="rating4" [float]="true" [titles]="['one', 'two', 'three', 'four', 'five']"></rating>
+                <rating [(ngModel)]="rating4" [titles]="['one', 'two', 'three', 'four', 'five']"></rating>
             </div>
             <div class="row">
                 <p>Wat vondt u van de presentatie structuur?</p>
-                <rating [(ngModel)]="rating5" [float]="true" [titles]="['one', 'two', 'three', 'four', 'five']"></rating>
+                <rating [(ngModel)]="rating5" [titles]="['one', 'two', 'three', 'four', 'five']"></rating>
             </div>
             <div class="row">
                 <p>Waren alle vragen goed beantwoord?</p>
-                <rating [(ngModel)]="rating6" [float]="true" [titles]="['one', 'two', 'three', 'four', 'five']"></rating>
+                <rating [(ngModel)]="rating6" [titles]="['one', 'two', 'three', 'four', 'five']"></rating>
             </div>
             <div class="row">
                 <p>Wat vondt u van de inhoud van het boek?</p>
-                <rating [(ngModel)]="rating7" [float]="true" [titles]="['one', 'two', 'three', 'four', 'five']"></rating>
+                <rating [(ngModel)]="rating7" [titles]="['one', 'two', 'three', 'four', 'five']"></rating>
             </div>
             <div class="row">
                 <p>Zou u nog een keer een presentatie willen bijhouden?</p>
-                <rating [(ngModel)]="rating8" [float]="true" [titles]="['one', 'two', 'three', 'four', 'five']"></rating>
+                <rating [(ngModel)]="rating8" [titles]="['one', 'two', 'three', 'four', 'five']"></rating>
             </div>
             <div class="row">
                 <p>Heeft u nog tips of opmerkingen</p>
             </div>
             <textarea cols="num" rows="num" [(ngModel)]="rating9"></textarea>
             <div class="button-row">
-                <app-button [type]="'accept'" [filled]="true" [title]="'Verstuur'"></app-button>
+                <p style="color: red; padding-top: 15px; font-size: 18px">{{error}}</p>
+                <app-button (click)="uploadReview(rating1,rating2,rating3,rating4,rating5,rating6,rating7,rating8,rating9)" [type]="'accept'" [filled]="true" [title]="'Verstuur'"></app-button>
             </div>
         </div>
 

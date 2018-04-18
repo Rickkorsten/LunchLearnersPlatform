@@ -28,6 +28,19 @@ interface Book {
   publisher?: string;
 }
 
+interface Review {
+  presentor: string;
+  q1?: number;
+  q2?: number;
+  q3?: number;
+  q4?: number;
+  q5?: number;
+  q6?: number;
+  q7?: number;
+  q8?: number;
+  q9?: number;
+}
+
 @Injectable()
 export class FirebaseCallsService {
 
@@ -39,6 +52,9 @@ export class FirebaseCallsService {
   // books
   booksCol: AngularFirestoreCollection<Book>;
   books: Observable<Book[]>;
+  // review
+  reviewsCol: AngularFirestoreCollection<Review>;
+  reviews: Observable<Review[]>;
 
   usersArray: string[];
   newArray: string[];
@@ -93,5 +109,23 @@ export class FirebaseCallsService {
     this.booksCol = this.db.collection('books', ref => ref.where('reviewId', '==', reviewId));
     this.books = this.booksCol.valueChanges();
     return this.books;
+  }
+
+  updateReview(result) {
+    console.log('updated review');
+    const id = this.db.createId();
+    this.db.doc(`reviews/${id}`).set({
+      'q1' : result.q1,
+      'q2' : result.q2,
+      'q3' : result.q3,
+      'q4' : result.q4,
+      'q5' : result.q5,
+      'q6' : result.q6,
+      'q7' : result.q7,
+      'q8' : result.q8,
+      'q9' : result.q9,
+      'employee' : 'Kylo ren',
+      'book' : result.bookUID,
+    });
   }
 }
