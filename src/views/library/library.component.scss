@@ -10,11 +10,14 @@
             background-color: white;
             display: flex;
             flex-direction: row;
-            -webkit-box-shadow: 0px 2px 7px 3px rgba(0, 0, 0, 0.12);
-            -moz-box-shadow: 0px 2px 7px 3px rgba(0, 0, 0, 0.12);
-            box-shadow: 0px 2px 7px 3px rgba(0, 0, 0, 0.12);
+            border-radius: 5px;
+            -webkit-box-shadow: 0px 0px 10px 0px rgba(0, 0, 0, 0.12);
+            -moz-box-shadow: 0px 0px 10px 0px rgba(0, 0, 0, 0.12);
+            box-shadow: 0px 0px 10px 0px rgba(0, 0, 0, 0.12);
+            overflow: hidden;
             width: 350px;
             height: 180px;
+            transition-duration: 0.3s;
             .info-container {
                 display: flex;
                 flex-direction: column;
@@ -40,6 +43,13 @@
                     flex-direction: row;
                 }
             }
+        }
+        .book-card:hover{
+            -webkit-box-shadow: 0px 6px 30px 0px rgba(0, 0, 0, 0.12);
+        -moz-box-shadow: 0px 6px 30px 0px rgba(0, 0, 0, 0.12);
+        box-shadow: 0px 6px 30px 0px rgba(0, 0, 0, 0.12);
+        margin-top: -10px;
+        cursor: pointer;
         }
     }
 }

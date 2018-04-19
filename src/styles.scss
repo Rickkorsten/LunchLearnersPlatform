@@ -1,4 +1,6 @@
 @import "~@angular/material/prebuilt-themes/indigo-pink.css";
+@import url('https://fonts.googleapis.com/css?family=Lato:300,400|Open+Sans');
+
 body {
     margin: 0;
     font-family: Roboto, "Helvetica Neue", sans-serif;
@@ -6,7 +8,11 @@ body {
 }
 
 h2 {
-    font: 400 20px/32px Roboto, "Helvetica Neue", sans-serif;
+    font: 300 20px/32px 'Lato', "Helvetica Neue", sans-serif;
+}
+
+h3 {
+    font: 300 16px/18px 'Lato', "Helvetica Neue", sans-serif;
 }
 
 .container-wide {

@@ -9,69 +9,70 @@
                 </mat-panel-title>
             </mat-expansion-panel-header>
             <div class="expension-content">
-
-                <img class="image" style="vertical-align:middle; margin-right: 24px;" aria-hidden src="{{book.bigThumbnail}}" />
-
                 <div class="form-row">
                     <div class="expension-row">
                         <mat-form-field class="form-field">
                             <input matInput type="text" placeholder="Subtitel" [(ngModel)]="subTitle" />
                         </mat-form-field>
                     </div>
-                    <div class="expension-row">
+                    <div >
                         <mat-form-field class="form-field">
                             <input matInput type="text" placeholder="Catagorieen" [(ngModel)]="categories" />
                         </mat-form-field>
                     </div>
+                    <div class="expension-row">
+                            <mat-form-field class="form-field">
+                                <input matInput type="text" placeholder="Uitgeverij" [(ngModel)]="publisher" />
+                            </mat-form-field>
+                        </div>
+                        <div class="expension-row">
+                            <mat-form-field class="form-field">
+                                <input matInput type="text" placeholder="Datum van uitgave" [(ngModel)]="publishDate" />
+                            </mat-form-field>
+                        </div>
+                        <form>
+                                <mat-form-field>
+                                    <mat-select placeholder="Selecteer presentator" [(ngModel)]="selectedEmployee" (change)="update(selectedEmployee)" name="food">
+                                        <mat-option *ngFor="let employee of employees | async" [value]="employee.uid">
+                                            {{employee.name || employee.email}}
+                                        </mat-option>
+                                    </mat-select>
+                                </mat-form-field>
+                            </form>
                 </div>
 
                 <div class="form-row">
                     <div class="expension-row">
                         <mat-form-field class="form-field">
-                            <input matInput type="text" placeholder="Uitgeverij" [(ngModel)]="publisher" />
-                        </mat-form-field>
-                    </div>
-                    <div class="expension-row">
-                        <mat-form-field class="form-field">
-                            <input matInput type="text" placeholder="Datum van uitgave" [(ngModel)]="publishDate" />
+                            <textarea rows="8" matInput type="text" placeholder="Beschrijving" [(ngModel)]="description"></textarea>
                         </mat-form-field>
                     </div>
                 </div>
-
-                <div class="form-row">
-                    <div class="expension-row">
-                        <mat-form-field class="form-field">
-                            <textarea matInput type="text" placeholder="Beschrijving" [(ngModel)]="description"></textarea>
-                        </mat-form-field>
-                    </div>
-                </div>
+                
 
             </div>
+            
             <br>
             <mat-divider></mat-divider>
-            <ul appSortableList (sort)="sort($event)">
-                <li *ngFor="let section of sections" class="box" appSortable>
-                    {{ section.id }}
-                    <div class="box" *appDraggableHelper>{{ section }}</div>
-                </li>
-            </ul>
+            <h3>Hoofdstukken</h3>
             <div class="add-line">
                 <mat-form-field>
-                    <input matInput type="text" placeholder="hoofdstuk" [(ngModel)]="chapterTitle" />
+                    <input matInput type="text" placeholder="Hoofdstuk naam" [(ngModel)]="chapterTitle" />
                 </mat-form-field>
                 <mat-form-field>
-                    <input matInput type="text" placeholder="duur" [(ngModel)]="time" />
+                    <input matInput type="text" placeholder="Tijdstip" [(ngModel)]="time" />
                 </mat-form-field>
                 <button mat-button color="primary" (click)="addToObject(chapterTitle,time)">
                     Toevoegen
                   </button>
 
             </div>
-            <mat-select placeholder="Selecteer presentator" [(ngModel)]="selectedEmployee" (change)="update(selectedEmployee)" name="food">
-                <mat-option *ngFor="let employee of employees | async" [value]="employee.uid">
-                    {{employee.name || employee.email}}
-                </mat-option>
-            </mat-select>
+            <ul class="chapter-list" appSortableList (sort)="sort($event)">
+                <li *ngFor="let section of sections" class="box" appSortable>
+                    {{ section.title }}
+                    <div class="box" *appDraggableHelper>{{ section.title }}</div>
+                </li>
+            </ul>
             <mat-action-row>
                 <button mat-button color="warn" (click)="deleteBook(book)">Verwijder</button>
                 <button mat-button color="primary" (click)="updateBook(book)">Update</button>
