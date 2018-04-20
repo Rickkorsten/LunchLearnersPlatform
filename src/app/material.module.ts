@@ -1,4 +1,5 @@
 import { NgModule } from '@angular/core';
+import {MatSidenavModule} from '@angular/material/sidenav';
 
 import {
   MatButtonModule,
@@ -6,7 +7,6 @@ import {
   MatIconModule,
   MatGridListModule,
   MatCardModule,
-  MatSidenavModule,
   MatInputModule,
   MatDialogModule,
   MatExpansionModule,
@@ -14,6 +14,7 @@ import {
   MatAutocompleteModule,
   MatSelectModule,
   MatMenuModule,
+  MatRadioModule,
 } from '@angular/material';
 
 @NgModule({
@@ -30,7 +31,8 @@ import {
     MatExpansionModule,
     MatListModule,
     MatAutocompleteModule,
-    MatSelectModule
+    MatSelectModule,
+    MatRadioModule,
   ],
 })
 export class MaterialModule { }

@@ -1,6 +1,14 @@
 <div class="video">
-    <mat-drawer-container class="example-container">
-        <mat-drawer mode="side" opened="true">Drawer content</mat-drawer>
-        <mat-drawer-content>Main content</mat-drawer-content>
+    <mat-drawer-container class="example-container" autosize>
+        <mat-drawer #drawer class="example-sidenav" mode="over">
+            <p>Auto-resizing sidenav</p>
+        </mat-drawer>
+
+        <div class="example-sidenav-content">
+            <button type="button" mat-button (click)="drawer.toggle()">
+            Toggle sidenav
+          </button>
+        </div>
+
     </mat-drawer-container>
 </div>
