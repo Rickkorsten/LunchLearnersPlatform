@@ -10,6 +10,9 @@ export class BooksService {
   private bookSource = new BehaviorSubject<object>({'object': 'object'});
   activeBook = this.bookSource.asObservable();
 
+  private timeSource = new BehaviorSubject<string>('20');
+  activeTime = this.timeSource.asObservable();
+
   constructor(private http: Http) {
 
   }
@@ -21,6 +24,10 @@ export class BooksService {
 
   public setActiveBook(book: object) {
     this.bookSource.next(book);
+  }
+
+  public setStartTime(time: string) {
+    this.timeSource.next(time);
   }
 
 }

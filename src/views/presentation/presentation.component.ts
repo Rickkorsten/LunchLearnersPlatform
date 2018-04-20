@@ -27,7 +27,8 @@ export class PresentationComponent implements OnInit {
     return count;
   }
 
-  toVideo() {
+  toVideo(time) {
+    this.bookService.setStartTime(time);
     this.router.navigate([`../video/${this.book.uid}`]);
   }
 }

@@ -4,7 +4,7 @@
         <p>Presentatie inhoud</p>
     </div>
     <div class="section-button-container" *ngFor="let section of book.sections; let i = index ">
-        <app-section-button [section]="i+1" [title]="section.title" [time]="section.time " (click)="toVideo()"></app-section-button>
+        <app-section-button [section]="i+1" [title]="section.title" [time]="section.time " (click)="toVideo(section.time)"></app-section-button>
     </div>
     <div class="header-separator ">
         <p>Reviews</p>

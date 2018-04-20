@@ -1,13 +1,16 @@
 <div class="video">
-    <mat-drawer-container class="example-container" autosize>
-        <mat-drawer #drawer class="example-sidenav" mode="over">
-            <p>Auto-resizing sidenav</p>
+    <mat-drawer-container>
+        <mat-drawer #drawer class="sidenav" mode="over">
+            <app-book-card [type]="'sidemenu'" [book]="book" (click)="toPresentationPage(book)"></app-book-card>
+            <div *ngFor="let section of book.sections; let i = index ">
+                <app-section-button [type]="'sidemenu'" [section]="i+1" [title]="section.title" [time]="section.time " (click)="goToTime(section.time)"></app-section-button>
+            </div>
         </mat-drawer>
 
-        <div class="example-sidenav-content">
+        <div>
             <button type="button" mat-button (click)="drawer.toggle()">
-            Toggle sidenav
           </button>
+            <iframe class="player" [src]='safeURL' frameborder="0" allowfullscreen autoplay></iframe>
         </div>
 
     </mat-drawer-container>

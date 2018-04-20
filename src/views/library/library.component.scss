@@ -6,51 +6,6 @@
         width: 1100px;
         margin-top: 50px;
         justify-content: space-between;
-        .book-card {
-            background-color: white;
-            display: flex;
-            flex-direction: row;
-            border-radius: 5px;
-            -webkit-box-shadow: 0px 0px 10px 0px rgba(0, 0, 0, 0.12);
-            -moz-box-shadow: 0px 0px 10px 0px rgba(0, 0, 0, 0.12);
-            box-shadow: 0px 0px 10px 0px rgba(0, 0, 0, 0.12);
-            overflow: hidden;
-            width: 350px;
-            height: 180px;
-            transition-duration: 0.3s;
-            .info-container {
-                display: flex;
-                flex-direction: column;
-                padding: 15px;
-                p:first-child {
-                    font-size: 20px;
-                    color: #4A4A4A;
-                    padding: 0;
-                    margin: 0;
-                }
-                p {
-                    font-size: 13px;
-                    color: #707070;
-                    padding: 0;
-                    margin: 0;
-                }
-                .description {
-                    font-size: 11px;
-                    margin-top: 8px;
-                }
-                .action-container {
-                    display: flex;
-                    flex-direction: row;
-                }
-            }
-        }
-        .book-card:hover{
-            -webkit-box-shadow: 0px 6px 30px 0px rgba(0, 0, 0, 0.12);
-        -moz-box-shadow: 0px 6px 30px 0px rgba(0, 0, 0, 0.12);
-        box-shadow: 0px 6px 30px 0px rgba(0, 0, 0, 0.12);
-        margin-top: -10px;
-        cursor: pointer;
-        }
     }
 }
 
