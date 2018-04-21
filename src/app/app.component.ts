@@ -9,7 +9,6 @@ import { AuthService } from './core/auth.service';
 export class AppComponent {
   admin: boolean;
   user: boolean;
-  isVideoRoute = true;
 
   constructor(
     public auth: AuthService,

@@ -13,13 +13,14 @@ export class VideoComponent implements OnInit {
   safeURL: any;
   video: string;
   time: string;
+  expanded = false;
 
 
   constructor(
     private bookService: BooksService,
     private _sanitizer: DomSanitizer
   ) {
-    this.video = 'zngjlT_Ka3U';
+    this.video = '5iOhzJdDawE';
     this.bookService.activeBook.subscribe(book => this.book = book);
     this.bookService.activeTime.subscribe(time => this.time = time);
   }
@@ -27,13 +28,21 @@ export class VideoComponent implements OnInit {
   ngOnInit() {
     // video url
     this.safeURL = this._sanitizer
-    .bypassSecurityTrustResourceUrl(`https://www.youtube.com/embed/${this.video}?start=${this.time}&autoplay=1`);
+    .bypassSecurityTrustResourceUrl(`https://www.youtube.com/embed/${this.video}?start=${this.time}&autoplay=1&showinfo=0`);
+
   }
 
   goToTime(time) {
     this.safeURL = this._sanitizer
-    .bypassSecurityTrustResourceUrl(`https://www.youtube.com/embed/${this.video}?start=${time}&autoplay=1`);
+    .bypassSecurityTrustResourceUrl(`https://www.youtube.com/embed/${this.video}?start=${time}&autoplay=1&showinfo=0`);
   }
 
+  expand() {
+    if (!this.expanded) {
+    this.expanded = true;
+    } else {
+      this.expanded = false;
+    }
+  }
 
 }

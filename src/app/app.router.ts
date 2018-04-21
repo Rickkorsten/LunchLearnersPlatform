@@ -29,7 +29,7 @@ export const router: Routes = [
     { path: 'book-info/:uid', component: BookInfoComponent, canActivate: [AuthGuard] },
     { path: 'settings', component: SettingsComponent, canActivate: [AuthGuard] },
     { path: 'bookpresentation/:book', component: PresentationComponent, canActivate: [AuthGuard] },
-    { path: 'review/:bookcode', component: ReviewFormComponent, canActivate: [AuthGuard] },
+    { path: 'review/:bookcode', component: ReviewFormComponent},
     { path: 'video/:bookcode', component: VideoComponent, canActivate: [AuthGuard] },
     // The admin path also has childeren, these define the paths of the admin router outlet inside of the admin component
     { path: 'admin', component: AdminComponent, canActivate: [AuthGuard] , children: [

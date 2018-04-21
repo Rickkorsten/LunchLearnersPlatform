@@ -3,8 +3,10 @@ mat-toolbar[_ngcontent-c0] {
 }
 
 mat-drawer-container {
-    margin-top: 65px;
+    //margin-top: 65px;
     height: 100vh;
+    overflow: visible;
+    background-color: transparent;
 }
 
 ::ng-deep mat-drawer-content {
@@ -19,10 +21,6 @@ mat-drawer {
     background: transparent;
 }
 
-::ng-deep mat-toolbar {
-    display: none !important;
-}
-
 ::ng-deep .mat-drawer-backdrop.mat-drawer-shown {
     background: linear-gradient(to right, rgba(0, 196, 255, 0.35) 0%, rgba(0, 184, 240, 0.35) 32%, rgba(0, 98, 128, 0.35) 100%) !important;
 }
@@ -31,11 +29,28 @@ mat-drawer {
     box-shadow: 0 0px 0px 0px rgba(0, 0, 0, .2), 0 0px 0px 0px rgba(0, 0, 0, .14), 0 0px 0px 0px rgba(0, 0, 0, .12) !important;
 }
 
-button {
-    width: 50px;
-    height: 50px;
-    background-color: blue;
-    position: absolute;
+
+.mat-mini-fab{
+    background-color: #fff;
+    float: right;
+    margin-bottom: -18px;
+}
+
+.drawer-button {
+    float: left;
+    display: none;
+    margin-left: 16px;
+    color: #73C884;
+ }
+
+.expand{
+    color: #73C884;
+    margin-right: 8px;
+}
+
+.close{
+    color: #FF7171;
+    margin-right: -16px;
 }
 
 app-book-card {
@@ -43,13 +58,56 @@ app-book-card {
 }
 
 .video {
-    margin-top: -65px;
+    //margin-top: -65px;
+    position: fixed;
+    right: 0px;
+    bottom: 0px;
+    padding-right: 30px;
+    padding-bottom: 20px;
+    height: 222px;
+    width: 356px;
+    z-index: 9999;
+    transition-duration: 0.5s;
+}
+
+.expanded {
+    //margin-top: -65px;
+    position: fixed;
+    right: 0px;
+    bottom: 0px;
+    height: 100%;
+    width: 100%;
+    padding: 0;
+
+    .player {
+        width: 100%;
+        height: 100vh;
+        margin-top: -45px;
+    }
+
+    .drawer-button {
+        display: block;
+    }
+
+    .mat-mini-fab{
+        margin-top: 24px;
+        z-index: 999;
+    }
+
+    .expand{
+        margin-right: 8px;
+    }
+    
+    .close{
+        margin-right: 16px;
+    }
 }
 
 .player {
     width: 100%;
-    height: 100vh;
+    height: 200px;
 }
+
 
 .section {
     margin-top: 10px;
