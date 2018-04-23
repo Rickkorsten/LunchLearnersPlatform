@@ -1,32 +1,30 @@
 <h1 mat-dialog-title>Bedrijf toevoegen</h1>
 <div mat-card-content>
 
-  <mat-form-field class="form-field">
-    <input matInput type="text" placeholder="Bedrijfnaam" [(ngModel)]="data.name" />
-  </mat-form-field>
+    <mat-form-field class="form-field">
+        <input matInput type="text" placeholder="Bedrijfnaam" [(ngModel)]="data.name" />
+    </mat-form-field>
 
-  <mat-form-field class="form-field">
-    <input matInput type="text" placeholder="Bedrijfcode" [(ngModel)]="data.code" />
+    <mat-form-field class="form-field">
+        <input matInput type="text" placeholder="Bedrijfcode" [(ngModel)]="data.code" />
 
-  </mat-form-field>
+    </mat-form-field>
 
-  <mat-form-field class="form-field">
-    <mat-select placeholder="Select me" [(ngModel)]="data.branche">
-        <mat-option value="software">Software</mat-option>
-        <mat-option value="bouwVastgoed">Bouw & Vastgoed</mat-option>
-        <mat-option value="communicatieMedia">Communicatie & Media</mat-option>
-        <mat-option value="energieBedrijven">Energiebedrijven</mat-option>
-      </mat-select>
-  </mat-form-field>
+    <mat-form-field class="form-field">
+        <mat-select placeholder="Selecteer branch" [(ngModel)]="data.branche">
+            <mat-option *ngFor="let branches of allBranches || async" value="branches">{{branches}}</mat-option>
 
-  <mat-form-field class="form-field">
-    <input matInput type="text" placeholder="Email" [(ngModel)]="data.emailsuffix" />
-    <span matPrefix>@&nbsp;</span>
-  </mat-form-field>
+        </mat-select>
+    </mat-form-field>
+
+    <mat-form-field class="form-field">
+        <input matInput type="text" placeholder="Email" [(ngModel)]="data.emailsuffix" />
+        <span matPrefix>@&nbsp;</span>
+    </mat-form-field>
 
 </div>
 
 <div mat-dialog-actions>
     <button mat-button (click)="onNoClick()">CANCEL</button>
-    <button mat-button  color="primary" [mat-dialog-close]="{ name:data.name, code:data.code, branche:data.branche, emailsuffix:data.emailsuffix }" cdkFocusInitial>VOEG TOE</button>
+    <button mat-button color="primary" [mat-dialog-close]="{ name:data.name, code:data.code, branche:data.branche, emailsuffix:data.emailsuffix }" cdkFocusInitial>VOEG TOE</button>
 </div>
