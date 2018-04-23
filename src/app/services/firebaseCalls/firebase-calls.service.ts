@@ -112,6 +112,12 @@ export class FirebaseCallsService {
     return this.books;
   }
 
+  getActiveBook(uid) {
+    this.booksCol = this.db.collection('books', ref => ref.where('uid', '==', uid));
+    this.books = this.booksCol.valueChanges();
+    return this.books;
+  }
+
   getEmployeesCollection() {
     this.employeesCol = this.db.collection('users', ref => ref.where('role', '==', 'employee'));
     this.employees = this.employeesCol.valueChanges();
