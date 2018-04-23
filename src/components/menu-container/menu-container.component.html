@@ -15,8 +15,7 @@
       [routerLink]="menuItem.router"
       [icon]="menuItem.icon"
       [title]="menuItem.title"
-      [ngClass]="selectedType === menuItem.id ? 'active' : ''"
-      (click)="setActive(menuItem.id)"
+      routerLinkActive="active-link"
       ></app-menu-item>
     </div>
   </div>
