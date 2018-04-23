@@ -24,7 +24,6 @@ export class VideoComponent implements OnInit {
   ) {
     this.video = '5iOhzJdDawE';
     this.bookService.activeBook.subscribe(book => this.book = book);
-    this.bookService.activeTime.subscribe(time => this.time = time);
     this.bookService.displayVideo.subscribe(display => {
       if (display) {
         this.display = 'block';
