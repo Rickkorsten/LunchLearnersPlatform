@@ -21,6 +21,7 @@ export class BooksOverviewComponent implements OnInit {
   description: string;
   publishDate: string;
   categories: string;
+  videoLink: string;
 
   sections: any;
   sectionsCount: number;
@@ -86,6 +87,7 @@ export class BooksOverviewComponent implements OnInit {
     this.categories = book.categories;
     this.sections = book.sections ? book.sections : [] ;
     this.selectedEmployee = book.employee ? book.employee : 'selecteer presentator';
+    this.videoLink = book.videoLink ? book.videoLink : '';
   }
 
   updateBook() {
@@ -97,7 +99,8 @@ export class BooksOverviewComponent implements OnInit {
       'description': (this.description),
       'categories': (this.categories),
       'sections': (this.sections),
-      'employee': (this.selectedEmployee)
+      'employee': (this.selectedEmployee),
+      'videoLink': (this.videoLink),
     }).then(function () {
       console.log('Document successfully written!');
     })

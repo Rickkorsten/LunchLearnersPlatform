@@ -15,6 +15,7 @@ export class VideoComponent implements OnInit {
   time: string;
   expanded = false;
   display: any;
+  controleURL: any;
 
 
   constructor(
@@ -30,6 +31,10 @@ export class VideoComponent implements OnInit {
       } else {
         this.display = 'none';
       }
+    });
+    this.bookService.activeVideoLink.subscribe(link => {
+      this.safeURL = this._sanitizer
+        .bypassSecurityTrustResourceUrl(link);
     });
 
     // this.bookService.activeVideoLink.subscribe

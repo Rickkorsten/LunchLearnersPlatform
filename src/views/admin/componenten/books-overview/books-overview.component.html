@@ -9,36 +9,37 @@
                 </mat-panel-title>
             </mat-expansion-panel-header>
             <div class="expension-content">
+
                 <div class="form-row">
                     <div class="expension-row">
                         <mat-form-field class="form-field">
                             <input matInput type="text" placeholder="Subtitel" [(ngModel)]="subTitle" />
                         </mat-form-field>
                     </div>
-                    <div >
+                    <div>
                         <mat-form-field class="form-field">
                             <input matInput type="text" placeholder="Catagorieen" [(ngModel)]="categories" />
                         </mat-form-field>
                     </div>
                     <div class="expension-row">
-                            <mat-form-field class="form-field">
-                                <input matInput type="text" placeholder="Uitgeverij" [(ngModel)]="publisher" />
-                            </mat-form-field>
-                        </div>
-                        <div class="expension-row">
-                            <mat-form-field class="form-field">
-                                <input matInput type="text" placeholder="Datum van uitgave" [(ngModel)]="publishDate" />
-                            </mat-form-field>
-                        </div>
-                        <form>
-                                <mat-form-field>
-                                    <mat-select placeholder="Selecteer presentator" [(ngModel)]="selectedEmployee" (change)="update(selectedEmployee)" name="food">
-                                        <mat-option *ngFor="let employee of employees | async" [value]="employee.uid">
-                                            {{employee.name || employee.email}}
-                                        </mat-option>
-                                    </mat-select>
-                                </mat-form-field>
-                            </form>
+                        <mat-form-field class="form-field">
+                            <input matInput type="text" placeholder="Uitgeverij" [(ngModel)]="publisher" />
+                        </mat-form-field>
+                    </div>
+                    <div class="expension-row">
+                        <mat-form-field class="form-field">
+                            <input matInput type="text" placeholder="Datum van uitgave" [(ngModel)]="publishDate" />
+                        </mat-form-field>
+                    </div>
+
+                    <mat-form-field>
+                        <mat-select placeholder="Selecteer presentator" [(ngModel)]="selectedEmployee" (change)="update(selectedEmployee)" name="food">
+                            <mat-option *ngFor="let employee of employees | async" [value]="employee.uid">
+                                {{employee.name || employee.email}}
+                            </mat-option>
+                        </mat-select>
+                    </mat-form-field>
+
                 </div>
 
                 <div class="form-row">
@@ -47,11 +48,16 @@
                             <textarea rows="8" matInput type="text" placeholder="Beschrijving" [(ngModel)]="description"></textarea>
                         </mat-form-field>
                     </div>
+                    <div class="expension-row">
+                        <mat-form-field class="form-field">
+                            <input matInput type="text" placeholder="video code" [(ngModel)]="videoLink" />
+                            <span matPrefix><b>youtube.com/watch?v=&nbsp;</b></span>
+                        </mat-form-field>
+                    </div>
                 </div>
-                
 
             </div>
-            
+
             <br>
             <mat-divider></mat-divider>
             <h3>Hoofdstukken</h3>

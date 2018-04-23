@@ -16,7 +16,7 @@ export class PresentationComponent implements OnInit {
 
   ngOnInit() {
     this.bookService.activeBook.subscribe(book => this.book = book);
-    console.log(this.book);
+    console.log(this.book.videoLink);
   }
 
   countSection() {
@@ -26,7 +26,8 @@ export class PresentationComponent implements OnInit {
   }
 
   toVideo(time) {
-    this.bookService.setStartTime(time);
+    // this.bookService.setStartTime(this.book.videoLink, time);
     this.bookService.setDisplay();
+    this.bookService.setActiveVideoLink(this.book.videoLink, time);
   }
 }

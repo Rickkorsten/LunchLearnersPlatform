@@ -13,10 +13,10 @@ export class BooksService {
   private timeSource = new BehaviorSubject<string>('20');
   activeTime = this.timeSource.asObservable();
 
-  private videoLink = new BehaviorSubject<string>('baida');
+  private videoLink = new BehaviorSubject<string>('https://www.youtube.com/embed/0ihzH6bCCms?autoplay=0&showinfo=0');
   activeVideoLink = this.videoLink.asObservable();
 
-  private displaySource = new BehaviorSubject<boolean>(true);
+  private displaySource = new BehaviorSubject<boolean>(false);
   displayVideo = this.displaySource.asObservable();
 
   constructor(private http: Http) {
@@ -35,9 +35,9 @@ export class BooksService {
     this.timeSource.next(time);
   }
 
-  public setActiveVideoLink(time: string) {
-    const URL = (`https://www.youtube.com/embed/0ihzH6bCCms?start=${time}&autoplay=0&showinfo=0`);
-    this.timeSource.next(URL);
+  public setActiveVideoLink(video: string, time: string) {
+    const URL = (`https://www.youtube.com/embed/${video}?start=${time}&autoplay=0&showinfo=0`);
+    this.videoLink.next(URL);
   }
 
   public setDisplay() {
