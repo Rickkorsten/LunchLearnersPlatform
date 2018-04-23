@@ -1,6 +1,5 @@
 import { Component, OnInit } from '@angular/core';
 import { BooksService } from './../../app/services/books/books.service';
-import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-presentation',
@@ -11,8 +10,7 @@ export class PresentationComponent implements OnInit {
   book: any;
   counter: number;
   constructor(
-    private bookService: BooksService,
-    private router: Router, ) {
+    private bookService: BooksService) {
     this.counter = 0;
   }
 
@@ -29,6 +27,6 @@ export class PresentationComponent implements OnInit {
 
   toVideo(time) {
     this.bookService.setStartTime(time);
-    this.router.navigate([`../video/${this.book.uid}`]);
+    this.bookService.setDisplay();
   }
 }

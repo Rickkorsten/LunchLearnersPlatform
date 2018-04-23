@@ -3,7 +3,7 @@
     <div class="info-container">
         <p>{{ book.title }}</p>
         <p>Author</p>
-        <p class="description">{{book.description.slice(0, 140)}}...</p>
+        <p class="description">{{book.description}}...</p>
         <div class="action-container">
             <rating [(ngModel)]="rating" iconClass="ster" [float]="true" [titles]="['one', 'two', 'three', 'four', 'five']" [readonly]="true"></rating>
             <app-button [title]="'Bekijk'" [type]="'card'" [icon]="'play_arrow'"></app-button>

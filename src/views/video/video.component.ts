@@ -14,6 +14,7 @@ export class VideoComponent implements OnInit {
   video: string;
   time: string;
   expanded = false;
+  display: any;
 
 
   constructor(
@@ -23,26 +24,40 @@ export class VideoComponent implements OnInit {
     this.video = '5iOhzJdDawE';
     this.bookService.activeBook.subscribe(book => this.book = book);
     this.bookService.activeTime.subscribe(time => this.time = time);
+    this.bookService.displayVideo.subscribe(display => {
+      if (display) {
+        this.display = 'block';
+      } else {
+        this.display = 'none';
+      }
+    });
+
+    // this.bookService.activeVideoLink.subscribe
   }
 
   ngOnInit() {
     // video url
     this.safeURL = this._sanitizer
-    .bypassSecurityTrustResourceUrl(`https://www.youtube.com/embed/${this.video}?start=${this.time}&autoplay=1&showinfo=0`);
+      .bypassSecurityTrustResourceUrl(`https://www.youtube.com/embed/${this.video}?start=${this.time}&autoplay=1&showinfo=0`);
 
   }
 
   goToTime(time) {
     this.safeURL = this._sanitizer
-    .bypassSecurityTrustResourceUrl(`https://www.youtube.com/embed/${this.video}?start=${time}&autoplay=1&showinfo=0`);
+      .bypassSecurityTrustResourceUrl(`https://www.youtube.com/embed/${this.video}?start=${time}&autoplay=1&showinfo=0`);
   }
 
   expand() {
     if (!this.expanded) {
-    this.expanded = true;
+      this.expanded = true;
     } else {
       this.expanded = false;
     }
+  }
+
+  close() {
+    this.expanded = true;
+    this.bookService.setDisplay();
   }
 
 }
