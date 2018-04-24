@@ -1,16 +1,21 @@
 .library {
-    display: flex;
-    justify-content: center;
+    .header-separator {
+        width: 1100px;
+        margin: auto;
+        margin-top: 180px;
+        p {
+            font: 300 24px 'Lato', "Helvetica Neue", sans-serif;
+        }
+    }
     .book-container {
+        margin: auto;
         display: flex;
         width: 1100px;
-        margin-top: 50px;
         justify-content: space-between;
+        flex-wrap: wrap;
+        app-book-card{
+            margin-bottom: 18px;
+        }
     }
 }
 
-.ster {
-    color: #ddd;
-    font-size: 20pxem;
-    position: relative;
-}
