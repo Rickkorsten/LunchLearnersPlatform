@@ -10,9 +10,6 @@ export class BooksService {
   private bookSource = new BehaviorSubject<object>({ 'object': 'object' });
   activeBook = this.bookSource.asObservable();
 
-  private timeSource = new BehaviorSubject<string>('20');
-  activeTime = this.timeSource.asObservable();
-
   private videoLink = new BehaviorSubject<string>('https://www.youtube.com/embed/0ihzH6bCCms?autoplay=0&showinfo=0');
   activeVideoLink = this.videoLink.asObservable();
 
@@ -31,31 +28,12 @@ export class BooksService {
     this.bookSource.next(book);
   }
 
-  public setStartTime(time: string) {
-    this.timeSource.next(time);
-  }
-
   public setActiveVideoLink(video: string, time: string) {
     const URL = (`https://www.youtube.com/embed/${video}?start=${time}&autoplay=0&showinfo=0`);
     this.videoLink.next(URL);
   }
 
-  public setDisplay() {
-    let displayed;
-    this.displayVideo.subscribe(display => displayed = display);
-    if (!displayed) {
-      this.displaySource.next(true);
-    } else {
-      this.displaySource.next(false);
-    }
+  public setDisplay(bool) {
+    this.displaySource.next(bool);
   }
-
-  // public toggleDisplayVideo() {
-  //   if (!this.displayVideo) {
-  //     this.displayVideo = true;
-  //   } else {
-  //     this.displayVideo = false;
-  //   }
-  // }
-
 }

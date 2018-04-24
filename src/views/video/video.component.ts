@@ -24,7 +24,6 @@ export class VideoComponent implements OnInit {
   ) {
     this.video = '5iOhzJdDawE';
     this.bookService.activeBook.subscribe(book => this.book = book);
-    this.bookService.activeTime.subscribe(time => this.time = time);
     this.bookService.displayVideo.subscribe(display => {
       if (display) {
         this.display = 'block';
@@ -41,10 +40,6 @@ export class VideoComponent implements OnInit {
   }
 
   ngOnInit() {
-    // video url
-    this.safeURL = this._sanitizer
-      .bypassSecurityTrustResourceUrl(`https://www.youtube.com/embed/${this.video}?start=${this.time}&autoplay=1&showinfo=0`);
-
   }
 
   goToTime(time) {
@@ -62,7 +57,7 @@ export class VideoComponent implements OnInit {
 
   close() {
     this.expanded = true;
-    this.bookService.setDisplay();
+    this.bookService.setDisplay(false);
   }
 
 }
