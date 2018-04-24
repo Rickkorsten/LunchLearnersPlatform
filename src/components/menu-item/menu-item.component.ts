@@ -9,6 +9,7 @@ export class MenuItemComponent implements OnInit {
 
   @Input() title: string;
   @Input() icon: string;
+  @Input() router: string;
 
     constructor() {
      }
