@@ -10,6 +10,9 @@ export class BooksService {
   private bookSource = new BehaviorSubject<object>({ 'object': 'object' });
   activeBook = this.bookSource.asObservable();
 
+  private presentationSource = new BehaviorSubject<object>({ 'object': 'object' });
+  activePresentation = this.presentationSource.asObservable();
+
   private videoLink = new BehaviorSubject<string>('https://www.youtube.com/embed/0ihzH6bCCms?autoplay=0&showinfo=0');
   activeVideoLink = this.videoLink.asObservable();
 
@@ -26,6 +29,10 @@ export class BooksService {
 
   public setActiveBook(book: object) {
     this.bookSource.next(book);
+  }
+
+  public setActivePresentation(presentation: object) {
+    this.presentationSource.next(presentation);
   }
 
   public setActiveVideoLink(video: string, time: string) {

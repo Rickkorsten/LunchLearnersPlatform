@@ -23,7 +23,7 @@ export class VideoComponent implements OnInit {
     private _sanitizer: DomSanitizer
   ) {
     this.video = '5iOhzJdDawE';
-    this.bookService.activeBook.subscribe(book => this.book = book);
+    this.bookService.activePresentation.subscribe(book => this.book = book);
     this.bookService.displayVideo.subscribe(display => {
       if (display) {
         this.display = 'block';
@@ -35,8 +35,6 @@ export class VideoComponent implements OnInit {
       this.safeURL = this._sanitizer
         .bypassSecurityTrustResourceUrl(link);
     });
-
-    // this.bookService.activeVideoLink.subscribe
   }
 
   ngOnInit() {

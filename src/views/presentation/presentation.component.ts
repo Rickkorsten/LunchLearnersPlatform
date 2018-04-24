@@ -1,4 +1,6 @@
 import { Component, OnInit } from '@angular/core';
+import { MatDialog } from '@angular/material';
+import { ReviewDialogComponent } from './dialogs/review-dialog/review-dialog.component';
 import { BooksService } from './../../app/services/books/books.service';
 import { FirebaseCallsService } from './../../app/services/firebaseCalls/firebase-calls.service';
 import { ActivatedRoute } from '@angular/router';
@@ -12,12 +14,15 @@ export class PresentationComponent implements OnInit {
   book: any;
   counter: number;
   activeBookUid: any;
+  rating: number;
 
   constructor(
     private bookService: BooksService,
     private route: ActivatedRoute,
-    private FirebaseCall: FirebaseCallsService, ) {
+    private FirebaseCall: FirebaseCallsService,
+    public dialog: MatDialog, ) {
 
+    this.rating = 3;
     this.counter = 0;
     this.route.params.subscribe( params => this.activeBookUid = params.book );
   }
@@ -34,6 +39,18 @@ export class PresentationComponent implements OnInit {
     }
   }
 
+  openDialog(): void {
+    const dialogRef = this.dialog.open(ReviewDialogComponent, {
+      width: '600px',
+      height: '800px',
+      data: {}
+    });
+
+    dialogRef.afterClosed().subscribe(result => {
+     console.log(result);
+    });
+  }
+
   countSection() {
     this.counter++;
     const count = this.counter;
@@ -41,6 +58,7 @@ export class PresentationComponent implements OnInit {
   }
 
   toVideo(time) {
+    this.bookService.setActivePresentation(this.book);
     this.bookService.setActiveVideoLink(this.book.videoLink, time);
     this.bookService.setDisplay(true);
   }

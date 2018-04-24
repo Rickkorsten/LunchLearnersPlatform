@@ -50,6 +50,7 @@ import { VideoComponent } from './../views/video/video.component';
 import { FirebaseCallsService } from './../app/services/firebaseCalls/firebase-calls.service';
 import { BooksService } from './../app/services/books/books.service';
 import { BookCardComponent } from './../components/book-card/book-card.component';
+import { ReviewDialogComponent } from './../views/presentation/dialogs/review-dialog/review-dialog.component';
 
 const firebaseConfig = {
   apiKey: 'AIzaSyBR3HJduE1qTWlz7D7LiLlVDPda3Vu3wBk',
@@ -89,6 +90,7 @@ const firebaseConfig = {
     BookInfoHeaderComponent,
     VideoComponent,
     BookCardComponent,
+    ReviewDialogComponent,
   ],
   imports: [
     BrowserModule,
@@ -114,7 +116,8 @@ const firebaseConfig = {
   ],
   entryComponents: [
     BookDialogComponent,
-    CompanyDialogComponent
+    CompanyDialogComponent,
+    ReviewDialogComponent
   ],
   bootstrap: [AppComponent]
 })

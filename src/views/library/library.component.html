@@ -1,7 +1,5 @@
 <div class="library">
     <div class="book-container">
-
         <app-book-card *ngFor="let book of books | async" [book]="book" (click)="toPresentationPage(book)"></app-book-card>
-
     </div>
 </div>
