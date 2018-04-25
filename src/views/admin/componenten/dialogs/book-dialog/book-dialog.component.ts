@@ -70,6 +70,7 @@ export class BookDialogComponent {
     this.selectedBook = {
       'title': this.title,
       'subTitle': this.subTitle,
+      'author': this.authors,
       'smallThumbnail': this.smallThumbnail,
       'bigThumbnail': this.bigThumbnail,
       'publisher': this.publisher,
@@ -79,8 +80,6 @@ export class BookDialogComponent {
       'ISBN_10': this.ISBN_10,
       'categories': this.categories,
     };
-
-    console.log(this.selectedBook.title);
   }
 
   bookNotFound = () => {

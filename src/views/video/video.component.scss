@@ -1,0 +1,153 @@
+mat-toolbar[_ngcontent-c0] {
+    display: none;
+}
+
+mat-drawer-container {
+    //margin-top: 65px;
+    height: 100vh;
+    overflow: visible;
+    background-color: transparent;
+}
+
+::ng-deep mat-drawer-content {
+    display: contents !important;
+}
+
+mat-drawer {
+    width: 400px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    background: transparent;
+}
+
+::ng-deep .mat-drawer-backdrop.mat-drawer-shown {
+    background: linear-gradient(to right, rgba(0, 196, 255, 0.35) 0%, rgba(0, 184, 240, 0.35) 32%, rgba(0, 98, 128, 0.35) 100%) !important;
+}
+
+::ng-deep .mat-drawer:not(.mat-drawer-side) {
+    box-shadow: 0 0px 0px 0px rgba(0, 0, 0, .2), 0 0px 0px 0px rgba(0, 0, 0, .14), 0 0px 0px 0px rgba(0, 0, 0, .12) !important;
+}
+
+
+.mat-mini-fab{
+    background-color: #fff;
+    float: right;
+    margin-bottom: -18px;
+}
+
+.drawer-button {
+    float: left;
+    display: none;
+    margin-left: 16px;
+    color: #73C884;
+ }
+
+.expand{
+    color: #73C884;
+    margin-right: 8px;
+}
+
+.close{
+    color: #FF7171;
+    margin-right: -16px;
+}
+
+app-book-card {
+    margin-top: 50px;
+}
+
+.video {
+    //margin-top: -65px;
+    position: fixed;
+    right: 0px;
+    bottom: 0px;
+    padding-right: 30px;
+    padding-bottom: 20px;
+    height: 222px;
+    width: 356px;
+    z-index: 9999;
+    transition-duration: 0.5s;
+}
+
+.expanded {
+    //margin-top: -65px;
+    position: fixed;
+    right: 0px;
+    bottom: 0px;
+    height: 100%;
+    width: 100%;
+    padding: 0;
+
+    .player {
+        width: 100%;
+        height: 100vh;
+        margin-top: -45px;
+    }
+
+    .drawer-button {
+        display: block;
+    }
+
+    .mat-mini-fab{
+        margin-top: 24px;
+        z-index: 999;
+    }
+
+    .expand{
+        margin-right: 8px;
+    }
+    
+    .close{
+        margin-right: 16px;
+    }
+}
+
+.player {
+    width: 100%;
+    height: 200px;
+}
+
+
+.section {
+    margin-top: 10px;
+    margin-bottom: 0px;
+    width: 350px;
+    background-color: white;
+    height: 64px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    flex-direction: row;
+    border-radius: 5px;
+    transition-duration: 0.3s;
+    -webkit-box-shadow: 0px 0px 10px 0px rgba(0, 0, 0, 0.12);
+    -moz-box-shadow: 0px 0px 10px 0px rgba(0, 0, 0, 0.12);
+    box-shadow: 0px 0px 10px 0px rgba(0, 0, 0, 0.12);
+    div {
+        padding-left: 25px;
+        display: flex;
+        flex-direction: column;
+        p:first-child {
+            margin: 0;
+            padding: 0;
+            font-size: 12px;
+            color: #D1CBCB;
+        }
+        P {
+            margin: 0;
+            padding: 0;
+            font-size: 18px;
+            color: #707070;
+        }
+    }
+    .time {
+        padding-right: 25px;
+        .value {
+            margin: 0;
+            padding: 0;
+            font-size: 18px;
+            color: #3EA4D0;
+        }
+    }
+}

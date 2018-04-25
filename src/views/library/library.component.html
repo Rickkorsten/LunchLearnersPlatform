@@ -1,9 +1,14 @@
 <div class="library">
-  <mat-card *ngFor="let book of books | async" class="card" (click)="toPresentationPage(book)">
-    <img mat-card-image src={{book.bigThumbnail}} alt="Photo of {{book.title}">
-    <mat-card-title class="title">{{ book.title }}</mat-card-title>
-    <p class="description">
-      {{book.description}}
-    </p>
-  </mat-card>
+        <div class="header-separator">
+                <p>Collectie van Fontys</p>
+        </div>
+    <div class="book-container">
+<<<<<<< HEAD
+=======
+
+            
+
+>>>>>>> fe09ee657636938e8de09ea90e2557cc05d1f9bb
+        <app-book-card *ngFor="let book of books | async" [book]="book" (click)="toPresentationPage(book)"></app-book-card>
+    </div>
 </div>

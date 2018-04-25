@@ -1,0 +1,24 @@
+<div [class.expanded]="expanded" [ngStyle]="{'display':display}" class="video">
+    <mat-drawer-container>
+        <mat-drawer #drawer class="sidenav" mode="over">
+            <app-book-card [type]="'sidemenu'" [book]="book" (click)="toPresentationPage(book)"></app-book-card>
+            <div *ngFor="let section of book.sections; let i = index ">
+                <app-section-button [type]="'sidemenu'" [section]="i+1" [title]="section.title" [time]="section.time " (click)="goToTime(section.time)"></app-section-button>
+            </div>
+        </mat-drawer>
+
+        <div>
+            <button class="drawer-button" mat-mini-fab (click)="drawer.toggle()">
+                <mat-icon aria-label="Example icon-button with a heart icon">list</mat-icon>
+            </button>
+            <button mat-mini-fab class="close" (click)="close()">
+                <mat-icon>close</mat-icon>
+            </button>
+            <button mat-mini-fab class="expand" (click)="expand()">
+                <mat-icon>fullscreen</mat-icon>
+            </button>
+            <iframe class="player" [src]='safeURL' frameborder="0" controls="1" showinfo="0" donotallowfullscreen autoplay></iframe>
+        </div>
+
+    </mat-drawer-container>
+</div>

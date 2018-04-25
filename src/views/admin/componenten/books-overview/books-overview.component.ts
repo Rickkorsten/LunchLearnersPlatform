@@ -4,7 +4,7 @@ import { BookDialogComponent } from './../dialogs/book-dialog/book-dialog.compon
 import { AuthService } from '../../../../app/core/auth.service';
 import { MatDialog } from '@angular/material';
 import { FirebaseCallsService } from './../../../../app/services/firebaseCalls/firebase-calls.service';
-
+import { SortEvent } from './../../../../app/directives/draggable/sortable-list.directive';
 @Component({
   selector: 'app-books-overview',
   templateUrl: './books-overview.component.html',
@@ -14,34 +14,27 @@ import { FirebaseCallsService } from './../../../../app/services/firebaseCalls/f
 
 export class BooksOverviewComponent implements OnInit {
 
+  uid: any;
   books: any;
+  subTitle: string;
+  publisher: string;
+  description: string;
+  publishDate: string;
+  categories: string;
+  videoLink: string;
 
-  name: string;
-  cover: string;
-  desc: string;
-  reviewuid: string[] = [];
-  presentatielink: string;
-
-  sections: object[];
+  sections: any;
   sectionsCount: number;
+
+  employees: any;
+  selectedEmployee: any;
 
   constructor(private db: AngularFirestore,
     public dialog: MatDialog,
     public auth: AuthService,
     private FirebaseCall: FirebaseCallsService) {
 
-    this.sections = [
-      {
-        section: 1,
-        title: 'introduction',
-        time: '0:50',
-      },
-      {
-        section: 2,
-        title: 'De generaal',
-        time: '1:50',
-      }
-    ];
+    this.sectionsCount = 0;
 
   }
 
@@ -58,11 +51,12 @@ export class BooksOverviewComponent implements OnInit {
 
   ngOnInit() {
     this.books = this.FirebaseCall.getBooksCollection();
+    this.employees = this.FirebaseCall.getEmployeesCollection();
   }
 
   uploadBookToFirestore(result) {
     const id = this.db.createId();
-    const { title, subTitle, smallThumbnail, bigThumbnail, publisher, publishDate, description,
+    const { title, subTitle, author, smallThumbnail, bigThumbnail, publisher, publishDate, description,
       ISBN_13, ISBN_10, categories } = result.book;
     console.log(title);
 
@@ -70,6 +64,7 @@ export class BooksOverviewComponent implements OnInit {
       'uid': id,
       'title': (title ? title : 'EMPTY'),
       'subTitle': (subTitle ? subTitle : 'EMPTY'),
+      'author': (author ? author : 'EMPTY'),
       'smallThumbnail': (smallThumbnail ? smallThumbnail : 'EMPTY'),
       'bigThumbnail': (bigThumbnail ? bigThumbnail : 'EMPTY'),
       'publisher': (publisher ? publisher : 'EMPTY'),
@@ -82,21 +77,66 @@ export class BooksOverviewComponent implements OnInit {
 
   }
 
-  // deleteFromObject( title: string, time: string){
-  // }
+  getBook(book) {
+    console.log(book);
+    this.uid = book.uid;
+    this.subTitle = book.subTitle;
+    this.publisher = book.publisher;
+    this.publishDate = book.publishDate;
+    this.description = book.description;
+    this.categories = book.categories;
+    this.sections = book.sections ? book.sections : [] ;
+    this.selectedEmployee = book.employee ? book.employee : 'selecteer presentator';
+    this.videoLink = book.videoLink ? book.videoLink : '';
+  }
 
-  addToObject(section: number, title: string, time: string) {
+  updateBook() {
+    console.log(this.subTitle, this.publisher, this.publishDate, this.description, this.categories);
+    this.db.doc(`books/${this.uid}`).update({
+      'subTitle': (this.subTitle),
+      'publisher': (this.publisher),
+      'publishDate': (this.publishDate),
+      'description': (this.description),
+      'categories': (this.categories),
+      'sections': (this.sections),
+      'employee': (this.selectedEmployee),
+      'videoLink': (this.videoLink),
+    }).then(function () {
+      console.log('Document successfully written!');
+    })
+      .catch(function (error) {
+        console.error('Error writing document: ', error);
+      });
+  }
+
+  update(a) {
+    console.log(a);
+  }
+
+  deleteBook() {
+    this.db.doc(`books/${this.uid}`).delete();
+  }
+
+  addToObject(title: string, time: string) {
+    console.log(this.sections);
+    const id = this.db.createId();
+    console.log(this.sections);
     this.sections.push(
       {
-        section: section,
+        id: id,
         title: title,
         time: time,
       }
     );
+    console.log(this.sections);
   }
 
-  test() {
-    console.log('open');
+  sort(event: SortEvent) {
+    const current = this.sections[event.currentIndex];
+    const swapWith = this.sections[event.newIndex];
+
+    this.sections[event.newIndex] = current;
+    this.sections[event.currentIndex] = swapWith;
   }
 
 }

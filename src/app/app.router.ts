@@ -14,6 +14,8 @@ import { ExportOverviewComponent } from './../views/admin/componenten/export-ove
 import { ReviewsOverviewComponent } from './../views/admin/componenten/reviews-overview/reviews-overview.component';
 import { BookInfoComponent } from './../views/book-info/book-info.component';
 import { PresentationComponent } from './../views/presentation/presentation.component';
+import { ReviewFormComponent } from './../views/review-form/review-form.component';
+import { VideoComponent } from './../views/video/video.component';
 
 // This file defines all the URL's of the application, this is done with the path: '...'
 // The after the path we define the component we want to go to when this URL is called
@@ -27,9 +29,10 @@ export const router: Routes = [
     { path: 'book-info/:uid', component: BookInfoComponent, canActivate: [AuthGuard] },
     { path: 'settings', component: SettingsComponent, canActivate: [AuthGuard] },
     { path: 'bookpresentation/:book', component: PresentationComponent, canActivate: [AuthGuard] },
+    { path: 'review/:bookcode', component: ReviewFormComponent},
+    { path: 'video/:bookcode', component: VideoComponent, canActivate: [AuthGuard] },
     // The admin path also has childeren, these define the paths of the admin router outlet inside of the admin component
     { path: 'admin', component: AdminComponent, canActivate: [AuthGuard] , children: [
-        { path: '', component: BooksOverviewComponent, outlet: 'admin' },
         { path: 'books', component: BooksOverviewComponent, outlet: 'admin' },
         { path: 'companies', component: CompanyOverviewComponent, outlet: 'admin' },
         { path: 'users', component: UsersOverviewComponent, outlet: 'admin' },

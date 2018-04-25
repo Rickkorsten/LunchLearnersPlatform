@@ -1,19 +1,7 @@
 import { AngularFireAuth } from 'angularfire2/auth';
 import { Component, OnInit } from '@angular/core';
-import { AngularFirestore, AngularFirestoreCollection } from 'angularfire2/firestore';
-import { Observable } from 'rxjs/Observable';
-// import { AuthService } from '../../../../app/core/auth.service';
 import { MatDialog } from '@angular/material';
-// import * as admin from 'firebase-admin';
 import { FirebaseCallsService } from './../../../../app/services/firebaseCalls/firebase-calls.service';
-
-interface Employee {
-  displayName: string;
-  email: string;
-  photoURL: string;
-  uid: string;
-  companyUid: string;
-}
 
 @Component({
   selector: 'app-employee-overview',
@@ -23,11 +11,9 @@ interface Employee {
 })
 export class EmployeeOverviewComponent implements OnInit {
 
-  employeesCol: AngularFirestoreCollection<Employee>;
-  employees: Observable<Employee[]>;
+  employees: any;
 
   constructor(
-    private db: AngularFirestore,
     public dialog: MatDialog,
     public auth: AngularFireAuth,
     private FirebaseCall: FirebaseCallsService, ) {
@@ -35,8 +21,7 @@ export class EmployeeOverviewComponent implements OnInit {
 
 
   ngOnInit() {
-    this.employeesCol = this.db.collection('users', ref => ref.where('role', '==', 'employee'));
-    this.employees = this.employeesCol.valueChanges();
+    this.employees = this.FirebaseCall.getEmployeesCollection();
   }
 
   delete(UID, companyUID) {

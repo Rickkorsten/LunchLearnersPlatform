@@ -13,6 +13,7 @@ import { AngularFireStorageModule } from 'angularfire2/storage';
 import { AngularFireDatabaseModule } from 'angularfire2/database';
 import { AngularFireAuthModule } from 'angularfire2/auth';
 import { AngularFirestoreModule } from 'angularfire2/firestore';
+import { RatingModule } from 'ngx-rating';
 
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { DropZoneDirective } from './directives/dropZone/drop-zone.directive';
@@ -41,6 +42,15 @@ import { BookInfoComponent } from './../views/book-info/book-info.component';
 import { PresentationComponent } from './../views/presentation/presentation.component';
 import { SectionButtonComponent } from './../components/section-button/section-button.component';
 import { ButtonComponent } from './../components/button/button.component';
+import { DraggableModule } from './directives/draggable/draggable.module';
+import { ReviewFormComponent } from './../views/review-form/review-form.component';
+import { BookInfoHeaderComponent } from './../components/book-info-header/book-info-header.component';
+import { VideoComponent } from './../views/video/video.component';
+
+import { FirebaseCallsService } from './../app/services/firebaseCalls/firebase-calls.service';
+import { BooksService } from './../app/services/books/books.service';
+import { BookCardComponent } from './../components/book-card/book-card.component';
+import { ReviewDialogComponent } from './../views/presentation/dialogs/review-dialog/review-dialog.component';
 
 const firebaseConfig = {
   apiKey: 'AIzaSyBR3HJduE1qTWlz7D7LiLlVDPda3Vu3wBk',
@@ -76,6 +86,11 @@ const firebaseConfig = {
     PresentationComponent,
     SectionButtonComponent,
     ButtonComponent,
+    ReviewFormComponent,
+    BookInfoHeaderComponent,
+    VideoComponent,
+    BookCardComponent,
+    ReviewDialogComponent,
   ],
   imports: [
     BrowserModule,
@@ -91,11 +106,18 @@ const firebaseConfig = {
     CoreModule,
     HttpClientModule,
     HttpModule,
-    ReactiveFormsModule
+    ReactiveFormsModule,
+    DraggableModule,
+    RatingModule,
+  ],
+  providers: [
+    FirebaseCallsService,
+    BooksService
   ],
   entryComponents: [
     BookDialogComponent,
-    CompanyDialogComponent
+    CompanyDialogComponent,
+    ReviewDialogComponent
   ],
   bootstrap: [AppComponent]
 })

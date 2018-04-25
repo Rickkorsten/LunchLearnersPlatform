@@ -1,5 +1,4 @@
-<div class="button">
-    <p>{{title}}</p>
-    <mat-icon aria-label="Example icon-button with a heart icon">{{Icon}}
-    </mat-icon>
+<div class="button" [ngClass]="type" [style.background-color]="background" [style.border-color]="border">
+    <p [style.color]="iconText">{{title}}</p>
+    <mat-icon [style.color]="iconText" [ngStyle]="{'padding-left.px': icon ? 10 : 0}">{{icon}}</mat-icon>
 </div>
