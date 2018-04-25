@@ -10,11 +10,13 @@ export class ButtonComponent implements OnInit {
   @Input() title: string;
   @Input() icon: string;
   @Input() filled: boolean;
-  @Input() type: string; // card , accept , decline
+  @Input() type: string; // card , accept , decline, start
 
   background: string;
   border: string;
   iconText: string;
+
+  marginLeft: string;
 
   constructor() { }
 
@@ -31,6 +33,10 @@ export class ButtonComponent implements OnInit {
         this.border = '#73C884';
         this.iconText = this.filled ? '#fff' : '#73C884';
         break;
+      case 'start':
+       this.background = '#00000000';
+       this.border = '#73C884';
+       this.iconText = '#FFFFFF';
     }
 
   }
