@@ -12,7 +12,7 @@
   <div class="drawer">
     <div *ngFor="let menuItem of menuItems">
       <app-menu-item
-      [routerLink]="menuItem.router"
+      [router]="menuItem.router"
       [icon]="menuItem.icon"
       [title]="menuItem.title"
       routerLinkActive="active-link"

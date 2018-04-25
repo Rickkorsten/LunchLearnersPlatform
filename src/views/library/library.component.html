@@ -4,26 +4,12 @@
         <p class="banner-title"> Title last book</p>
         <p class="banner-author"> Author last book</p>
         <!--<button class="banner-btnPlay">Bekijk</button>-->
+        <app-button class="btnPlay" [title]="'Bekijk'" [type]="'start'" [icon]="'play_arrow'"></app-button>
     </div>
-    <app-button class="btnPlay" [title]="'Bekijk'" [type]="'start'" [icon]="'play_arrow'"></app-button>
-        <app-button [title]="'Bekijk'" [type]="'card'" [icon]="'play_arrow'"></app-button>
-
-    <div class="title"> Boeken collectie van {{user.company}}</div>
-    <div class="book-container">
-        <div *ngFor="let book of books | async" class="book-card" (click)="toPresentationPage(book)">
-            <img src={{book.bigThumbnail}} alt="Photo of {{book.title}">
-            <div class="info-container">
-                <p>{{ book.title }}</p>
-                <p>Author</p>
-                <p class="description">{{book.description.slice(0, 100)}}...</p>
-                <div class="action-container">
-                    <rating [(ngModel)]="rating" iconClass="ster" [float]="true" [titles]="['one', 'two', 'three', 'four', 'five']" [readonly]="true"></rating>
-                    <!--<app-button [title]="'Bekijk'" [type]="'card'" [icon]="'play_arrow'"></app-button>-->
-                    <app-button class="btnPlay" [title]="'Bekijk'" [type]="'start'" [icon]="'play_arrow'"></app-button>
-                </div>
-            </div>
+        <div class="header-separator">
+                <p>Collectie van Fontys</p>
         </div>
+    <div class="book-container">
+        <app-book-card *ngFor="let book of books | async" [book]="book" (click)="toPresentationPage(book)"></app-book-card>
     </div>
-    <app-button class="btnPlay" [title]="'Bekijk'" [type]="'start'" [icon]="'play_arrow'"></app-button>
-    <app-button [title]="'Bekijk'" [type]="'card'" [icon]="'play_arrow'"></app-button>
 </div>

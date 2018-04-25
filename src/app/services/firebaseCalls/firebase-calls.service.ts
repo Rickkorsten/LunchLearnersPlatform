@@ -14,6 +14,7 @@ interface Company {
   name: string;
   code: string;
   users: string[];
+  books: string[];
 }
 
 interface Book {
@@ -100,6 +101,13 @@ export class FirebaseCallsService {
     this.companies = this.companiesCol.valueChanges();
     return this.companies;
   }
+
+  getcompany(uid) {
+    this.companiesCol = this.db.collection('companies', ref => ref.where('uid', '==', uid));
+    this.companies = this.companiesCol.valueChanges();
+    return this.companies;
+  }
+
   getBooksCollection() {
     this.booksCol = this.db.collection('books');
     this.books = this.booksCol.valueChanges();
@@ -108,6 +116,12 @@ export class FirebaseCallsService {
 
   getBook(reviewId) {
     this.booksCol = this.db.collection('books', ref => ref.where('reviewId', '==', reviewId));
+    this.books = this.booksCol.valueChanges();
+    return this.books;
+  }
+
+  getActiveBook(uid) {
+    this.booksCol = this.db.collection('books', ref => ref.where('uid', '==', uid));
     this.books = this.booksCol.valueChanges();
     return this.books;
   }

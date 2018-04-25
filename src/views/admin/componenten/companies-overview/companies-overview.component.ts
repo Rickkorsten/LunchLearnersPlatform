@@ -1,20 +1,9 @@
 import { Component, OnInit } from '@angular/core';
-import { AngularFirestore, AngularFirestoreCollection } from 'angularfire2/firestore';
-import { Observable } from 'rxjs/Observable';
+import { AngularFirestore } from 'angularfire2/firestore';
 import { CompanyDialogComponent } from './../dialogs/company-dialog/company-dialog.component';
 import { AuthService } from '../../../../app/core/auth.service';
+import { FirebaseCallsService } from './../../../../app/services/firebaseCalls/firebase-calls.service';
 import { MatDialog } from '@angular/material';
-
-
-interface Company {
-  name: string;
-  code: string;
-  branche: string;
-  emailsuffix: string;
-  books: string[];
-  users: string[];
-  uid: string;
-}
 
 @Component({
   selector: 'app-companies-overview',
@@ -29,10 +18,10 @@ export class CompanyOverviewComponent implements OnInit {
   popupEmailsuffix: string;
   popupUsers: string[] = [];
   popupBooks: string[] = [];
-  popupMessage: string ;
+  popupMessage: string;
 
-  companiesCol: AngularFirestoreCollection<Company>;
-  companies: Observable<Company[]>;
+  companies: any;
+  allBooks: any;
 
   uid: string;
   name: string;
@@ -42,7 +31,38 @@ export class CompanyOverviewComponent implements OnInit {
   books: string[];
   users: string[];
 
-  constructor(private db: AngularFirestore, public dialog: MatDialog, public auth: AuthService) {
+  selectedBooks: string;
+  companyBooksArray: string[];
+  allBranches: string[];
+
+  constructor(
+    private db: AngularFirestore,
+    public dialog: MatDialog,
+    public auth: AuthService,
+    private FirebaseCall: FirebaseCallsService) {
+      this.allBranches = [
+        'Bouw en Vastgoed',
+        'Communicatie en Media',
+        'Consultancy',
+        'Energiebedrijven',
+        'Facilitaire dienstverlening',
+        'Fast Moving Consumer Goods',
+        'Financiële dienstverlening',
+        'Financiële instellingen',
+        'Gezondheidszorg en welzijnszorg',
+        'Handel en retail',
+        'Horeca, Recreatie, Toerisme en Cultuur',
+        'Industrie',
+        'Informatie en Communicatie Technologie (ICT)',
+        'Intermediairs',
+        'Juridische dienstverlening',
+        'Land- en tuinbouw',
+        'Onderwijs en Onderzoek',
+        'Overheid en semi-overheid',
+        'Technische dienstverlening',
+        'Telecommunicatie',
+        'Transport en Logistiek'
+      ];
   }
 
   openDialog(): void {
@@ -58,32 +78,17 @@ export class CompanyOverviewComponent implements OnInit {
   }
 
   ngOnInit() {
-    this.companiesCol = this.db.collection('companies');
-    this.companies = this.companiesCol.valueChanges();
+    this.companies = this.FirebaseCall.getCompaniesCollection();
+    this.allBooks = this.FirebaseCall.getBooksCollection();
   }
 
-  get(uid, name, code, branche, emailsuffix) {
-    this.uid = uid;
-    this.name = name;
-    this.code = code ;
-    this.branche = branche;
-    this.emailsuffix = emailsuffix;
-  }
-
-  changeNameInput(input) {
-    this.name = input;
-  }
-
-  changeCodeInput(input) {
-    this.code = input;
-  }
-
-  changeBrancheInput(input) {
-    this.branche = input;
-  }
-
-  changeEmailsuffixInput(input) {
-    this.emailsuffix = input;
+  get(uid, name, code, branche, emailsuffix, books) {
+    this.uid = uid ? uid : '';
+    this.name = name ? name : '';
+    this.code = code ? code : '';
+    this.branche = branche ? branche : '';
+    this.emailsuffix = emailsuffix ? emailsuffix : '';
+    this.companyBooksArray = books ? books : [];
   }
 
   update() {
@@ -92,6 +97,7 @@ export class CompanyOverviewComponent implements OnInit {
       'code': this.code,
       'branche': this.branche,
       'emailsuffix': this.emailsuffix,
+      'books': this.companyBooksArray
     });
 
     console.log('updated');
@@ -124,6 +130,21 @@ export class CompanyOverviewComponent implements OnInit {
     this.clearFields();
     this.popupMessage = 'uploaded';
 
+  }
+
+  updateBookArray(book) {
+    console.log(book);
+    this.companyBooksArray.push(book);
+  }
+
+  deleteBook(item) {
+    this.companyBooksArray = this.remove(this.companyBooksArray, item);
+  }
+
+  remove(arr, dele) {
+    return arr.filter((el) => {
+      return el !== dele;
+    });
   }
 
 }

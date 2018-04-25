@@ -7,9 +7,13 @@
     -moz-box-shadow: 0px 0px 10px 0px rgba(0, 0, 0, 0.12);
     box-shadow: 0px 0px 10px 0px rgba(0, 0, 0, 0.12);
     overflow: hidden;
-    width: 350px;
+    width: 355px;
     height: 180px;
     transition-duration: 0.3s;
+
+    img{
+        width: 120px;
+    }
     .info-container {
         display: flex;
         flex-direction: column;
@@ -22,17 +26,45 @@
         }
         p {
             font-size: 13px;
-            color: #707070;
+            color: #909090;
             padding: 0;
             margin: 0;
         }
         .description {
-            font-size: 11px;
+            font-size: 12px;
+            line-height: 18px;
             margin-top: 8px;
+            height: 108px;
         }
         .action-container {
             display: flex;
             flex-direction: row;
+
+            .button {
+                height: 29px;
+                display: flex;
+                align-self: center;
+                align-items: center;
+                width: max-content;
+                transition-duration: 0.2s;
+                cursor: pointer;
+                p {
+                    font-size: 14px;
+                    padding-left: 38px;
+                    margin: 0px;
+                    color: #73c884;
+                }
+                mat-icon {
+                    font-size: 14px;
+                    display: flex;
+                    align-items: center;
+                    height: auto;
+                    width: auto;
+                    color: #73c884;
+                    padding-right: 0px;
+                    padding-left: 10px;
+                }
+            }
         }
     }
 }
@@ -47,4 +79,9 @@
     box-shadow: 0px 6px 30px 0px rgba(0, 0, 0, 0.12);
     margin-top: -10px;
     cursor: pointer;
+}
+
+::ng-deep .ster{
+    color: #ddd;
+    font-size: 1em !important;
 }
