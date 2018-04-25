@@ -15,6 +15,7 @@ export class ButtonComponent implements OnInit {
   background: string;
   border: string;
   iconText: string;
+  width: string;
 
   constructor() { }
 
@@ -30,6 +31,12 @@ export class ButtonComponent implements OnInit {
         this.background = this.filled ? '#73C884' : '#fff';
         this.border = '#73C884';
         this.iconText = this.filled ? '#fff' : '#73C884';
+        break;
+      case 'decline':
+        this.background = this.filled ? '#707070' : '#fff';
+        this.border = '#707070';
+        this.iconText = this.filled ? '#fff' : '#707070';
+        this.width = '269.6px';
         break;
     }
 
