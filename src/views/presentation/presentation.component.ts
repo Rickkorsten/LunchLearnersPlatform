@@ -47,7 +47,11 @@ export class PresentationComponent implements OnInit {
     });
 
     dialogRef.afterClosed().subscribe(result => {
-     console.log(result);
+     const extraInfo = {'bookUID': this.book.uid, 'employee': this.book.employee};
+    const review = Object.assign(result, extraInfo);
+     console.log(review);
+     // bookUID
+     this.FirebaseCall.updateReview(review);
     });
   }
 

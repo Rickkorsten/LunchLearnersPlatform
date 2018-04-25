@@ -55,6 +55,12 @@ export class MenuContainerComponent implements OnInit {
         'icon': 'import_export',
         'id': 6,
       },
+      {
+        'title': 'Review builder',
+        'router': [{ outlets: { admin: 'reviewbuilder' } }],
+        'icon': 'rate_review',
+        'id': 7,
+      },
     ];
 
   }

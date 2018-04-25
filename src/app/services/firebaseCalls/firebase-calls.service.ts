@@ -145,7 +145,7 @@ export class FirebaseCallsService {
       'q7' : result.q7,
       'q8' : result.q8,
       'q9' : result.q9,
-      'employee' : 'Kylo ren',
+      'employee' : result.employee,
       'book' : result.bookUID,
     });
   }

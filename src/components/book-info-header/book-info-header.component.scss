@@ -17,7 +17,7 @@
         .bar-container {
             display: flex;
             flex-direction: row;
-            height: 60px;
+            height: 120px;
             border-bottom: 1px solid #ebebeb;
             border-bottom-width: 80%;
             justify-content: space-between;
@@ -69,7 +69,6 @@
                     font-size: 15px;
                     color: #4a4a4a;
                     font: 300 18px 'Lato', "Helvetica Neue", sans-serif;
-
                 }
                 p {
                     color: #707070;

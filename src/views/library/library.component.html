@@ -1,14 +1,7 @@
 <div class="library">
-    <div class="banner">
-        <!--<img class="img" id="lunch-learners-banner" src="../assets/login background.jpg">-->
-        <p class="banner-title"> Title last book</p>
-        <p class="banner-author"> Author last book</p>
-        <!--<button class="banner-btnPlay">Bekijk</button>-->
-        <app-button class="btnPlay" [title]="'Bekijk'" [type]="'start'" [icon]="'play_arrow'"></app-button>
+    <div class="header-separator">
+        <p>Collectie van Fontys</p>
     </div>
-        <div class="header-separator">
-                <p>Collectie van Fontys</p>
-        </div>
     <div class="book-container">
         <app-book-card *ngFor="let book of books | async" [book]="book" (click)="toPresentationPage(book)"></app-book-card>
     </div>

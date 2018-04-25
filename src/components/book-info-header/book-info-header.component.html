@@ -15,11 +15,11 @@
                 <table>
                     <tr>
                         <td>Genre</td>
-                        <td>{{checkDbOutput(book.genre)}}</td>
+                        <td>{{checkDbOutput(book.categories)}}</td>
                     </tr>
                     <tr>
                         <td>Schrijver</td>
-                        <td>{{checkDbOutput(book.publisher)}}</td>
+                        <td>{{checkDbOutput(book.author)}}</td>
                     </tr>
                     <tr>
                         <td>Uitgave</td>
@@ -28,7 +28,7 @@
                     <br>
                     <tr>
                         <td>Presentator</td>
-                        <td>Luuk Luchtloper</td>
+                        <td>{{checkDbOutput(book.employee)}}</td>
                     </tr>
                     <tr>
                         <td>Duur</td>

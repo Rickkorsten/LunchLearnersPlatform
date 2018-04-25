@@ -35,6 +35,7 @@ export class ReviewFormComponent implements OnInit {
   uploadReview(q1, q2, q3, q4, q5, q6, q7, q8, q9) {
 
     const bookUID = this.book.uid;
+    const employee = this.book.employee;
     console.log('UID ' + bookUID);
 
     if (q1 || q2 || q3 || q4 || q5 || q6 || q7 || q8 || q9 === undefined) {
@@ -43,7 +44,7 @@ export class ReviewFormComponent implements OnInit {
     }
     if (q1 || q2 || q3 || q4 || q5 || q6 || q7 || q8 || q9) {
       this.error = '';
-      const results: object = { q1, q2, q3, q4, q5, q6, q7, q8, q9, bookUID };
+      const results: object = { q1, q2, q3, q4, q5, q6, q7, q8, q9, bookUID, employee };
       this.FirebaseCall.updateReview(results);
     }
   }

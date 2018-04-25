@@ -1,0 +1,22 @@
+<div class="review-container">
+    <p class="header">Wat vond u van de presentatie ?</p>
+    <div class="row" *ngFor="let question of questionsArray || async ">
+        <mat-icon mat-list-icon (click)="delete(question)">delete</mat-icon>
+        <p>{{question}}?</p>
+        <rating [(ngModel)]="rating1" [titles]="['one', 'two', 'three', 'four', 'five']"></rating>
+    </div>
+
+    <div class="row">
+        <mat-form-field>
+            <input matInput placeholder="Input" [(ngModel)]="question" (keyup.enter)="addToQuestions(question)">
+            <span matSuffix>?</span>
+
+        </mat-form-field>
+        <app-button (click)="addToQuestions(question)" [type]="'accept'" [filled]="false" [title]="'toevoegen'" [icon]="'add'"></app-button>
+    </div>
+    <div class="row">
+        <div class="button-row">
+            <p style="color: red; padding-top: 15px; font-size: 18px">{{error}}</p>
+            <app-button [type]="'accept'" [filled]="true" [title]="'Verstuur'"></app-button>
+        </div>
+    </div>

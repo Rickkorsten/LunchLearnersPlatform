@@ -10,8 +10,7 @@
     width: 355px;
     height: 180px;
     transition-duration: 0.3s;
-
-    img{
+    img {
         width: 120px;
     }
     .info-container {
@@ -35,11 +34,13 @@
             line-height: 18px;
             margin-top: 8px;
             height: 108px;
+            text-align: justify;
         }
         .action-container {
             display: flex;
             flex-direction: row;
-
+            justify-content: space-between;
+            align-items: center;
             .button {
                 height: 29px;
                 display: flex;
@@ -81,7 +82,7 @@
     cursor: pointer;
 }
 
-::ng-deep .ster{
-    color: #ddd;
+::ng-deep .ster {
+    color: rgb(209, 191, 26);
     font-size: 1em !important;
 }

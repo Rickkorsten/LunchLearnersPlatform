@@ -11,6 +11,7 @@ export class BookCardComponent implements OnInit {
   @Input() type: string;
 
   hover: boolean;
+  rating: number;
 
   constructor() { }
 
@@ -20,6 +21,7 @@ export class BookCardComponent implements OnInit {
     } else {
       this.hover = true;
     }
+    this.rating = 3;
   }
 
 }
