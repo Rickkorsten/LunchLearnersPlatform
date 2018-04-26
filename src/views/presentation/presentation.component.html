@@ -11,15 +11,14 @@
         <p class="review-button" (click)="openDialog()">+ voeg een review toe</p>
     </div>
     <div class="review-container">
-        <div class="review">
+        <div class="review" *ngFor="let review of reviews || async">
             <div class="title">
-                <p><b>Hele mooie video hoor!</b></p>
-                <rating [(ngModel)]="rating" [readonly]="true" [titles]="['one', 'two', 'three', 'four', 'five']"></rating>
+                <p><b>{{review.title}}</b></p>
+                <rating [(ngModel)]="review.generalRating" [readonly]="true" [titles]="['one', 'two', 'three', 'four', 'five']"></rating>
             </div>
             <div class="review-text">
                 <p>
-                    De meeste beginnende bedrijven mislukken. Maar de meeste van die mislukkingen zijn te voorkomen. De Lean Startup is een nieuwe aanpak van business die over de hele wereld wordt toegepast. Het verandert de manier waarop bedrijven georganiseerd zijn en
-                    nieuwe producten geïntroduceerd worden.
+                    {{review.remark}}
                 </p>
             </div>
         </div>

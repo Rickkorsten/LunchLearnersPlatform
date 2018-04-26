@@ -30,16 +30,27 @@ interface Book {
 }
 
 interface Review {
-  presentor: string;
-  q1?: number;
-  q2?: number;
-  q3?: number;
-  q4?: number;
-  q5?: number;
-  q6?: number;
-  q7?: number;
-  q8?: number;
-  q9?: number;
+  bookUID?: string;
+  employee?: number;
+  questionArray?: string[];
+  ratingArray?: number[];
+}
+
+interface ReviewForm {
+  0?: string;
+  1?: number;
+  2?: number;
+  3?: number;
+  4?: number;
+  5?: number;
+  6?: number;
+  7?: number;
+  8?: number;
+  9?: number;
+  10?: number;
+  11?: number;
+  12?: number;
+  13?: number;
 }
 
 
@@ -57,9 +68,12 @@ export class FirebaseCallsService {
   // review
   reviewsCol: AngularFirestoreCollection<Review>;
   reviews: Observable<Review[]>;
-
+  // user
   usersArray: string[];
   newArray: string[];
+  // reviewForm
+  reviewformCol: AngularFirestoreCollection<ReviewForm>;
+  reviewform: Observable<ReviewForm[]>;
 
   constructor(private db: AngularFirestore, ) { }
 
@@ -132,22 +146,24 @@ export class FirebaseCallsService {
     return this.employees;
   }
 
+  getReviewForm() {
+    this.reviewformCol = this.db.collection('reviewform');
+    this.reviewform = this.reviewformCol.valueChanges();
+    return this.reviewform;
+  }
+
+  getReviewsByIUD(uid) {
+    this.reviewsCol = this.db.collection('reviews', ref => ref.where('bookUID', '==', uid));
+    this.reviews = this.reviewsCol.valueChanges();
+    return this.reviews;
+  }
+
   updateReview(result) {
     console.log('updated review');
     const id = this.db.createId();
-    this.db.doc(`reviews/${id}`).set({
-      'q1' : result.q1,
-      'q2' : result.q2,
-      'q3' : result.q3,
-      'q4' : result.q4,
-      'q5' : result.q5,
-      'q6' : result.q6,
-      'q7' : result.q7,
-      'q8' : result.q8,
-      'q9' : result.q9,
-      'employee' : result.employee,
-      'book' : result.bookUID,
-    });
+    this.db.doc(`reviews/${id}`).set(
+      result
+    );
   }
 
 

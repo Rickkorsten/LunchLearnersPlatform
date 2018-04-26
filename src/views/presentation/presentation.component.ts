@@ -15,6 +15,7 @@ export class PresentationComponent implements OnInit {
   counter: number;
   activeBookUid: any;
   rating: number;
+  reviews: any;
 
   constructor(
     private bookService: BooksService,
@@ -24,18 +25,23 @@ export class PresentationComponent implements OnInit {
 
     this.rating = 3;
     this.counter = 0;
-    this.route.params.subscribe( params => this.activeBookUid = params.book );
+    this.route.params.subscribe(params => this.activeBookUid = params.book);
   }
 
   ngOnInit() {
     this.bookService.activeBook.subscribe(book => this.book = book);
     const stringedBook = JSON.stringify(this.book);
+
     if (stringedBook === '{"object":"object"}') {
-    this.FirebaseCall.getActiveBook(this.activeBookUid.toString()).subscribe(book => {
-       this.book = book[0];
-     });
+      this.FirebaseCall.getActiveBook(this.activeBookUid.toString()).subscribe(book => {
+        this.book = book[0];
+        this.FirebaseCall.getReviewsByIUD(this.book.uid).subscribe(reviews => this.reviews = reviews);
+        console.log(this.reviews);
+      });
     } else {
       console.log('take info from service');
+      this.FirebaseCall.getReviewsByIUD(this.book.uid).subscribe(reviews => this.reviews = reviews);
+      console.log(this.reviews);
     }
   }
 
@@ -47,11 +53,11 @@ export class PresentationComponent implements OnInit {
     });
 
     dialogRef.afterClosed().subscribe(result => {
-     const extraInfo = {'bookUID': this.book.uid, 'employee': this.book.employee};
-    const review = Object.assign(result, extraInfo);
-     console.log(review);
-     // bookUID
-     this.FirebaseCall.updateReview(review);
+      const extraInfo = { 'bookUID': this.book.uid, 'employee': this.book.employee };
+      const review = Object.assign(result, extraInfo);
+      console.log(review);
+      // bookUID
+      this.FirebaseCall.updateReview(review);
     });
   }
 

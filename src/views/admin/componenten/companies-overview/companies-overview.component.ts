@@ -80,6 +80,7 @@ export class CompanyOverviewComponent implements OnInit {
   ngOnInit() {
     this.companies = this.FirebaseCall.getCompaniesCollection();
     this.allBooks = this.FirebaseCall.getBooksCollection();
+    console.log(this.companies);
   }
 
   get(uid, name, code, branche, emailsuffix, books) {
