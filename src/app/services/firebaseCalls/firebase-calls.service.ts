@@ -3,11 +3,12 @@ import { AngularFirestore, AngularFirestoreCollection } from 'angularfire2/fires
 import { Observable } from 'rxjs/Observable';
 
 interface Employee {
-  displayName?: string;
+  name?: string;
   email?: string;
   photoURL?: string;
   uid?: string;
   companyUid?: string;
+  companyName?: string;
 }
 
 interface Company {
@@ -137,6 +138,12 @@ export class FirebaseCallsService {
     return this.books;
   }
 
+  getBooksOfCompany(companyUid) {
+    this.companiesCol = this.db.collection('companies', ref => ref.where('uid', '==', companyUid));
+    this.companies = this.companiesCol.valueChanges();
+    return this.companies;
+  }
+
   getActiveBook(uid) {
     this.booksCol = this.db.collection('books', ref => ref.where('uid', '==', uid));
     this.books = this.booksCol.valueChanges();
@@ -153,6 +160,12 @@ export class FirebaseCallsService {
     this.reviewformCol = this.db.collection('reviewform');
     this.reviewform = this.reviewformCol.valueChanges();
     return this.reviewform;
+  }
+
+  getUserByIUD(uid) {
+    this.employeesCol = this.db.collection('users', ref => ref.where('uid', '==', uid));
+    this.employees = this.employeesCol.valueChanges();
+    return this.employees;
   }
 
   getReviewsByIUD(uid) {

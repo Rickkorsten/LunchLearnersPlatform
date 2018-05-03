@@ -11,7 +11,7 @@ import { Router } from '@angular/router';
 })
 export class LibraryComponent implements OnInit {
   rating: number;
-  books: any;
+  bookUIDs: any;
 
   role: string;
   companyUid: string;
@@ -35,7 +35,23 @@ export class LibraryComponent implements OnInit {
   }
 
   ngOnInit() {
-    this.books = this.FirebaseCall.getBooksCollection();
+    this.auth.user.subscribe(user => {
+      this.role = user.role,
+        this.companyUid = user.companyUid;
+      if (this.companyUid) {
+        this.FirebaseCall.getBooksOfCompany(this.companyUid)
+          .subscribe(bookUIDs => {
+            this.bookUIDs = bookUIDs[0].books;
+            if (this.bookUIDs) {
+              this.bookUIDs.map(bookUID => {
+                this.FirebaseCall.getActiveBook(bookUID).subscribe(book => {
+                  this.allBooks.push(book[0]);
+                });
+              });
+            }
+          });
+      }
+    });
   }
 
   // async getUserData() {

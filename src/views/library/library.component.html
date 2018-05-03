@@ -3,6 +3,6 @@
         <p>Collectie van Fontys</p>
     </div>
     <div class="book-container">
-        <app-book-card *ngFor="let book of books | async" [book]="book" (click)="toPresentationPage(book)"></app-book-card>
+        <app-book-card *ngFor="let book of allBooks || async" [book]="book" (click)="toPresentationPage(book)"></app-book-card>
     </div>
 </div>

@@ -56,6 +56,7 @@ export class VideoComponent implements OnInit {
   close() {
     this.expanded = true;
     this.bookService.setDisplay(false);
+    this.bookService.setActiveVideoLink('nothing', '0');
   }
 
 }
