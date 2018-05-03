@@ -13,7 +13,7 @@
     <div class="review-container">
         <div class="review" *ngFor="let review of reviews || async">
             <div class="title">
-                <p><b>{{review.title}}</b></p>
+                <p><b>{{review.title ? review.title : 'live review'}}</b></p>
                 <rating [(ngModel)]="review.generalRating" [readonly]="true" [titles]="['one', 'two', 'three', 'four', 'five']"></rating>
             </div>
             <div class="review-text">

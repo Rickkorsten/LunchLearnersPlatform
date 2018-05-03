@@ -34,6 +34,9 @@ interface Review {
   employee?: number;
   questionArray?: string[];
   ratingArray?: number[];
+  remark?: string;
+  title?: string;
+  generalRating?: number;
 }
 
 interface ReviewForm {

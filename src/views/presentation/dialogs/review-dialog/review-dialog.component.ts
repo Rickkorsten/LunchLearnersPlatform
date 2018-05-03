@@ -81,8 +81,5 @@ export class ReviewDialogComponent implements OnInit {
     const review = Object.assign(object, smallReview);
     console.log(review);
      this.dialogRef.close(object);
-
-
-
   }
 }
