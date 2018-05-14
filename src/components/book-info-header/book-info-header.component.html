@@ -3,11 +3,11 @@
     <div class="information-content">
         <div class="bar-container">
             <p>{{book.title}}</p>
-            <!-- <div *ngIf="type === 'large'" class="progressBar">
+            <div *ngIf="type === 'large'" class="progressBar">
                 <div class="progress">
                     <p>40%</p>
                 </div>
-            </div> -->
+            </div>
             <app-button *ngIf="type === 'large'" [type]="'accept'" [filled]="true" [title]="'Afspelen'" [icon]="'play_arrow'"></app-button>
         </div>
         <div class="content-container">

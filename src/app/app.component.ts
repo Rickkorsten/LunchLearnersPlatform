@@ -1,22 +1,25 @@
 import { Component, } from '@angular/core';
 import { AuthService } from './core/auth.service';
 
-
 @Component({
   selector: 'app-root',
   templateUrl: './app.component.html',
   styleUrls: ['./app.component.scss']
 })
 export class AppComponent {
-  userRole: string;
+  admin: boolean;
+  user: boolean;
 
   constructor(
     public auth: AuthService,
-
   ) {
-    // this.FirebaseCall.getUserByIUD
-    console.log('user : ' + this.auth.user.subscribe(user => this.userRole = user.role));
-
+    this.admin = true;
+    this.user = false;
+    if (auth.user) {
+      this.user = true;
+    } else {
+      this.user = false;
+    }
   }
 }
 

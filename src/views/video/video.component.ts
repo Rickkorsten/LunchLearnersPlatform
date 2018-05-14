@@ -9,7 +9,7 @@ import { DomSanitizer } from '@angular/platform-browser';
 })
 export class VideoComponent implements OnInit {
 
-  book: any;
+  book: object;
   safeURL: any;
   video: string;
   time: string;
@@ -22,6 +22,7 @@ export class VideoComponent implements OnInit {
     private bookService: BooksService,
     private _sanitizer: DomSanitizer
   ) {
+    this.video = '5iOhzJdDawE';
     this.bookService.activePresentation.subscribe(book => this.book = book);
     this.bookService.displayVideo.subscribe(display => {
       if (display) {
@@ -40,7 +41,8 @@ export class VideoComponent implements OnInit {
   }
 
   goToTime(time) {
-    this.bookService.setActiveVideoLink(this.book.videoLink, time);
+    this.safeURL = this._sanitizer
+      .bypassSecurityTrustResourceUrl(`https://www.youtube.com/embed/${this.video}?start=${time}&autoplay=1&showinfo=0`);
   }
 
   expand() {

@@ -28,7 +28,6 @@ interface Book {
   description?: string;
   categorie?: string;
   publisher?: string;
-  videoLink?: any;
 }
 
 interface Review {
