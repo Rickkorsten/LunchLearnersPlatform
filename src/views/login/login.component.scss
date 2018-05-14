@@ -11,32 +11,103 @@
     height: 100%;
     width: 100%;
     position: absolute;
-    background-color: rgba(0, 241, 255, 0.4392156862745098);
+    background-color:rgba(0, 196, 255, 0.38)
 }
 
 #login-container{
-    max-width: 400px;
+    max-width: 338px;
     margin: auto;
-    margin-top: 160px;
+    margin-top: 120px;
     text-align: center;
 }
 
 #lunch-learners-logo{
-    width: 220px;
+    width: 197px;
+    margin-bottom: 40px;
+    display: inline-block;
+}
+
+.switch{
+    display: block;
+    max-width: 338px;
+    display: flex;
+    justify-content: space-around;
+
+}
+.is-small{
+    color: white;
+    font-size: 20px;
 }
 
 .login-card{
-    max-width: 300px;
+    max-width: 338px;
     margin: auto;
     padding: 40px;
-    margin-top: 60px
+    margin-top: 10px;
+    border-radius:7px;
+}
+.triangles{
+    width: 100%;
+    margin:10px auto -18px;
+    display: flex;
+    justify-content: space-around;
+}
+.triangle{
+    background-color: #fff;
+    transform: rotate(45deg);
+    width: 15.82px;
+    height: 15.82px;
+    margin: 0px;
+    z-index: 1;
 }
 
 mat-card-subtitle{
     font-size: 16px;
 }
+mat-card-content{
+    margin-bottom: 0px;
+}
 
 mat-form-field{
     font-size: 16px;
     width: 100%;
+}
+
+
+input{
+    padding: 8px 10px;
+    width: 269.6px;
+    margin: 8px 0;
+    display: inline-block;
+    background-color:#F4F4F4;
+    border-radius: 28px;
+    border:0px;
+    box-sizing: border-box;
+    font: 300 14px 'Open Sans', "Helvetica Neue", sans-serif;
+    font-size: 14px;
+
+}
+
+::ng-deep button{
+    margin: 8px 0;
+    padding: 8px 0px;
+    width: 269.6px !important;
+    background-color:#73C884;
+    border-radius: 28px;
+    border:0px;
+    color:#ffffff;
+    font: 300 14px 'Open Sans', "Helvetica Neue", sans-serif;
+    font-size: 14px;
+}
+
+::ng-deep .wachtwoordbutton{
+    margin: 8px 0 0;
+    padding: 8px 0px;
+    width: 269.6px;
+    background-color:#ffffff !important;
+    border-radius: 28px;
+    border: 1px solid #707070  !important;
+    color:#707070 !important;
+    font: 300 14px 'Open Sans', "Helvetica Neue", sans-serif;
+    font-size: 14px;
 }
