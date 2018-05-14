@@ -1,11 +1,15 @@
-<div class="settings-container">
+<div class="presentation-page-1">
+    <app-settings-header [type]="'large'" [book]="book"></app-settings-header>
+</div>
 
+<div class="settings-container">
   <div class="card-container">
     <!-- card component 1 -->
-    <app-settings-card [title]="'Profiel aanpassen'" [error]="userMessage" >
+    <app-settings-card [title]="'Bedrijf:'" [error]="userMessage" >
       <div content>
       <mat-form-field>
-        <input matInput placeholder="Voornaam" [(ngModel)]="name">
+        <p>Contactpersoon</p>
+        <h1></h1>
       </mat-form-field>
       <mat-form-field>
         <input matInput placeholder="Achternaam" [(ngModel)]="lastname">

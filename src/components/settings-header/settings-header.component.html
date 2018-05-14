@@ -1,0 +1,33 @@
+<div class="information-block" [ngClass]="type === 'large' ? 'large' : 'small'">
+    <div class="information-content">
+        <div class="content-container">
+            <div class="general-info">
+                <div class="bar-container">
+                    <p>Profiel aanpassen</p>
+                </div>
+                <mat-form-field>    
+                    <input class='inputField' matInput placeholder="Voornaam" [(ngModel)]="name">
+                </mat-form-field>
+                <mat-form-field>
+                    <input class='inputField' matInput placeholder="Achternaam" [(ngModel)]="lastname">
+                </mat-form-field>
+                <button action mat-button (click)="updateUser(name,city,streetNumber,zipCode)">Pas aan</button>
+            </div>
+            <div class="password">
+                <mat-form-field>    
+                    <input class='inputField' matInput placeholder="Voornaam" [(ngModel)]="name">
+                </mat-form-field>
+                <mat-form-field>
+                    <input class='inputField' matInput placeholder="Achternaam" [(ngModel)]="lastname">
+                </mat-form-field>
+                <button action mat-button (click)="updateUser(name,city,streetNumber,zipCode)">Wachtwoord aanpassen</button>
+            </div>
+            
+            <div class="termsConditions">
+                <p>Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Aenean commodo ligula eget dolor. Aenean massa. Cum sociis natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus. Donec quam felis, ultricies nec, pellentesque eu, pretium quis, sem..</p>
+                <button action mat-button (click)="updateUser(name,city,streetNumber,zipCode)">Bekijk onze algemene voorwaarden</button>
+            </div>
+            
+        </div>
+    </div>
+</div>
