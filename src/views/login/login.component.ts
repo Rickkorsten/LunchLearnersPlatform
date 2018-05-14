@@ -34,6 +34,8 @@ export class LoginComponent implements OnInit {
 
   // userform
   userForm: FormGroup;
+  arrow1:  string;
+  arrow2:  string;
   newUser = false; // to toggle login or signup form
   passReset = false; // set to true when password reset is triggered
   // form errors
@@ -56,15 +58,30 @@ export class LoginComponent implements OnInit {
     },
   };
 
-  constructor(private db: AngularFirestore, private fb: FormBuilder, private auth: AuthService) { }
+  constructor(private db: AngularFirestore, private fb: FormBuilder, private auth: AuthService) { 
+    this.arrow1 = '1';
+    this.arrow2 = '0';
+  }
 
   ngOnInit() {
     this.buildForm();
   }
 
-  toggleForm() {
-    this.newUser = !this.newUser;
+  loginPage(){
+    this.newUser = false;
+    this.arrow1 = '1';
+    this.arrow2 = '0';
   }
+
+  register(){
+    this.newUser = true;
+    this.arrow1 = '0';
+    this.arrow2 = '1';
+  }
+
+hide(){
+  this.newUser = false;
+}
 
   signup() {
     const email: string = this.userForm.value['email'];
