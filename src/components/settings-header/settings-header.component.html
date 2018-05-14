@@ -15,12 +15,15 @@
             </div>
             <div class="password">
                 <mat-form-field>    
-                    <input class='inputField' matInput placeholder="Voornaam" [(ngModel)]="name">
+                    <input class='inputField' matInput placeholder="Oud Wachtwoord" [(ngModel)]="oldPassword">
                 </mat-form-field>
                 <mat-form-field>
-                    <input class='inputField' matInput placeholder="Achternaam" [(ngModel)]="lastname">
+                    <input class='inputField' matInput placeholder="Nieuw wachtwoord" [(ngModel)]="newPassword">
                 </mat-form-field>
-                <button action mat-button (click)="updateUser(name,city,streetNumber,zipCode)">Wachtwoord aanpassen</button>
+                <mat-form-field>
+                    <input class='inputField' matInput placeholder="Nieuw wachtwoord herhalen" [(ngModel)]="newPassword2">
+                </mat-form-field>
+                <button action mat-button (click)="updateserPassword(oldPassword,newPassword,newPassword2)">Wachtwoord aanpassen</button>
             </div>
             
             <div class="termsConditions">
