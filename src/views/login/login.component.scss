@@ -48,13 +48,15 @@
 }
 .triangles{
     width: 100%;
-    margin:10px auto -10px;
+    margin:10px auto -18px;
     display: flex;
     justify-content: space-around;
 }
 .triangle{
-    width: 22.38px;
-    height: 11.19px;
+    background-color: #fff;
+    transform: rotate(45deg);
+    width: 15.82px;
+    height: 15.82px;
     margin: 0px;
     z-index: 1;
 }

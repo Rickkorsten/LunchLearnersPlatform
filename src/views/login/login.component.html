@@ -7,8 +7,8 @@
       <mat-card-subtitle class="button is-small" (click)="register()">registreren</mat-card-subtitle>
       </div>
       <div class="triangles">
-          <img [style.opacity]="arrow1" class="triangle" src="../../assets/images/triangle.svg">
-          <img [style.opacity]="arrow2" class="triangle" src="../../assets/images/triangle.svg">
+          <div [style.opacity]="arrow1" class="triangle" ></div>
+          <div [style.opacity]="arrow2" class="triangle" ></div>
           </div>
         <mat-card class="login-card">
             <form [formGroup]="userForm" *ngIf="!newUser" (ngSubmit)="login()">
