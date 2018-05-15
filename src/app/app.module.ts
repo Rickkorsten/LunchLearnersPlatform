@@ -45,6 +45,8 @@ import { ButtonComponent } from './../components/button/button.component';
 import { DraggableModule } from './directives/draggable/draggable.module';
 import { ReviewFormComponent } from './../views/review-form/review-form.component';
 import { BookInfoHeaderComponent } from './../components/book-info-header/book-info-header.component';
+import { SettingsHeaderComponent } from './../components/settings-header/settings-header.component';
+import { SettingsCard2Component } from './../components/settings-card2/settings-card2.component';
 import { VideoComponent } from './../views/video/video.component';
 
 import { FirebaseCallsService } from './../app/services/firebaseCalls/firebase-calls.service';
@@ -89,6 +91,8 @@ const firebaseConfig = {
     ButtonComponent,
     ReviewFormComponent,
     BookInfoHeaderComponent,
+    SettingsHeaderComponent,
+    SettingsCard2Component,
     VideoComponent,
     BookCardComponent,
     ReviewDialogComponent,

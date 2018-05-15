@@ -1,19 +1,26 @@
-<div class="settings-container">
+<div class="presentation-page-1">
+    <app-settings-header [type]="'large'" [book]="book"></app-settings-header>
+</div>
 
+<div class="settings-container">
   <div class="card-container">
     <!-- card component 1 -->
-    <app-settings-card [title]="'Profiel aanpassen'" [error]="userMessage" >
+    <app-settings-card [title]="'Bedrijf:'" [error]="userMessage" >
       <div content>
       <mat-form-field>
-        <input matInput placeholder="Voornaam" [(ngModel)]="name">
+        <p>Contactpersoon</p>
+        <h1></h1>
       </mat-form-field>
       <mat-form-field>
         <input matInput placeholder="Achternaam" [(ngModel)]="lastname">
       </mat-form-field>
     </div>
       <button action mat-button (click)="updateUser(name,city,streetNumber,zipCode)">Pas aan</button>
-    </app-settings-card>
     <!-- card component 2 -->
+    </app-settings-card>
+    <app-settings-card2 [type]="'large'" [book]="book"></app-settings-card2>
+    <!-- card component 2 -->
+    <!--
     <app-settings-card [error]="passMessage"  >
         <div content>
       <mat-form-field>
@@ -27,14 +34,16 @@
       </mat-form-field>
       </div>
       <button action mat-button (click)="goToTermsConditions()">Wachtwoord aanpassen</button>
-    </app-settings-card>
+    </app-settings-card>-->
+    
     <!-- card component 3 -->
+    <!--
     <app-settings-card [error]="false" >
         <div content>
       <p>Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Aenean commodo ligula eget dolor. Aenean massa. Cum sociis natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus. Donec quam felis, ultricies nec, pellentesque eu, pretium quis, sem. Nulla consequat massa quis enim. Donec pede justo, fringilla vel, aliquet nec, vulputate eget, arcu. In enim justo, rhoncus ut, imperdiet a.</p>
       <button action mat-button (click)="resetPassword()">Bekijk onze algemene voorwaarden</button>
       </div>
-    </app-settings-card>
+    </app-settings-card>-->
 
 
 
