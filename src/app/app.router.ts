@@ -17,6 +17,7 @@ import { PresentationComponent } from './../views/presentation/presentation.comp
 import { ReviewFormComponent } from './../views/review-form/review-form.component';
 import { VideoComponent } from './../views/video/video.component';
 import { ReviewBuilderComponent } from './../views/admin/componenten/review-builder/review-builder.component';
+import { ContactComponent } from './../views/contact/contact.component';
 
 // This file defines all the URL's of the application, this is done with the path: '...'
 // The after the path we define the component we want to go to when this URL is called
@@ -29,6 +30,7 @@ export const router: Routes = [
     { path: 'store', component: StoreComponent, canActivate: [AuthGuard] },
     { path: 'book-info/:uid', component: BookInfoComponent, canActivate: [AuthGuard] },
     { path: 'settings', component: SettingsComponent, canActivate: [AuthGuard] },
+    { path: 'contact', component: ContactComponent, canActivate: [AuthGuard] },
     { path: 'bookpresentation/:book', component: PresentationComponent, canActivate: [AuthGuard] },
     { path: 'review/:bookcode', component: ReviewFormComponent},
     { path: 'video/:bookcode', component: VideoComponent, canActivate: [AuthGuard] },

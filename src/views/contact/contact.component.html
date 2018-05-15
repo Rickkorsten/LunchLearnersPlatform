@@ -1,0 +1,53 @@
+
+
+
+<div class="container">
+  <div class="left">
+    <div class="contactInfo">
+      <div class="info">
+        <p>Lunch Learners</p>
+        <table>
+            <tr>
+              <th>Adres</th>
+            </tr>
+            <tr>
+              <td>Horsten 1</td>
+            </tr>
+            <tr>
+              <td>5612AX Eindhoven</td>
+            </tr>
+            <tr>
+              <td>Noord-Brabant</td>
+            </tr>
+            <tr>  
+              <th>Telefoon</th>
+            </tr>
+            <tr>
+              <td>06 20485508</td>
+            </tr>
+            <tr>  
+              <th>Email</th>
+            </tr>
+            <tr>
+              <td>info@lunchlearners.nl</td>
+            </tr>
+          </table>
+      </div>
+      <div class="photoFrame">
+      <img  class="job" src="../../assets/images/Jop-van-der-Kemp-site.jpg">
+      </div>
+    </div>
+    
+    <div class="message">
+        <p>Stuur ons direct een berichtje</p>
+        <textarea cols="num" rows="num" [(ngModel)]="remark"></textarea>
+        <div class="bottom">
+        <div class="text"><p>U zult zo spoedig mogelijk antwoord krijgen via uw email adres waarmee dit account gekoppeld is</p></div>
+        <div class="button-row">
+            <app-button [type]="'accept'" [filled]="false" [title]="'Verstuur'" (click)="accept()"></app-button>
+        </div></div>
+  </div>
+</div>
+  <div class="right">
+      <iframe class="map" src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d2486.466925238433!2d5.4926402157349585!3d51.44958307962571!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x47c6d8dd881c1ea1%3A0x566d097e8e2bc995!2sMultimediapaviljoen%2C+Horsten+1%2C+Eindhoven!5e0!3m2!1snl!2snl!4v1526375497516" frameborder="0" style="border:0" allowfullscreen></iframe>
+  </div>
