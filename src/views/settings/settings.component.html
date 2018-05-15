@@ -5,36 +5,46 @@
 <div class="settings-container">
   <div class="card-container">
     <!-- card component 1 -->
-    <app-settings-card [title]="'Bedrijf:'" [error]="userMessage" >
+    <app-settings-card [title]="'Bedrijf: Google'" class='info' [error]="userMessage" >
       <div content>
-      <mat-form-field>
-        <p>Contactpersoon</p>
-        <h1></h1>
-      </mat-form-field>
-      <mat-form-field>
-        <input matInput placeholder="Achternaam" [(ngModel)]="lastname">
-      </mat-form-field>
+          <div class="contact">
+              <h1>Contactpersoon</h1>
+              <h2>Manager@google.com</h2>
+          </div>
+          <div class="contact">
+              <h1>Basiswachtwoord</h1>
+              <h2>Google1</h2>
+          </div>
+          <div class="contact">
+              <h1>Aantal werknemers</h1>
+              <h2>11</h2>
+          </div>
+          <div class="contact">
+              <h1>Aantal boeken</h1>
+              <h2>4</h2>
+          </div>
     </div>
-      <button action mat-button (click)="updateUser(name,city,streetNumber,zipCode)">Pas aan</button>
+  </app-settings-card>
+      <!--<button action mat-button (click)="updateUser(name,city,streetNumber,zipCode)">Pas aan</button>-->
     <!-- card component 2 -->
-    </app-settings-card>
-    <app-settings-card2 [type]="'large'" [book]="book"></app-settings-card2>
+    
+    <!--<app-settings-card2 [type]="'large'" [book]="book"></app-settings-card2>-->
     <!-- card component 2 -->
-    <!--
-    <app-settings-card [error]="passMessage"  >
+    
+    <app-settings-card [title]="'Uw boeken'"class="boekencard"[error]="passMessage"  >
         <div content>
-      <mat-form-field>
-        <input matInput placeholder="Oud wachtwoord" [(ngModel)]="oldPassword">
-      </mat-form-field>
-      <mat-form-field>
-        <input matInput placeholder="Nieuw wachtwoord" [(ngModel)]="NewPassword">
-      </mat-form-field>
-      <mat-form-field>
-        <input matInput placeholder="Nieuw wachtwoord herhalen" [(ngModel)]="NewPassword2">
-      </mat-form-field>
-      </div>
-      <button action mat-button (click)="goToTermsConditions()">Wachtwoord aanpassen</button>
-    </app-settings-card>-->
+            <div class="boeken">
+                <div class="boek">
+                    <h1>Boek 1</h1>
+                    <h2>Auteur 1</h2>
+                </div>
+                <div class="boek">
+                    <h1>Boek 2</h1>
+                    <h2>Auteur 2</h2>
+                </div>
+            </div>
+          </div>
+    </app-settings-card>
     
     <!-- card component 3 -->
     <!--
@@ -44,8 +54,6 @@
       <button action mat-button (click)="resetPassword()">Bekijk onze algemene voorwaarden</button>
       </div>
     </app-settings-card>-->
-
-
 
   </div>
 </div>

@@ -1,6 +1,6 @@
 mat-card{
   margin: 0px;
-  max-width: 291px;
+  width: 291px;
   height: 247px;
   justify-content: space-around;
   display: flex;
@@ -9,6 +9,8 @@ mat-card{
   .card-header{
     display: flex;
     flex: 1;
+    font: 400 24px 'Lato', "Helvetica Neue", sans-serif;
+            color: #4a4a4a;
   }
 
   .card-content{
@@ -17,7 +19,19 @@ mat-card{
     flex-direction: column;
 
     mat-form-field{
-      width: 50%;
+      .contact {
+        margin-bottom: 10px;
+        h1 {
+            font: 300 12px 'Open Sans', "Helvetica Neue", sans-serif;
+                color: #707070;
+            margin:0px;
+        }
+        h2 {
+            font: 300 14px 'Open Sans', "Helvetica Neue", sans-serif;
+                color: #4A4A4A;
+            margin:0px;
+        }
+      }
     }
   }
   .card-action{
