@@ -1,0 +1,70 @@
+mat-card{
+  margin: 0px;
+  width: 291px;
+  height: 247px;
+  justify-content: space-around;
+  display: flex;
+  flex-direction: column;
+
+  .card-header{
+    display: flex;
+    flex: 1;
+    font: 400 24px 'Lato', "Helvetica Neue", sans-serif;
+            color: #4a4a4a;
+  }
+
+  .card-content{
+    display: flex;
+    flex: 6;
+    flex-direction: column;
+
+    mat-form-field{
+      .contact {
+        margin-bottom: 10px;
+        h1 {
+            font: 300 12px 'Open Sans', "Helvetica Neue", sans-serif;
+                color: #707070;
+            margin:0px;
+        }
+        h2 {
+            font: 300 14px 'Open Sans', "Helvetica Neue", sans-serif;
+                color: #4A4A4A;
+            margin:0px;
+        }
+      }
+    }
+  }
+  .card-action{
+    display: flex;
+    flex: 1;
+  }
+}
+
+.boeken{
+  display: flex;
+  flex-direction: row;
+  margin-top:7px;
+}
+
+.boek{
+  margin-left:10px;
+  h1{
+    font: 300 14px 'Open Sans', "Helvetica Neue", sans-serif;
+                color: #4A4A4A;
+    margin-top:5px;
+  }
+  h2{
+    font: 300 12px 'Open Sans', "Helvetica Neue", sans-serif;
+                color: #707070;
+    margin-top:-10px;
+  }
+}
+
+.photo{
+  max-width: 27px;
+  max-height: 40px;
+}
+
+h3{
+  margin: 0;
+}

@@ -15,18 +15,10 @@
                 <app-button [type]="'accept'" [filled]="false" [title]="'Verstuur'" (click)="updateUser(name,lastname)"></app-button>
 
             </div>
-            <div class="password">
-                <mat-form-field>    
-                    <input class='inputField' matInput placeholder="Oud Wachtwoord" [(ngModel)]="oldPassword">
-                </mat-form-field>
-                <mat-form-field>
-                    <input class='inputField' matInput placeholder="Nieuw wachtwoord" [(ngModel)]="newPassword">
-                </mat-form-field>
-                <mat-form-field>
-                    <input class='inputField' matInput placeholder="Nieuw wachtwoord herhalen" [(ngModel)]="newPassword2">
-                </mat-form-field>
-                <!--<button action mat-button (click)="updatePassword(oldPassword,newPassword,newPassword2)">Wachtwoord aanpassen</button>-->
-                <app-button [type]="'accept'" [filled]="false" [title]="'Wachtwoord aanpassen'" (click)="updatePassword(oldPassword,newPassword,newPassword2)"></app-button>
+            <div class="termsConditions">
+                <p>Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Aenean commodo ligula eget dolor. Aenean massa. Cum sociis natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus. Donec quam felis, ultricies nec, pellentesque eu, pretium quis, sem..</p>
+                <!--<button action mat-button (click)="viewTermsConditions()">Bekijk onze algemene voorwaarden</button>-->
+                <app-button [type]="'accept'" [filled]="false" [title]="'Wachtwoord aanpassen'" (click)="viewTermsConditions()"></app-button>
             </div>
             
             <div class="termsConditions">

@@ -33,17 +33,10 @@
     
     <app-settings-card [title]="'Uw boeken'"class="boekencard"[error]="passMessage"  >
         <div content>
-            <div class="boeken">
-                <div class="boek">
-                    <h1>Boek 1</h1>
-                    <h2>Auteur 1</h2>
-                </div>
-                <div class="boek">
-                    <h1>Boek 2</h1>
-                    <h2>Auteur 2</h2>
-                </div>
-            </div>
-          </div>
+             <app-book-card-mini *ngFor="let book of allBooks || async"[book]="book" (click)="toPresentationPage(book)"></app-book-card-mini>
+             <!--<app-book-card *ngFor="let book of allBooks || async" [book]="book" (click)="toPresentationPage(book)"></app-book-card>-->
+
+        </div>
     </app-settings-card>
     
     <!-- card component 3 -->
