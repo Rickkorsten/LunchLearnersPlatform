@@ -14,14 +14,17 @@ export class AuthGuard implements CanActivate {
   constructor(private auth: AuthService, private router: Router) { }
 
   canActivate( next: ActivatedRouteSnapshot, state: RouterStateSnapshot ): Observable<boolean> | boolean {
-    console.log(next, state);
+    this.auth.user.subscribe(data => console.log(data));
     return this.auth.user
       .take(1)
       .map(user => !!user)
       .do(loggedIn => {
         if (!loggedIn) {
           // If an user is not logged in we send them back to the login page
-          this.router.navigate(['/login']);
+          this.router.navigate(['/login']).then(result => {
+            console.log(result);
+            window.location.reload();
+          });
         }
       });
 

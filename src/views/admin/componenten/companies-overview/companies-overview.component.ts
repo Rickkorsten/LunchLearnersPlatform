@@ -29,7 +29,7 @@ export class CompanyOverviewComponent implements OnInit {
   branche: string;
   emailsuffix: string;
   books: string[];
-  users: string[];
+  users: any;
 
   selectedBooks: string;
   companyBooksArray: string[];
@@ -83,13 +83,22 @@ export class CompanyOverviewComponent implements OnInit {
     console.log(this.companies);
   }
 
-  get(uid, name, code, branche, emailsuffix, books) {
+  async get(uid, name, code, branche, emailsuffix, books, users) {
     this.uid = uid ? uid : '';
     this.name = name ? name : '';
     this.code = code ? code : '';
     this.branche = branche ? branche : '';
     this.emailsuffix = emailsuffix ? emailsuffix : '';
     this.companyBooksArray = books ? books : [];
+    this.users =  await this.getEmailOfUserUID(users);
+  }
+
+  getEmailOfUserUID(users) {
+    const usersArray = [];
+    users.map(user => {
+      this.FirebaseCall.getUserByIUD(user).subscribe(data => usersArray.push(data[0].email));
+    });
+    return usersArray;
   }
 
   update() {

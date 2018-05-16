@@ -6,17 +6,17 @@
         <span class="example-spacer"></span>
 
 
-        <button mat-button routerLink="library" *ngIf="user">Uw boeken</button>
+        <button mat-button routerLink="library" *ngIf="user === 'user' || 'employee'">Uw boeken</button>
         <!-- <button mat-button routerLink="store" *ngIf="user">Ontdekken</button> -->
-        <button mat-button routerLink="admin" *ngIf="user || admin">Admin</button>
+        <button mat-button routerLink="admin" *ngIf="user === 'employee'">Admin</button>
 
         <button mat-icon-button [matMenuTriggerFor]="menu">
         <mat-icon aria-label="account-circle">account_circle</mat-icon>
       </button>
 
         <mat-menu #menu="matMenu">
-            <button mat-menu-item routerLink="settings" *ngIf="user">Instellingen</button>
-            <button mat-menu-item (click)="auth.signOut()" *ngIf="user">Uitloggen</button>
+            <button mat-menu-item routerLink="settings" *ngIf="user === 'user' || 'employee'">Instellingen</button>
+            <button mat-menu-item (click)="auth.signOut()" *ngIf="user === 'user' || 'employee'">Uitloggen</button>
         </mat-menu>
 
     </mat-toolbar-row>

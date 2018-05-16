@@ -84,9 +84,7 @@ export class AuthService {
     const newUserArray = usersArray.concat(user.uid);
 
     // get role of the user (admin/employee/user)
-    console.log('suffixxx : ' + companySuffix);
     const role = companySuffix === 'lunchlearners.nl' ? 'employee' : 'user';
-    console.log('roleee : ' + role);
 
     const UserUpdate: User = {
       uid: user.uid,
