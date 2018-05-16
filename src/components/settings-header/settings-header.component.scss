@@ -60,6 +60,10 @@
                 border-bottom-width: 80%;
                 align-items: left;
                 padding-right: 40px;
+                .inputField {
+                    max-width: 280px;   
+                    //color: #707070;  
+                 }
             }
             .password {
                 display: flex;
@@ -83,7 +87,8 @@
                     margin: 0px;
                 }
                 .inputField {
-                    max-width: 280px;     
+                    max-width: 280px;   
+                    background-color: #707070;  
                  }
             }
             
@@ -104,7 +109,7 @@
                 p {
                     color: #707070;
                     font: 300 14px/24px 'Open Sans', "Helvetica Neue", sans-serif;
-                    margin: 0px;
+                    margin-bottom: 20px;
                 }
             }
         }

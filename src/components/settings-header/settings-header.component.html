@@ -11,24 +11,20 @@
                 <mat-form-field>
                     <input class='inputField' matInput placeholder="Achternaam" [(ngModel)]="lastname">
                 </mat-form-field>
-                <button action mat-button (click)="updateUser(name,city,streetNumber,zipCode)">Pas aan</button>
+                <!--<button action mat-button (click)="updateUser(name,lastname)">Pas aan</button>-->
+                <app-button [type]="'accept'" [filled]="false" [title]="'Verstuur'" (click)="updateUser(name,lastname)"></app-button>
+
             </div>
-            <div class="password">
-                <mat-form-field>    
-                    <input class='inputField' matInput placeholder="Oud Wachtwoord" [(ngModel)]="oldPassword">
-                </mat-form-field>
-                <mat-form-field>
-                    <input class='inputField' matInput placeholder="Nieuw wachtwoord" [(ngModel)]="newPassword">
-                </mat-form-field>
-                <mat-form-field>
-                    <input class='inputField' matInput placeholder="Nieuw wachtwoord herhalen" [(ngModel)]="newPassword2">
-                </mat-form-field>
-                <button action mat-button (click)="updateserPassword(oldPassword,newPassword,newPassword2)">Wachtwoord aanpassen</button>
+            <div class="termsConditions">
+                <p>Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Aenean commodo ligula eget dolor. Aenean massa. Cum sociis natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus. Donec quam felis, ultricies nec, pellentesque eu, pretium quis, sem..</p>
+                <!--<button action mat-button (click)="viewTermsConditions()">Bekijk onze algemene voorwaarden</button>-->
+                <app-button [type]="'accept'" [filled]="false" [title]="'Wachtwoord aanpassen'" (click)="viewTermsConditions()"></app-button>
             </div>
             
             <div class="termsConditions">
                 <p>Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Aenean commodo ligula eget dolor. Aenean massa. Cum sociis natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus. Donec quam felis, ultricies nec, pellentesque eu, pretium quis, sem..</p>
-                <button action mat-button (click)="updateUser(name,city,streetNumber,zipCode)">Bekijk onze algemene voorwaarden</button>
+                <!--<button action mat-button (click)="viewTermsConditions()">Bekijk onze algemene voorwaarden</button>-->
+                <app-button [type]="'accept'" [filled]="false" [title]="'Bekijk onze algemene voorwaarden'" (click)="viewTermsConditions()"></app-button>
             </div>
             
         </div>

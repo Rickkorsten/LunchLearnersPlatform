@@ -52,6 +52,7 @@ import { VideoComponent } from './../views/video/video.component';
 import { FirebaseCallsService } from './../app/services/firebaseCalls/firebase-calls.service';
 import { BooksService } from './../app/services/books/books.service';
 import { BookCardComponent } from './../components/book-card/book-card.component';
+import { BookCardMiniComponent } from './../components/book-card-mini/book-card-mini.component';
 import { ReviewDialogComponent } from './../views/presentation/dialogs/review-dialog/review-dialog.component';
 import { ReviewBuilderComponent } from './../views/admin/componenten/review-builder/review-builder.component';
 
@@ -95,6 +96,7 @@ const firebaseConfig = {
     SettingsCard2Component,
     VideoComponent,
     BookCardComponent,
+    BookCardMiniComponent,
     ReviewDialogComponent,
     ReviewBuilderComponent,
   ],

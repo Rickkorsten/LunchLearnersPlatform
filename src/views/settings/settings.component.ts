@@ -3,6 +3,7 @@ import { Component, OnInit } from '@angular/core';
 import { AuthService } from '../../app/core/auth.service';
 import { AngularFirestore, AngularFirestoreDocument } from 'angularfire2/firestore';
 import { Observable } from 'rxjs/Observable';
+import { FirebaseCallsService } from './../../app/services/firebaseCalls/firebase-calls.service';
 
 // rxjs operators
 import 'rxjs/add/operator/do';
@@ -46,13 +47,39 @@ export class SettingsComponent implements OnInit {
   passMessage: string;
   userMessage: string;
 
+  bookUIDs: any;
 
-  constructor(private auth: AuthService, private db: AngularFirestore) {
+  role: string;
+  companyUid: string;
+  companyBooks: string[];
+
+  allBooks: any;
+
+  constructor(private auth: AuthService, private db: AngularFirestore, private FirebaseCall: FirebaseCallsService) {
     this.passReset = false;
+    this.allBooks = [];
   }
 
   ngOnInit() {
     this.getUserData();
+
+    this.auth.user.subscribe(user => {
+      this.role = user.role,
+        this.companyUid = user.companyUid;
+      if (this.companyUid) {
+        this.FirebaseCall.getBooksOfCompany(this.companyUid)
+          .subscribe(bookUIDs => {
+            this.bookUIDs = bookUIDs[0].books;
+            if (this.bookUIDs) {
+              this.bookUIDs.map(bookUID => {
+                this.FirebaseCall.getActiveBook(bookUID).subscribe(book => {
+                  this.allBooks.push(book[0]);
+                });
+              });
+            }
+          });
+      }
+    });
   }
 
 
