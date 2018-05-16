@@ -42,7 +42,7 @@
             </div>
             <div *ngIf="type === 'large'" class="description">
                 <h4>Omschrijving</h4>
-                <p>{{checkDbOutput(book.description)}}</p>
+                <p>{{checkDbOutput(book.description) | slice:0:380}}...</p>
             </div>
         </div>
     </div>
