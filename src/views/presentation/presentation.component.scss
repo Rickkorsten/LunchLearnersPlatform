@@ -13,12 +13,13 @@
     display: flex;
     flex-direction: row;
     justify-content: space-between;
-    p:first-child {
+    p {
         font: 300 24px 'Lato', "Helvetica Neue", sans-serif;
         color: #707070;
     }
-    p {
-        font: 300 14px 'Lato', "Helvetica Neue", sans-serif;
+    .review-button {
+        margin-top: 30px;
+        font: 300 16px 'Lato', "Helvetica Neue", sans-serif;
         color: #3EA4D0;
         cursor: pointer;
     }
