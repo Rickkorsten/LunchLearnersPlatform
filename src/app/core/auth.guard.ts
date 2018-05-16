@@ -14,7 +14,8 @@ export class AuthGuard implements CanActivate {
   constructor(private auth: AuthService, private router: Router) { }
 
   canActivate( next: ActivatedRouteSnapshot, state: RouterStateSnapshot ): Observable<boolean> | boolean {
-    this.auth.user.subscribe(data => console.log(data));
+    // need to use the next and state in function
+    console.log(next, state );
     return this.auth.user
       .take(1)
       .map(user => !!user)

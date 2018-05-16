@@ -43,23 +43,23 @@ export class MenuContainerComponent implements OnInit {
         'icon': 'face',
         'id': 4,
       },
-      {
-        'title': 'Reviews overzicht',
-        'router': [{ outlets: { admin: 'reviews' } }],
-        'icon': 'star',
-        'id': 5,
-      },
+      // {
+      //   'title': 'Reviews overzicht',
+      //   'router': [{ outlets: { admin: 'reviews' } }],
+      //   'icon': 'star',
+      //   'id': 5,
+      // },
       {
         'title': 'Database exporteren',
         'router': [{ outlets: { admin: 'export' } }],
         'icon': 'import_export',
-        'id': 6,
+        'id': 5,
       },
       {
         'title': 'Review builder',
         'router': [{ outlets: { admin: 'reviewbuilder' } }],
         'icon': 'rate_review',
-        'id': 7,
+        'id': 6,
       },
     ];
 

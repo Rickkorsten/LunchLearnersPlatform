@@ -28,7 +28,7 @@ export class CompanyOverviewComponent implements OnInit {
   code: string;
   branche: string;
   emailsuffix: string;
-  books: string[];
+  books: any;
   users: any;
 
   selectedBooks: string;
@@ -89,8 +89,9 @@ export class CompanyOverviewComponent implements OnInit {
     this.code = code ? code : '';
     this.branche = branche ? branche : '';
     this.emailsuffix = emailsuffix ? emailsuffix : '';
-    this.companyBooksArray = books ? books : [];
+    this.companyBooksArray = await books ? books : [];
     this.users =  await this.getEmailOfUserUID(users);
+    this.books = this.getTitleOfBooksUID(this.companyBooksArray);
   }
 
   getEmailOfUserUID(users) {
@@ -100,6 +101,16 @@ export class CompanyOverviewComponent implements OnInit {
     });
     return usersArray;
   }
+
+  getTitleOfBooksUID(books) {
+    const booksArray = [];
+    books.map(user => {
+      console.log(user);
+      this.FirebaseCall.getBookByUID(user).subscribe(data => booksArray.push({'title': data[0].title, 'uid': data[0].uid}));
+    });
+    return booksArray;
+  }
+
 
   update() {
     this.db.doc(`companies/${this.uid}`).update({
@@ -141,14 +152,16 @@ export class CompanyOverviewComponent implements OnInit {
     this.popupMessage = 'uploaded';
 
   }
-
+  // update en delete zijn snelle oplossing voor demo !!
+  // hij update steeds de array die word gegeneerd na een hoops calls naar de data base !!!!!!!!!!!! MOET BETER
   updateBookArray(book) {
-    console.log(book);
     this.companyBooksArray.push(book);
+    this.books = this.getTitleOfBooksUID(this.companyBooksArray);
   }
 
-  deleteBook(item) {
-    this.companyBooksArray = this.remove(this.companyBooksArray, item);
+  async deleteBook(item) {
+    this.companyBooksArray = this.remove(this.companyBooksArray, item.uid);
+    this.books = await this.getTitleOfBooksUID(this.companyBooksArray);
   }
 
   remove(arr, dele) {
