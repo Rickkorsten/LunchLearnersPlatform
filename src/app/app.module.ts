@@ -55,6 +55,7 @@ import { BookCardComponent } from './../components/book-card/book-card.component
 import { BookCardMiniComponent } from './../components/book-card-mini/book-card-mini.component';
 import { ReviewDialogComponent } from './../views/presentation/dialogs/review-dialog/review-dialog.component';
 import { ReviewBuilderComponent } from './../views/admin/componenten/review-builder/review-builder.component';
+import { ContactComponent } from './../views/contact/contact.component';
 
 const firebaseConfig = {
   apiKey: 'AIzaSyBR3HJduE1qTWlz7D7LiLlVDPda3Vu3wBk',
@@ -99,6 +100,7 @@ const firebaseConfig = {
     BookCardMiniComponent,
     ReviewDialogComponent,
     ReviewBuilderComponent,
+    ContactComponent,
   ],
   imports: [
     BrowserModule,

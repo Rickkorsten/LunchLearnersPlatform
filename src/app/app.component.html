@@ -7,6 +7,7 @@
 
 
         <button mat-button routerLink="library" *ngIf="user === 'user' || 'employee'">Uw boeken</button>
+        <button mat-button routerLink="contact" *ngIf="user === 'user' || 'employee'">Contact</button>
         <!-- <button mat-button routerLink="store" *ngIf="user">Ontdekken</button> -->
         <button mat-button routerLink="admin" *ngIf="user === 'employee'">Admin</button>
 

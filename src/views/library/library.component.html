@@ -10,7 +10,7 @@
         </div>
     </div>
     <div class="header-separator">
-        <p>Collectie van Fontys</p>
+        <p>Collectie van {{companyName}}</p>
     </div>
     <div class="book-container">
         <app-book-card *ngFor="let book of allBooks || async" [book]="book" (click)="toPresentationPage(book)"></app-book-card>

@@ -15,6 +15,7 @@ export class LibraryComponent implements OnInit {
 
   role: string;
   companyUid: string;
+  companyName: string;
 
   company: any;
   companyBooks: string[];
@@ -36,7 +37,9 @@ export class LibraryComponent implements OnInit {
 
   ngOnInit() {
     this.auth.user.subscribe(user => {
+      console.log(user);
       this.role = user.role,
+      this.companyName = user.companyName;
         this.companyUid = user.companyUid;
       if (this.companyUid) {
         this.FirebaseCall.getBooksOfCompany(this.companyUid)
@@ -44,7 +47,7 @@ export class LibraryComponent implements OnInit {
             this.bookUIDs = bookUIDs[0].books;
             if (this.bookUIDs) {
               this.bookUIDs.map(bookUID => {
-                this.FirebaseCall.getActiveBook(bookUID).subscribe(book => {
+                this.FirebaseCall.getActiveBook(bookUID).subscribe(book => { // get book by uid (function name is wrong)
                   this.allBooks.push(book[0]);
                 });
               });
@@ -54,24 +57,6 @@ export class LibraryComponent implements OnInit {
     });
   }
 
-  // async getUserData() {
-  //   this.auth.user.subscribe(data => {
-  //     this.role = data.role,
-  //       this.companyUid = data.companyUid;
-  //     if (this.companyUid) {
-  //       this.FirebaseCall.getcompany(this.companyUid).subscribe(company => {
-  //         this.company = company[0].name;
-  //         this.companyBooks = company[0].books;
-  //        this.companyBooks.map(uid => {
-  //          this.FirebaseCall.getActiveBook(uid).subscribe(book => {
-  //           this.allBooks.push(book[0]);
-  //           console.log(this.allBooks);
-  //          });
-  //        });
-  //       });
-  //     }
-  //   });
-  // }
 
   toPresentationPage(book) {
     this.bookService.setActiveBook(book);
