@@ -1,5 +1,6 @@
 import { Component, OnInit, Input } from '@angular/core';
 import { FirebaseCallsService } from './../../app/services/firebaseCalls/firebase-calls.service';
+import { BooksService } from './../../app/services/books/books.service';
 
 @Component({
   selector: 'app-book-info-header',
@@ -11,9 +12,12 @@ export class BookInfoHeaderComponent implements OnInit {
   @Input() book: any;
   @Input() type: string; // can be 'large' or 'small'
 
+
   presentor: string;
 
-  constructor(private FirebaseCall: FirebaseCallsService) { }
+  constructor(
+    private bookService: BooksService,
+    private FirebaseCall: FirebaseCallsService) { }
 
   ngOnInit() {
     this.FirebaseCall.getUserByIUD(this.book.employee)
@@ -26,6 +30,12 @@ export class BookInfoHeaderComponent implements OnInit {
     } else {
       return data;
     }
+  }
+
+  buttonCLick = () => {
+    this.bookService.setActivePresentation(this.book);
+    this.bookService.setActiveVideoLink(this.book.videoLink, '0');
+    this.bookService.setDisplay(true);
   }
 
 }
