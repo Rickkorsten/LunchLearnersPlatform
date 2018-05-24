@@ -1,12 +1,14 @@
-<mat-card class="personal-card">
-  <div class="card-header">
-    {{title}}
+<div class="personal-card">
+  <div class="information-content">
+    <div class="card-header">
+      {{title}}
+    </div>
+    <div class="card-content">
+      <ng-content select="[content]"></ng-content>
+    </div>
+    <div class="card-action">
+      <ng-content *ngIf="!error" select="[action]"></ng-content>
+      <p *ngIf="error">{{error}}</p>
+    </div>
   </div>
-  <div class="card-content">
-    <ng-content select="[content]"></ng-content>
-  </div>
-  <div class="card-action">
-    <ng-content *ngIf="!error" select="[action]"></ng-content>
-    <p *ngIf="error">{{error}}</p>
-  </div>
-</mat-card>
+</div>
