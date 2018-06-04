@@ -12,11 +12,9 @@ export class MenuContainerComponent implements OnInit {
 
   setActive(type: number) {
     this.selectedType = type;
-    console.log(this.selectedType);
   }
 
   constructor() {
-    // this.type = 1;
 
     this.menuItems = [
       {
@@ -43,12 +41,6 @@ export class MenuContainerComponent implements OnInit {
         'icon': 'face',
         'id': 4,
       },
-      // {
-      //   'title': 'Reviews overzicht',
-      //   'router': [{ outlets: { admin: 'reviews' } }],
-      //   'icon': 'star',
-      //   'id': 5,
-      // },
       {
         'title': 'Database exporteren',
         'router': [{ outlets: { admin: 'export' } }],

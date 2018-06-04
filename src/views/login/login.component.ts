@@ -5,7 +5,7 @@ import { Observable } from 'rxjs/Observable';
 import { FormGroup, FormBuilder, Validators } from '@angular/forms';
 
 type UserFields = 'email' | 'password';
-type FormErrors = {[u in UserFields]: string };
+type FormErrors = { [u in UserFields]: string };
 
 // info you want from firebase object
 interface Company {
@@ -34,8 +34,8 @@ export class LoginComponent implements OnInit {
 
   // userform
   userForm: FormGroup;
-  arrow1:  string;
-  arrow2:  string;
+  arrow1: string;
+  arrow2: string;
   newUser = false; // to toggle login or signup form
   passReset = false; // set to true when password reset is triggered
   // form errors
@@ -58,7 +58,7 @@ export class LoginComponent implements OnInit {
     },
   };
 
-  constructor(private db: AngularFirestore, private fb: FormBuilder, private auth: AuthService) { 
+  constructor(private db: AngularFirestore, private fb: FormBuilder, private auth: AuthService) {
     this.arrow1 = '1';
     this.arrow2 = '0';
   }
@@ -67,21 +67,21 @@ export class LoginComponent implements OnInit {
     this.buildForm();
   }
 
-  loginPage(){
+  loginPage() {
     this.newUser = false;
     this.arrow1 = '1';
     this.arrow2 = '0';
   }
 
-  register(){
+  register() {
     this.newUser = true;
     this.arrow1 = '0';
     this.arrow2 = '1';
   }
 
-hide(){
-  this.newUser = false;
-}
+  hide() {
+    this.newUser = false;
+  }
 
   signup() {
     const email: string = this.userForm.value['email'];
@@ -99,8 +99,6 @@ hide(){
           data[0].uid, this.usersArray,
           data[0].name, data[0].emailsuffix
         );
-      } else {
-        console.log('false');
       }
     });
   }
@@ -133,13 +131,12 @@ hide(){
       ]],
     });
 
-    this.userForm.valueChanges.subscribe((data) => this.onValueChanged(data));
+    this.userForm.valueChanges.subscribe(() => this.onValueChanged());
     this.onValueChanged(); // reset validation messages
   }
 
   // Updates validation state on form changes.
-  onValueChanged(data?: any) {
-    console.log(data);
+  onValueChanged() {
     if (!this.userForm) { return; }
     const form = this.userForm;
     for (const field in this.formErrors) {

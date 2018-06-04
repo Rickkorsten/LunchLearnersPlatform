@@ -33,9 +33,7 @@ export class BooksOverviewComponent implements OnInit {
     public dialog: MatDialog,
     public auth: AuthService,
     private FirebaseCall: FirebaseCallsService) {
-
     this.sectionsCount = 0;
-
   }
 
   openDialog(): void {
@@ -58,7 +56,6 @@ export class BooksOverviewComponent implements OnInit {
     const id = this.db.createId();
     const { title, subTitle, author, smallThumbnail, bigThumbnail, publisher, publishDate, description,
       ISBN_13, ISBN_10, categories } = result.book;
-    console.log(title);
 
     this.db.doc(`books/${id}`).set({
       'uid': id,
@@ -78,7 +75,6 @@ export class BooksOverviewComponent implements OnInit {
   }
 
   getBook(book) {
-    console.log(book);
     this.uid = book.uid;
     this.subTitle = book.subTitle;
     this.publisher = book.publisher;
@@ -91,7 +87,6 @@ export class BooksOverviewComponent implements OnInit {
   }
 
   updateBook() {
-    console.log(this.subTitle, this.publisher, this.publishDate, this.description, this.categories);
     this.db.doc(`books/${this.uid}`).update({
       'subTitle': (this.subTitle),
       'publisher': (this.publisher),
@@ -101,16 +96,10 @@ export class BooksOverviewComponent implements OnInit {
       'sections': (this.sections),
       'employee': (this.selectedEmployee),
       'videoLink': (this.videoLink),
-    }).then(function () {
-      console.log('Document successfully written!');
     })
       .catch(function (error) {
         console.error('Error writing document: ', error);
       });
-  }
-
-  update(a) {
-    console.log(a);
   }
 
   deleteBook() {
@@ -118,9 +107,7 @@ export class BooksOverviewComponent implements OnInit {
   }
 
   addToObject(title: string, time: string) {
-    console.log(this.sections);
     const id = this.db.createId();
-    console.log(this.sections);
     this.sections.push(
       {
         id: id,
@@ -128,7 +115,6 @@ export class BooksOverviewComponent implements OnInit {
         time: time,
       }
     );
-    console.log(this.sections);
   }
 
   sort(event: SortEvent) {

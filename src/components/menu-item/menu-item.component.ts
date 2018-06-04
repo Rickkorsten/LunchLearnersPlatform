@@ -11,10 +11,8 @@ export class MenuItemComponent implements OnInit {
   @Input() icon: string;
   @Input() router: string;
 
-    constructor() {
-     }
+  constructor() { }
 
-  ngOnInit() {
-  }
+  ngOnInit() { }
 
 }

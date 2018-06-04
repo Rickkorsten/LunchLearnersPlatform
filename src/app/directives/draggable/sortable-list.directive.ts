@@ -10,7 +10,7 @@ const distance = (rectA: ClientRect, rectB: ClientRect): number => {
   return Math.sqrt(
     Math.pow(rectB.top - rectA.top, 2) +
     Math.pow(rectB.left - rectA.left, 2)
-  )
+  );
 };
 
 const hCenter = (rect: ClientRect): number => {
@@ -52,7 +52,7 @@ export class SortableListDirective implements AfterContentInit {
       .filter(rect => rect !== currentRect)
       .some(rect => {
         const isHorizontal = rect.top === currentRect.top;
-        const isBefore = isHorizontal ? 
+        const isBefore = isHorizontal ?
           rect.left < currentRect.left :
           rect.top < currentRect.top;
 

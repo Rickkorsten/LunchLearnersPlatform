@@ -27,7 +27,6 @@ export class ReviewBuilderComponent implements OnInit {
     this.FirebaseCall.getReviewForm().subscribe(questions => {
       questions.map(question => {
         this.questionsArray = Object.values(question);
-        console.log(this.questionsArray);
       });
     });
   }
@@ -35,8 +34,6 @@ export class ReviewBuilderComponent implements OnInit {
   addToQuestions(question) {
    this.questionsArray.push(question);
     this.question = '';
-    console.log(this.questionsArray);
-    // this.arrayToObject(this.questionsArray, 'q');
   }
 
   delete(item) {
@@ -50,8 +47,6 @@ export class ReviewBuilderComponent implements OnInit {
   }
 
   uploadForm(questionsArray) {
-   // this.questionsArray = this.arrayToObject(this.questionsArray, 'q');
-    console.log(this.questionsArray);
     this.db.doc(`reviewform/form`).set({
       ...questionsArray
     });

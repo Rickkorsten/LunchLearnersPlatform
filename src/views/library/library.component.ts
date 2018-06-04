@@ -29,15 +29,10 @@ export class LibraryComponent implements OnInit {
   ) {
     this.rating = 3;
     this.allBooks = [];
-    // this.getUserData();
-    // if (this.company && this.companyBooks) {
-    //   console.log(this.company);
-    // }
   }
 
   ngOnInit() {
     this.auth.user.subscribe(user => {
-      console.log(user);
       this.role = user.role,
       this.companyName = user.companyName;
         this.companyUid = user.companyUid;
