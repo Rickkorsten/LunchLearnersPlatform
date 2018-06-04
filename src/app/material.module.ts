@@ -15,6 +15,7 @@ import {
   MatSelectModule,
   MatMenuModule,
   MatRadioModule,
+  MatSnackBarModule
 } from '@angular/material';
 
 @NgModule({
@@ -33,6 +34,7 @@ import {
     MatAutocompleteModule,
     MatSelectModule,
     MatRadioModule,
+    MatSnackBarModule
   ],
 })
 export class MaterialModule { }

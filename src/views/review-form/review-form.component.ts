@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { FirebaseCallsService } from './../../app/services/firebaseCalls/firebase-calls.service';
 import { ActivatedRoute } from '@angular/router';
+import { MatSnackBar } from '@angular/material';
 import 'rxjs/add/operator/map';
 @Component({
   selector: 'app-review-form',
@@ -31,7 +32,8 @@ export class ReviewFormComponent implements OnInit {
 
   constructor(
     private FirebaseCall: FirebaseCallsService,
-    private route: ActivatedRoute
+    private route: ActivatedRoute,
+    private snackBar: MatSnackBar,
   ) {
   }
 
@@ -92,6 +94,9 @@ export class ReviewFormComponent implements OnInit {
     const extraInfo = { 'bookUID': this.book.uid, 'employee': this.book.employee };
     const review = Object.assign(object, smallReview, extraInfo);
     this.FirebaseCall.updateReview(review);
+    this.snackBar.open('Review formulier ge-update', '', {
+      duration: 2000,
+    });
   }
 
 }

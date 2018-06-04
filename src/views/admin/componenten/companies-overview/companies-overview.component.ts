@@ -3,7 +3,8 @@ import { AngularFirestore } from 'angularfire2/firestore';
 import { CompanyDialogComponent } from './../dialogs/company-dialog/company-dialog.component';
 import { AuthService } from '../../../../app/core/auth.service';
 import { FirebaseCallsService } from './../../../../app/services/firebaseCalls/firebase-calls.service';
-import { MatDialog } from '@angular/material';
+import { MatDialog, MatSnackBar } from '@angular/material';
+
 
 @Component({
   selector: 'app-companies-overview',
@@ -37,6 +38,7 @@ export class CompanyOverviewComponent implements OnInit {
 
   constructor(
     private db: AngularFirestore,
+    public snackBar: MatSnackBar,
     public dialog: MatDialog,
     public auth: AuthService,
     private FirebaseCall: FirebaseCallsService) {
@@ -116,6 +118,10 @@ export class CompanyOverviewComponent implements OnInit {
       'branche': this.branche,
       'emailsuffix': this.emailsuffix,
       'books': this.companyBooksArray
+    });
+
+    this.snackBar.open('bedrijfs informatie ge-update', '', {
+      duration: 2000,
     });
 
   }

@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { AngularFirestore } from 'angularfire2/firestore';
 import { FirebaseCallsService } from './../../../../app/services/firebaseCalls/firebase-calls.service';
+import { MatSnackBar } from '@angular/material';
 
 @Component({
   selector: 'app-review-builder',
@@ -17,7 +18,8 @@ export class ReviewBuilderComponent implements OnInit {
 
   constructor(
     private db: AngularFirestore,
-    private FirebaseCall: FirebaseCallsService
+    private FirebaseCall: FirebaseCallsService,
+    public snackBar: MatSnackBar,
   ) {
     this.questionsArray = [];
 
@@ -49,6 +51,9 @@ export class ReviewBuilderComponent implements OnInit {
   uploadForm(questionsArray) {
     this.db.doc(`reviewform/form`).set({
       ...questionsArray
+    });
+    this.snackBar.open('formulier ge-update', '', {
+      duration: 2000,
     });
   }
 
