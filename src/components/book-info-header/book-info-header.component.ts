@@ -32,7 +32,7 @@ export class BookInfoHeaderComponent implements OnInit {
     }
   }
 
-  buttonCLick = () => {
+  toVideo() {
     this.bookService.setActivePresentation(this.book);
     this.bookService.setActiveVideoLink(this.book.videoLink, '0');
     this.bookService.setDisplay(true);

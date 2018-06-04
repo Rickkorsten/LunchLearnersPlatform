@@ -2,10 +2,10 @@
     <div class="banner" style="background-image: url('../../assets/login background.jpg');">
         <div class="gradient-overlay">
             <div class="banner-content">
-                <p>Getting things done</p>
-                <p>David Allen</p>
+                <p>{{ title }}</p>
+                <p>{{ author }}</p>
                 <br>
-                <app-button [type]="'accept'" [filled]="false" [title]="'Afspelen'" [icon]="'play_arrow'"></app-button>
+                <app-button [type]="'accept'" [filled]="false" [title]="'Afspelen'" [icon]="'play_arrow'" (click)="toVideo()"></app-button>
             </div>
         </div>
     </div>
