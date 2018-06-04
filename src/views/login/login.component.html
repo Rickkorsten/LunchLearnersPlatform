@@ -3,8 +3,8 @@
     <div id="login-container">
       <img id="lunch-learners-logo" src="../../assets/Lunch Learners logo white.png">
       <div class="switch">
-      <mat-card-subtitle class="button is-small" (click)="loginPage()">inloggen</mat-card-subtitle>
-      <mat-card-subtitle class="button is-small" (click)="register()">registreren</mat-card-subtitle>
+      <mat-card-subtitle class=" is-small" (click)="loginPage()">Inloggen</mat-card-subtitle>
+      <mat-card-subtitle class=" is-small" (click)="register()">Registreren</mat-card-subtitle>
       </div>
       <div class="triangles">
           <img [style.opacity]="arrow1" class="triangle" src="../../assets/images/triangle.svg">
@@ -20,13 +20,10 @@
                     <mat-error *ngIf="formErrors.password">{{ formErrors.password }}</mat-error>
                   <!-- <span *ngIf="userForm.valid" class="help is-success">Ziet er goed uit!</span><br><br> -->
             
-                  <button type="'submit'" class="button" [disabled]="!userForm.valid" color="primary">Inloggen</button>
-                  <button (click)="resetPassword()" class=" help is-info wachtwoordbutton">Wachtwoord vergeten</button>
+                  <button type="'submit'" class="button inloggenbutton" [disabled]="!userForm.valid" color="primary">Inloggen</button>
+                  <button (click)="resetPassword()" class="button help is-info wachtwoordbutton">Wachtwoord vergeten</button>
                   <p *ngIf="passReset" class="help is-info">Reset requested. Check your email instructions.</p>
-                  <!-- <app-button [title]="'titel'"  [type]="'decline'" [filled]="false" class="button" class="help is-info"
-                    (click)="resetPassword()">Wachtwoord vergeten</app-button>
-                  <p *ngIf="passReset" class="help is-info">Reset requested. Check your email instructions.</p> -->
-            
+              
                 </mat-card-content>
               </form>
 
@@ -39,7 +36,7 @@
                     required>
                   <mat-error *ngIf="formErrors.password">{{ formErrors.password }}</mat-error>
                 <!-- <div *ngIf="userForm.valid" class="notification is-success">Ziet er goed uit!</div><br> -->
-                <button  type="submit" class="button" [disabled]="!userForm.valid" color="primary">aanmaken</button>
+                <button  type="submit" class="button inloggenbutton"class="button inloggenbutton" [disabled]="!userForm.valid" color="primary">aanmaken</button>
               </mat-card-content>
               <div *ngFor="let company of companies | async">
                   <div>

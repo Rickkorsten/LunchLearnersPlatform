@@ -80,7 +80,6 @@ export class CompanyOverviewComponent implements OnInit {
   ngOnInit() {
     this.companies = this.FirebaseCall.getCompaniesCollection();
     this.allBooks = this.FirebaseCall.getBooksCollection();
-    console.log(this.companies);
   }
 
   async get(uid, name, code, branche, emailsuffix, books, users) {
@@ -105,12 +104,10 @@ export class CompanyOverviewComponent implements OnInit {
   getTitleOfBooksUID(books) {
     const booksArray = [];
     books.map(user => {
-      console.log(user);
       this.FirebaseCall.getBookByUID(user).subscribe(data => booksArray.push({'title': data[0].title, 'uid': data[0].uid}));
     });
     return booksArray;
   }
-
 
   update() {
     this.db.doc(`companies/${this.uid}`).update({
@@ -121,7 +118,6 @@ export class CompanyOverviewComponent implements OnInit {
       'books': this.companyBooksArray
     });
 
-    console.log('updated');
   }
 
   delete() {
@@ -152,8 +148,7 @@ export class CompanyOverviewComponent implements OnInit {
     this.popupMessage = 'uploaded';
 
   }
-  // update en delete zijn snelle oplossing voor demo !!
-  // hij update steeds de array die word gegeneerd na een hoops calls naar de data base !!!!!!!!!!!! MOET BETER
+
   updateBookArray(book) {
     this.companyBooksArray.push(book);
     this.books = this.getTitleOfBooksUID(this.companyBooksArray);

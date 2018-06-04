@@ -21,9 +21,7 @@ export class PresentationComponent implements OnInit {
     private bookService: BooksService,
     private route: ActivatedRoute,
     private FirebaseCall: FirebaseCallsService,
-    public dialog: MatDialog, ) {
-
-    this.rating = 3;
+    public dialog: MatDialog ) {
     this.counter = 0;
   }
 
@@ -38,12 +36,9 @@ export class PresentationComponent implements OnInit {
         this.FirebaseCall.getReviewsByIUD(this.book.uid)
         .subscribe(reviews => this.reviews = reviews
           .filter(review => review.remark));
-        console.log(this.reviews);
       });
     } else {
-      console.log('take info from service');
       this.FirebaseCall.getReviewsByIUD(this.book.uid).subscribe(reviews => this.reviews = reviews);
-      console.log(this.reviews);
     }
   }
 
@@ -57,7 +52,6 @@ export class PresentationComponent implements OnInit {
     dialogRef.afterClosed().subscribe(result => {
       const extraInfo = { 'bookUID': this.book.uid, 'employee': this.book.employee };
       const review = Object.assign(result, extraInfo);
-      console.log(review);
       // bookUID
       this.FirebaseCall.updateReview(review);
     });

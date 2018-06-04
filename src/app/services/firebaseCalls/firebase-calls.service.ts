@@ -95,7 +95,6 @@ export class FirebaseCallsService {
     this.companies = this.companiesCol.valueChanges();
     this.companies.subscribe(data => {
       if (data[0].users) {
-        console.log(data[0].users);
         this.usersArray = data[0].users;
         if (this.usersArray) {
           this.deleteFromCompanyUserlist(uid, companyUid, this.usersArray);
@@ -112,7 +111,6 @@ export class FirebaseCallsService {
       'users': this.newArray
     }, { merge: true });
   }
-  ///////////////////////// ////////////// /////////////////////////////
 
   getCompaniesCollection() {
     this.companiesCol = this.db.collection('companies');
@@ -181,7 +179,6 @@ export class FirebaseCallsService {
   }
 
   updateReview(result) {
-    console.log('updated review');
     const id = this.db.createId();
     this.db.doc(`reviews/${id}`).set(
       result

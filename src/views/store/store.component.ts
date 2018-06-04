@@ -45,11 +45,9 @@ export class StoreComponent implements OnInit {
   ngOnInit() {
     this.booksCol = this.db.collection('books');
     this.books = this.booksCol.valueChanges();
-    console.log(this.searchValue);
   }
 
   searchBook(result) {
-    console.log(result);
     this.bookService.searchBook(result)
     .map(books => books.json().items)
     .subscribe(books => {
@@ -62,9 +60,4 @@ export class StoreComponent implements OnInit {
     );
   }
 
-  // downloadImage(imageURL:string){
-  //   const ref = this.storage.ref('test/1519578506282_kaftceline1.png');
-  //  // console.log(ref.getDownloadURL())
-  //   return
-  // }
 }

@@ -9,9 +9,7 @@ import { } from '@types/googlemaps';
 export class ContactComponent implements OnInit {
   constructor() { }
 
-  ngOnInit() {
-    
-  }
+  ngOnInit() {}
 
 }
 

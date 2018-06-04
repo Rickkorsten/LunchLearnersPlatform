@@ -17,6 +17,8 @@ export class ButtonComponent implements OnInit {
   iconText: string;
   width: string;
 
+  class: string;
+
   marginLeft: string;
 
   constructor() { }

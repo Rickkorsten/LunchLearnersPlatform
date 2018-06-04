@@ -95,15 +95,6 @@ export class SettingsComponent implements OnInit {
     });
   }
 
-  // getCompanyData() {
-  //   this.companiesCol = this.db.collection('companies', ref => ref.where('name', '==', this.companyName));
-  //   this.companies = this.companiesCol.valueChanges();
-  //   this.companies.subscribe(data => {
-  //     console.log(data);
-  //     this.companyBranche = data[0].branche;
-  //   });
-  // }
-
   updateUser = (name: string, city: string, streetNumber: string, zipCode: string) => {
     // Sets user data to firestore on login
     const userRef: AngularFirestoreDocument<any> = this.db.doc(`users/${this.userUid}`);
@@ -119,7 +110,6 @@ export class SettingsComponent implements OnInit {
   }
 
   resetPassword() {
-    console.log(this.controlleEmail);
     if (this.controlleEmail === undefined) {
       return this.controlleEmail = 'Geen geldige email ingevuld';
     }
@@ -127,12 +117,6 @@ export class SettingsComponent implements OnInit {
       .then(() => this.passReset = this.email === this.controlleEmail ? true : false);
     this.passMessage = 'Er is een bericht verzonden naar je Email';
   }
-
-
-  //////////////////////// MAKE THE FUNCTIONS ONE BY ONE /////////////////////////
-  ///////////// FIRST USER READ AND UPDATE ///////////////////////////////////////
-  //// THEN COMPANY //////////////////////////////////////////////////////////////
-  ///////////////////////////////// PASSWORD /////////////////////////////////////
 
 }
 
