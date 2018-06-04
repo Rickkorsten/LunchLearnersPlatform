@@ -38,15 +38,12 @@ export class LibraryComponent implements OnInit {
   ) {
     this.rating = 3;
     this.allBooks = [];
-<<<<<<< HEAD
     this.isActiveBook = false;
     this.first = false;
     // this.getUserData();
     // if (this.company && this.companyBooks) {
     //   console.log(this.company);
     // }
-=======
->>>>>>> b23fb6b29b821f1ef85201051c067c9f90fa76fa
   }
 
   ngOnInit() {
