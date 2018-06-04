@@ -1,4 +1,4 @@
-<div class="button" [ngClass]="type" [style.background-color]="background" [style.width]="width" [style.border-color]="border">
+<div class="button" class="{{class}}" [ngClass]="type" [style.background-color]="background" [style.width]="width" [style.border-color]="border">
     <p [style.color]="iconText">{{title}}</p>
     <mat-icon [style.color]="iconText" [ngStyle]="{'padding-left.px': icon ? 10 : 0}">{{icon}}</mat-icon>
 </div>
