@@ -1,7 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { BooksService } from './../../app/services/books/books.service';
 import { DomSanitizer } from '@angular/platform-browser';
-import { MatDrawer } from '@angular/material';
 
 @Component({
   selector: 'app-video',
