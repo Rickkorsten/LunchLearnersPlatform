@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { BooksService } from './../../app/services/books/books.service';
 import { DomSanitizer } from '@angular/platform-browser';
+import { MatDrawer } from '@angular/material';
 
 @Component({
   selector: 'app-video',
@@ -16,6 +17,7 @@ export class VideoComponent implements OnInit {
   expanded = false;
   display: any;
   controleURL: any;
+  public drawer: MatDrawer;
 
 
   constructor(
@@ -34,6 +36,7 @@ export class VideoComponent implements OnInit {
     this.bookService.activeVideoLink.subscribe(link => {
       this.safeURL = this._sanitizer
         .bypassSecurityTrustResourceUrl(link);
+        this.expanded = true;
     });
   }
 
@@ -48,8 +51,11 @@ export class VideoComponent implements OnInit {
   expand() {
     if (!this.expanded) {
       this.expanded = true;
+      this.drawer.toggle();
+
     } else {
       this.expanded = false;
+      this.drawer.toggle();
     }
   }
 

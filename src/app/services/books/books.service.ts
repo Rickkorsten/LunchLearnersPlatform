@@ -36,11 +36,12 @@ export class BooksService {
   }
 
   public setActiveVideoLink(video: string, time: string) {
-    const URL = (`https://www.youtube.com/embed/${video}?start=${time}&autoplay=0&showinfo=0`);
+    const URL = (`https://www.youtube.com/embed/${video}?start=${time}&autoplay=1&showinfo=0`);
     this.videoLink.next(URL);
   }
 
   public setDisplay(bool) {
     this.displaySource.next(bool);
   }
+
 }
