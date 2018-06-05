@@ -66,17 +66,20 @@
                     <input matInput type="text" placeholder="Hoofdstuk naam" [(ngModel)]="chapterTitle" />
                 </mat-form-field>
                 <mat-form-field>
-                    <input matInput type="text" placeholder="Tijdstip" [(ngModel)]="time" />
+                    <input matInput type="text" placeholder="Tijdstip(Mm:Ss)" [(ngModel)]="time" />
                 </mat-form-field>
                 <button mat-button color="primary" (click)="addToObject(chapterTitle,time)">
                     Toevoegen
                   </button>
 
             </div>
-            <ul class="chapter-list" appSortableList (sort)="sort($event)">
-                <li *ngFor="let section of sections" class="box" appSortable>
-                    {{ section.title }}
-                    <div class="box" *appDraggableHelper>{{ section.title }}</div>
+            <ul class="chapter-list">
+                <li *ngFor="let section of sections" class="box">
+                    <p>{{ section.title }}</p>
+                    <div>
+                        <p>{{ convertTime(section.time) }}</p>
+                        <mat-icon (click)="deleteSection(section.id)">delete</mat-icon>
+                    </div>
                 </li>
             </ul>
             <mat-action-row>

@@ -106,15 +106,47 @@ export class BooksOverviewComponent implements OnInit {
     this.db.doc(`books/${this.uid}`).delete();
   }
 
-  addToObject(title: string, time: string) {
+  async addToObject(title: string, time: string) {
     const id = this.db.createId();
     this.sections.push(
       {
         id: id,
         title: title,
-        time: time,
+        time: await this.convertToSeconds(time),
       }
     );
+  }
+
+  convertToSeconds(time) {
+    const t = time.split(':');
+    if (t.length > 2) {
+      const seconds = (+t[0]) * 60 * 60 + (+t[1]) * 60 + (+t[2]);
+      return seconds;
+    } else {
+      const seconds = (+t[0]) * 60 + (+t[1]);
+      return seconds;
+    }
+  }
+
+  deleteSection(id) {
+    console.log(id);
+    this.sections = this.sections.filter(function(object) {
+     return object.id !== id;
+  });
+  }
+
+  convertTime(time) {
+    const hours   = Math.floor(time / 3600);
+    const minutes = Math.floor((time - (hours * 3600)) / 60);
+    let seconds = time - (hours * 3600) - (minutes * 60);
+
+    // round seconds
+    seconds = Math.round(seconds * 100) / 100;
+
+    let result = (hours < 10 ? '0' + hours : hours);
+        result += ':' + (minutes < 10 ? '0' + minutes : minutes);
+        result += ':' + (seconds  < 10 ? '0' + seconds : seconds);
+    return result;
   }
 
   sort(event: SortEvent) {
