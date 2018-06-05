@@ -17,8 +17,6 @@ export class VideoComponent implements OnInit {
   expanded = false;
   display: any;
   controleURL: any;
-  public drawer: MatDrawer;
-
 
   constructor(
     private bookService: BooksService,
@@ -51,11 +49,8 @@ export class VideoComponent implements OnInit {
   expand() {
     if (!this.expanded) {
       this.expanded = true;
-      this.drawer.toggle();
-
     } else {
       this.expanded = false;
-      this.drawer.toggle();
     }
   }
 
