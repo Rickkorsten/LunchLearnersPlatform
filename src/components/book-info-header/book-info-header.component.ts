@@ -20,8 +20,12 @@ export class BookInfoHeaderComponent implements OnInit {
     private FirebaseCall: FirebaseCallsService) { }
 
   ngOnInit() {
-    this.FirebaseCall.getUserByIUD(this.book.employee)
-    .subscribe(user => this.presentor = user[0].name ? user[0].name : user[0].companyName );
+    if (this.book) {
+      console.log(this.book);
+      this.FirebaseCall.getUserByIUD(this.book.employee)
+      .subscribe(user => this.presentor = user[0].name ? user[0].name : user[0].companyName );
+      console.log(this.presentor);
+    }
   }
 
   checkDbOutput = (data: string) => {

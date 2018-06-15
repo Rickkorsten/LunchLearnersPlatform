@@ -10,7 +10,8 @@ import 'rxjs/add/operator/map';
   providers: [FirebaseCallsService]
 })
 export class ReviewFormComponent implements OnInit {
-  bookCode: string;
+  bookCode: any;
+  formType: any;
   book: any;
   error: string;
 
@@ -29,6 +30,8 @@ export class ReviewFormComponent implements OnInit {
 
   questionsArray: any;
   generalRating: number;
+  presentorName;
+  bookName;
 
   constructor(
     private FirebaseCall: FirebaseCallsService,
@@ -39,23 +42,39 @@ export class ReviewFormComponent implements OnInit {
 
   ngOnInit() {
     this.route.params.subscribe(params => {
-      this.bookCode = JSON.parse(params['bookcode']);
-      if (this.bookCode) {
+      const bookCode = params['bookcode'];
+      const formType = params['bookcode'];
+      this.formType = formType.substring(4);
+      this.bookCode = bookCode.substring(0, 4);
+
+      if (this.bookCode && this.formType) {
         this.FirebaseCall.getBook(this.bookCode.toString())
-          .subscribe(book => {
+          .subscribe( async book => {
             this.book = book[0];
+            if (this.book) {
+              console.log(this.book);
+              await this.getPresentorName(this.book.employee);
+              await this.getBookName(this.book.uid);
+            }
+          });
+
+          this.FirebaseCall.getReviewForm(this.formType).subscribe(question => {
+            this.questionsArray = Object.values(question);
+              this.remark = '';
+              this.title = '';
+              this.generalRating = 0;
           });
       }
     });
+  }
 
-    this.FirebaseCall.getReviewForm().subscribe(questions => {
-      questions.map(question => {
-        this.questionsArray = Object.values(question);
-        this.remark = '';
-        this.title = '';
-        this.generalRating = 0;
-      });
-    });
+  getPresentorName(employee): void {
+    console.log(employee);
+    this.FirebaseCall.getUserByIUD(employee).subscribe(user => this.presentorName = user[0].name ? user[0].name : user[0].companyName );
+  }
+
+  getBookName(bookUid): void {
+    this.FirebaseCall.getActiveBook(bookUid).subscribe(book => this.bookName = book[0].title);
   }
 
   accept(): void {
@@ -91,7 +110,7 @@ export class ReviewFormComponent implements OnInit {
     questionArray = questionArray.filter(n =>  n !== undefined );
     const object = { ratingArray, questionArray };
     const smallReview = {'title': this.title, 'remark': this.remark, 'generalRating' : this.generalRating};
-    const extraInfo = { 'bookUID': this.book.uid, 'employee': this.book.employee };
+    const extraInfo = {'book': this.bookName, 'bookUID': this.book.uid, 'employee': this.presentorName };
     const review = Object.assign(object, smallReview, extraInfo);
     this.FirebaseCall.updateReview(review);
     this.snackBar.open('Review formulier ge-update', '', {

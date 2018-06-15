@@ -22,6 +22,7 @@ export class BooksOverviewComponent implements OnInit {
   publishDate: string;
   categories: string;
   videoLink: string;
+  reviewId: string;
 
   sections: any;
   sectionsCount: number;
@@ -84,6 +85,7 @@ export class BooksOverviewComponent implements OnInit {
     this.sections = book.sections ? book.sections : [] ;
     this.selectedEmployee = book.employee ? book.employee : 'selecteer presentator';
     this.videoLink = book.videoLink ? book.videoLink : '';
+    this.reviewId = book.reviewId ? book.reviewId : '';
   }
 
   updateBook() {
@@ -96,6 +98,7 @@ export class BooksOverviewComponent implements OnInit {
       'sections': (this.sections),
       'employee': (this.selectedEmployee),
       'videoLink': (this.videoLink),
+      'reviewId': (this.reviewId)
     })
       .catch(function (error) {
         console.error('Error writing document: ', error);
@@ -136,7 +139,6 @@ export class BooksOverviewComponent implements OnInit {
   }
 
   convertTime(time) {
-    console.log(time);
     const hours   = Math.floor(time / 3600);
     const minutes = Math.floor((time - (hours * 3600)) / 60);
     let seconds = time - (hours * 3600) - (minutes * 60);

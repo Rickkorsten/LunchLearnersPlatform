@@ -29,6 +29,7 @@ export class PresentationComponent implements OnInit {
     this.route.params.subscribe(params => this.activeBookUid = params.book);
     this.bookService.activeBook.subscribe(book => this.book = book);
     const stringedBook = JSON.stringify(this.book);
+    console.log(this.book);
 
     if (stringedBook === '{"object":"object"}') {
       this.FirebaseCall.getActiveBook(this.activeBookUid.toString()).subscribe(book => {
