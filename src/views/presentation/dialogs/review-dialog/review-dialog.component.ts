@@ -33,7 +33,7 @@ export class ReviewDialogComponent implements OnInit {
   }
 
   ngOnInit() {
-    this.FirebaseCall.getReviewForm().subscribe(questions => {
+    this.FirebaseCall.getReviewForm('formeel').subscribe(questions => {
       questions.map(question => {
         this.questionsArray = Object.values(question);
         console.log(this.questionsArray);

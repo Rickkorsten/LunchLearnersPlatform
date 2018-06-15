@@ -1,22 +1,52 @@
+<!-- formulier 1-->
 <div class="review-container">
     <p class="header">Wat vond u van de presentatie ?</p>
-    <div class="row" *ngFor="let question of questionsArray || async ">
-        <mat-icon mat-list-icon (click)="delete(question)">delete</mat-icon>
-        <p>{{question}}?</p>
-        <rating [(ngModel)]="rating1" [titles]="['one', 'two', 'three', 'four', 'five']"></rating>
-    </div>
+    <mat-tab-group [(selectedIndex)]="index" class="demo-tab-group">
 
-    <div class="row">
-        <mat-form-field>
-            <input matInput placeholder="Input" [(ngModel)]="question" (keyup.enter)="addToQuestions(question)">
-            <span matSuffix>?</span>
+        <mat-tab label="Formeel">
+            <div class="row" *ngFor="let question of forQuestionsArray || async ">
+                <mat-icon mat-list-icon (click)="delete(forQuestionsArray,question)">delete</mat-icon>
+                <p>{{question}}?</p>
+                <rating [(ngModel)]="rating1" [titles]="['one', 'two', 'three', 'four', 'five']"></rating>
+            </div>
 
-        </mat-form-field>
-        <app-button (click)="addToQuestions(question)" [type]="'accept'" [filled]="false" [title]="'toevoegen'" [icon]="'add'"></app-button>
-    </div>
-    <div class="row">
-        <div class="button-row">
-            <p style="color: red; padding-top: 15px; font-size: 18px">{{error}}</p>
-            <app-button (click)="uploadForm(questionsArray)" [type]="'accept'" [filled]="true" [title]="'Upload'"></app-button>
-        </div>
-    </div>
+            <div class="row">
+                <mat-form-field>
+                    <input matInput placeholder="Input" [(ngModel)]="question" (keyup.enter)="addToQuestions(question)">
+                    <span matSuffix>?</span>
+
+                </mat-form-field>
+                <app-button (click)="addToQuestions(forQuestionsArray,question)" [type]="'accept'" [filled]="false" [title]="'toevoegen'" [icon]="'add'"></app-button>
+            </div>
+            <div class="row">
+                <div class="button-row">
+                    <p style="color: red; padding-top: 15px; font-size: 18px">{{error}}</p>
+                    <app-button (click)="uploadForm(forQuestionsArray)" [type]="'accept'" [filled]="true" [title]="'Upload'"></app-button>
+                </div>
+            </div>
+        </mat-tab>
+
+        <mat-tab label="Informeel">
+            <div class="row" *ngFor="let question of inforQuestionsArray || async ">
+                <mat-icon mat-list-icon (click)="delete(inforQuestionsArray,question)">delete</mat-icon>
+                <p>{{question}}?</p>
+                <rating [(ngModel)]="rating1" [titles]="['one', 'two', 'three', 'four', 'five']"></rating>
+            </div>
+
+            <div class="row">
+                <mat-form-field>
+                    <input matInput placeholder="Input" [(ngModel)]="question" (keyup.enter)="addToQuestions(question)">
+                    <span matSuffix>?</span>
+
+                </mat-form-field>
+                <app-button (click)="addToQuestions(inforQuestionsArray,question)" [type]="'accept'" [filled]="false" [title]="'toevoegen'" [icon]="'add'"></app-button>
+            </div>
+            <div class="row">
+                <div class="button-row">
+                    <p style="color: red; padding-top: 15px; font-size: 18px">{{error}}</p>
+                    <app-button (click)="uploadForm(inforQuestionsArray)" [type]="'accept'" [filled]="true" [title]="'Upload'"></app-button>
+                </div>
+            </div>
+        </mat-tab>
+    </mat-tab-group>
+</div>

@@ -11,8 +11,11 @@ import { MatSnackBar } from '@angular/material';
 export class ReviewBuilderComponent implements OnInit {
 
   question: string;
-  questionsArray: string[];
+  inforQuestionsArray;
+  forQuestionsArray;
   counter: number;
+  type: string;
+  index: number;
 
   questions: any;
 
@@ -21,25 +24,23 @@ export class ReviewBuilderComponent implements OnInit {
     private FirebaseCall: FirebaseCallsService,
     public snackBar: MatSnackBar,
   ) {
-    this.questionsArray = [];
+    this.inforQuestionsArray = [];
 
    }
 
   ngOnInit() {
-    this.FirebaseCall.getReviewForm().subscribe(questions => {
-      questions.map(question => {
-        this.questionsArray = Object.values(question);
-      });
-    });
+    this.loadFormeel();
+    this.loadInformeel();
   }
 
-  addToQuestions(question) {
-   this.questionsArray.push(question);
+  addToQuestions(typearray, question) {
+    typearray.push(question);
     this.question = '';
   }
 
-  delete(item) {
-    this.questionsArray = this.remove(this.questionsArray, item);
+  delete(typearray, item) {
+    console.log(this.index);
+    typearray = this.remove(typearray, item);
   }
 
   remove(arr, dele) {
@@ -49,7 +50,21 @@ export class ReviewBuilderComponent implements OnInit {
   }
 
   uploadForm(questionsArray) {
-    this.db.doc(`reviewform/form`).set({
+
+    console.log(this.index);
+
+    switch ( this.index ) {
+      case 0:
+          this.type = 'formeel';
+          break;
+      case 1:
+          this.type = 'informeel';
+          break;
+      default:
+          this.type = 'formeel';
+  }
+
+    this.db.doc(`reviewform/${this.type}`).set({
       ...questionsArray
     });
     this.snackBar.open('formulier ge-update', '', {
@@ -57,6 +72,19 @@ export class ReviewBuilderComponent implements OnInit {
     });
   }
 
-  arrayToObject = (arr, keyField) => Object.assign({}, ...arr.map(item => ({[item[keyField]]: item})));
+ // arrayToObject = (arr, keyField) => Object.assign({}, ...arr.map(item => ({[item[keyField]]: item})));
+
+
+  loadFormeel() {
+    this.FirebaseCall.getReviewForm('formeel').subscribe(questions => {
+      this.forQuestionsArray = Object.values(questions);
+    });
+  }
+
+  loadInformeel() {
+    this.FirebaseCall.getReviewForm('informeel').subscribe(questions => {
+      this.inforQuestionsArray = Object.values(questions);
+    });
+  }
 
 }
