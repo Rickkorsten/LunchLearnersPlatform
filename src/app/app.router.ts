@@ -36,13 +36,14 @@ export const router: Routes = [
     { path: 'video/:bookcode', component: VideoComponent, canActivate: [AuthGuard] },
     // The admin path also has childeren, these define the paths of the admin router outlet inside of the admin component
     { path: 'admin', component: AdminComponent, canActivate: [AuthGuard] , children: [
-        { path: 'books', component: BooksOverviewComponent, outlet: 'admin' },
-        { path: 'companies', component: CompanyOverviewComponent, outlet: 'admin' },
-        { path: 'users', component: UsersOverviewComponent, outlet: 'admin' },
-        { path: 'employees', component: EmployeeOverviewComponent, outlet: 'admin' },
-        { path: 'reviews', component: ReviewsOverviewComponent, outlet: 'admin' },
-        { path: 'export', component: ExportOverviewComponent, outlet: 'admin' },
-        { path: 'reviewbuilder', component: ReviewBuilderComponent, outlet: 'admin' }
+        { path: '', redirectTo: 'books', pathMatch: 'full' },
+        { path: 'books', component: BooksOverviewComponent },
+        { path: 'companies', component: CompanyOverviewComponent },
+        { path: 'users', component: UsersOverviewComponent },
+        { path: 'employees', component: EmployeeOverviewComponent },
+        { path: 'reviews', component: ReviewsOverviewComponent },
+        { path: 'export', component: ExportOverviewComponent },
+        { path: 'reviewbuilder', component: ReviewBuilderComponent }
     ]}
 ];
 

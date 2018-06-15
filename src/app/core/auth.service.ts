@@ -61,7 +61,10 @@ export class AuthService {
   emailLogin(email: string, password: string) {
     return this.afAuth.auth.signInWithEmailAndPassword(email, password)
       .then((user) => {
-        this.router.navigateByUrl('');
+        this.router.navigateByUrl('').then(result => {
+          console.log(result);
+          window.location.reload();
+        });
         return this.updateUserData(user, '', '', '', ''); // if using firestore
       })
       .catch((error) => this.handleError(error));
@@ -108,7 +111,10 @@ export class AuthService {
 
   signOut() {
     this.afAuth.auth.signOut().then(() => {
-      this.router.navigate(['/login']);
+      this.router.navigate(['/login']).then(result => {
+        console.log(result);
+        window.location.reload();
+      });
     });
   }
 
