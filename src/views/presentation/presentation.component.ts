@@ -32,10 +32,6 @@ export class PresentationComponent implements OnInit {
     this.route.params.subscribe(params => this.activeBookUid = params.book);
     this.bookService.activeBook.subscribe(book => {
       this.book = book;
-      if (this.book) {
-        this.getPresentorName(this.book.employee);
-        this.getBookName(this.book.uid);
-      }
     });
     const stringedBook = JSON.stringify(this.book);
     console.log(this.book);
@@ -47,8 +43,12 @@ export class PresentationComponent implements OnInit {
         .subscribe(reviews => this.reviews = reviews
           .filter(review => review.remark));
       });
+      this.getPresentorName(this.book.employee);
+      this.getBookName(this.book.uid);
     } else {
       this.FirebaseCall.getReviewsByIUD(this.book.uid).subscribe(reviews => this.reviews = reviews);
+      this.getPresentorName(this.book.employee);
+      this.getBookName(this.book.uid);
     }
   }
 

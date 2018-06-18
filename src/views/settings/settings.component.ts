@@ -6,6 +6,7 @@ import { Observable } from 'rxjs/Observable';
 import { FirebaseCallsService } from './../../app/services/firebaseCalls/firebase-calls.service';
 import { BooksService } from './../../app/services/books/books.service';
 import { Router } from '@angular/router';
+import { MatSnackBar } from '@angular/material';
 
 // rxjs operators
 import 'rxjs/add/operator/do';
@@ -20,8 +21,6 @@ interface Company {
 interface User {
   name: string;
   city: string;
-  streetNumber: string;
-  zipCode: string;
 }
 
 @Component({
@@ -61,7 +60,8 @@ export class SettingsComponent implements OnInit {
     private db: AngularFirestore,
     private FirebaseCall: FirebaseCallsService,
     private router: Router,
-    private bookService: BooksService) {
+    private bookService: BooksService,
+    public snackBar: MatSnackBar) {
     this.passReset = false;
     this.allBooks = [];
   }
@@ -70,6 +70,7 @@ export class SettingsComponent implements OnInit {
     this.getUserData();
 
     this.auth.user.subscribe(user => {
+      console.log(user);
       this.role = user.role,
         this.companyUid = user.companyUid;
       if (this.companyUid) {
@@ -101,18 +102,18 @@ export class SettingsComponent implements OnInit {
     });
   }
 
-  updateUser = (name: string, city: string, streetNumber: string, zipCode: string) => {
+  updateUser = (name: string, city: string) => {
     // Sets user data to firestore on login
     const userRef: AngularFirestoreDocument<any> = this.db.doc(`users/${this.userUid}`);
 
     const UserUpdate: User = {
       name: name,
       city: city,
-      streetNumber: streetNumber,
-      zipCode: zipCode,
     };
     userRef.set(UserUpdate, { merge: true });
-    this.userMessage = 'gegevens geupdate';
+    this.snackBar.open('formulier ge-update', '', {
+      duration: 2000,
+    });
   }
 
   resetPassword() {
