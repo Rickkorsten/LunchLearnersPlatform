@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { FirebaseCallsService } from './../../../../app/services/firebaseCalls/firebase-calls.service';
-import {CsvService} from 'angular2-json2csv';
+import {CsvService} from './../../../../app/services/csv.service';
 
 @Component({
   selector: 'app-export-overview',
