@@ -75,7 +75,6 @@ export class ReviewDialogComponent implements OnInit {
     questionArray = questionArray.filter(n =>  n !== undefined );
     const object = { ratingArray, questionArray };
     const smallReview = {'title': this.title, 'remark': this.remark, 'generalRating' : this.generalRating};
-
     const review = Object.assign(object, smallReview);
     console.log(review);
      this.dialogRef.close(object);

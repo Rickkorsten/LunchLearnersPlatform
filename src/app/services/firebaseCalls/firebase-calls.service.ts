@@ -179,6 +179,12 @@ export class FirebaseCallsService {
     return this.reviews;
   }
 
+  getReviews() {
+    this.reviewsCol = this.db.collection('reviews');
+    this.reviews = this.reviewsCol.valueChanges();
+    return this.reviews;
+  }
+
   updateReview(result) {
     const id = this.db.createId();
     this.db.doc(`reviews/${id}`).set(
