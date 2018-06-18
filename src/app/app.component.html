@@ -8,16 +8,12 @@
 
         <button mat-button routerLink="library" *ngIf="user === 'user' || 'employee'">Uw boeken</button>
         <button mat-button routerLink="contact" *ngIf="user === 'user' || 'employee'">Contact</button>
-        <!-- <button mat-button routerLink="store" *ngIf="user">Ontdekken</button> -->
+        <button mat-button routerLink="settings" *ngIf="user === 'user' || 'employee'">Instellingen</button>
         <button mat-button routerLink="admin" *ngIf="user === 'employee'">Admin</button>
-
-        <button mat-icon-button [matMenuTriggerFor]="menu">
-        <mat-icon aria-label="account-circle">account_circle</mat-icon>
-      </button>
+        <button mat-button (click)="auth.signOut()" *ngIf="user === 'user' || 'employee'">Uitloggen</button>
 
         <mat-menu #menu="matMenu">
-            <button mat-menu-item routerLink="settings" *ngIf="user === 'user' || 'employee'">Instellingen</button>
-            <button mat-menu-item (click)="auth.signOut()" *ngIf="user === 'user' || 'employee'">Uitloggen</button>
+            
         </mat-menu>
 
     </mat-toolbar-row>

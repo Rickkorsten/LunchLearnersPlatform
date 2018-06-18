@@ -4,49 +4,13 @@
 
 <div class="settings-container">
   <div class="card-container">
-    <!-- card component 1 -->
-    <app-settings-card [title]="'Bedrijf: Google'" class='info' [error]="userMessage" >
-      <div content>
-          <div class="contact">
-              <h1>Contactpersoon</h1>
-              <h2>Manager@google.com</h2>
-          </div>
-          <div class="contact">
-              <h1>Basiswachtwoord</h1>
-              <h2>Google1</h2>
-          </div>
-          <div class="contact">
-              <h1>Aantal werknemers</h1>
-              <h2>11</h2>
-          </div>
-          <div class="contact">
-              <h1>Aantal boeken</h1>
-              <h2>4</h2>
-          </div>
-    </div>
-  </app-settings-card>
-      <!--<button action mat-button (click)="updateUser(name,city,streetNumber,zipCode)">Pas aan</button>-->
-    <!-- card component 2 -->
-    
-    <!--<app-settings-card2 [type]="'large'" [book]="book"></app-settings-card2>-->
-    <!-- card component 2 -->
-    
-    <app-settings-card [title]="'Uw boeken'"class="boekencard"[error]="passMessage"  >
-        <div content>
-             <app-book-card-mini *ngFor="let book of allBooks || async"[book]="book" (click)="toPresentationPage(book)"></app-book-card-mini>
-             <!--<app-book-card *ngFor="let book of allBooks || async" [book]="book" (click)="toPresentationPage(book)"></app-book-card>-->
 
-        </div>
-    </app-settings-card>
-    
-    <!-- card component 3 -->
-    <!--
-    <app-settings-card [error]="false" >
-        <div content>
-      <p>Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Aenean commodo ligula eget dolor. Aenean massa. Cum sociis natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus. Donec quam felis, ultricies nec, pellentesque eu, pretium quis, sem. Nulla consequat massa quis enim. Donec pede justo, fringilla vel, aliquet nec, vulputate eget, arcu. In enim justo, rhoncus ut, imperdiet a.</p>
-      <button action mat-button (click)="resetPassword()">Bekijk onze algemene voorwaarden</button>
-      </div>
-    </app-settings-card>-->
+        <div class="header-separator">
+                <p>Uw boeken collectie in beheer van: {{companyName}}</p>
+            </div>
+            <div class="book-container">
+                <app-book-card *ngFor="let book of allBooks || async" [book]="book" (click)="toPresentationPage(book)"></app-book-card>
+            </div>
 
   </div>
 </div>

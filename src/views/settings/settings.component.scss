@@ -80,57 +80,33 @@
 
 //
 .settings-container {
-    display: flex;
-    flex-direction: row;
-    justify-content: center;
-    height: 295px;
-    //height: calc(100vh - 300px);
-    align-items: center;
-    margin-top: 70px;
-    .boekencard {
-        margin-left: 23px;
-    }
+
+
     .card-container {
         width: 1100px;
-        height: 360px;
-        font: 300 12px 'Open Sans', "Helvetica Neue", sans-serif;
-        color: #707070;
-        display: flex;
-        justify-content: flex-start;
+        margin: auto;
+
+
         //justify-content: row;
-        .boek {
-            margin-top: 10px;
-            h1 {
-                font: 400 14px 'Lato', "Helvetica Neue", sans-serif;
-                color: #4a4a4a;
-                margin: 0;
-                //font-size: 20px;
-            }
-            h2 {
-                font: 400 12px 'Lato', "Helvetica Neue", sans-serif;
-                color: #707070;
-                margin: 0;
-            }
-        }
-        .titleCard {
+        .header-separator {
+            width: 1100px;
+            margin: auto;
+            margin-top: 43px;
             p {
-                font: 400 24px 'Lato', "Helvetica Neue", sans-serif;
-                color: #4a4a4a;
+                font: 300 24px 'Lato', "Helvetica Neue", sans-serif;
             }
         }
-        .contact {
-            margin-top: 10px;
-            h2 {
-                font: 400 14px 'Lato', "Helvetica Neue", sans-serif;
-                color: #4a4a4a;
-                margin: 0;
-                //font-size: 20px;
+        
+        .book-container {
+            margin: auto;
+            display: flex;
+            width: 1100px;
+            justify-content: space-between;
+            flex-wrap: wrap;
+            app-book-card {
+                margin-bottom: 18px;
             }
-            h1 {
-                font: 400 12px 'Lato', "Helvetica Neue", sans-serif;
-                color: #707070;
-                margin: 0;
-            }
-        }
+          }
     }
 }
+

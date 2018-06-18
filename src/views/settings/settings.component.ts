@@ -4,6 +4,8 @@ import { AuthService } from '../../app/core/auth.service';
 import { AngularFirestore, AngularFirestoreDocument } from 'angularfire2/firestore';
 import { Observable } from 'rxjs/Observable';
 import { FirebaseCallsService } from './../../app/services/firebaseCalls/firebase-calls.service';
+import { BooksService } from './../../app/services/books/books.service';
+import { Router } from '@angular/router';
 
 // rxjs operators
 import 'rxjs/add/operator/do';
@@ -55,7 +57,11 @@ export class SettingsComponent implements OnInit {
 
   allBooks: any;
 
-  constructor(private auth: AuthService, private db: AngularFirestore, private FirebaseCall: FirebaseCallsService) {
+  constructor(private auth: AuthService,
+    private db: AngularFirestore,
+    private FirebaseCall: FirebaseCallsService,
+    private router: Router,
+    private bookService: BooksService) {
     this.passReset = false;
     this.allBooks = [];
   }
@@ -116,6 +122,11 @@ export class SettingsComponent implements OnInit {
     this.auth.resetPassword(this.email)
       .then(() => this.passReset = this.email === this.controlleEmail ? true : false);
     this.passMessage = 'Er is een bericht verzonden naar je Email';
+  }
+
+  toPresentationPage(book) {
+    this.bookService.setActiveBook(book);
+    this.router.navigate([`../bookpresentation/${book.uid}`]);
   }
 
 }

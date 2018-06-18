@@ -2,22 +2,22 @@
     <div class="information-content">
         <div class="content-container">
             <div class="general-info">
-                <div class="bar-container">
-                    <p>Profiel aanpassen</p>
-                </div>
+                    <h3>Profiel aanpassen</h3>
                     <input class='inputField' matInput placeholder="Voornaam" [(ngModel)]="name">
                     <input class='inputField2' matInput placeholder="Achternaam" [(ngModel)]="lastname">
                 <!--<button action mat-button (click)="updateUser(name,lastname)">Pas aan</button>-->
                 <app-button [type]="'accept'" [filled]="false" [title]="'Verstuur'" (click)="updateUser(name,lastname)"></app-button>
             </div>
             <div class="password">
-                <p>Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Aenean commodo ligula eget dolor. Aenean massa. Cum sociis natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus. Donec quam felis, ultricies nec, pellentesque eu, pretium quis, sem..</p>
+                <h3>Wachtwoord resetten</h3>
+                <p>Iedere gebruiker van Mijn Lunch Learners kan het wachtwoord aanpassen. U zult een bevestiging email ontvangen om het process af te ronden.</p>
                 <!--<button action mat-button (click)="viewTermsConditions()">Bekijk onze algemene voorwaarden</button>-->
                 <app-button [type]="'accept'" [filled]="false" [title]="'Wachtwoord aanpassen'" (click)="viewTermsConditions()"></app-button>
             </div>
             
             <div class="termsConditions">
-                <p>Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Aenean commodo ligula eget dolor. Aenean massa. Cum sociis natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus. Donec quam felis, ultricies nec, pellentesque eu, pretium quis, sem..</p>
+                <h3>Algemene voorwaarden</h3>
+                <p>Wij van LunchLearners proberen ten alle tijden zo transpirant mogelijk zijn met onze klanten, hieronder kunt u onze algemene voorwaarden doorlezen.</p>
                 <!--<button action mat-button (click)="viewTermsConditions()">Bekijk onze algemene voorwaarden</button>-->
                 <app-button [type]="'accept'" [filled]="false" [title]="'Bekijk onze algemene voorwaarden'" (click)="viewTermsConditions()"></app-button>
             </div>
