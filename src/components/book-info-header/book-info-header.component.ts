@@ -14,17 +14,24 @@ export class BookInfoHeaderComponent implements OnInit {
 
 
   presentor: string;
+  rating: number;
+  generalRating: any;
 
   constructor(
     private bookService: BooksService,
-    private FirebaseCall: FirebaseCallsService) { }
+    private FirebaseCall: FirebaseCallsService) {
+      this.generalRating = [];
+     }
 
-  ngOnInit() {
+  async ngOnInit() {
     if (this.book) {
       console.log(this.book);
       this.FirebaseCall.getUserByIUD(this.book.employee)
       .subscribe(user => this.presentor = user[0].name ? user[0].name : user[0].companyName );
       console.log(this.presentor);
+
+       // get avg
+    this.rating = this.calcAvg(await this.getRating(this.book.uid));
     }
   }
 
@@ -34,6 +41,23 @@ export class BookInfoHeaderComponent implements OnInit {
     } else {
       return data;
     }
+  }
+
+  calcAvg(arr) {
+    return arr.reduce( ( p, c ) => p + c, 0 ) / arr.length;
+  }
+
+  getRating = (uid) => {
+    console.log('uid : ' + uid);
+    return new Promise(resolve => {
+    this.FirebaseCall.getReviewsByIUD(uid)
+    .subscribe(reviews => reviews
+      .filter(review => {
+        this.generalRating.push(review.generalRating);
+       resolve(this.generalRating);
+      }
+      ));
+    });
   }
 
   toVideo() {

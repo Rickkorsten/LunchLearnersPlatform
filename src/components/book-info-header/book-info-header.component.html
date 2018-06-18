@@ -36,7 +36,9 @@
                     </tr>
                     <tr *ngIf="type === 'large'">
                         <td>Beoordeling</td>
-                        <td></td>
+                        <td>
+                            <rating [(ngModel)]="rating" [float]="true" [titles]="['one', 'two', 'three', 'four', 'five']" [readonly]="true"></rating>
+                        </td>
                     </tr>
                 </table>
             </div>

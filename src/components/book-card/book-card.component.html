@@ -5,7 +5,7 @@
         <p>{{ book.author || 'author' }}</p>
         <p class="description">{{book.description | slice:0:120}}...</p>
         <div class="action-container">
-            <rating [(ngModel)]="rating" iconClass="ster" [float]="true" [titles]="['one', 'two', 'three', 'four', 'five']" [readonly]="true"></rating>
+            <rating [(ngModel)]="rating" [float]="true" [titles]="['one', 'two', 'three', 'four', 'five']" [readonly]="true"></rating>
             <div class="button">
                 <p>Bekijk</p>
                 <mat-icon>play_arrow</mat-icon>
