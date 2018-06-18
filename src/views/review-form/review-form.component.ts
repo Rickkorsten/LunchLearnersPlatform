@@ -110,7 +110,7 @@ export class ReviewFormComponent implements OnInit {
     questionArray = questionArray.filter(n =>  n !== undefined );
     const object = { ratingArray, questionArray };
     const smallReview = {'title': this.title, 'remark': this.remark, 'generalRating' : this.generalRating};
-    const extraInfo = {'book': this.bookName, 'bookUID': this.book.uid, 'employee': this.presentorName };
+    const extraInfo = {'book': this.bookName, 'bookUID': this.book.uid, 'employee': this.presentorName, 'employeeUID': this.book.employee };
     const review = Object.assign(object, smallReview, extraInfo);
     this.FirebaseCall.updateReview(review);
     this.snackBar.open('Review formulier ge-update', '', {

@@ -16,6 +16,8 @@ export class PresentationComponent implements OnInit {
   activeBookUid: any;
   rating: number;
   reviews: any;
+  presentorName;
+  bookName;
 
   constructor(
     private bookService: BooksService,
@@ -26,8 +28,15 @@ export class PresentationComponent implements OnInit {
   }
 
   ngOnInit() {
+
     this.route.params.subscribe(params => this.activeBookUid = params.book);
-    this.bookService.activeBook.subscribe(book => this.book = book);
+    this.bookService.activeBook.subscribe(book => {
+      this.book = book;
+      if (this.book) {
+        this.getPresentorName(this.book.employee);
+        this.getBookName(this.book.uid);
+      }
+    });
     const stringedBook = JSON.stringify(this.book);
     console.log(this.book);
 
@@ -43,6 +52,15 @@ export class PresentationComponent implements OnInit {
     }
   }
 
+  getPresentorName(employee): void {
+    console.log(employee);
+    this.FirebaseCall.getUserByIUD(employee).subscribe(user => this.presentorName = user[0].name ? user[0].name : user[0].companyName );
+  }
+
+  getBookName(bookUid): void {
+    this.FirebaseCall.getActiveBook(bookUid).subscribe(book => this.bookName = book[0].title);
+  }
+
   openDialog(): void {
     const dialogRef = this.dialog.open(ReviewDialogComponent, {
       width: '600px',
@@ -51,7 +69,9 @@ export class PresentationComponent implements OnInit {
     });
 
     dialogRef.afterClosed().subscribe(result => {
-      const extraInfo = { 'bookUID': this.book.uid, 'employee': this.book.employee };
+      const extraInfo = {
+        'book': this.bookName, 'bookUID': this.book.uid, 'employee': this.presentorName, 'employeeUID': this.book.employee
+      };
       const review = Object.assign(result, extraInfo);
       // bookUID
       this.FirebaseCall.updateReview(review);
