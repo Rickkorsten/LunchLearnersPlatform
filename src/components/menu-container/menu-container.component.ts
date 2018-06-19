@@ -53,6 +53,12 @@ export class MenuContainerComponent implements OnInit {
         'icon': 'rate_review',
         'id': 6,
       },
+      {
+        'title': 'Berichten',
+        'router': ['messages'],
+        'icon': 'message',
+        'id': 7,
+      },
     ];
 
   }

@@ -18,6 +18,7 @@ import { ReviewFormComponent } from './../views/review-form/review-form.componen
 import { VideoComponent } from './../views/video/video.component';
 import { ReviewBuilderComponent } from './../views/admin/componenten/review-builder/review-builder.component';
 import { ContactComponent } from './../views/contact/contact.component';
+import { MessageOverviewComponent } from './../views/admin/componenten/message-overview/message-overview.component';
 
 // This file defines all the URL's of the application, this is done with the path: '...'
 // The after the path we define the component we want to go to when this URL is called
@@ -43,7 +44,8 @@ export const router: Routes = [
         { path: 'employees', component: EmployeeOverviewComponent },
         { path: 'reviews', component: ReviewsOverviewComponent },
         { path: 'export', component: ExportOverviewComponent },
-        { path: 'reviewbuilder', component: ReviewBuilderComponent }
+        { path: 'reviewbuilder', component: ReviewBuilderComponent },
+        { path: 'messages', component: MessageOverviewComponent }
     ]}
 ];
 

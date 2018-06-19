@@ -4,7 +4,7 @@
         <mat-expansion-panel *ngFor="let book of books | async" (opened)="getBook(book)" (closed)="visible=true">
             <mat-expansion-panel-header>
                 <mat-panel-title style="vertical-align:middle;">
-                    <img style="vertical-align:middle; margin-right: 24px;" aria-hidden src="{{book.smallThumbnail}}" height="48" />
+                    <img style="vertical-align:middle; margin-right: 24px;" aria-hidden src="{{book.smallThumbnail }}" height="48" />
                     <p>{{ book.title }}</p>
                 </mat-panel-title>
             </mat-expansion-panel-header>

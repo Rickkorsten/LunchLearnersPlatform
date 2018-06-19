@@ -1,14 +1,28 @@
-.form-field{
+.form-field {
     width: 98%;
 }
 
-mat-form-field{
-  width: 100%;
+mat-form-field {
+    width: 100%;
 }
 
-.notFoundButton{
-  font-size: 12px;
-  margin-top: -10px;
-  margin-bottom: 28px;
+.notFoundButton {
+    font-size: 12px;
+    margin-top: -4px;
+    margin-bottom: 28px;
+    cursor: pointer;
+}
 
+label {
+    padding: 10px;
+    background: rgb(115, 200, 132);
+    display: table;
+    color: #fff;
+    cursor: pointer;
+    border-radius: 5px;
+    box-shadow: 0px 0px 10px 0px rgba(0, 0, 0, 0.12);
+}
+
+input[type="file"] {
+    display: none;
 }

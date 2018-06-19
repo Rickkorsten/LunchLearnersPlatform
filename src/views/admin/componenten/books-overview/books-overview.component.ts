@@ -5,6 +5,9 @@ import { AuthService } from '../../../../app/core/auth.service';
 import { MatDialog } from '@angular/material';
 import { FirebaseCallsService } from './../../../../app/services/firebaseCalls/firebase-calls.service';
 import { SortEvent } from './../../../../app/directives/draggable/sortable-list.directive';
+import { AngularFireStorage, AngularFireStorageReference, AngularFireUploadTask } from 'angularfire2/storage';
+import { Observable } from 'rxjs/Observable';
+
 @Component({
   selector: 'app-books-overview',
   templateUrl: './books-overview.component.html',
@@ -13,6 +16,12 @@ import { SortEvent } from './../../../../app/directives/draggable/sortable-list.
 })
 
 export class BooksOverviewComponent implements OnInit {
+
+  ref: AngularFireStorageReference;
+  task: AngularFireUploadTask;
+  downloadURL: Observable<string>;
+  snapshot: Observable<any>;
+  profileUrl: any;
 
   uid: any;
   books: any;
@@ -33,7 +42,8 @@ export class BooksOverviewComponent implements OnInit {
   constructor(private db: AngularFirestore,
     public dialog: MatDialog,
     public auth: AuthService,
-    private FirebaseCall: FirebaseCallsService) {
+    private FirebaseCall: FirebaseCallsService,
+    private afStorage: AngularFireStorage) {
     this.sectionsCount = 0;
   }
 
@@ -43,8 +53,10 @@ export class BooksOverviewComponent implements OnInit {
       data: {}
     });
 
-    dialogRef.afterClosed().subscribe(result => {
-      this.uploadBookToFirestore(result);
+    dialogRef.afterClosed().subscribe(async result => {
+     const storageLink = result.imageFile ? await this.uploadToStorage(result.imageFile) : 'EMPTY';
+     console.log(result);
+     this.uploadBookToFirestore(result, storageLink);
     });
   }
 
@@ -53,10 +65,23 @@ export class BooksOverviewComponent implements OnInit {
     this.employees = this.FirebaseCall.getEmployeesCollection();
   }
 
-  uploadBookToFirestore(result) {
+  uploadToStorage(imageFile) {
+    return new Promise (resolve => {
+      const path = `images/${imageFile.name}`;
+      this.ref = this.afStorage.ref(path);
+      this.task = this.ref.put(imageFile);
+      this.downloadURL = this.task.downloadURL();
+      resolve(path);
+    });
+  }
+
+  uploadBookToFirestore(result, storageLink) {
     const id = this.db.createId();
+    console.log('2');
+    console.log(result.book);
     const { title, subTitle, author, smallThumbnail, bigThumbnail, publisher, publishDate, description,
       ISBN_13, ISBN_10, categories } = result.book;
+      console.log(result.book);
 
     this.db.doc(`books/${id}`).set({
       'uid': id,
@@ -64,7 +89,7 @@ export class BooksOverviewComponent implements OnInit {
       'subTitle': (subTitle ? subTitle : 'EMPTY'),
       'author': (author ? author : 'EMPTY'),
       'smallThumbnail': (smallThumbnail ? smallThumbnail : 'EMPTY'),
-      'bigThumbnail': (bigThumbnail ? bigThumbnail : 'EMPTY'),
+      'bigThumbnail': (bigThumbnail ? bigThumbnail : storageLink),
       'publisher': (publisher ? publisher : 'EMPTY'),
       'publishDate': (publishDate ? publishDate : 'EMPTY'),
       'description': (description ? description : 'EMPTY'),
@@ -158,6 +183,14 @@ export class BooksOverviewComponent implements OnInit {
 
     this.sections[event.newIndex] = current;
     this.sections[event.currentIndex] = swapWith;
+  }
+
+  getURL(url) {
+    const ref = this.afStorage.ref(url);
+    this.profileUrl = ref.getDownloadURL().subscribe(newUrl => {
+      console.log(newUrl);
+    });
+    // return imageURL;
   }
 
 }

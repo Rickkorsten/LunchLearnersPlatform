@@ -40,6 +40,11 @@ interface Review {
   generalRating?: number;
 }
 
+interface Review {
+  email?: string;
+  message?: string;
+}
+
 interface ReviewForm {
   0?: string;
   1?: number;
@@ -72,6 +77,10 @@ export class FirebaseCallsService {
   // review
   reviewsCol: AngularFirestoreCollection<Review>;
   reviews: Observable<Review[]>;
+  // messages
+    // review
+    messagesCol: AngularFirestoreCollection<Review>;
+    messages: Observable<Review[]>;
   // user
   usersArray: string[];
   newArray: string[];
@@ -183,6 +192,12 @@ export class FirebaseCallsService {
     this.reviewsCol = this.db.collection('reviews');
     this.reviews = this.reviewsCol.valueChanges();
     return this.reviews;
+  }
+
+  getMessages() {
+    this.messagesCol = this.db.collection('message');
+    this.messages = this.messagesCol.valueChanges();
+    return this.messages;
   }
 
   updateReview(result) {
