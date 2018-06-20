@@ -1,7 +1,7 @@
 <div class="book-card" [ngClass]="{'book-card-hover': hover}">
     <img src={{book.bigThumbnail}} alt="Photo of {{book.title}">
     <div class="info-container">
-        <p>{{ book.title }}</p>
+        <p>{{checkTitle(book.title)}}</p>
         <p>{{ book.author || 'author' }}</p>
         <p class="description">{{book.description | slice:0:120}}...</p>
         <div class="action-container">
