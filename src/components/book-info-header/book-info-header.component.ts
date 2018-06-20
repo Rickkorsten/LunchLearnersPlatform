@@ -47,9 +47,10 @@ export class BookInfoHeaderComponent implements OnInit {
 
   getRating = (uid) => {
     return new Promise(resolve => {
-    this.FirebaseCall.getReviewsByIUD(uid)
+    this.FirebaseCall.getSmallReviewsByUid(uid)
     .subscribe(reviews => reviews
       .filter(review => {
+        console.log(reviews);
         this.generalRating.push(review.generalRating);
        resolve(this.generalRating);
       }

@@ -1,60 +1,6 @@
 <div mat-card-content>
     <div class="review-container">
         <p class="header">Wat vond u van de presentatie ?</p>
-
-        <div class="row" *ngIf="questionsArray[0]">
-            <p>{{questionsArray[0]}}</p>
-            <rating [(ngModel)]="rating0" [titles]="['one', 'two', 'three', 'four', 'five']"></rating>
-        </div>
-
-        <div class="row" *ngIf="questionsArray[1]">
-            <p>{{questionsArray[1]}}</p>
-            <rating [(ngModel)]="rating1" [titles]="['one', 'two', 'three', 'four', 'five']"></rating>
-        </div>
-
-        <div class="row" *ngIf="questionsArray[2]">
-            <p>{{questionsArray[2]}}</p>
-            <rating [(ngModel)]="rating2" [titles]="['one', 'two', 'three', 'four', 'five']"></rating>
-        </div>
-
-        <div class="row" *ngIf="questionsArray[3]">
-            <p>{{questionsArray[3]}}</p>
-            <rating [(ngModel)]="rating3" [titles]="['one', 'two', 'three', 'four', 'five']"></rating>
-        </div>
-
-        <div class="row" *ngIf="questionsArray[4]">
-            <p>{{questionsArray[4]}}</p>
-            <rating [(ngModel)]="rating4" [titles]="['one', 'two', 'three', 'four', 'five']"></rating>
-        </div>
-
-        <div class="row" *ngIf="questionsArray[5]">
-            <p>{{questionsArray[5]}}</p>
-            <rating [(ngModel)]="rating5" [titles]="['one', 'two', 'three', 'four', 'five']"></rating>
-        </div>
-
-        <div class="row" *ngIf="questionsArray[6]">
-            <p>{{questionsArray[6]}}</p>
-            <rating [(ngModel)]="rating6" [titles]="['one', 'two', 'three', 'four', 'five']"></rating>
-        </div>
-
-        <div class="row" *ngIf="questionsArray[7]">
-            <p>{{questionsArray[7]}}</p>
-            <rating [(ngModel)]="rating7" [titles]="['one', 'two', 'three', 'four', 'five']"></rating>
-        </div>
-
-        <div class="row" *ngIf="questionsArray[8]">
-            <p>{{questionsArray[8]}}</p>
-            <rating [(ngModel)]="rating8" [titles]="['one', 'two', 'three', 'four', 'five']"></rating>
-        </div>
-
-        <div class="row" *ngIf="questionsArray[9]">
-            <p>{{questionsArray[9]}}</p>
-            <rating [(ngModel)]="rating9" [titles]="['one', 'two', 'three', 'four', 'five']"></rating>
-        </div>
-
-        <div class="row">
-            <p>algemene review</p>
-        </div>
         <div class="row">
             <p>Algemene indruk</p>
             <rating [(ngModel)]="generalRating" [titles]="['one', 'two', 'three', 'four', 'five']"></rating>

@@ -36,7 +36,7 @@ export class BookCardComponent implements OnInit {
 
   getRating = (uid) => {
     return new Promise(resolve => {
-    this.FirebaseCall.getReviewsByIUD(uid)
+    this.FirebaseCall.getSmallReviewsByUid(uid)
     .subscribe(reviews => reviews
       .filter(review => {
         this.generalRating.push(review.generalRating);

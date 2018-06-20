@@ -38,12 +38,12 @@ export class PresentationComponent implements OnInit {
     if (stringedBook === '{"object":"object"}') {
       this.FirebaseCall.getActiveBook(this.activeBookUid.toString()).subscribe(book => {
         this.book = book[0];
-        this.FirebaseCall.getReviewsByIUD(this.book.uid)
+        this.FirebaseCall.getSmallReviewsByUid(this.book.uid)
         .subscribe(reviews => this.reviews = reviews
           .filter(review => review.remark));
       });
     } else {
-      this.FirebaseCall.getReviewsByIUD(this.book.uid).subscribe(reviews => this.reviews = reviews);
+      this.FirebaseCall.getSmallReviewsByUid(this.book.uid).subscribe(reviews => this.reviews = reviews);
     }
   }
 
@@ -75,17 +75,13 @@ export class PresentationComponent implements OnInit {
     });
 
     dialogRef.afterClosed().subscribe(async result => {
-      await this.getPresentorName(this.book.employee);
-      await this.getBookName(this.book.uid);
-      if (this.presentorName && this.bookName ) {
         const extraInfo = {
-          'book': this.bookName, 'bookUID': this.book.uid, 'employee': this.presentorName, 'employeeUID': this.book.employee
+          'bookUID': this.book.uid,
         };
         const review = Object.assign(result, extraInfo);
         console.log(review);
         // bookUID
-        this.FirebaseCall.updateReview(review);
-      }
+        this.FirebaseCall.setSmallReview(review);
     });
   }
 

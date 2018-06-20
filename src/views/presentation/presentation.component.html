@@ -11,7 +11,7 @@
         <p class="review-button" (click)="openDialog()">+ voeg een review toe</p>
     </div>
     <div class="review-container">
-        <div class="review" *ngFor="let review of reviews || async">
+        <div class="review" *ngFor="let review of reviews">
             <div class="title">
                 <p><b>{{review.title ? review.title : 'live review'}}</b></p>
                 <rating [(ngModel)]="review.generalRating" [readonly]="true" [titles]="['one', 'two', 'three', 'four', 'five']"></rating>

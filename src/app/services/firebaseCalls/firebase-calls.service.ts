@@ -28,6 +28,7 @@ interface Book {
   description?: string;
   categorie?: string;
   publisher?: string;
+  videoLink?: string;
 }
 
 interface Review {
@@ -40,7 +41,7 @@ interface Review {
   generalRating?: number;
 }
 
-interface Review {
+interface Message {
   email?: string;
   message?: string;
 }
@@ -77,10 +78,13 @@ export class FirebaseCallsService {
   // review
   reviewsCol: AngularFirestoreCollection<Review>;
   reviews: Observable<Review[]>;
+  // smallreview
+  smallReviewsCol: AngularFirestoreCollection<Review>;
+  smallReviews: Observable<Review[]>;
   // messages
     // review
-    messagesCol: AngularFirestoreCollection<Review>;
-    messages: Observable<Review[]>;
+    messagesCol: AngularFirestoreCollection<Message>;
+    messages: Observable<Message[]>;
   // user
   usersArray: string[];
   newArray: string[];
@@ -205,6 +209,19 @@ export class FirebaseCallsService {
     this.db.doc(`reviews/${id}`).set(
       result
     );
+  }
+
+  setSmallReview(result) {
+    const id = this.db.createId();
+    this.db.doc(`smallreviews/${id}`).set(
+      result
+    );
+  }
+
+  getSmallReviewsByUid(uid) {
+    this.reviewsCol = this.db.collection('smallreviews', ref => ref.where('bookUID', '==', uid));
+    this.reviews = this.reviewsCol.valueChanges();
+    return this.reviews;
   }
 
 

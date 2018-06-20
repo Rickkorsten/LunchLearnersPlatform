@@ -11,6 +11,10 @@ export class SettingsHeaderComponent implements OnInit {
   @Input() book: any;
   @Input() type: string; // can be 'large' or 'small'
 
+  name: any;
+  lastname: any;
+  updateUser: any;
+
   presentor: string;
 
   constructor(private FirebaseCall: FirebaseCallsService) { }
