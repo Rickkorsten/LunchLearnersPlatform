@@ -42,21 +42,29 @@ export class PresentationComponent implements OnInit {
         .subscribe(reviews => this.reviews = reviews
           .filter(review => review.remark));
       });
-      this.getPresentorName(this.book.employee);
-      this.getBookName(this.book.uid);
     } else {
       this.FirebaseCall.getReviewsByIUD(this.book.uid).subscribe(reviews => this.reviews = reviews);
-      this.getPresentorName(this.book.employee);
-      this.getBookName(this.book.uid);
     }
   }
 
-  getPresentorName(employee): void {
-    this.FirebaseCall.getUserByIUD(employee).subscribe(user => this.presentorName = user[0].name ? user[0].name : user[0].companyName );
+  getPresentorName(employee) {
+    return new Promise(resolve => {
+    this.FirebaseCall.getUserByIUD(employee).subscribe(user => {
+      this.presentorName = user[0].name;
+      console.log(this.presentorName);
+      resolve(this.presentorName);
+    } );
+    });
   }
 
-  getBookName(bookUid): void {
-    this.FirebaseCall.getActiveBook(bookUid).subscribe(book => this.bookName = book[0].title);
+  getBookName(bookUid) {
+    return new Promise(resolve => {
+    this.FirebaseCall.getActiveBook(bookUid).subscribe(book => {
+    this.bookName = book[0].title;
+    console.log(this.bookName);
+    resolve(this.bookName);
+  });
+  });
   }
 
   openDialog(): void {
@@ -66,13 +74,18 @@ export class PresentationComponent implements OnInit {
       data: {}
     });
 
-    dialogRef.afterClosed().subscribe(result => {
-      const extraInfo = {
-        'book': this.bookName, 'bookUID': this.book.uid, 'employee': this.presentorName, 'employeeUID': this.book.employee
-      };
-      const review = Object.assign(result, extraInfo);
-      // bookUID
-      this.FirebaseCall.updateReview(review);
+    dialogRef.afterClosed().subscribe(async result => {
+      await this.getPresentorName(this.book.employee);
+      await this.getBookName(this.book.uid);
+      if (this.presentorName && this.bookName ) {
+        const extraInfo = {
+          'book': this.bookName, 'bookUID': this.book.uid, 'employee': this.presentorName, 'employeeUID': this.book.employee
+        };
+        const review = Object.assign(result, extraInfo);
+        console.log(review);
+        // bookUID
+        this.FirebaseCall.updateReview(review);
+      }
     });
   }
 
