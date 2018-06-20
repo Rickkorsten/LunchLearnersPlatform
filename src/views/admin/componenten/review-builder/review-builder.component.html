@@ -5,7 +5,7 @@
     <mat-tab-group [(selectedIndex)]="index" class="demo-tab-group">
 
         <mat-tab label="Formeel">
-            <div class="row" *ngFor="let question of forQuestionsArray || async ">
+            <div class="row" *ngFor="let question of forQuestionsArray ">
                 <mat-icon mat-list-icon (click)="delete(forQuestionsArray,question)">delete</mat-icon>
                 <p>{{question}}?</p>
                 <rating [(ngModel)]="rating1" [titles]="['one', 'two', 'three', 'four', 'five']"></rating>
@@ -13,7 +13,7 @@
 
             <div class="row">
                 <mat-form-field>
-                    <input matInput placeholder="Input" [(ngModel)]="question" (keyup.enter)="addToQuestions(question)">
+                    <input matInput placeholder="Input" [(ngModel)]="question" (keyup.enter)="addToQuestions(forQuestionsArray,question)">
                     <span matSuffix>?</span>
 
                 </mat-form-field>
@@ -21,14 +21,13 @@
             </div>
             <div class="row">
                 <div class="button-row">
-                    <p style="color: red; padding-top: 15px; font-size: 18px">{{error}}</p>
                     <app-button (click)="uploadForm(forQuestionsArray)" [type]="'accept'" [filled]="true" [title]="'Upload'"></app-button>
                 </div>
             </div>
         </mat-tab>
 
         <mat-tab label="Informeel">
-            <div class="row" *ngFor="let question of inforQuestionsArray || async ">
+            <div class="row" *ngFor="let question of inforQuestionsArray  ">
                 <mat-icon mat-list-icon (click)="delete(inforQuestionsArray,question)">delete</mat-icon>
                 <p>{{question}}?</p>
                 <rating [(ngModel)]="rating1" [titles]="['one', 'two', 'three', 'four', 'five']"></rating>
@@ -36,7 +35,7 @@
 
             <div class="row">
                 <mat-form-field>
-                    <input matInput placeholder="Input" [(ngModel)]="question" (keyup.enter)="addToQuestions(question)">
+                    <input matInput placeholder="Input" [(ngModel)]="question" (keyup.enter)="addToQuestions(inforQuestionsArray,question)">
                     <span matSuffix>?</span>
 
                 </mat-form-field>
@@ -44,7 +43,6 @@
             </div>
             <div class="row">
                 <div class="button-row">
-                    <p style="color: red; padding-top: 15px; font-size: 18px">{{error}}</p>
                     <app-button (click)="uploadForm(inforQuestionsArray)" [type]="'accept'" [filled]="true" [title]="'Upload'"></app-button>
                 </div>
             </div>

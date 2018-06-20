@@ -16,8 +16,6 @@ import { AngularFirestoreModule } from 'angularfire2/firestore';
 import { RatingModule } from 'ngx-rating';
 
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
-import { DropZoneDirective } from './directives/dropZone/drop-zone.directive';
-import { VideoDropzoneComponent } from './../components/video-dropzone/video-dropzone.component';
 
 import { CoreModule } from './core/core.module';
 
@@ -72,8 +70,6 @@ const firebaseConfig = {
     AppComponent,
     LibraryComponent,
     StoreComponent,
-    DropZoneDirective,
-    VideoDropzoneComponent,
     LoginComponent,
     AdminComponent,
     CompanyDialogComponent,

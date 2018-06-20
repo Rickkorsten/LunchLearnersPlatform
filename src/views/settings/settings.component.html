@@ -5,7 +5,7 @@
                 <div class="general-info">
                     <h3>Profiel aanpassen</h3>
                     <input class='inputField' matInput placeholder="Voornaam" [(ngModel)]="name">
-                    <input class='inputField2' matInput placeholder="Achternaam" [(ngModel)]="last_name">
+                    <input class='inputField2' matInput placeholder="Achternaam" [(ngModel)]="lastname">
                     <!--<button action mat-button (click)="updateUser(name,lastname)">Pas aan</button>-->
                     <app-button [type]="'accept'" [filled]="false" [title]="'Verstuur'" (click)="updateUser(name,lastname)"></app-button>
                 </div>
@@ -37,7 +37,7 @@
             <p>Uw boeken collectie in beheer van: {{companyName}}</p>
         </div>
         <div class="book-container">
-            <app-book-card *ngFor="let book of allBooks || async" [book]="book" (click)="toPresentationPage(book)"></app-book-card>
+            <app-book-card *ngFor="let book of allBooks" [book]="book" (click)="toPresentationPage(book)"></app-book-card>
         </div>
 
     </div>

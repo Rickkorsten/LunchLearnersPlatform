@@ -9,9 +9,9 @@ import { Component, OnInit, Input, } from '@angular/core';
 
 export class BookCardMiniComponent implements OnInit {
 
-  @Input() book: string;
-  @Input() title: string;
-  @Input() error: string;
+  @Input() book: any;
+  @Input() title: any;
+  @Input() error: any;
 
   constructor() {
   }

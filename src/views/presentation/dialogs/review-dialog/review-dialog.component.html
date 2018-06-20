@@ -63,7 +63,7 @@
         <textarea cols="num" rows="num" [(ngModel)]="remark"></textarea>
         <div class="button-row">
             <p style="color: red; padding-top: 15px; font-size: 18px">{{error}}</p>
-            <app-button [type]="'accept'" [filled]="true" [title]="'Verstuur'" (click)="accept(opmerking)"></app-button>
+            <app-button [type]="'accept'" [filled]="true" [title]="'Verstuur'" (click)="accept()"></app-button>
         </div>
     </div>
 </div>

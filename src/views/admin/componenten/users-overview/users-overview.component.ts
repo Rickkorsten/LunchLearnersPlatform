@@ -30,6 +30,7 @@ export class UsersOverviewComponent implements OnInit {
   usersArray: string[];
   newArray: string[];
   companies: any;
+  selectedValue: any;
 
   constructor(
     private db: AngularFirestore,

@@ -13,6 +13,6 @@
         <p>Collectie van {{companyName}}</p>
     </div>
     <div class="book-container">
-        <app-book-card *ngFor="let book of allBooks || async" [book]="book" (click)="toPresentationPage(book)"></app-book-card>
+        <app-book-card *ngFor="let book of allBooks" [book]="book" (click)="toPresentationPage(book)"></app-book-card>
     </div>
 </div>
