@@ -43,9 +43,10 @@ export class ReviewFormComponent implements OnInit {
   ngOnInit() {
     this.route.params.subscribe(params => {
       const bookCode = params['bookcode'];
-      const formType = params['bookcode'];
-      this.formType = formType.substring(4);
-      this.bookCode = bookCode.substring(0, 4);
+      this.bookCode = bookCode.substring(0, bookCode.lastIndexOf('+') + 1);
+      this.formType = bookCode.substring(bookCode.lastIndexOf('+') + 1, bookCode.length);
+      console.log(this.bookCode);
+      console.log(this.formType);
 
       if (this.bookCode && this.formType) {
         this.FirebaseCall.getBook(this.bookCode.toString())

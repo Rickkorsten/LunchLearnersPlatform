@@ -11,20 +11,22 @@ import { MatSnackBar } from '@angular/material';
 export class ReviewBuilderComponent implements OnInit {
 
   question: string;
-  inforQuestionsArray;
-  forQuestionsArray;
+  QuestionsArray1;
+  QuestionsArray2;
   counter: number;
   type: string;
   index: number;
 
-  questions: any;
+  questions1: any;
+  questions2: any;
 
   constructor(
     private db: AngularFirestore,
     private FirebaseCall: FirebaseCallsService,
     public snackBar: MatSnackBar,
   ) {
-    this.inforQuestionsArray = [];
+    this.QuestionsArray1 = [];
+    this.QuestionsArray2 = [];
 
    }
 
@@ -52,13 +54,13 @@ export class ReviewBuilderComponent implements OnInit {
 
     switch ( this.index ) {
       case 0:
-          this.type = 'formeel';
+          this.type = '1';
           break;
       case 1:
-          this.type = 'informeel';
+          this.type = '2';
           break;
       default:
-          this.type = 'formeel';
+          this.type = '1';
   }
 
     this.db.doc(`reviewform/${this.type}`).set({
@@ -73,14 +75,14 @@ export class ReviewBuilderComponent implements OnInit {
 
 
   loadFormeel() {
-    this.FirebaseCall.getReviewForm('formeel').subscribe(questions => {
-      this.forQuestionsArray = Object.values(questions);
+    this.FirebaseCall.getReviewForm('1').subscribe(questions => {
+      this.QuestionsArray1 = Object.values(questions);
     });
   }
 
   loadInformeel() {
-    this.FirebaseCall.getReviewForm('informeel').subscribe(questions => {
-      this.inforQuestionsArray = Object.values(questions);
+    this.FirebaseCall.getReviewForm('2').subscribe(questions => {
+      this.QuestionsArray2 = Object.values(questions);
     });
   }
 
