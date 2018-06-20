@@ -55,7 +55,6 @@ export class BooksOverviewComponent implements OnInit {
 
     dialogRef.afterClosed().subscribe(async result => {
      const storageLink = result.imageFile ? await this.uploadToStorage(result.imageFile) : 'EMPTY';
-     console.log(result);
      this.uploadBookToFirestore(result, storageLink);
     });
   }
@@ -77,11 +76,8 @@ export class BooksOverviewComponent implements OnInit {
 
   uploadBookToFirestore(result, storageLink) {
     const id = this.db.createId();
-    console.log('2');
-    console.log(result.book);
     const { title, subTitle, author, smallThumbnail, bigThumbnail, publisher, publishDate, description,
       ISBN_13, ISBN_10, categories } = result.book;
-      console.log(result.book);
 
     this.db.doc(`books/${id}`).set({
       'uid': id,
@@ -157,7 +153,6 @@ export class BooksOverviewComponent implements OnInit {
   }
 
   deleteSection(id) {
-    console.log(id);
     this.sections = this.sections.filter(function(object) {
      return object.id !== id;
   });
@@ -188,7 +183,7 @@ export class BooksOverviewComponent implements OnInit {
   getURL(url) {
     const ref = this.afStorage.ref(url);
     this.profileUrl = ref.getDownloadURL().subscribe(newUrl => {
-      console.log(newUrl);
+      console.log(newUrl); // moet er staan anders error!
     });
     // return imageURL;
   }

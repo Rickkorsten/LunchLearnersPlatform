@@ -42,7 +42,6 @@ export class LibraryComponent implements OnInit {
     this.first = false;
     // this.getUserData();
     // if (this.company && this.companyBooks) {
-    //   console.log(this.company);
     // }
   }
 
@@ -59,7 +58,6 @@ export class LibraryComponent implements OnInit {
               this.bookUIDs.map(bookUID => {
                 this.FirebaseCall.getActiveBook(bookUID).subscribe(book => { // get book by uid (function name is wrong)
                   this.allBooks.push(book[0]);
-                  console.log(this.allBooks);
                   if (book[0] && !this.first) {
                     this.first = true;
                     this.setFirstBook(book[0]);
@@ -73,11 +71,9 @@ export class LibraryComponent implements OnInit {
     this.bookService.activeBook.subscribe(book => {
         if (JSON.stringify(book) === '{"object":"object"}' ) {
           this.isActiveBook = false;
-          console.log(false);
         } else {
           this.isActiveBook = true;
           this.activeBook = book;
-          console.log(true);
         }
       }
      );
@@ -85,7 +81,6 @@ export class LibraryComponent implements OnInit {
   }
 
   setFirstBook = (firstBook) => {
-    console.log(firstBook);
     this.firstBook = firstBook;
     this.title = this.activeBook ? this.activeBook.title : firstBook.title;
     this.author = this.activeBook ? this.activeBook.author : firstBook.author;

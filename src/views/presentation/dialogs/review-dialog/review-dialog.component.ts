@@ -35,7 +35,6 @@ export class ReviewDialogComponent implements OnInit {
   ngOnInit() {
     this.FirebaseCall.getReviewForm('formeel').subscribe(questions => {
         this.questionsArray = Object.values(questions);
-        console.log(this.questionsArray);
         this.remark = '';
         this.title = '';
         this.generalRating = 0;
@@ -43,8 +42,6 @@ export class ReviewDialogComponent implements OnInit {
   }
 
   accept(): void {
-
-    console.log(this.rating8);
     let ratingArray = [
       this.rating0 ? this.rating0 : undefined,
       this.rating1 ? this.rating1 : undefined,
@@ -74,9 +71,8 @@ export class ReviewDialogComponent implements OnInit {
     ratingArray = ratingArray.filter(n => n !== undefined );
     questionArray = questionArray.filter(n =>  n !== undefined );
     const object = { ratingArray, questionArray };
-    const smallReview = {'title': this.title, 'remark': this.remark, 'generalRating' : this.generalRating};
-    const review = Object.assign(object, smallReview);
-    console.log(review);
+    // const smallReview = {'title': this.title, 'remark': this.remark, 'generalRating' : this.generalRating};
+    // const review = Object.assign(object, smallReview);
      this.dialogRef.close(object);
   }
 }

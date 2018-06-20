@@ -50,11 +50,9 @@ export class BookDialogComponent {
 
 
   searchBook(keyword) {
-    console.log(keyword);
     this.bookService.searchBook(keyword)
       .map(books => books.json().items)
       .subscribe(async books => {
-        console.log(books);
         this.books = await books;
       },
       () => console.log('geslaagd')

@@ -70,7 +70,6 @@ export class SettingsComponent implements OnInit {
     this.getUserData();
 
     this.auth.user.subscribe(user => {
-      console.log(user);
       this.role = user.role,
         this.companyUid = user.companyUid;
       if (this.companyUid) {

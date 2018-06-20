@@ -34,7 +34,6 @@ export class PresentationComponent implements OnInit {
       this.book = book;
     });
     const stringedBook = JSON.stringify(this.book);
-    console.log(this.book);
 
     if (stringedBook === '{"object":"object"}') {
       this.FirebaseCall.getActiveBook(this.activeBookUid.toString()).subscribe(book => {
@@ -53,7 +52,6 @@ export class PresentationComponent implements OnInit {
   }
 
   getPresentorName(employee): void {
-    console.log(employee);
     this.FirebaseCall.getUserByIUD(employee).subscribe(user => this.presentorName = user[0].name ? user[0].name : user[0].companyName );
   }
 

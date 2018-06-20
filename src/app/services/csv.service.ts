@@ -23,7 +23,7 @@ export class  CsvService {
 
         if (isIE) {
           const retVal = navigator.msSaveBlob(blob, filename + '.csv');
-          console.log(retVal);
+          console.log(retVal); // moet er staan!!
         } else {
             a.download = filename + '.csv';
         }

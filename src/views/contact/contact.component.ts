@@ -19,7 +19,6 @@ export class ContactComponent implements OnInit {
 
   ngOnInit() {
     this.auth.user.subscribe(user => {
-      console.log(user);
       this.email = user.email;
     });
   }

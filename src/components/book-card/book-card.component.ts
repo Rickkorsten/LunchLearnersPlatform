@@ -35,7 +35,6 @@ export class BookCardComponent implements OnInit {
   }
 
   getRating = (uid) => {
-    console.log('uid : ' + uid);
     return new Promise(resolve => {
     this.FirebaseCall.getReviewsByIUD(uid)
     .subscribe(reviews => reviews
@@ -48,7 +47,6 @@ export class BookCardComponent implements OnInit {
   }
 
   checkTitle(title) {
-    console.log(title.length);
     if (title.length > 21 ) {
       const shortTitle = title.slice(0, 18);
       return `${shortTitle}...`;

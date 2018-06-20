@@ -52,7 +52,6 @@ export class ReviewFormComponent implements OnInit {
           .subscribe( async book => {
             this.book = book[0];
             if (this.book) {
-              console.log(this.book);
               await this.getPresentorName(this.book.employee);
               await this.getBookName(this.book.uid);
             }
@@ -69,7 +68,6 @@ export class ReviewFormComponent implements OnInit {
   }
 
   getPresentorName(employee): void {
-    console.log(employee);
     this.FirebaseCall.getUserByIUD(employee).subscribe(user => this.presentorName = user[0].name ? user[0].name : user[0].companyName );
   }
 
@@ -78,8 +76,6 @@ export class ReviewFormComponent implements OnInit {
   }
 
   accept(): void {
-
-    console.log(this.rating8);
     let ratingArray = [
       this.rating0 ? this.rating0 : undefined,
       this.rating1 ? this.rating1 : undefined,

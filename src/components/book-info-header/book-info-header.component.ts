@@ -25,10 +25,8 @@ export class BookInfoHeaderComponent implements OnInit {
 
   async ngOnInit() {
     if (this.book) {
-      console.log(this.book);
       this.FirebaseCall.getUserByIUD(this.book.employee)
       .subscribe(user => this.presentor = user[0].name ? user[0].name : user[0].companyName );
-      console.log(this.presentor);
 
        // get avg
     this.rating = this.calcAvg(await this.getRating(this.book.uid));
@@ -48,7 +46,6 @@ export class BookInfoHeaderComponent implements OnInit {
   }
 
   getRating = (uid) => {
-    console.log('uid : ' + uid);
     return new Promise(resolve => {
     this.FirebaseCall.getReviewsByIUD(uid)
     .subscribe(reviews => reviews

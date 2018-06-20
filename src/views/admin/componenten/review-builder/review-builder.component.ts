@@ -39,7 +39,6 @@ export class ReviewBuilderComponent implements OnInit {
   }
 
   delete(typearray, item) {
-    console.log(this.index);
     typearray = this.remove(typearray, item);
   }
 
@@ -50,8 +49,6 @@ export class ReviewBuilderComponent implements OnInit {
   }
 
   uploadForm(questionsArray) {
-
-    console.log(this.index);
 
     switch ( this.index ) {
       case 0:
