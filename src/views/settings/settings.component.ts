@@ -130,6 +130,10 @@ export class SettingsComponent implements OnInit {
     this.router.navigate([`../bookpresentation/${book.uid}`]);
   }
 
+  viewTermsConditions() {
+    console.log('tom');
+  }
+
 }
 
 
