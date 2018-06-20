@@ -64,21 +64,29 @@
     }
     textarea {
         resize: none;
-        width: 85%;
-        height: 300px;
+        width: 75%;
+        height: 200px;
         border-radius: 10px;
-        border: 0px solid #dedede;
-        background: #dedede;
+        border: 0px solid #eee;
+        background: #eee;
         color: #4a4a4a;
+        padding: 6% 5% 3% 6%;
+        font-size: 14px;
     }
+
+    textarea:focus{
+        outline: none;
+    }
+
     .title {
         resize: none;
-        width: 85%;
+        width: 75%;
         height: 31px;
         border-radius: 10px;
         border: 0px solid #dedede;
         background: #dedede;
         color: #4a4a4a;
         margin-bottom: 14px;
+        padding: 1% 5% 1% 6%;
     }
 }

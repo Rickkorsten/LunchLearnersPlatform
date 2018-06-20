@@ -19,6 +19,7 @@ interface User {
   companyUid: string;
   companyName: string;
   name?: string;
+  last_name?: string;
   city?: string;
   streetNumber?: string;
   zipCode?: string;

@@ -20,7 +20,7 @@ interface Company {
 
 interface User {
   name: string;
-  city: string;
+  last_name: string;
 }
 
 @Component({
@@ -37,6 +37,7 @@ export class SettingsComponent implements OnInit {
   // user data
   userUid: string;
   name: string;
+  lastname: string;
   city: string;
   streetNumber: string;
   zipCode: string;
@@ -95,33 +96,33 @@ export class SettingsComponent implements OnInit {
       this.companyName = data.companyName ? data.companyName : '';
       this.email = data.email ? data.email : '';
       this.name = data.name ? data.name : '';
+      this.lastname = data.last_name ? data.last_name : '';
       this.city = data.city ? data.city : '';
       this.streetNumber = data.streetNumber ? data.streetNumber : '';
       this.zipCode = data.zipCode ? data.zipCode : '';
     });
   }
 
-  updateUser = (name: string, city: string) => {
+  updateUser = (name: string, lastname: string) => {
     // Sets user data to firestore on login
     const userRef: AngularFirestoreDocument<any> = this.db.doc(`users/${this.userUid}`);
 
     const UserUpdate: User = {
       name: name,
-      city: city,
+      last_name: lastname,
     };
     userRef.set(UserUpdate, { merge: true });
-    this.snackBar.open('formulier ge-update', '', {
-      duration: 2000,
+    this.snackBar.open('Uw account is aangepast', '', {
+      duration: 3000,
     });
   }
 
   resetPassword() {
-    if (this.controlleEmail === undefined) {
-      return this.controlleEmail = 'Geen geldige email ingevuld';
-    }
     this.auth.resetPassword(this.email)
-      .then(() => this.passReset = this.email === this.controlleEmail ? true : false);
-    this.passMessage = 'Er is een bericht verzonden naar je Email';
+      .then(() => this.passReset = this.email === this.email ? true : false);
+    this.snackBar.open('Uw heeft een email ontvangen om uw wachtwoord te weizigen', '', {
+      duration: 3000,
+    });
   }
 
   toPresentationPage(book) {

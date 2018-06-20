@@ -13,7 +13,7 @@ export class BooksService {
   private presentationSource = new BehaviorSubject<object>({ 'object': 'object' });
   activePresentation = this.presentationSource.asObservable();
 
-  private videoLink = new BehaviorSubject<string>('https://www.youtube.com/embed/0ihzH6bCCms?autoplay=0&showinfo=0');
+  private videoLink = new BehaviorSubject<string>('');
   activeVideoLink = this.videoLink.asObservable();
 
   private displaySource = new BehaviorSubject<boolean>(false);
