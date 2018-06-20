@@ -6,11 +6,11 @@
         <span class="example-spacer"></span>
 
 
-        <button mat-button routerLink="library" *ngIf="user === 'user' || 'employee'">Uw boeken</button>
-        <button mat-button routerLink="contact" *ngIf="user === 'user' || 'employee'">Contact</button>
-        <button mat-button routerLink="settings" *ngIf="user === 'user' || 'employee'">Instellingen</button>
-        <button mat-button routerLink="admin" *ngIf="user === 'employee'">Admin</button>
-        <button mat-button (click)="auth.signOut()" *ngIf="user === 'user' || 'employee'">Uitloggen</button>
+        <button mat-button routerLink="library" *ngIf="user === 'user' || 'employee'" routerLinkActive="active-link">Uw boeken</button>
+        <button mat-button routerLink="contact" *ngIf="user === 'user' || 'employee'" routerLinkActive="active-link">Contact</button>
+        <button mat-button routerLink="settings" *ngIf="user === 'user' || 'employee'" routerLinkActive="active-link">Instellingen</button>
+        <button mat-button routerLink="admin" *ngIf="user === 'employee'" routerLinkActive="active-link">Admin</button>
+        <button mat-button class="logout" (click)="auth.signOut()" *ngIf="user === 'user' || 'employee'" routerLinkActive="active-link">Uitloggen</button>
 
         <mat-menu #menu="matMenu">
             

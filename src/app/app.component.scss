@@ -31,7 +31,15 @@ mat-toolbar{
 
 mat-toolbar-row{
   max-width: 1132px;
-  margin: auto
+  margin: auto;
+  
+  .active-link{
+    color: #73c884;
+  }
+
+  .logout{
+    color: #ff6c6c;
+  }
 }
 
 #header-icon{
