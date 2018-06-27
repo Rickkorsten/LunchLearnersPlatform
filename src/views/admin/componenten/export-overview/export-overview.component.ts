@@ -18,11 +18,17 @@ export class ExportOverviewComponent implements OnInit {
   ) {}
 
   ngOnInit() {
-    this.FirebaseCall.getReviews().subscribe(review => this.reviews = review);
   }
 
-  download() {
-    this._csvService.download(this.reviews, 'Filename');
+  async download(reviewcoll) {
+    await this.getreviews(reviewcoll);
+    this._csvService.download(this.reviews, reviewcoll);
+  }
+
+  getreviews(reviewcoll) {
+    return new Promise(resolve => {
+    this.FirebaseCall.getReviews(reviewcoll).subscribe(review => resolve(this.reviews = review));
+    });
   }
 
 }

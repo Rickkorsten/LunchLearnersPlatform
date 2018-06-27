@@ -192,8 +192,8 @@ export class FirebaseCallsService {
     return this.reviews;
   }
 
-  getReviews() {
-    this.reviewsCol = this.db.collection('reviews');
+  getReviews(review) {
+    this.reviewsCol = this.db.collection(review);
     this.reviews = this.reviewsCol.valueChanges();
     return this.reviews;
   }
