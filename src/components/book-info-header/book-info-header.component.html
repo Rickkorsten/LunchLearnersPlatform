@@ -8,7 +8,10 @@
                     <p>40%</p>
                 </div>
             </div> -->
-            <app-button *ngIf="type === 'large'" [type]="'accept'" [filled]="true" [title]="'Afspelen'" [icon]="'play_arrow'" (click)="toVideo()"></app-button>
+            <div>
+                <a href={{book.preziLink}} target="_blank"><app-button *ngIf="type === 'large'" [type]="'accept'" [filled]="false" [title]="'Presentatie bekijken'" [icon]="'open_in_new'"></app-button></a>
+                <app-button *ngIf="type === 'large'" [type]="'accept'" [filled]="true" [title]="'Video afspelen'" [icon]="'play_arrow'" (click)="toVideo()"></app-button>
+            </div>
         </div>
         <div class="content-container">
             <div class="general-info">

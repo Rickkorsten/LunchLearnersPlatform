@@ -45,7 +45,7 @@
                 <div class="form-row">
                     <div class="expension-row">
                         <mat-form-field class="form-field">
-                            <textarea rows="8" matInput type="text" placeholder="Beschrijving" [(ngModel)]="description"></textarea>
+                            <textarea rows="5" matInput type="text" placeholder="Beschrijving" [(ngModel)]="description"></textarea>
                         </mat-form-field>
                     </div>
                     <div class="expension-row">
@@ -56,7 +56,12 @@
                     </div>
                     <div class="expension-row">
                         <mat-form-field class="form-field">
-                            <input matInput type="text" placeholder="review code" [(ngModel)]="reviewId" />
+                            <input matInput type="text" placeholder="Prezi link" [(ngModel)]="preziLink" />
+                        </mat-form-field>
+                    </div>
+                    <div class="expension-row">
+                        <mat-form-field class="form-field">
+                            <input matInput type="text" placeholder="Review code" [(ngModel)]="reviewId" />
                         </mat-form-field>
                     </div>
                 </div>

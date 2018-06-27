@@ -31,6 +31,7 @@ export class BooksOverviewComponent implements OnInit {
   publishDate: string;
   categories: string;
   videoLink: string;
+  preziLink: string;
   reviewId: string;
 
   sections: any;
@@ -106,6 +107,7 @@ export class BooksOverviewComponent implements OnInit {
     this.sections = book.sections ? book.sections : [] ;
     this.selectedEmployee = book.employee ? book.employee : 'selecteer presentator';
     this.videoLink = book.videoLink ? book.videoLink : '';
+    this.preziLink = book.preziLink ? book.preziLink : '';
     this.reviewId = book.reviewId ? book.reviewId : '';
   }
 
@@ -119,6 +121,7 @@ export class BooksOverviewComponent implements OnInit {
       'sections': (this.sections),
       'employee': (this.selectedEmployee),
       'videoLink': (this.videoLink),
+      'preziLink': (this.preziLink),
       'reviewId': (this.reviewId)
     })
       .catch(function (error) {
