@@ -77,6 +77,7 @@ export class PresentationComponent implements OnInit {
     dialogRef.afterClosed().subscribe(async result => {
         const extraInfo = {
           'bookUID': this.book.uid,
+          'bookName': this.getBookName(this.book.uid),
         };
         const review = Object.assign(result, extraInfo);
         console.log(review);
@@ -84,6 +85,7 @@ export class PresentationComponent implements OnInit {
         this.FirebaseCall.setSmallReview(review);
     });
   }
+
 
   countSection() {
     this.counter++;

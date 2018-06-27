@@ -4,6 +4,7 @@ import { AngularFirestore, AngularFirestoreCollection } from 'angularfire2/fires
 import { Observable } from 'rxjs/Observable';
 import { FormGroup, FormBuilder, Validators } from '@angular/forms';
 
+
 type UserFields = 'email' | 'password';
 type FormErrors = { [u in UserFields]: string };
 

@@ -46,9 +46,9 @@ export class VideoComponent implements OnInit {
   ngOnInit() {
   }
 
-  goToTime(time) {
+  goToTime(time, videoLink) {
     this.safeURL = this._sanitizer
-      .bypassSecurityTrustResourceUrl(`https://www.youtube.com/embed/${this.book.videoLink}?start=${time}&autoplay=1&showinfo=0`);
+      .bypassSecurityTrustResourceUrl(`https://www.youtube.com/embed/${videoLink}?start=${time}&autoplay=1&showinfo=0`);
   }
 
   expand() {

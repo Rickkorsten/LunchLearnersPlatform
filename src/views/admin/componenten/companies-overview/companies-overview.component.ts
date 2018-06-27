@@ -96,19 +96,21 @@ export class CompanyOverviewComponent implements OnInit {
   }
 
   getEmailOfUserUID(users) {
+    return new Promise(resolve => {
     const usersArray = [];
     users.map(user => {
-      this.FirebaseCall.getUserByIUD(user).subscribe(data => usersArray.push(data[0].email));
+      this.FirebaseCall.getUserByIUD(user).subscribe(data => resolve(usersArray.push(data[0].email)));
     });
-    return usersArray;
+  });
   }
 
   getTitleOfBooksUID(books) {
+    return new Promise(resolve => {
     const booksArray = [];
     books.map(user => {
-      this.FirebaseCall.getBookByUID(user).subscribe(data => booksArray.push({'title': data[0].title, 'uid': data[0].uid}));
+      this.FirebaseCall.getBookByUID(user).subscribe(data => resolve(booksArray.push({'title': data[0].title, 'uid': data[0].uid})));
     });
-    return booksArray;
+  });
   }
 
   update() {

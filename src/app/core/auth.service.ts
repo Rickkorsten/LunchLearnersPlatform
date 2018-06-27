@@ -4,6 +4,7 @@ import { Router } from '@angular/router';
 import * as firebase from 'firebase/app';
 import { AngularFireAuth } from 'angularfire2/auth';
 import { AngularFirestore, AngularFirestoreDocument } from 'angularfire2/firestore';
+import { MatSnackBar } from '@angular/material';
 
 import { Observable } from 'rxjs/Observable';
 import 'rxjs/add/operator/switchMap';
@@ -33,7 +34,8 @@ export class AuthService {
   constructor(
     private afAuth: AngularFireAuth,
     private afs: AngularFirestore,
-    private router: Router) {
+    private router: Router,
+    public snackBar: MatSnackBar) {
 
     // Check if user is loged in, if user is loged in than get all the user data and insert it into the User interface
     this.user = this.afAuth.authState
@@ -64,11 +66,19 @@ export class AuthService {
       .then((user) => {
         this.router.navigateByUrl('').then(result => {
           console.log(result);
+          this.snackBar.open('Succes', '', {
+            duration: 2000,
+          });
           window.location.reload();
         });
         return this.updateUserData(user, '', '', '', ''); // if using firestore
       })
-      .catch((error) => this.handleError(error));
+      .catch((error) => {
+        this.snackBar.open('Succes', '', {
+          duration: 2000,
+        });
+        this.handleError(error);
+      });
   }
 
 
