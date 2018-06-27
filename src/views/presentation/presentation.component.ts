@@ -70,7 +70,7 @@ export class PresentationComponent implements OnInit {
   openDialog(): void {
     const dialogRef = this.dialog.open(ReviewDialogComponent, {
       width: '600px',
-      height: '800px',
+      height: '612px',
       data: {}
     });
 
