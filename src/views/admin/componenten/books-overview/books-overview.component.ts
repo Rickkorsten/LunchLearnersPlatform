@@ -86,13 +86,14 @@ export class BooksOverviewComponent implements OnInit {
       'subTitle': (subTitle ? subTitle : 'EMPTY'),
       'author': (author ? author : 'EMPTY'),
       'smallThumbnail': (smallThumbnail ? smallThumbnail : 'EMPTY'),
-      'bigThumbnail': (bigThumbnail ? bigThumbnail : storageLink),
+      'bigThumbnail': (bigThumbnail ? bigThumbnail : 'EMPTY'),
       'publisher': (publisher ? publisher : 'EMPTY'),
       'publishDate': (publishDate ? publishDate : 'EMPTY'),
       'description': (description ? description : 'EMPTY'),
       'ISBN_13': (ISBN_13 ? ISBN_13 : 'EMPTY'),
       'ISBN_10': (ISBN_10 ? ISBN_10 : 'EMPTY'),
       'categories': (categories ? categories : 'EMPTY'),
+      'importImage' : (storageLink ? storageLink : 'EMPTY')
     });
 
   }
@@ -184,11 +185,12 @@ export class BooksOverviewComponent implements OnInit {
   }
 
   getURL(url) {
-    const ref = this.afStorage.ref(url);
-    this.profileUrl = ref.getDownloadURL().subscribe(newUrl => {
-      console.log(newUrl); // moet er staan anders error!
-    });
-    // return imageURL;
+      console.log(url);
+      // const ref = this.afStorage.ref(url);
+      // this.profileUrl = ref.getDownloadURL().subscribe(newUrl => {
+      //   console.log(newUrl);
+      //   return newUrl;
+      // });
   }
 
 }

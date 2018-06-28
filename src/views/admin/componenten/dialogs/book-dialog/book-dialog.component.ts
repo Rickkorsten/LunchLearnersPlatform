@@ -41,10 +41,12 @@ export class BookDialogComponent {
   onNoClick(): void {
     this.dialogRef.close();
   }
-
+/// klopt niet
   getFile = (fileInput) => {
-    const file = fileInput.target.files[0];
-    this.imgFile = file;
+    return new Promise(resolve => {
+      const file = fileInput.target.files[0];
+      resolve(this.imgFile = file);
+    });
   }
 
 
@@ -59,7 +61,7 @@ export class BookDialogComponent {
       );
   }
 
-  selectBook(book) {
+  async selectBook(book) {
     this.title = book.volumeInfo.title ?  book.volumeInfo.title : '';
     this.subTitle = book.volumeInfo.subtitle ? book.volumeInfo.subtitle : '';
     this.authors = book.volumeInfo.authors ? book.volumeInfo.authors.toString() : '';
@@ -88,7 +90,6 @@ export class BookDialogComponent {
 
   generateBook() {
     return {
-      'title': this.title,
       'subTitle': this.subTitle,
       'author': this.authors,
       'smallThumbnail': this.smallThumbnail,

@@ -32,4 +32,8 @@ export class SettingsHeaderComponent implements OnInit {
     }
   }
 
+  viewTermsConditions = () => {
+    console.log('term');
+  }
+
 }

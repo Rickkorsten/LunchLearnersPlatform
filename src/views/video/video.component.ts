@@ -9,7 +9,7 @@ import { DomSanitizer } from '@angular/platform-browser';
 })
 export class VideoComponent implements OnInit {
 
-  book: object;
+  book: any;
   safeURL: any;
   video: string;
   time: string;
