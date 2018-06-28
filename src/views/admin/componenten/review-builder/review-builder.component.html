@@ -1,0 +1,51 @@
+<!-- formulier 1-->
+<h2>Review builder:</h2>
+<div class="review-container">
+    <p class="header">Wat vond u van de presentatie ?</p>
+    <mat-tab-group [(selectedIndex)]="index" class="demo-tab-group">
+
+        <mat-tab label="1">
+            <div class="row" *ngFor="let question of QuestionsArray1 ">
+                <mat-icon mat-list-icon (click)="delete(QuestionsArray1,question1)">delete</mat-icon>
+                <p>{{question}}?</p>
+                <rating [(ngModel)]="rating1" [titles]="['one', 'two', 'three', 'four', 'five']"></rating>
+            </div>
+
+            <div class="row">
+                <mat-form-field>
+                    <input matInput placeholder="Input" [(ngModel)]="questions1" (keyup.enter)="addToQuestions(QuestionsArray1,questions1)">
+                    <span matSuffix>?</span>
+
+                </mat-form-field>
+                <app-button (click)="addToQuestions(QuestionsArray1,questions1)" [type]="'accept'" [filled]="false" [title]="'toevoegen'" [icon]="'add'"></app-button>
+            </div>
+            <div class="row">
+                <div class="button-row">
+                    <app-button (click)="uploadForm(QuestionsArray1)" [type]="'accept'" [filled]="true" [title]="'Upload'"></app-button>
+                </div>
+            </div>
+        </mat-tab>
+
+        <mat-tab label="2">
+            <div class="row" *ngFor="let question of QuestionsArray2  ">
+                <mat-icon mat-list-icon (click)="delete(QuestionsArray2,question2)">delete</mat-icon>
+                <p>{{question}}?</p>
+                <rating [(ngModel)]="rating1" [titles]="['one', 'two', 'three', 'four', 'five']"></rating>
+            </div>
+
+            <div class="row">
+                <mat-form-field>
+                    <input matInput placeholder="Input" [(ngModel)]="questions2" (keyup.enter)="addToQuestions(QuestionsArray2,questions2)">
+                    <span matSuffix>?</span>
+
+                </mat-form-field>
+                <app-button (click)="addToQuestions(QuestionsArray2,questions2)" [type]="'accept'" [filled]="false" [title]="'toevoegen'" [icon]="'add'"></app-button>
+            </div>
+            <div class="row">
+                <div class="button-row">
+                    <app-button (click)="uploadForm(QuestionsArray2)" [type]="'accept'" [filled]="true" [title]="'Upload'"></app-button>
+                </div>
+            </div>
+        </mat-tab>
+    </mat-tab-group>
+</div>

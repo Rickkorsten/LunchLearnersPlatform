@@ -2,7 +2,7 @@
     <h2>Bedrijven overzicht:</h2>
     <mat-accordion>
         <mat-expansion-panel *ngFor="let company of companies | async">
-            <mat-expansion-panel-header (click)="get(company.uid,company.name,company.code,company.branche,company.emailsuffix,company.books)">
+            <mat-expansion-panel-header (click)="get(company.uid,company.name,company.code,company.branche,company.emailsuffix,company.books, company.users)">
                 <mat-panel-title>
                     {{ company.name}}
                 </mat-panel-title>
@@ -37,18 +37,18 @@
 
                 <mat-divider></mat-divider>
                 <h3 mat-subheader>Users</h3>
-                <mat-list-item *ngFor="let user of company.users">
+                <mat-list-item *ngFor="let user of users || async">
                     <mat-icon mat-list-icon>account_circle</mat-icon>
                     <h4 mat-line>{{user}}</h4>
                 </mat-list-item>
 
                 <mat-divider></mat-divider>
                 <h3 mat-subheader>Books</h3>
-                <mat-list-item *ngFor="let companyBook of companyBooksArray">
+                <mat-list-item *ngFor="let book of books || async">
                     <mat-icon mat-list-icon>book</mat-icon>
                     <h4 class="item-line" mat-line>
-                        <p>{{companyBook}}</p>
-                        <mat-icon mat-list-icon (click)="deleteBook(companyBook)">delete</mat-icon>
+                        <p>{{book.title}}</p>
+                        <mat-icon mat-list-icon (click)="deleteBook(book)">delete</mat-icon>
                     </h4>
                 </mat-list-item>
                 <mat-form-field>

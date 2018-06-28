@@ -16,6 +16,9 @@ import { BookInfoComponent } from './../views/book-info/book-info.component';
 import { PresentationComponent } from './../views/presentation/presentation.component';
 import { ReviewFormComponent } from './../views/review-form/review-form.component';
 import { VideoComponent } from './../views/video/video.component';
+import { ReviewBuilderComponent } from './../views/admin/componenten/review-builder/review-builder.component';
+import { ContactComponent } from './../views/contact/contact.component';
+import { MessageOverviewComponent } from './../views/admin/componenten/message-overview/message-overview.component';
 
 // This file defines all the URL's of the application, this is done with the path: '...'
 // The after the path we define the component we want to go to when this URL is called
@@ -28,17 +31,21 @@ export const router: Routes = [
     { path: 'store', component: StoreComponent, canActivate: [AuthGuard] },
     { path: 'book-info/:uid', component: BookInfoComponent, canActivate: [AuthGuard] },
     { path: 'settings', component: SettingsComponent, canActivate: [AuthGuard] },
+    { path: 'contact', component: ContactComponent, canActivate: [AuthGuard] },
     { path: 'bookpresentation/:book', component: PresentationComponent, canActivate: [AuthGuard] },
     { path: 'review/:bookcode', component: ReviewFormComponent},
     { path: 'video/:bookcode', component: VideoComponent, canActivate: [AuthGuard] },
     // The admin path also has childeren, these define the paths of the admin router outlet inside of the admin component
     { path: 'admin', component: AdminComponent, canActivate: [AuthGuard] , children: [
-        { path: 'books', component: BooksOverviewComponent, outlet: 'admin' },
-        { path: 'companies', component: CompanyOverviewComponent, outlet: 'admin' },
-        { path: 'users', component: UsersOverviewComponent, outlet: 'admin' },
-        { path: 'employees', component: EmployeeOverviewComponent, outlet: 'admin' },
-        { path: 'reviews', component: ReviewsOverviewComponent, outlet: 'admin' },
-        { path: 'export', component: ExportOverviewComponent, outlet: 'admin' }
+        { path: '', redirectTo: 'books', pathMatch: 'full' },
+        { path: 'books', component: BooksOverviewComponent },
+        { path: 'companies', component: CompanyOverviewComponent },
+        { path: 'users', component: UsersOverviewComponent },
+        { path: 'employees', component: EmployeeOverviewComponent },
+        { path: 'reviews', component: ReviewsOverviewComponent },
+        { path: 'export', component: ExportOverviewComponent },
+        { path: 'reviewbuilder', component: ReviewBuilderComponent },
+        { path: 'messages', component: MessageOverviewComponent }
     ]}
 ];
 

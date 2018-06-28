@@ -1,4 +1,4 @@
-import { Component, } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { AuthService } from './core/auth.service';
 
 @Component({
@@ -6,20 +6,16 @@ import { AuthService } from './core/auth.service';
   templateUrl: './app.component.html',
   styleUrls: ['./app.component.scss']
 })
-export class AppComponent {
+export class AppComponent implements OnInit {
   admin: boolean;
-  user: boolean;
+  user: string;
 
-  constructor(
-    public auth: AuthService,
-  ) {
-    this.admin = true;
-    this.user = false;
-    if (auth.user) {
-      this.user = true;
-    } else {
-      this.user = false;
-    }
+  constructor(public auth: AuthService) {}
+
+  ngOnInit() {
+    this.auth.user.subscribe(u => {
+      this.user = u.role;
+    });
   }
 }
 

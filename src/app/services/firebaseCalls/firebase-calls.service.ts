@@ -1,13 +1,14 @@
 import { Injectable } from '@angular/core';
-import { AngularFirestore, AngularFirestoreCollection } from 'angularfire2/firestore';
+import { AngularFirestore, AngularFirestoreCollection, AngularFirestoreDocument } from 'angularfire2/firestore';
 import { Observable } from 'rxjs/Observable';
 
 interface Employee {
-  displayName?: string;
+  name?: string;
   email?: string;
   photoURL?: string;
   uid?: string;
   companyUid?: string;
+  companyName?: string;
 }
 
 interface Company {
@@ -27,19 +28,39 @@ interface Book {
   description?: string;
   categorie?: string;
   publisher?: string;
+  videoLink?: string;
 }
 
 interface Review {
-  presentor: string;
-  q1?: number;
-  q2?: number;
-  q3?: number;
-  q4?: number;
-  q5?: number;
-  q6?: number;
-  q7?: number;
-  q8?: number;
-  q9?: number;
+  bookUID?: string;
+  employee?: number;
+  questionArray?: string[];
+  ratingArray?: number[];
+  remark?: string;
+  title?: string;
+  generalRating?: number;
+}
+
+interface Message {
+  email?: string;
+  message?: string;
+}
+
+interface ReviewForm {
+  0?: string;
+  1?: number;
+  2?: number;
+  3?: number;
+  4?: number;
+  5?: number;
+  6?: number;
+  7?: number;
+  8?: number;
+  9?: number;
+  10?: number;
+  11?: number;
+  12?: number;
+  13?: number;
 }
 
 
@@ -57,9 +78,20 @@ export class FirebaseCallsService {
   // review
   reviewsCol: AngularFirestoreCollection<Review>;
   reviews: Observable<Review[]>;
-
+  // smallreview
+  smallReviewsCol: AngularFirestoreCollection<Review>;
+  smallReviews: Observable<Review[]>;
+  // messages
+    // review
+    messagesCol: AngularFirestoreCollection<Message>;
+    messages: Observable<Message[]>;
+  // user
   usersArray: string[];
   newArray: string[];
+  // reviewForm
+  reviewformCol: AngularFirestoreCollection<ReviewForm>;
+  reviewFormDoc: AngularFirestoreDocument<ReviewForm[]>;
+  reviewform: Observable<ReviewForm[]>;
 
   constructor(private db: AngularFirestore, ) { }
 
@@ -77,7 +109,6 @@ export class FirebaseCallsService {
     this.companies = this.companiesCol.valueChanges();
     this.companies.subscribe(data => {
       if (data[0].users) {
-        console.log(data[0].users);
         this.usersArray = data[0].users;
         if (this.usersArray) {
           this.deleteFromCompanyUserlist(uid, companyUid, this.usersArray);
@@ -94,7 +125,6 @@ export class FirebaseCallsService {
       'users': this.newArray
     }, { merge: true });
   }
-  ///////////////////////// ////////////// /////////////////////////////
 
   getCompaniesCollection() {
     this.companiesCol = this.db.collection('companies');
@@ -120,6 +150,18 @@ export class FirebaseCallsService {
     return this.books;
   }
 
+  getBookByUID(uid) {
+    this.booksCol = this.db.collection('books',  ref => ref.where('uid', '==', uid));
+    this.books = this.booksCol.valueChanges();
+    return this.books;
+  }
+
+  getBooksOfCompany(companyUid) {
+    this.companiesCol = this.db.collection('companies', ref => ref.where('uid', '==', companyUid));
+    this.companies = this.companiesCol.valueChanges();
+    return this.companies;
+  }
+
   getActiveBook(uid) {
     this.booksCol = this.db.collection('books', ref => ref.where('uid', '==', uid));
     this.books = this.booksCol.valueChanges();
@@ -132,22 +174,54 @@ export class FirebaseCallsService {
     return this.employees;
   }
 
+  getReviewForm(type) {
+    this.reviewFormDoc = this.db.collection('reviewform').doc(type);
+    this.reviewform = this.reviewFormDoc.valueChanges();
+    return this.reviewform;
+  }
+
+  getUserByIUD(uid) {
+    this.employeesCol = this.db.collection('users', ref => ref.where('uid', '==', uid));
+    this.employees = this.employeesCol.valueChanges();
+    return this.employees;
+  }
+
+  getReviewsByIUD(uid) {
+    this.reviewsCol = this.db.collection('reviews', ref => ref.where('bookUID', '==', uid));
+    this.reviews = this.reviewsCol.valueChanges();
+    return this.reviews;
+  }
+
+  getReviews(review) {
+    this.reviewsCol = this.db.collection(review);
+    this.reviews = this.reviewsCol.valueChanges();
+    return this.reviews;
+  }
+
+  getMessages() {
+    this.messagesCol = this.db.collection('message');
+    this.messages = this.messagesCol.valueChanges();
+    return this.messages;
+  }
+
   updateReview(result) {
-    console.log('updated review');
     const id = this.db.createId();
-    this.db.doc(`reviews/${id}`).set({
-      'q1' : result.q1,
-      'q2' : result.q2,
-      'q3' : result.q3,
-      'q4' : result.q4,
-      'q5' : result.q5,
-      'q6' : result.q6,
-      'q7' : result.q7,
-      'q8' : result.q8,
-      'q9' : result.q9,
-      'employee' : 'Kylo ren',
-      'book' : result.bookUID,
-    });
+    this.db.doc(`reviews/${id}`).set(
+      result
+    );
+  }
+
+  setSmallReview(result) {
+    const id = this.db.createId();
+    this.db.doc(`smallreviews/${id}`).set(
+      result
+    );
+  }
+
+  getSmallReviewsByUid(uid) {
+    this.reviewsCol = this.db.collection('smallreviews', ref => ref.where('bookUID', '==', uid));
+    this.reviews = this.reviewsCol.valueChanges();
+    return this.reviews;
   }
 
 

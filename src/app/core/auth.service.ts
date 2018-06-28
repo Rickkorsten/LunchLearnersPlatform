@@ -4,6 +4,7 @@ import { Router } from '@angular/router';
 import * as firebase from 'firebase/app';
 import { AngularFireAuth } from 'angularfire2/auth';
 import { AngularFirestore, AngularFirestoreDocument } from 'angularfire2/firestore';
+import { MatSnackBar } from '@angular/material';
 
 import { Observable } from 'rxjs/Observable';
 import 'rxjs/add/operator/switchMap';
@@ -19,6 +20,7 @@ interface User {
   companyUid: string;
   companyName: string;
   name?: string;
+  last_name?: string;
   city?: string;
   streetNumber?: string;
   zipCode?: string;
@@ -32,7 +34,8 @@ export class AuthService {
   constructor(
     private afAuth: AngularFireAuth,
     private afs: AngularFirestore,
-    private router: Router) {
+    private router: Router,
+    public snackBar: MatSnackBar) {
 
     // Check if user is loged in, if user is loged in than get all the user data and insert it into the User interface
     this.user = this.afAuth.authState
@@ -61,10 +64,21 @@ export class AuthService {
   emailLogin(email: string, password: string) {
     return this.afAuth.auth.signInWithEmailAndPassword(email, password)
       .then((user) => {
-        this.router.navigateByUrl('');
+        this.router.navigateByUrl('').then(result => {
+          console.log(result);
+          this.snackBar.open('Succes', '', {
+            duration: 2000,
+          });
+          window.location.reload();
+        });
         return this.updateUserData(user, '', '', '', ''); // if using firestore
       })
-      .catch((error) => this.handleError(error));
+      .catch((error) => {
+        this.snackBar.open('Succes', '', {
+          duration: 2000,
+        });
+        this.handleError(error);
+      });
   }
 
 
@@ -84,9 +98,7 @@ export class AuthService {
     const newUserArray = usersArray.concat(user.uid);
 
     // get role of the user (admin/employee/user)
-    console.log('suffixxx : ' + companySuffix);
     const role = companySuffix === 'lunchlearners.nl' ? 'employee' : 'user';
-    console.log('roleee : ' + role);
 
     const UserUpdate: User = {
       uid: user.uid,
@@ -110,7 +122,10 @@ export class AuthService {
 
   signOut() {
     this.afAuth.auth.signOut().then(() => {
-      this.router.navigate(['/login']);
+      this.router.navigate(['/login']).then(result => {
+        console.log(result);
+        window.location.reload();
+      });
     });
   }
 

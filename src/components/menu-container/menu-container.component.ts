@@ -12,48 +12,52 @@ export class MenuContainerComponent implements OnInit {
 
   setActive(type: number) {
     this.selectedType = type;
-    console.log(this.selectedType);
   }
 
   constructor() {
-    // this.type = 1;
 
     this.menuItems = [
       {
         'title': 'Boeken overzicht',
-        'router': [{ outlets: { admin: 'books' } }],
+        'router': ['books'],
         'icon': 'book',
         'id': 1,
       },
       {
         'title': 'Bedrijven overzicht',
-        'router': [{ outlets: { admin: 'companies' } }],
+        'router': ['companies'],
         'icon': 'work',
         'id': 2,
       },
       {
         'title': 'Gebruikers overzicht',
-        'router': [{ outlets: { admin: 'users' } }],
+        'router': ['users'],
         'icon': 'supervisor_account',
         'id': 3,
       },
       {
         'title': 'Personeels overzicht',
-        'router': [{ outlets: { admin: 'employees' } }],
+        'router': ['employees'],
         'icon': 'face',
         'id': 4,
       },
       {
-        'title': 'Reviews overzicht',
-        'router': [{ outlets: { admin: 'reviews' } }],
-        'icon': 'star',
+        'title': 'Database exporteren',
+        'router': ['export'],
+        'icon': 'import_export',
         'id': 5,
       },
       {
-        'title': 'Database exporteren',
-        'router': [{ outlets: { admin: 'export' } }],
-        'icon': 'import_export',
+        'title': 'Review builder',
+        'router': ['reviewbuilder'],
+        'icon': 'rate_review',
         'id': 6,
+      },
+      {
+        'title': 'Berichten',
+        'router': ['messages'],
+        'icon': 'message',
+        'id': 7,
       },
     ];
 

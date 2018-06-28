@@ -3,6 +3,10 @@ import { Component, OnInit } from '@angular/core';
 import { AuthService } from '../../app/core/auth.service';
 import { AngularFirestore, AngularFirestoreDocument } from 'angularfire2/firestore';
 import { Observable } from 'rxjs/Observable';
+import { FirebaseCallsService } from './../../app/services/firebaseCalls/firebase-calls.service';
+import { BooksService } from './../../app/services/books/books.service';
+import { Router } from '@angular/router';
+import { MatSnackBar } from '@angular/material';
 
 // rxjs operators
 import 'rxjs/add/operator/do';
@@ -16,9 +20,7 @@ interface Company {
 
 interface User {
   name: string;
-  city: string;
-  streetNumber: string;
-  zipCode: string;
+  last_name: string;
 }
 
 @Component({
@@ -35,6 +37,7 @@ export class SettingsComponent implements OnInit {
   // user data
   userUid: string;
   name: string;
+  lastname: string;
   city: string;
   streetNumber: string;
   zipCode: string;
@@ -46,13 +49,44 @@ export class SettingsComponent implements OnInit {
   passMessage: string;
   userMessage: string;
 
+  bookUIDs: any;
 
-  constructor(private auth: AuthService, private db: AngularFirestore) {
+  role: string;
+  companyUid: string;
+  companyBooks: string[];
+
+  allBooks: any;
+
+  constructor(private auth: AuthService,
+    private db: AngularFirestore,
+    private FirebaseCall: FirebaseCallsService,
+    private router: Router,
+    private bookService: BooksService,
+    public snackBar: MatSnackBar) {
     this.passReset = false;
+    this.allBooks = [];
   }
 
   ngOnInit() {
     this.getUserData();
+
+    this.auth.user.subscribe(user => {
+      this.role = user.role,
+        this.companyUid = user.companyUid;
+      if (this.companyUid) {
+        this.FirebaseCall.getBooksOfCompany(this.companyUid)
+          .subscribe(bookUIDs => {
+            this.bookUIDs = bookUIDs[0].books;
+            if (this.bookUIDs) {
+              this.bookUIDs.map(bookUID => {
+                this.FirebaseCall.getActiveBook(bookUID).subscribe(book => {
+                  this.allBooks.push(book[0]);
+                });
+              });
+            }
+          });
+      }
+    });
   }
 
 
@@ -62,50 +96,43 @@ export class SettingsComponent implements OnInit {
       this.companyName = data.companyName ? data.companyName : '';
       this.email = data.email ? data.email : '';
       this.name = data.name ? data.name : '';
+      this.lastname = data.last_name ? data.last_name : '';
       this.city = data.city ? data.city : '';
       this.streetNumber = data.streetNumber ? data.streetNumber : '';
       this.zipCode = data.zipCode ? data.zipCode : '';
     });
   }
 
-  // getCompanyData() {
-  //   this.companiesCol = this.db.collection('companies', ref => ref.where('name', '==', this.companyName));
-  //   this.companies = this.companiesCol.valueChanges();
-  //   this.companies.subscribe(data => {
-  //     console.log(data);
-  //     this.companyBranche = data[0].branche;
-  //   });
-  // }
-
-  updateUser = (name: string, city: string, streetNumber: string, zipCode: string) => {
+  updateUser = (name: string, lastname: string) => {
     // Sets user data to firestore on login
     const userRef: AngularFirestoreDocument<any> = this.db.doc(`users/${this.userUid}`);
 
     const UserUpdate: User = {
       name: name,
-      city: city,
-      streetNumber: streetNumber,
-      zipCode: zipCode,
+      last_name: lastname,
     };
     userRef.set(UserUpdate, { merge: true });
-    this.userMessage = 'gegevens geupdate';
+    this.snackBar.open('Uw account is aangepast', '', {
+      duration: 3000,
+    });
   }
 
   resetPassword() {
-    console.log(this.controlleEmail);
-    if (this.controlleEmail === undefined) {
-      return this.controlleEmail = 'Geen geldige email ingevuld';
-    }
     this.auth.resetPassword(this.email)
-      .then(() => this.passReset = this.email === this.controlleEmail ? true : false);
-    this.passMessage = 'Er is een bericht verzonden naar je Email';
+      .then(() => this.passReset = this.email === this.email ? true : false);
+    this.snackBar.open('Uw heeft een email ontvangen om uw wachtwoord te weizigen', '', {
+      duration: 3000,
+    });
   }
 
+  toPresentationPage(book) {
+    this.bookService.setActiveBook(book);
+    this.router.navigate([`../bookpresentation/${book.uid}`]);
+  }
 
-  //////////////////////// MAKE THE FUNCTIONS ONE BY ONE /////////////////////////
-  ///////////// FIRST USER READ AND UPDATE ///////////////////////////////////////
-  //// THEN COMPANY //////////////////////////////////////////////////////////////
-  ///////////////////////////////// PASSWORD /////////////////////////////////////
+  viewTermsConditions() {
+    console.log('tom');
+  }
 
 }
 

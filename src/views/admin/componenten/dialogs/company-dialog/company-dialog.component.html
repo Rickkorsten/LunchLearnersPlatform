@@ -12,7 +12,7 @@
 
     <mat-form-field class="form-field">
         <mat-select placeholder="Selecteer branch" [(ngModel)]="data.branche">
-            <mat-option *ngFor="let branches of allBranches || async" value="branches">{{branches}}</mat-option>
+            <mat-option *ngFor="let branches of allBranches" value="branches">{{branches}}</mat-option>
 
         </mat-select>
     </mat-form-field>

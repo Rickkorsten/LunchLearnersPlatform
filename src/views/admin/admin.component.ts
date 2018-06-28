@@ -1,4 +1,6 @@
 import { Component, OnInit } from '@angular/core';
+import { AuthService } from './../../app/core/auth.service';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-admin',
@@ -8,20 +10,17 @@ import { Component, OnInit } from '@angular/core';
 
 export class AdminComponent implements OnInit {
 
-  constructor() { }
+  admin: boolean;
+  user: string;
+
+  constructor(public auth: AuthService, private router: Router) {}
 
   ngOnInit() {
-    const user1 = {
-      name: 'rick',
-      age: '25'
-    };
-    const user2 = {
-      name: 'rick',
-      age: '22'
-    };
-    localStorage.setItem('user', JSON.stringify(user1));
-    console.log(user2);
-    console.log(this.checkIfObjectIsEqual(user1, user2));
+    this.auth.user.subscribe(u => {
+      if (u.role !== 'employee') {
+        this.router.navigate(['']);
+      }
+    });
   }
 
   checkIfObjectIsEqual = (oldUser, newUser) => {

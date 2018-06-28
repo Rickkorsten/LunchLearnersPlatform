@@ -3,7 +3,8 @@ import { AngularFirestore } from 'angularfire2/firestore';
 import { CompanyDialogComponent } from './../dialogs/company-dialog/company-dialog.component';
 import { AuthService } from '../../../../app/core/auth.service';
 import { FirebaseCallsService } from './../../../../app/services/firebaseCalls/firebase-calls.service';
-import { MatDialog } from '@angular/material';
+import { MatDialog, MatSnackBar } from '@angular/material';
+
 
 @Component({
   selector: 'app-companies-overview',
@@ -28,8 +29,8 @@ export class CompanyOverviewComponent implements OnInit {
   code: string;
   branche: string;
   emailsuffix: string;
-  books: string[];
-  users: string[];
+  books: any;
+  users: any;
 
   selectedBooks: string;
   companyBooksArray: string[];
@@ -37,6 +38,7 @@ export class CompanyOverviewComponent implements OnInit {
 
   constructor(
     private db: AngularFirestore,
+    public snackBar: MatSnackBar,
     public dialog: MatDialog,
     public auth: AuthService,
     private FirebaseCall: FirebaseCallsService) {
@@ -82,13 +84,33 @@ export class CompanyOverviewComponent implements OnInit {
     this.allBooks = this.FirebaseCall.getBooksCollection();
   }
 
-  get(uid, name, code, branche, emailsuffix, books) {
+  async get(uid, name, code, branche, emailsuffix, books, users) {
     this.uid = uid ? uid : '';
     this.name = name ? name : '';
     this.code = code ? code : '';
     this.branche = branche ? branche : '';
     this.emailsuffix = emailsuffix ? emailsuffix : '';
-    this.companyBooksArray = books ? books : [];
+    this.companyBooksArray = await books ? books : [];
+    this.users =  await this.getEmailOfUserUID(users);
+    this.books = this.getTitleOfBooksUID(this.companyBooksArray);
+  }
+
+  getEmailOfUserUID(users) {
+    return new Promise(resolve => {
+    const usersArray = [];
+    users.map(user => {
+      this.FirebaseCall.getUserByIUD(user).subscribe(data => resolve(usersArray.push(data[0].email)));
+    });
+  });
+  }
+
+  getTitleOfBooksUID(books) {
+    return new Promise(resolve => {
+    const booksArray = [];
+    books.map(user => {
+      this.FirebaseCall.getBookByUID(user).subscribe(data => resolve(booksArray.push({'title': data[0].title, 'uid': data[0].uid})));
+    });
+  });
   }
 
   update() {
@@ -100,7 +122,10 @@ export class CompanyOverviewComponent implements OnInit {
       'books': this.companyBooksArray
     });
 
-    console.log('updated');
+    this.snackBar.open('bedrijfs informatie ge-update', '', {
+      duration: 2000,
+    });
+
   }
 
   delete() {
@@ -133,12 +158,13 @@ export class CompanyOverviewComponent implements OnInit {
   }
 
   updateBookArray(book) {
-    console.log(book);
     this.companyBooksArray.push(book);
+    this.books = this.getTitleOfBooksUID(this.companyBooksArray);
   }
 
-  deleteBook(item) {
-    this.companyBooksArray = this.remove(this.companyBooksArray, item);
+  async deleteBook(item) {
+    this.companyBooksArray = this.remove(this.companyBooksArray, item.uid);
+    this.books = await this.getTitleOfBooksUID(this.companyBooksArray);
   }
 
   remove(arr, dele) {

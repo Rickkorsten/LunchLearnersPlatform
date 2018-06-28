@@ -1,14 +1,27 @@
-mat-card{
-  margin: 14px;
-  width: 300px;
-  height: 350px;
+.personal-card{
+  margin: 0px;
+  width: 339px;
+  height: 295px;
+  background-color: white;
   justify-content: space-around;
   display: flex;
   flex-direction: column;
+  border-radius: 5px;
+  -webkit-box-shadow: 0px 0px 10px 0px rgba(0, 0, 0, 0.12);
+  -moz-box-shadow: 0px 0px 10px 0px rgba(0, 0, 0, 0.12);
+  box-shadow: 0px 0px 10px 0px rgba(0, 0, 0, 0.12);
 
+  .information-content {
+    display: flex;
+    flex-direction: column;
+    flex: 1;
+    padding:40px;
+  }
   .card-header{
     display: flex;
     flex: 1;
+    font: 400 24px 'Lato', "Helvetica Neue", sans-serif;
+            color: #4a4a4a;
   }
 
   .card-content{
@@ -17,7 +30,19 @@ mat-card{
     flex-direction: column;
 
     mat-form-field{
-      width: 50%;
+      .contact {
+        margin-bottom: 10px;
+        h1 {
+            font: 300 12px 'Open Sans', "Helvetica Neue", sans-serif;
+                color: #707070;
+            margin:0px;
+        }
+        h2 {
+            font: 300 14px 'Open Sans', "Helvetica Neue", sans-serif;
+                color: #4A4A4A;
+            margin:0px;
+        }
+      }
     }
   }
   .card-action{

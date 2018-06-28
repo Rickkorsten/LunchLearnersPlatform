@@ -4,7 +4,8 @@
         <mat-expansion-panel *ngFor="let book of books | async" (opened)="getBook(book)" (closed)="visible=true">
             <mat-expansion-panel-header>
                 <mat-panel-title style="vertical-align:middle;">
-                    <img style="vertical-align:middle; margin-right: 24px;" aria-hidden src="{{book.smallThumbnail}}" height="48" />
+                    <img *ngIf="book.bigThumbnail !== 'EMPTY'" style="vertical-align:middle; margin-right: 24px;" aria-hidden src="{{book.bigThumbnail}}" height="48" />
+                    <img *ngIf="book.importImage !== 'EMPTY'" style="vertical-align:middle; margin-right: 24px;" aria-hidden src="{{getURL(book.importImage)}}" height="48" />
                     <p>{{ book.title }}</p>
                 </mat-panel-title>
             </mat-expansion-panel-header>
@@ -45,13 +46,23 @@
                 <div class="form-row">
                     <div class="expension-row">
                         <mat-form-field class="form-field">
-                            <textarea rows="8" matInput type="text" placeholder="Beschrijving" [(ngModel)]="description"></textarea>
+                            <textarea rows="5" matInput type="text" placeholder="Beschrijving" [(ngModel)]="description"></textarea>
                         </mat-form-field>
                     </div>
                     <div class="expension-row">
                         <mat-form-field class="form-field">
                             <input matInput type="text" placeholder="video code" [(ngModel)]="videoLink" />
                             <span matPrefix><b>youtube.com/watch?v=&nbsp;</b></span>
+                        </mat-form-field>
+                    </div>
+                    <div class="expension-row">
+                        <mat-form-field class="form-field">
+                            <input matInput type="text" placeholder="Prezi link" [(ngModel)]="preziLink" />
+                        </mat-form-field>
+                    </div>
+                    <div class="expension-row">
+                        <mat-form-field class="form-field">
+                            <input matInput type="text" placeholder="Review code" [(ngModel)]="reviewId" />
                         </mat-form-field>
                     </div>
                 </div>
@@ -66,17 +77,20 @@
                     <input matInput type="text" placeholder="Hoofdstuk naam" [(ngModel)]="chapterTitle" />
                 </mat-form-field>
                 <mat-form-field>
-                    <input matInput type="text" placeholder="Tijdstip" [(ngModel)]="time" />
+                    <input matInput type="text" placeholder="Tijdstip(Mm:Ss)" [(ngModel)]="time" />
                 </mat-form-field>
                 <button mat-button color="primary" (click)="addToObject(chapterTitle,time)">
                     Toevoegen
                   </button>
 
             </div>
-            <ul class="chapter-list" appSortableList (sort)="sort($event)">
-                <li *ngFor="let section of sections" class="box" appSortable>
-                    {{ section.title }}
-                    <div class="box" *appDraggableHelper>{{ section.title }}</div>
+            <ul class="chapter-list">
+                <li *ngFor="let section of sections" class="box">
+                    <p>{{ section.title }}</p>
+                    <div>
+                        <p>{{ convertTime(section.time) }}</p>
+                        <mat-icon (click)="deleteSection(section.id)">delete</mat-icon>
+                    </div>
                 </li>
             </ul>
             <mat-action-row>

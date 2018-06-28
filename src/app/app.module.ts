@@ -16,8 +16,6 @@ import { AngularFirestoreModule } from 'angularfire2/firestore';
 import { RatingModule } from 'ngx-rating';
 
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
-import { DropZoneDirective } from './directives/dropZone/drop-zone.directive';
-import { VideoDropzoneComponent } from './../components/video-dropzone/video-dropzone.component';
 
 import { CoreModule } from './core/core.module';
 
@@ -45,12 +43,18 @@ import { ButtonComponent } from './../components/button/button.component';
 import { DraggableModule } from './directives/draggable/draggable.module';
 import { ReviewFormComponent } from './../views/review-form/review-form.component';
 import { BookInfoHeaderComponent } from './../components/book-info-header/book-info-header.component';
+import { SettingsHeaderComponent } from './../components/settings-header/settings-header.component';
+import { SettingsCard2Component } from './../components/settings-card2/settings-card2.component';
 import { VideoComponent } from './../views/video/video.component';
 
 import { FirebaseCallsService } from './../app/services/firebaseCalls/firebase-calls.service';
 import { BooksService } from './../app/services/books/books.service';
 import { BookCardComponent } from './../components/book-card/book-card.component';
+import { BookCardMiniComponent } from './../components/book-card-mini/book-card-mini.component';
 import { ReviewDialogComponent } from './../views/presentation/dialogs/review-dialog/review-dialog.component';
+import { ReviewBuilderComponent } from './../views/admin/componenten/review-builder/review-builder.component';
+import { ContactComponent } from './../views/contact/contact.component';
+import { MessageOverviewComponent } from './../views/admin/componenten/message-overview/message-overview.component';
 
 const firebaseConfig = {
   apiKey: 'AIzaSyBR3HJduE1qTWlz7D7LiLlVDPda3Vu3wBk',
@@ -66,8 +70,6 @@ const firebaseConfig = {
     AppComponent,
     LibraryComponent,
     StoreComponent,
-    DropZoneDirective,
-    VideoDropzoneComponent,
     LoginComponent,
     AdminComponent,
     CompanyDialogComponent,
@@ -88,9 +90,15 @@ const firebaseConfig = {
     ButtonComponent,
     ReviewFormComponent,
     BookInfoHeaderComponent,
+    SettingsHeaderComponent,
+    SettingsCard2Component,
     VideoComponent,
     BookCardComponent,
+    BookCardMiniComponent,
     ReviewDialogComponent,
+    ReviewBuilderComponent,
+    ContactComponent,
+    MessageOverviewComponent,
   ],
   imports: [
     BrowserModule,

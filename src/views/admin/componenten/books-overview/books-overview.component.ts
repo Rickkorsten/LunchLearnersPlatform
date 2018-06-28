@@ -5,6 +5,9 @@ import { AuthService } from '../../../../app/core/auth.service';
 import { MatDialog } from '@angular/material';
 import { FirebaseCallsService } from './../../../../app/services/firebaseCalls/firebase-calls.service';
 import { SortEvent } from './../../../../app/directives/draggable/sortable-list.directive';
+import { AngularFireStorage, AngularFireStorageReference, AngularFireUploadTask } from 'angularfire2/storage';
+import { Observable } from 'rxjs/Observable';
+
 @Component({
   selector: 'app-books-overview',
   templateUrl: './books-overview.component.html',
@@ -14,6 +17,12 @@ import { SortEvent } from './../../../../app/directives/draggable/sortable-list.
 
 export class BooksOverviewComponent implements OnInit {
 
+  ref: AngularFireStorageReference;
+  task: AngularFireUploadTask;
+  downloadURL: Observable<string>;
+  snapshot: Observable<any>;
+  profileUrl: any;
+
   uid: any;
   books: any;
   subTitle: string;
@@ -22,6 +31,8 @@ export class BooksOverviewComponent implements OnInit {
   publishDate: string;
   categories: string;
   videoLink: string;
+  preziLink: string;
+  reviewId: string;
 
   sections: any;
   sectionsCount: number;
@@ -32,10 +43,9 @@ export class BooksOverviewComponent implements OnInit {
   constructor(private db: AngularFirestore,
     public dialog: MatDialog,
     public auth: AuthService,
-    private FirebaseCall: FirebaseCallsService) {
-
+    private FirebaseCall: FirebaseCallsService,
+    private afStorage: AngularFireStorage) {
     this.sectionsCount = 0;
-
   }
 
   openDialog(): void {
@@ -44,8 +54,9 @@ export class BooksOverviewComponent implements OnInit {
       data: {}
     });
 
-    dialogRef.afterClosed().subscribe(result => {
-      this.uploadBookToFirestore(result);
+    dialogRef.afterClosed().subscribe(async result => {
+     const storageLink = result.imageFile ? await this.uploadToStorage(result.imageFile) : 'EMPTY';
+     this.uploadBookToFirestore(result, storageLink);
     });
   }
 
@@ -54,11 +65,20 @@ export class BooksOverviewComponent implements OnInit {
     this.employees = this.FirebaseCall.getEmployeesCollection();
   }
 
-  uploadBookToFirestore(result) {
+  uploadToStorage(imageFile) {
+    return new Promise (resolve => {
+      const path = `images/${imageFile.name}`;
+      this.ref = this.afStorage.ref(path);
+      this.task = this.ref.put(imageFile);
+      this.downloadURL = this.task.downloadURL();
+      resolve(path);
+    });
+  }
+
+  uploadBookToFirestore(result, storageLink) {
     const id = this.db.createId();
     const { title, subTitle, author, smallThumbnail, bigThumbnail, publisher, publishDate, description,
       ISBN_13, ISBN_10, categories } = result.book;
-    console.log(title);
 
     this.db.doc(`books/${id}`).set({
       'uid': id,
@@ -73,12 +93,12 @@ export class BooksOverviewComponent implements OnInit {
       'ISBN_13': (ISBN_13 ? ISBN_13 : 'EMPTY'),
       'ISBN_10': (ISBN_10 ? ISBN_10 : 'EMPTY'),
       'categories': (categories ? categories : 'EMPTY'),
+      'importImage' : (storageLink ? storageLink : 'EMPTY')
     });
 
   }
 
   getBook(book) {
-    console.log(book);
     this.uid = book.uid;
     this.subTitle = book.subTitle;
     this.publisher = book.publisher;
@@ -88,10 +108,11 @@ export class BooksOverviewComponent implements OnInit {
     this.sections = book.sections ? book.sections : [] ;
     this.selectedEmployee = book.employee ? book.employee : 'selecteer presentator';
     this.videoLink = book.videoLink ? book.videoLink : '';
+    this.preziLink = book.preziLink ? book.preziLink : '';
+    this.reviewId = book.reviewId ? book.reviewId : '';
   }
 
   updateBook() {
-    console.log(this.subTitle, this.publisher, this.publishDate, this.description, this.categories);
     this.db.doc(`books/${this.uid}`).update({
       'subTitle': (this.subTitle),
       'publisher': (this.publisher),
@@ -101,34 +122,58 @@ export class BooksOverviewComponent implements OnInit {
       'sections': (this.sections),
       'employee': (this.selectedEmployee),
       'videoLink': (this.videoLink),
-    }).then(function () {
-      console.log('Document successfully written!');
+      'preziLink': (this.preziLink),
+      'reviewId': (this.reviewId)
     })
       .catch(function (error) {
         console.error('Error writing document: ', error);
       });
   }
 
-  update(a) {
-    console.log(a);
-  }
-
   deleteBook() {
     this.db.doc(`books/${this.uid}`).delete();
   }
 
-  addToObject(title: string, time: string) {
-    console.log(this.sections);
+  async addToObject(title: string, time: string) {
     const id = this.db.createId();
-    console.log(this.sections);
     this.sections.push(
       {
         id: id,
         title: title,
-        time: time,
+        time: await this.convertToSeconds(time),
       }
     );
-    console.log(this.sections);
+  }
+
+  convertToSeconds(time) {
+    const t = time.split(':');
+    if (t.length > 2) {
+      const seconds = (+t[0]) * 60 * 60 + (+t[1]) * 60 + (+t[2]);
+      return seconds;
+    } else {
+      const seconds = (+t[0]) * 60 + (+t[1]);
+      return seconds;
+    }
+  }
+
+  deleteSection(id) {
+    this.sections = this.sections.filter(function(object) {
+     return object.id !== id;
+  });
+  }
+
+  convertTime(time) {
+    const hours   = Math.floor(time / 3600);
+    const minutes = Math.floor((time - (hours * 3600)) / 60);
+    let seconds = time - (hours * 3600) - (minutes * 60);
+
+    // round seconds
+    seconds = Math.round(seconds * 100) / 100;
+
+    let result = (hours < 10 ? '0' + hours : hours);
+        result += ':' + (minutes < 10 ? '0' + minutes : minutes);
+        result += ':' + (seconds  < 10 ? '0' + seconds : seconds);
+    return result;
   }
 
   sort(event: SortEvent) {
@@ -137,6 +182,15 @@ export class BooksOverviewComponent implements OnInit {
 
     this.sections[event.newIndex] = current;
     this.sections[event.currentIndex] = swapWith;
+  }
+
+  getURL(url) {
+      console.log(url);
+      // const ref = this.afStorage.ref(url);
+      // this.profileUrl = ref.getDownloadURL().subscribe(newUrl => {
+      //   console.log(newUrl);
+      //   return newUrl;
+      // });
   }
 
 }

@@ -1,46 +1,44 @@
-<div class="settings-container">
+<div class="presentation-page-1">
+    <div class="information-block">
+        <div class="information-content">
+            <div class="content-container">
+                <div class="general-info">
+                    <h3>Profiel aanpassen</h3>
+                    <input class='inputField' matInput placeholder="Voornaam" [(ngModel)]="name">
+                    <input class='inputField2' matInput placeholder="Achternaam" [(ngModel)]="lastname">
+                    <!--<button action mat-button (click)="updateUser(name,lastname)">Pas aan</button>-->
+                    <app-button [type]="'accept'" [filled]="false" [title]="'Verstuur'" (click)="updateUser(name,lastname)"></app-button>
+                </div>
+                <div class="password">
+                    <h3>Wachtwoord resetten</h3>
+                    <p>Iedere gebruiker van Mijn Lunch Learners kan het wachtwoord aanpassen. U zult een bevestiging email ontvangen om het process af te ronden.</p>
+                    <!--<button action mat-button (click)="viewTermsConditions()">Bekijk onze algemene voorwaarden</button>-->
+                    <app-button [type]="'accept'" [filled]="false" [title]="'Wachtwoord aanpassen'" (click)="resetPassword()"></app-button>
+                </div>
 
-  <div class="card-container">
-    <!-- card component 1 -->
-    <app-settings-card [title]="'persoonlijke instellingen'" [error]="userMessage" >
-      <div content>
-      <mat-form-field>
-        <input matInput placeholder="Naam" [(ngModel)]="name">
-      </mat-form-field>
-      <mat-form-field>
-        <input matInput placeholder="Woonplaats" [(ngModel)]="city">
-      </mat-form-field>
-      <mat-form-field>
-        <input matInput placeholder="Straat & Huisnummer" [(ngModel)]="streetNumber">
-      </mat-form-field>
-      <mat-form-field>
-        <input matInput placeholder="Postcode" [(ngModel)]="zipCode">
-      </mat-form-field>
+                <div class="termsConditions">
+                    <h3>Algemene voorwaarden</h3>
+                    <p>Wij van LunchLearners proberen ten alle tijden zo transpirant mogelijk zijn met onze klanten, hieronder kunt u onze algemene voorwaarden doorlezen.</p>
+                    <!--<button action mat-button (click)="viewTermsConditions()">Bekijk onze algemene voorwaarden</button>-->
+                    <a href="https://lunchlearners.nl/algemene-voorwaarden/" target="_blank">
+                        <app-button [type]="'accept'" [filled]="false" [title]="'Bekijk onze algemene voorwaarden'" (click)="viewTermsConditions()"></app-button>
+                    </a>
+                </div>
+
+            </div>
+        </div>
     </div>
-      <button action mat-button (click)="updateUser(name,city,streetNumber,zipCode)">UPDATE</button>
-    </app-settings-card>
-    <!-- card component 2 -->
-    <app-settings-card [title]="'wachtwoord resetten'" [error]="passMessage"  >
-        <div content>
-      <mat-form-field>
-        <input matInput placeholder="Email" [(ngModel)]="controlleEmail">
-      </mat-form-field>
-      </div>
-      <button action mat-button (click)="resetPassword()">RESETTEN</button>
-    </app-settings-card>
-    <!-- card component 3 -->
-    <app-settings-card [title]="'Bedrijfs gegevens'" [error]="false" >
-        <div content>
-      <mat-form-field>
-        <input matInput placeholder="bedrijfsnaam" [(ngModel)]="companyName">
-      </mat-form-field>
-      <mat-form-field>
-        <input matInput placeholder="Brache">
-      </mat-form-field>
-      </div>
-    </app-settings-card>
+</div>
 
+<div class="settings-container">
+    <div class="card-container">
 
+        <div class="header-separator">
+            <p>Uw boeken collectie in beheer van: {{companyName}}</p>
+        </div>
+        <div class="book-container">
+            <app-book-card *ngFor="let book of allBooks" [book]="book" (click)="toPresentationPage(book)"></app-book-card>
+        </div>
 
-  </div>
+    </div>
 </div>

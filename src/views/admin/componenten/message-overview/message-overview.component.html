@@ -1,0 +1,16 @@
+<div class="message">
+    <h2>Berichten overzicht:</h2>
+    <div class="review-container">
+        <div class="review" *ngFor="let message of messages">
+            <div class="title">
+                <p><b>{{message.email}}</b></p>
+                <mat-icon mat-list-icon (click)="deleteMessage(message.uid)">delete</mat-icon>
+            </div>
+            <div class="review-text">
+                <p>
+                    {{message.message}}
+                </p>
+            </div>
+        </div>
+    </div>
+</div>

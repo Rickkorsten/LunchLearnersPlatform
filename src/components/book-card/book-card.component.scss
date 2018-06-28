@@ -10,8 +10,7 @@
     width: 355px;
     height: 180px;
     transition-duration: 0.3s;
-
-    img{
+    img {
         width: 120px;
     }
     .info-container {
@@ -31,15 +30,17 @@
             margin: 0;
         }
         .description {
-            font-size: 12px;
+            font-size: 11.5px;
             line-height: 18px;
-            margin-top: 8px;
-            height: 108px;
+            margin-top: 4px;
+            height: 90px;
+            text-align: justify;
         }
         .action-container {
             display: flex;
             flex-direction: row;
-
+            justify-content: space-between;
+            align-items: center;
             .button {
                 height: 29px;
                 display: flex;
@@ -81,7 +82,7 @@
     cursor: pointer;
 }
 
-::ng-deep .ster{
-    color: #ddd;
-    font-size: 1em !important;
+::ng-deep .star-icon {
+    color: #FFA81D;
+    font-size: 18px !important;
 }

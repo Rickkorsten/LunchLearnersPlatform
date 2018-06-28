@@ -1,4 +1,4 @@
-#login-background{
+#login-background {
     height: 100%;
     width: 100%;
     position: absolute;
@@ -7,36 +7,112 @@
     z-index: 999;
 }
 
-#login-background-overlay{
+#login-background-overlay {
     height: 100%;
     width: 100%;
     position: absolute;
-    background-color: rgba(0, 241, 255, 0.4392156862745098);
+    background-color: rgba(0, 196, 255, 0.38)
 }
 
-#login-container{
-    max-width: 400px;
+#login-container {
+    max-width: 338px;
     margin: auto;
-    margin-top: 160px;
+    margin-top: 120px;
     text-align: center;
 }
 
-#lunch-learners-logo{
-    width: 220px;
+#lunch-learners-logo {
+    width: 197px;
+    margin-bottom: 40px;
+    display: inline-block;
 }
 
-.login-card{
-    max-width: 300px;
+.switch {
+    display: block;
+    max-width: 338px;
+    display: flex;
+    justify-content: space-around;
+}
+
+.is-small {
+    color: white;
+    font-size: 20px;
+}
+
+.login-card {
+    max-width: 338px;
     margin: auto;
-    padding: 40px;
-    margin-top: 60px
+    padding: 40px 40px 20px 40px;
+    margin-top: 10px;
+    border-radius: 7px;
 }
 
-mat-card-subtitle{
+.triangles {
+    width: 100%;
+    margin: 10px auto -10px;
+    display: flex;
+    justify-content: space-around;
+}
+
+.triangle {
+    width: 22.38px;
+    height: 11.19px;
+    margin: 0px;
+    z-index: 1;
+}
+
+mat-card-subtitle {
     font-size: 16px;
 }
 
-mat-form-field{
+mat-form-field {
     font-size: 16px;
     width: 100%;
+}
+
+input {
+    padding: 8px 10px;
+    width: 100%;
+    margin: 8px 0;
+    display: inline-block;
+    background-color: #F4F4F4;
+    border-radius: 28px;
+    border: 0px;
+    box-sizing: border-box;
+    font: 300 14px 'Open Sans', "Helvetica Neue", sans-serif;
+    font-size: 14px;
+}
+
+.inloggenbutton {
+    background-color: #73C884;
+    border-color: #73C884 !important;
+    color: #fff;
+}
+
+.wachtwoordbutton{
+    border-color: #707070 !important;
+    color: #707070;
+}
+
+.button {
+    height: 36px;
+    border-radius: 28px;
+    border: 1px solid;
+    width: max-content;
+    transition-duration: 0.2s;
+    cursor: pointer;
+    font-size: 14px;
+    width: 100%;
+    text-align: center;
+    margin-top: 15px !important;
+    margin-bottom: 0px !important;
+}
+
+.button:hover{
+    margin-top: 10px !important;
+    margin-bottom: 5px !important;
+    -webkit-box-shadow: 0px 6px 30px 0px rgba(0, 0, 0, 0.12);
+    -moz-box-shadow: 0px 6px 30px 0px rgba(0, 0, 0, 0.12);
+    box-shadow: 0px 6px 30px 0px rgba(0, 0, 0, 0.12);
+    cursor: pointer;
 }

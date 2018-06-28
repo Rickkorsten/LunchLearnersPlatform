@@ -3,32 +3,34 @@
     <div class="information-content">
         <div class="bar-container">
             <p>{{book.title}}</p>
-            <div *ngIf="type === 'large'" class="progressBar">
+            <!-- <div *ngIf="type === 'large'" class="progressBar">
                 <div class="progress">
                     <p>40%</p>
                 </div>
+            </div> -->
+            <div>
+                <a href={{book.preziLink}} target="_blank"><app-button *ngIf="type === 'large'" [type]="'accept'" [filled]="false" [title]="'Presentatie bekijken'" [icon]="'open_in_new'"></app-button></a>
+                <app-button *ngIf="type === 'large'" [type]="'accept'" [filled]="true" [title]="'Video afspelen'" [icon]="'play_arrow'" (click)="toVideo()"></app-button>
             </div>
-            <app-button *ngIf="type === 'large'" [type]="'accept'" [filled]="true" [title]="'Afspelen'" [icon]="'play_arrow'"></app-button>
         </div>
         <div class="content-container">
             <div class="general-info">
                 <table>
                     <tr>
                         <td>Genre</td>
-                        <td>{{checkDbOutput(book.genre)}}</td>
+                        <td>{{checkDbOutput(book.categories)}}</td>
                     </tr>
                     <tr>
                         <td>Schrijver</td>
-                        <td>{{checkDbOutput(book.publisher)}}</td>
+                        <td>{{checkDbOutput(book.author)}}</td>
                     </tr>
                     <tr>
                         <td>Uitgave</td>
                         <td>{{checkDbOutput(book.publishDate)}}</td>
                     </tr>
-                    <br>
                     <tr>
                         <td>Presentator</td>
-                        <td>Luuk Luchtloper</td>
+                        <td>{{presentor}}</td>
                     </tr>
                     <tr>
                         <td>Duur</td>
@@ -36,13 +38,15 @@
                     </tr>
                     <tr *ngIf="type === 'large'">
                         <td>Beoordeling</td>
-                        <td></td>
+                        <td>
+                            <rating [(ngModel)]="rating" [float]="true" [titles]="['one', 'two', 'three', 'four', 'five']" [readonly]="true"></rating>
+                        </td>
                     </tr>
                 </table>
             </div>
             <div *ngIf="type === 'large'" class="description">
                 <h4>Omschrijving</h4>
-                <p>{{checkDbOutput(book.description)}}</p>
+                <p>{{checkDbOutput(book.description) | slice:0:380}}...</p>
             </div>
         </div>
     </div>

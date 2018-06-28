@@ -1,9 +1,9 @@
 <div [class.expanded]="expanded" [ngStyle]="{'display':display}" class="video">
     <mat-drawer-container>
         <mat-drawer #drawer class="sidenav" mode="over">
-            <app-book-card [type]="'sidemenu'" [book]="book" (click)="toPresentationPage(book)"></app-book-card>
+            <app-book-card [type]="'sidemenu'" [book]="book"></app-book-card>
             <div *ngFor="let section of book.sections; let i = index ">
-                <app-section-button [type]="'sidemenu'" [section]="i+1" [title]="section.title" [time]="section.time " (click)="goToTime(section.time)"></app-section-button>
+                <app-section-button [type]="'sidemenu'" [section]="i+1" [title]="section.title" [time]="section.time" (click)="goToTime(section.time, this.book.videoLink)"></app-section-button>
             </div>
         </mat-drawer>
 

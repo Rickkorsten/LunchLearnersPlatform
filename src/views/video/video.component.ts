@@ -9,21 +9,25 @@ import { DomSanitizer } from '@angular/platform-browser';
 })
 export class VideoComponent implements OnInit {
 
-  book: object;
+  book: any;
   safeURL: any;
   video: string;
   time: string;
   expanded = false;
   display: any;
   controleURL: any;
-
+  videoLink: any;
 
   constructor(
     private bookService: BooksService,
-    private _sanitizer: DomSanitizer
+    private _sanitizer: DomSanitizer,
   ) {
-    this.video = '5iOhzJdDawE';
-    this.bookService.activePresentation.subscribe(book => this.book = book);
+    this.bookService.activePresentation.subscribe(book => {
+      this.book = book;
+      // this.videoLink = book.videoLink;
+
+      console.log(this.book);
+    });
     this.bookService.displayVideo.subscribe(display => {
       if (display) {
         this.display = 'block';
@@ -32,17 +36,19 @@ export class VideoComponent implements OnInit {
       }
     });
     this.bookService.activeVideoLink.subscribe(link => {
+      console.log(link);
       this.safeURL = this._sanitizer
         .bypassSecurityTrustResourceUrl(link);
+        this.expanded = true;
     });
   }
 
   ngOnInit() {
   }
 
-  goToTime(time) {
+  goToTime(time, videoLink) {
     this.safeURL = this._sanitizer
-      .bypassSecurityTrustResourceUrl(`https://www.youtube.com/embed/${this.video}?start=${time}&autoplay=1&showinfo=0`);
+      .bypassSecurityTrustResourceUrl(`https://www.youtube.com/embed/${videoLink}?start=${time}&autoplay=1&showinfo=0`);
   }
 
   expand() {
@@ -56,6 +62,12 @@ export class VideoComponent implements OnInit {
   close() {
     this.expanded = true;
     this.bookService.setDisplay(false);
+    this.bookService.setActiveVideoLink('nothing', '0');
+  }
+
+  toPresentationPage(book) {
+    this.bookService.setActivePresentation(book);
+    this.bookService.setActiveVideoLink(book.videoLink, '0');
   }
 
 }

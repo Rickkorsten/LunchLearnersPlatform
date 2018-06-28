@@ -1,4 +1,5 @@
 import { Component, OnInit, Input } from '@angular/core';
+import { FirebaseCallsService } from './../../app/services/firebaseCalls/firebase-calls.service';
 
 @Component({
   selector: 'app-book-card',
@@ -7,19 +8,52 @@ import { Component, OnInit, Input } from '@angular/core';
 })
 export class BookCardComponent implements OnInit {
 
-  @Input() book: string;
+  @Input() book: any;
   @Input() type: string;
 
   hover: boolean;
+  rating: number;
+  generalRating: any;
 
-  constructor() { }
+  constructor(  private FirebaseCall: FirebaseCallsService ) {
+    this.generalRating = [];
+   }
 
-  ngOnInit() {
+  async ngOnInit() {
     if (this.type === 'sidemenu') {
       this.hover = false;
     } else {
       this.hover = true;
     }
+
+    // get avg
+    this.rating = this.calcAvg(await this.getRating(this.book.uid));
+  }
+
+  calcAvg(arr) {
+    return arr.reduce( ( p, c ) => p + c, 0 ) / arr.length;
+  }
+
+  getRating = (uid) => {
+    return new Promise(resolve => {
+    this.FirebaseCall.getSmallReviewsByUid(uid)
+    .subscribe(reviews => reviews
+      .filter(review => {
+        this.generalRating.push(review.generalRating);
+       resolve(this.generalRating);
+      }
+      ));
+    });
+  }
+
+  checkTitle(title) {
+    if (title.length > 21 ) {
+      const shortTitle = title.slice(0, 18);
+      return `${shortTitle}...`;
+    } else {
+      return title;
+    }
+
   }
 
 }

@@ -17,7 +17,6 @@
         .bar-container {
             display: flex;
             flex-direction: row;
-            height: 60px;
             border-bottom: 1px solid #ebebeb;
             border-bottom-width: 80%;
             justify-content: space-between;
@@ -25,6 +24,13 @@
             p {
                 font: 400 24px 'Lato', "Helvetica Neue", sans-serif;
                 font-size: 20px;
+            }
+            div{
+                display: flex;
+                a{
+                    margin-right: 16px;
+                    text-decoration: none;
+                }
             }
             .progressBar {
                 width: 285px;
@@ -53,7 +59,7 @@
         .content-container {
             display: flex;
             flex-direction: row;
-            padding-top: 27px;
+            padding-top: 16px;
             .general-info {
                 display: flex;
                 flex: 3;
@@ -69,7 +75,6 @@
                     font-size: 15px;
                     color: #4a4a4a;
                     font: 300 18px 'Lato', "Helvetica Neue", sans-serif;
-
                 }
                 p {
                     color: #707070;
@@ -104,4 +109,9 @@ tr td:first-child {
 img {
     height: 100%;
     max-height: 280px;
+}
+
+::ng-deep .star-icon {
+    color: #FFA81D;
+    font-size: 18px !important;
 }

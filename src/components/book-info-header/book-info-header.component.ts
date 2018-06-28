@@ -1,4 +1,6 @@
 import { Component, OnInit, Input } from '@angular/core';
+import { FirebaseCallsService } from './../../app/services/firebaseCalls/firebase-calls.service';
+import { BooksService } from './../../app/services/books/books.service';
 
 @Component({
   selector: 'app-book-info-header',
@@ -9,10 +11,26 @@ export class BookInfoHeaderComponent implements OnInit {
 
   @Input() book: any;
   @Input() type: string; // can be 'large' or 'small'
-  constructor() { }
 
-  ngOnInit() {
-    console.log(this.book);
+
+  presentor: string;
+  rating: number;
+  generalRating: any;
+
+  constructor(
+    private bookService: BooksService,
+    private FirebaseCall: FirebaseCallsService) {
+      this.generalRating = [];
+     }
+
+  async ngOnInit() {
+    if (this.book) {
+      this.FirebaseCall.getUserByIUD(this.book.employee)
+      .subscribe(user => this.presentor = user[0].name ? user[0].name : user[0].companyName );
+
+       // get avg
+    this.rating = this.calcAvg(await this.getRating(this.book.uid));
+    }
   }
 
   checkDbOutput = (data: string) => {
@@ -21,6 +39,29 @@ export class BookInfoHeaderComponent implements OnInit {
     } else {
       return data;
     }
+  }
+
+  calcAvg(arr) {
+    return arr.reduce( ( p, c ) => p + c, 0 ) / arr.length;
+  }
+
+  getRating = (uid) => {
+    return new Promise(resolve => {
+    this.FirebaseCall.getSmallReviewsByUid(uid)
+    .subscribe(reviews => reviews
+      .filter(review => {
+        console.log(reviews);
+        this.generalRating.push(review.generalRating);
+       resolve(this.generalRating);
+      }
+      ));
+    });
+  }
+
+  toVideo() {
+    this.bookService.setActivePresentation(this.book);
+    this.bookService.setActiveVideoLink(this.book.videoLink, '0');
+    this.bookService.setDisplay(true);
   }
 
 }

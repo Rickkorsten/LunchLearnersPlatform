@@ -2,6 +2,19 @@ import { Injectable } from '@angular/core';
 import { Http } from '@angular/http';
 import { BehaviorSubject } from 'rxjs/BehaviorSubject';
 
+// interface Book {
+//   uid?: string;
+//   title?: string;
+//   subTitle?: string;
+//   author?: string;
+//   smallCover?: string;
+//   publishedDate?: string;
+//   description?: string;
+//   categorie?: string;
+//   publisher?: string;
+//   videoLink?: string;
+// }
+
 @Injectable()
 export class BooksService {
 
@@ -10,10 +23,10 @@ export class BooksService {
   private bookSource = new BehaviorSubject<object>({ 'object': 'object' });
   activeBook = this.bookSource.asObservable();
 
-  private presentationSource = new BehaviorSubject<object>({ 'object': 'object' });
+  private presentationSource = new BehaviorSubject<any>({ 'object': 'object' });
   activePresentation = this.presentationSource.asObservable();
 
-  private videoLink = new BehaviorSubject<string>('https://www.youtube.com/embed/0ihzH6bCCms?autoplay=0&showinfo=0');
+  private videoLink = new BehaviorSubject<string>('');
   activeVideoLink = this.videoLink.asObservable();
 
   private displaySource = new BehaviorSubject<boolean>(false);
@@ -36,11 +49,12 @@ export class BooksService {
   }
 
   public setActiveVideoLink(video: string, time: string) {
-    const URL = (`https://www.youtube.com/embed/${video}?start=${time}&autoplay=0&showinfo=0`);
+    const URL = `https://www.youtube.com/embed/${video}?start=${time}&autoplay=1&showinfo=0`;
     this.videoLink.next(URL);
   }
 
   public setDisplay(bool) {
     this.displaySource.next(bool);
   }
+
 }

@@ -1,8 +1,50 @@
 .library {
+    .banner {
+        width: 1100px;
+        height: 300px;
+        margin: 0 auto;
+        background-position: center;
+        margin-top: 109px;
+        background-color: green;
+        border-radius: 5px;
+        -webkit-box-shadow: 0px 0px 10px 0px rgba(0, 0, 0, 0.12);
+        -moz-box-shadow: 0px 0px 10px 0px rgba(0, 0, 0, 0.12);
+        box-shadow: 0px 0px 10px 0px rgba(0, 0, 0, 0.12);
+
+        .gradient-overlay{
+            height: 100%;
+            width: 100%;
+            position: relative;
+            background: linear-gradient(to right, rgba(0, 196, 255, 0.35) 0%, rgba(0, 184, 240, 0.35) 32%, rgba(0, 98, 128, 0.35) 100%) !important;
+            display: flex;
+            flex-direction: row;
+
+            .banner-content {
+                margin-left: 80px;
+                display: flex;
+                justify-content: center;
+                flex-direction: column;
+                p:first-child {
+                    margin: 0;
+                    color: white;
+                    font-size: 50px;
+                    font-weight: bolder;
+                }
+                p {
+                    margin: 0;
+                    color: white;
+                    font-size: 20px;
+                    font-weight: 300;
+                }
+            }
+        }
+
+        
+    }
     .header-separator {
         width: 1100px;
         margin: auto;
-        margin-top: 180px;
+        margin-top: 43px;
         p {
             font: 300 24px 'Lato', "Helvetica Neue", sans-serif;
         }
@@ -13,9 +55,8 @@
         width: 1100px;
         justify-content: space-between;
         flex-wrap: wrap;
-        app-book-card{
+        app-book-card {
             margin-bottom: 18px;
         }
     }
 }
-

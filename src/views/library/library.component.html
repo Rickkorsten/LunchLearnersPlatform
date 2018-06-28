@@ -1,14 +1,18 @@
 <div class="library">
-        <div class="header-separator">
-                <p>Collectie van Fontys</p>
+    <div class="banner" style="background-image: url('../../assets/login background.jpg');">
+        <div class="gradient-overlay">
+            <div class="banner-content">
+                <p>{{ title }}</p>
+                <p>{{ author }}</p>
+                <br>
+                <app-button [type]="'accept'" [filled]="false" [title]="'Afspelen'" [icon]="'play_arrow'" (click)="toVideo()"></app-button>
+            </div>
         </div>
+    </div>
+    <div class="header-separator">
+        <p>Collectie van {{companyName}}</p>
+    </div>
     <div class="book-container">
-<<<<<<< HEAD
-=======
-
-            
-
->>>>>>> fe09ee657636938e8de09ea90e2557cc05d1f9bb
-        <app-book-card *ngFor="let book of books | async" [book]="book" (click)="toPresentationPage(book)"></app-book-card>
+        <app-book-card *ngFor="let book of allBooks" [book]="book" (click)="toPresentationPage(book)"></app-book-card>
     </div>
 </div>
